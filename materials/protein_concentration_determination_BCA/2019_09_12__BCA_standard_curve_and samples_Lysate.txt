@@ -1,0 +1,87 @@
+Plate ID	Well 	Sample ID	User ID	Date 	Time 	conc. 	units 	nm 	Abs. 	Cursor Pos.	Cursor abs.	Norm nm	Norm Abs
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A1	SMM_control_A	A. Reder	9/12/2019	4:06 PM		mg/ml	562	0.549	562	0.549	750	0.043
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B1	SMM_control_B	A. Reder	9/12/2019	4:06 PM		mg/ml	562	0.540	562	0.540	750	0.033
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C1	SMM_control_C	A. Reder	9/12/2019	4:06 PM		mg/ml	562	0.510	562	0.510	750	0.034
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D1	SMM_EtOH_t10_A	A. Reder	9/12/2019	4:06 PM		mg/ml	562	0.477	562	0.477	750	0.029
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E1	SMM_EtOH_t10_B	A. Reder	9/12/2019	4:06 PM	0.1656	mg/ml	562	0.457	562	0.457	750	0.026
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F1	SMM_EtOH_t10_C	A. Reder	9/12/2019	4:06 PM	0.1619	mg/ml	562	0.447	562	0.447	750	0.025
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G1	SMM_EtOH_t30_A	A. Reder	9/12/2019	4:06 PM	0.1538	mg/ml	562	0.427	562	0.427	750	-0.011
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H1	SMM_EtOH_t30_B	A. Reder	9/12/2019	4:06 PM	0.1430	mg/ml	562	0.399	562	0.399	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A2	SMM_control_A	A. Reder	9/12/2019	4:08 PM		mg/ml	562	0.486	562	0.486	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B2	SMM_control_B	A. Reder	9/12/2019	4:08 PM		mg/ml	562	0.515	562	0.515	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C2	SMM_control_C	A. Reder	9/12/2019	4:08 PM	0.1668	mg/ml	562	0.460	562	0.460	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D2	SMM_EtOH_t10_A	A. Reder	9/12/2019	4:08 PM	0.1526	mg/ml	562	0.424	562	0.424	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E2	SMM_EtOH_t10_B	A. Reder	9/12/2019	4:08 PM	0.1365	mg/ml	562	0.383	562	0.383	750	0.022
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F2	SMM_EtOH_t10_C	A. Reder	9/12/2019	4:08 PM	0.1353	mg/ml	562	0.380	562	0.380	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G2	SMM_EtOH_t30_A	A. Reder	9/12/2019	4:08 PM	0.1279	mg/ml	562	0.361	562	0.361	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H2	SMM_EtOH_t30_B	A. Reder	9/12/2019	4:08 PM	0.1224	mg/ml	562	0.347	562	0.347	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A3	SMM_EtOH_t30_C	A. Reder	9/12/2019	4:09 PM	0.1488	mg/ml	562	0.414	562	0.414	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B3	SMM_Heat_t10_A	A. Reder	9/12/2019	4:09 PM	0.1531	mg/ml	562	0.425	562	0.425	750	0.016
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C3	SMM_Heat_t10_B	A. Reder	9/12/2019	4:09 PM	0.1611	mg/ml	562	0.445	562	0.445	750	0.023
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D3	SMM_Heat_t10_C	A. Reder	9/12/2019	4:09 PM	0.1467	mg/ml	562	0.409	562	0.409	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E3	SMM_Heat_t30_A	A. Reder	9/12/2019	4:09 PM	0.1444	mg/ml	562	0.403	562	0.403	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F3	SMM_Heat_t30_B	A. Reder	9/12/2019	4:09 PM	0.1494	mg/ml	562	0.415	562	0.415	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G3	SMM_Heat_t30_C	A. Reder	9/12/2019	4:09 PM	0.1444	mg/ml	562	0.403	562	0.403	750	0.024
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H3	SMM_Salt_t10_A	A. Reder	9/12/2019	4:09 PM	0.09240	mg/ml	562	0.270	562	0.270	750	0.016
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A4	SMM_EtOH_t30_C	A. Reder	9/12/2019	4:10 PM	0.1489	mg/ml	562	0.414	562	0.414	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B4	SMM_Heat_t10_A	A. Reder	9/12/2019	4:10 PM	0.1440	mg/ml	562	0.402	562	0.402	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C4	SMM_Heat_t10_B	A. Reder	9/12/2019	4:10 PM	0.1548	mg/ml	562	0.429	562	0.429	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D4	SMM_Heat_t10_C	A. Reder	9/12/2019	4:10 PM	0.1392	mg/ml	562	0.390	562	0.390	750	0.023
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E4	SMM_Heat_t30_A	A. Reder	9/12/2019	4:10 PM	0.1439	mg/ml	562	0.402	562	0.402	750	0.026
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F4	SMM_Heat_t30_B	A. Reder	9/12/2019	4:10 PM	0.1446	mg/ml	562	0.403	562	0.403	750	0.024
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G4	SMM_Heat_t30_C	A. Reder	9/12/2019	4:10 PM	0.1355	mg/ml	562	0.380	562	0.380	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H4	SMM_Salt_t10_A	A. Reder	9/12/2019	4:10 PM	0.08728	mg/ml	562	0.257	562	0.257	750	0.017
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A5	SMM_Salt_t10_B	A. Reder	9/12/2019	4:11 PM	0.09636	mg/ml	562	0.280	562	0.280	750	0.017
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B5	SMM_Salt_t10_C	A. Reder	9/12/2019	4:11 PM	0.1123	mg/ml	562	0.321	562	0.321	750	0.016
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C5	SMM_Salt_t30_A	A. Reder	9/12/2019	4:11 PM	0.1039	mg/ml	562	0.300	562	0.300	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D5	SMM_Salt_t30_B	A. Reder	9/12/2019	4:11 PM	0.09747	mg/ml	562	0.283	562	0.283	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E5	SMM_Salt_t30_C	A. Reder	9/12/2019	4:11 PM	0.09699	mg/ml	562	0.282	562	0.282	750	0.014
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F5	DSM_control_A	A. Reder	9/12/2019	4:11 PM		mg/ml	562	0.479	562	0.479	750	0.015
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G5	DSM_control_B	A. Reder	9/12/2019	4:11 PM	0.1517	mg/ml	562	0.421	562	0.421	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H5	DSM_control_C	A. Reder	9/12/2019	4:11 PM	0.1613	mg/ml	562	0.446	562	0.446	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A6	SMM_Salt_t10_B	A. Reder	9/12/2019	4:13 PM	0.09407	mg/ml	562	0.275	562	0.275	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B6	SMM_Salt_t10_C	A. Reder	9/12/2019	4:13 PM	0.1051	mg/ml	562	0.303	562	0.303	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C6	SMM_Salt_t30_A	A. Reder	9/12/2019	4:13 PM	0.1011	mg/ml	562	0.292	562	0.292	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D6	SMM_Salt_t30_B	A. Reder	9/12/2019	4:13 PM	0.08272	mg/ml	562	0.246	562	0.246	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E6	SMM_Salt_t30_C	A. Reder	9/12/2019	4:13 PM	0.09286	mg/ml	562	0.272	562	0.272	750	0.016
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F6	DSM_control_A	A. Reder	9/12/2019	4:13 PM		mg/ml	562	0.495	562	0.495	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G6	DSM_control_B	A. Reder	9/12/2019	4:13 PM	0.1576	mg/ml	562	0.436	562	0.436	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H6	DSM_control_C	A. Reder	9/12/2019	4:13 PM	0.1589	mg/ml	562	0.440	562	0.440	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A7	DSM_stat_t60_A	A. Reder	9/12/2019	4:14 PM	0.1662	mg/ml	562	0.458	562	0.458	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B7	DSM_stat_t60_B	A. Reder	9/12/2019	4:14 PM	0.1632	mg/ml	562	0.451	562	0.451	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C7	DSM_stat_t60_C	A. Reder	9/12/2019	4:14 PM	0.1514	mg/ml	562	0.421	562	0.421	750	0.017
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D7	DSM_stat_t180_A	A. Reder	9/12/2019	4:14 PM	0.1440	mg/ml	562	0.402	562	0.402	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E7	DSM_stat_t180_B	A. Reder	9/12/2019	4:14 PM	0.1412	mg/ml	562	0.395	562	0.395	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F7	DSM_stat_t180_C	A. Reder	9/12/2019	4:14 PM	0.1335	mg/ml	562	0.375	562	0.375	750	0.015
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G7	Comp_control_A	A. Reder	9/12/2019	4:14 PM	0.1462	mg/ml	562	0.407	562	0.407	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H7	Comp_control_B	A. Reder	9/12/2019	4:14 PM	0.1349	mg/ml	562	0.379	562	0.379	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A8	DSM_stat_t60_A	A. Reder	9/12/2019	4:15 PM		mg/ml	562	0.476	562	0.476	750	0.017
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B8	DSM_stat_t60_B	A. Reder	9/12/2019	4:15 PM	0.03242	mg/ml	562	0.454	562	0.454	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C8	DSM_stat_t60_C	A. Reder	9/12/2019	4:15 PM	0.1495	mg/ml	562	0.416	562	0.416	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D8	DSM_stat_t180_A	A. Reder	9/12/2019	4:15 PM	0.1426	mg/ml	562	0.398	562	0.398	750	0.022
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E8	DSM_stat_t180_B	A. Reder	9/12/2019	4:15 PM	0.1467	mg/ml	562	0.409	562	0.409	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F8	DSM_stat_t180_C	A. Reder	9/12/2019	4:15 PM	0.1373	mg/ml	562	0.385	562	0.385	750	0.016
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G8	Comp_control_A	A. Reder	9/12/2019	4:15 PM	0.1505	mg/ml	562	0.418	562	0.418	750	0.022
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H8	Comp_control_B	A. Reder	9/12/2019	4:15 PM	0.1446	mg/ml	562	0.403	562	0.403	750	0.073
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A8	DSM_stat_t60_A	A. Reder	9/12/2019	4:17 PM		mg/ml	562	0.477	562	0.477	750	0.023
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B8	DSM_stat_t60_B	A. Reder	9/12/2019	4:17 PM	0.1643	mg/ml	562	0.453	562	0.453	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C8	DSM_stat_t60_C	A. Reder	9/12/2019	4:17 PM	0.1531	mg/ml	562	0.425	562	0.425	750	0.015
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D8	DSM_stat_t180_A	A. Reder	9/12/2019	4:17 PM	0.1408	mg/ml	562	0.394	562	0.394	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E8	DSM_stat_t180_B	A. Reder	9/12/2019	4:17 PM	0.1543	mg/ml	562	0.428	562	0.428	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F8	DSM_stat_t180_C	A. Reder	9/12/2019	4:17 PM	0.1445	mg/ml	562	0.403	562	0.403	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G8	Comp_control_A	A. Reder	9/12/2019	4:17 PM	0.1586	mg/ml	562	0.439	562	0.439	750	0.018
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	H8	Comp_control_B	A. Reder	9/12/2019	4:17 PM	0.1470	mg/ml	562	0.409	562	0.409	750	0.022
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A9	Comp_control_C	A. Reder	9/12/2019	4:18 PM	0.1280	mg/ml	562	0.361	562	0.361	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B9	Comp_OD1.8_A	A. Reder	9/12/2019	4:18 PM	0.1633	mg/ml	562	0.451	562	0.451	750	0.017
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C9	Comp_OD1.8_B	A. Reder	9/12/2019	4:18 PM		mg/ml	562	0.500	562	0.500	750	0.022
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D9	Comp_OD1.8_C	A. Reder	9/12/2019	4:18 PM	0.1498	mg/ml	562	0.416	562	0.416	750	0.021
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E9	Comp_stat_t60_A	A. Reder	9/12/2019	4:18 PM	0.1256	mg/ml	562	0.355	562	0.355	750	0.016
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F9	Comp_stat_t60_B	A. Reder	9/12/2019	4:18 PM	0.1221	mg/ml	562	0.346	562	0.346	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G9	Comp_stat_t60_C	A. Reder	9/12/2019	4:18 PM	0.1220	mg/ml	562	0.346	562	0.346	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	A10	Comp_control_C	A. Reder	9/12/2019	4:19 PM	0.1314	mg/ml	562	0.370	562	0.370	750	0.023
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	B10	Comp_OD1.8_A	A. Reder	9/12/2019	4:19 PM		mg/ml	562	0.475	562	0.475	750	0.019
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	C10	Comp_OD1.8_B	A. Reder	9/12/2019	4:19 PM		mg/ml	562	0.503	562	0.503	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	D10	Comp_OD1.8_C	A. Reder	9/12/2019	4:19 PM	0.1642	mg/ml	562	0.453	562	0.453	750	0.024
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	E10	Comp_stat_t60_A	A. Reder	9/12/2019	4:19 PM	0.1321	mg/ml	562	0.371	562	0.371	750	0.020
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	F10	Comp_stat_t60_B	A. Reder	9/12/2019	4:19 PM	0.1246	mg/ml	562	0.352	562	0.352	750	0.016
+microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions	G10	Comp_stat_t60_C	A. Reder	9/12/2019	4:19 PM	0.1305	mg/ml	562	0.367	562	0.367	750	0.023
