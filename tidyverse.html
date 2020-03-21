@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>tidyverse.utf8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li>
+  <a href="examples_general.html">Examples</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="what-means-tidy-tidy-data" class="section level1">
+<h1>What means “tidy / tidy data”?</h1>
+<p><strong>Tidy data</strong> is a way to organize tabular data. It provides a consistent data structure accross packages</p>
+<p><img src="figures/tidy_data.png" width="600" /></p>
+<div id="example-of-data-vs-tidy-data" class="section level2">
+<h2>Example of data vs tidy data</h2>
+<p><img src="figures/tidy_data_example.png" width="600" /></p>
+</div>
+</div>
+<div id="messy-data-to-tidy-data" class="section level1">
+<h1>“Messy data” to tidy data !!!</h1>
+<p><img src="figures/tidy_data_reshape.png" width="600" /></p>
+</div>
+<div id="tidy" class="section level1">
+<h1>The Tidyverse</h1>
+<p>This “meta-package” consists of several R packages, or as the Founding Father Hadley Wickahm says, “The tidyverse is an opinionated collection of R packages designed for data science.”</p>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="20%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>package</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="hex_sticker/hex-ggplot2.png" /></td>
+<td><strong>ggplot2</strong> <em>(plotting)</em></td>
+<td>ggplot2 is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-dplyr.png" /></td>
+<td><strong>dplyr</strong> <em>(for transforming and summarizing dataframe content)</em></td>
+<td>dplyr provides a grammar of data manipulation, providing a consistent set of verbs that solve the most common data manipulation challenges.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-tidyr.png" /></td>
+<td><strong>tidyr</strong> <em>(for transforming (“tidying”) data frame structure)</em></td>
+<td>tidyrprovides a set of functions that help you get to tidy data. Tidy data is data with a consistent form: in brief, every variable goes in a column, and every column is a variable.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-readr.png" /></td>
+<td><strong>readr</strong> <em>(reading/saving data)</em></td>
+<td>readr provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-purrr.png" /></td>
+<td><strong>purrr</strong> <em>(functional programming)</em></td>
+<td>purrr enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors. Once you master the basic concepts, purrr allows you to replace many for loops with code that is easier to write and more expressive. ( an upgrade of base R functional programming tools. (Beyond scope of class.))</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-tibble.png" /></td>
+<td><strong>tibble</strong> <em>(an improved data frame)</em></td>
+<td>tibble is a modern re-imagining of the data frame, keeping what time has proven to be effective, and throwing out what it has not. Tibbles are data.frames that are lazy and surly: they do less and complain more forcing you to confront problems earlier, typically leading to cleaner, more expressive code.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-stringr.png" /></td>
+<td><strong>stringr</strong> <em>(dealing and manipulation of strings)</em></td>
+<td>stringr provides a cohesive set of functions designed to make working with strings as easy as possible. It is built on top of stringi, which uses the ICU C library to provide fast, correct implementations of common string manipulations.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-forcats.png" /></td>
+<td><strong>forcats</strong> <em>(dealing with factors)</em></td>
+<td>provides a suite of useful tools that solve common problems with factors. R uses factors to handle categorical variables, variables that have a fixed and known set of possible values.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-magrittr.jpg" /></td>
+<td><strong>magrittr</strong> <em>(pipeline mode of functions)</em></td>
+<td>offers a set of operators which make your code more readable by: structuring sequences of data operations left-to-right (as opposed to from the inside and out),avoiding nested function calls, minimizing the need for local variables and function definitions, and making it easy to add steps anywhere in the sequence of operations.The operators pipe their left-hand side values forward into expressions that appear on the right-hand side, i.e. one can replace f(x) with x %&gt;% f(), where %&gt;% is the (main) pipe-operator. When coupling several function calls with the pipe-operator, the benefit will become more apparent.</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:#b71c1c;font-size: 12pt"><strong>Important:</strong> Commands/functions of each package can be strung together in order using the pipe <code>%&gt;%</code> (<kbd>Ctrl</kbd> + <kbd>↑</kbd> + <kbd>M</kbd>) operator. (example follows…)</span></p>
+<p><a href="https://www.tidyverse.org">read more abaout the tidyverse on the webpage</a></p>
+<p>You will learn functionalities of each package during the course via useful example scripts.</p>
+<div id="where-do-the-package-names-come-from" class="section level2">
+<h2>where do the package names come from ?</h2>
+<p>Well the name (choosen by the programmer) of a package often conveys a story and is focused mainly on the usage of the package.</p>
+<p><u><strong>examples:</strong></u></p>
+<ul>
+<li><strong>dplyr</strong> - So the <code>d</code> stands for data frames (others <code>db</code> for databases, <code>dt</code> for data tables…) ; <code>plyr</code> R apply-functions – „split-apply-combine“ strategy</li>
+<li><strong>ggplot2</strong> - Grammer of Graphics plotting (<a href="https://vita.had.co.nz/papers/layered-grammar.html" class="uri">https://vita.had.co.nz/papers/layered-grammar.html</a>)</li>
+<li><strong>purrr</strong> - Hadley Wickham - “your pure R functions purrr”</li>
+<li><strong>vroom</strong> - reads data so fast, you almost can hear it making vroom vroom like a sports car</li>
+</ul>
+</div>
+<div id="first-things-first-what-is-a-tibble" class="section level2">
+<h2>First things first, “What is a tibble?”</h2>
+<p>A <strong>tibble</strong> is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.</p>
+<ul>
+<li>tibble is a modern re-imagining of the data frame –&gt; <strong>tibble is a list in data.frame style</strong></li>
+</ul>
+<div class="figure">
+<img src="figures/tibble_example.png" alt="tibble example:" />
+<p class="caption">tibble example:</p>
+</div>
+<p>Tibbles enhance data frames in three ways:</p>
+<ol style="list-style-type: decimal">
+<li>Subsetting - [ always returns a new tibble, [[ and $ always return a new vector</li>
+<li>No partial matching - You must use full column names when subsetting</li>
+<li>Display - When you print a tibble, R provides a concise view of the data that fits on one screen</li>
+</ol>
+<p><strong>many tidyverse functions you may find explained and coupled with a pratical examples in the Examples section</strong></p>
+</div>
+<div id="ggplot2---elegant-graphics-for-data-analysis-part-of-tidyverse" class="section level2">
+<h2>ggplot2 - elegant graphics for data analysis (part of tidyverse)</h2>
+<p><img src="hex_sticker/hex-ggplot2.png" width="100" /></p>
+<p><strong>ggplot2 package:</strong> It’s one of the most commonly downloaded R packages (over a million downloads in the last year!) and has influenced the design of graphics packages for other languages.</p>
+<p>ggplot2 is an R package for producing statistical, or data, graphics, but it is unlike most other graphics packages because it has a deep underlying gram- mar. This grammar, based on the Grammar of Graphics (<a href="https://www.springer.com/de/book/9780387245447">Grammar of Graphics (Wilkinson, Leland; 2015)</a>).</p>
+<p>You can find a fast and brief overview of ggplot2 at <a href="http://www.cookbook-r.com/Graphs/" target="_blank">R graphics cookbook</a></p>
+<p>In addition to the powerful basis of ggplot2 several (100+) extension were developed <a href="https://www.ggplot2-exts.org" target="_blank">ggplot2-exts.org</a></p>
+<p><code>In brief, the grammar tells us that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars).</code></p>
+<ol style="list-style-type: decimal">
+<li><strong>Data</strong></li>
+<li><strong>Aesthetics or Mapping:</strong> What should be plotted on x and y-axis. group-wise: colour, fill, size, shape,line width, line type.</li>
+<li><strong>Geometrics:</strong> Should a point, line, histogram, bar or boxplot (…) be used. (<code>geom_...()</code>)</li>
+<li><strong>Facets:</strong> data groups plot by columns and rows 4a. <strong>Scales:</strong> scale translate back and forth between variable ranges and property ranges (numbers &gt;&gt; position; log-scaled or discrete)</li>
+<li><strong>Statistics:</strong> data binning, smoothing (e.g. loess fit), …</li>
+<li><strong>Coordinates:</strong> fixed, polar, set limits, do coord. cartesian</li>
+<li><strong>Themes:</strong> use Plot themes</li>
+</ol>
+<div class="figure">
+<img src="figures/ggplot-grammar-of-graphics-stack.png" alt="grammar of graphics" />
+<p class="caption">grammar of graphics</p>
+</div>
+<div id="ggplot2---themes" class="section level3">
+<h3>ggplot2 - Themes</h3>
+<pre class="r"><code>library(datasets)
+library(ggplot2)
+p &lt;- ggplot(diamonds) + 
+     geom_point(aes(x = carat, y = price, colour = color),alpha=0.5) + 
+     facet_wrap(~cut) + 
+     labs(title=&quot;overview of diamonds dataset&quot;, 
+          subtitle=&quot;carat vs. price &amp; colored by diamond color&quot;,
+          caption = &quot;a caption text would be placed here&quot; )</code></pre>
+<p><strong>Pay attention to the structure of this function call:</strong> data and aesthetic mappings are supplied in <code>ggplot()</code>, then layers are added on with <code>+</code>.</p>
+<p>This is an important pattern, and as you learn more about ggplot2 you’ll construct increasingly sophisticated plots by adding on more types of components.</p>
+<p><strong>1. theme_gray()</strong></p>
+<pre class="r"><code>p + theme_gray() # the default</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-4-1.png" width="672" /> <strong>2. theme_bw()</strong></p>
+<pre class="r"><code>p + theme_bw()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-5-1.png" width="672" /> <strong>3. theme_linedraw()</strong></p>
+<pre class="r"><code>p + theme_linedraw()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-6-1.png" width="672" /> <strong>4. theme_light()</strong></p>
+<pre class="r"><code>p + theme_light()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-7-1.png" width="672" /> <strong>5. theme_dark()</strong></p>
+<pre class="r"><code>p + theme_dark()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-8-1.png" width="672" /> <strong>6. theme_minimal()</strong></p>
+<pre class="r"><code>p + theme_minimal()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-9-1.png" width="672" /> <strong>7. theme_classic()</strong></p>
+<pre class="r"><code>p + theme_classic()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-10-1.png" width="672" /> <strong>8. theme_void()</strong></p>
+<pre class="r"><code>p + theme_void()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div id="hrbrthemes-themes" class="section level4">
+<h4><code>hrbrthemes</code> Themes</h4>
+<p>There are also packages that add themes to ggplot like the <code>hrbrthemes</code> package.</p>
+<p><a href="https://github.com/hrbrmstr/hrbrthemes">more information about the hrbrthemes package can be found here</a></p>
+<p>But here are special fonts needed which are proivided in the package:</p>
+<pre class="r"><code>library(hrbrthemes)
+import_plex_sans()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/plex-sans]</code></pre>
+<pre class="r"><code>import_public_sans()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/public-sans]</code></pre>
+<pre class="r"><code>import_roboto_condensed()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/roboto-condensed]</code></pre>
+<pre class="r"><code>import_titillium_web()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/titillium-web]</code></pre>
+<p>** load <code>hrbrthemes</code> package**</p>
+<pre class="r"><code>library(hrbrthemes)</code></pre>
+<p><strong>1. theme_ipsum()</strong></p>
+<pre class="r"><code>p + theme_ipsum()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><strong>2. theme_ipsum_rc()</strong></p>
+<pre class="r"><code>p + theme_ipsum_rc()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><strong>3. theme_ft_rc()</strong></p>
+<pre class="r"><code>p + theme_ft_rc()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-inspired---what-plots-can-be-generated" class="section level3">
+<h3>get inspired - what plots can be generated</h3>
+<ul>
+<li><a href="http://visualizationuniverse.com/charts/?sortBy=volume&amp;sortDir=desc">Visualization Universe</a></li>
+<li><a href="https://projects.susielu.com/viz-palette">Viz-palette (which colors can be used)</a></li>
+<li><a href="https://material.io/design/color/the-color-system.html#tools-for-picking-colors">Google Material Colors (which colors can be used)</a></li>
+<li><a href="https://datavizcatalogue.com">data viz catalogue</a></li>
+</ul>
+</div>
+</div>
+<div id="broom---elegant-graphics-for-data-analysis-part-of-tidyverse" class="section level2">
+<h2>broom - elegant graphics for data analysis (part of tidyverse)</h2>
+<p><img src="hex_sticker/broom.png" width="100" /></p>
+<p><strong>broom package:</strong> broom summarizes key information about models in tidy tibble()s. broom provides three verbs to make it convenient to interact with model objects.</p>
+<ul>
+<li><code>tidy()</code> summarizes information about fit components</li>
+<li><code>glance()</code> report goodness of fit measures</li>
+<li><code>augment()</code> adds informations about observations to a dataset</li>
+</ul>
+<p>broom can handle 100+ models from popular modelling packages.</p>
+<p>The following methods are currently available in <code>broom</code>: (code from <a href="https://github.com/tidymodels/broom/blob/master/vignettes/available-methods.Rmd" class="uri">https://github.com/tidymodels/broom/blob/master/vignettes/available-methods.Rmd</a>)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">class</th>
+<th align="left">tidy</th>
+<th align="left">glance</th>
+<th align="left">augment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">aareg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">acf</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">anova</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">aov</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">aovlist</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Arima</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">betareg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">biglm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">binDesign</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">binWidth</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">boot</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">brmsfit</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">btergm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">cch</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">cld</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">clm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">clmm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">coeftest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">confint.glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">confusionMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">coxph</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">cv.glmnet</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">data.frame</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">default</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">density</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">dgCMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">dgTMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">dist</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">durbinWatsonTest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">emmGrid</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ergm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">factanal</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">felm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">fitdistr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ftable</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">gam</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Gam</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">gamlss</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">garch</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">geeglm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">glm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">glmnet</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">gmm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">htest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">ivreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">kappa</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">kde</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Kendall</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">kmeans</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">lavaan</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Line</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Lines</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">list</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">lm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">lme</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">lmodel2</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">logical</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">lsmobj</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">manova</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">map</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">matrix</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Mclust</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">merMod</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">mle2</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">muhaz</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">multinom</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">nlrq</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">nls</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">NULL</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">orcutt</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">pairwise.htest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">plm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">poLCA</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">polr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">Polygon</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Polygons</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">power.htest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">prcomp</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">pyears</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rcorr</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ref.grid</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">ridgelm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">rjags</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">roc</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rowwise_df</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">rq</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">rqs</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">sparseMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">SpatialLinesDataFrame</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">SpatialPolygons</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">SpatialPolygonsDataFrame</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">spec</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">speedlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">stanfit</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">stanreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">summary.glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">summary.lm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">summaryDefault</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">survdiff</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">survexp</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">survfit</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">survreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">svyolr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">table</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">tbl_df</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">ts</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">TukeyHSD</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">zoo</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div id="broom-usage" class="section level3">
+<h3>broom usage</h3>
+<p>(codes from tidyverse.org + talk Alex Hayes Rconf2019)</p>
+<div id="tidy---summarizes-information-about-fit-components" class="section level4">
+<h4><code>tidy()</code> - summarizes information about fit components</h4>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+
+fit &lt;- lm(Sepal.Width ~ Petal.Length + Petal.Width, iris)
+tidy(fit)</code></pre>
+<pre><code>## # A tibble: 3 x 5
+##   term         estimate std.error statistic  p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     3.59     0.0937     38.3  2.51e-78
+## 2 Petal.Length   -0.257    0.0669     -3.84 1.80e- 4
+## 3 Petal.Width     0.364    0.155       2.35 2.01e- 2</code></pre>
+<p>you can also use that in RMarkdown and create a nice table right away with knitr package</p>
+<pre class="r"><code>kable2 &lt;- function(data){
+  knitr::kable(mutate_if(data,is.numeric,round,2))
+}
+
+tidy(fit) %&gt;% 
+  kable2()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">3.59</td>
+<td align="right">0.09</td>
+<td align="right">38.27</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Length</td>
+<td align="right">-0.26</td>
+<td align="right">0.07</td>
+<td align="right">-3.84</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Width</td>
+<td align="right">0.36</td>
+<td align="right">0.15</td>
+<td align="right">2.35</td>
+<td align="right">0.02</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="glance---report-goodness-of-fit-measures" class="section level4">
+<h4><code>glance()</code> - report goodness of fit measures</h4>
+<pre class="r"><code>glance(fit)</code></pre>
+<pre><code>## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.213         0.202 0.389      19.9 2.24e-8     3  -69.8  148.  160.
+## # … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>if you would like to compare models:</p>
+<pre class="r"><code>fits &lt;- list(
+  fit1 = lm(hp ~ cyl, mtcars),
+  fit2 = lm(hp ~ cyl + mpg, mtcars),
+  fit3 = lm(hp ~ ., mtcars)
+)
+
+gof &lt;- map_df(fits, glance, .id = &quot;model&quot;) %&gt;% 
+  arrange(AIC)
+
+gof</code></pre>
+<pre><code>## # A tibble: 3 x 12
+##   model r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##   &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 fit3      0.903         0.857  26.0      19.5 1.90e-8    11  -143.  310.  327.
+## 2 fit1      0.693         0.683  38.6      67.7 3.48e-9     2  -161.  329.  333.
+## 3 fit2      0.709         0.689  38.2      35.4 1.66e-8     3  -160.  329.  335.
+## # … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+</div>
+<div id="augment---adds-informations-about-observations-to-a-dataset" class="section level4">
+<h4><code>augment()</code> - adds informations about observations to a dataset</h4>
+<pre class="r"><code>augment(fit)</code></pre>
+<pre><code>## # A tibble: 150 x 10
+##    Sepal.Width Petal.Length Petal.Width .fitted .se.fit  .resid   .hat .sigma
+##          &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1         3.5          1.4         0.2    3.30  0.0532  0.200  0.0187  0.390
+##  2         3            1.4         0.2    3.30  0.0532 -0.300  0.0187  0.390
+##  3         3.2          1.3         0.2    3.33  0.0547 -0.126  0.0198  0.390
+##  4         3.1          1.5         0.2    3.27  0.0526 -0.174  0.0182  0.390
+##  5         3.6          1.4         0.2    3.30  0.0532  0.300  0.0187  0.390
+##  6         3.9          1.7         0.4    3.30  0.0497  0.604  0.0163  0.387
+##  7         3.4          1.4         0.3    3.34  0.0546  0.0637 0.0197  0.391
+##  8         3.4          1.5         0.2    3.27  0.0526  0.126  0.0182  0.390
+##  9         2.9          1.4         0.2    3.30  0.0532 -0.400  0.0187  0.389
+## 10         3.1          1.5         0.1    3.24  0.0574 -0.138  0.0217  0.390
+## # … with 140 more rows, and 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

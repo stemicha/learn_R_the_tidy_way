@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>tidyverse__ggplot2.utf8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li>
+  <a href="examples_general.html">Examples</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="ggplot2---elegant-graphics-for-data-analysis-part-of-tidyverse" class="section level2">
+<h2>ggplot2 - elegant graphics for data analysis (part of tidyverse)</h2>
+<p><img src="hex_sticker/hex-ggplot2.png" width="100" /></p>
+<p><strong>ggplot2 package:</strong> It’s one of the most commonly downloaded R packages (over a million downloads in the last year!) and has influenced the design of graphics packages for other languages.</p>
+<p>ggplot2 is an R package for producing statistical, or data, graphics, but it is unlike most other graphics packages because it has a deep underlying gram- mar. This grammar, based on the Grammar of Graphics (<a href="https://www.springer.com/de/book/9780387245447">Grammar of Graphics (Wilkinson, Leland; 2015)</a>).</p>
+<p>You can find a fast and brief overview of ggplot2 at <a href="http://www.cookbook-r.com/Graphs/" target="_blank">R graphics cookbook</a></p>
+<p>In addition to the powerful basis of ggplot2 several (100+) extension were developed <a href="https://www.ggplot2-exts.org" target="_blank">ggplot2-exts.org</a></p>
+<p><code>In brief, the grammar tells us that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars).</code></p>
+<ol style="list-style-type: decimal">
+<li><strong>Data</strong></li>
+<li><strong>Aesthetics or Mapping:</strong> What should be plotted on x and y-axis. group-wise: colour, fill, size, shape,line width, line type.</li>
+<li><strong>Geometrics:</strong> Should a point, line, histogram, bar or boxplot (…) be used. (<code>geom_...()</code>)</li>
+<li><strong>Facets:</strong> data groups plot by columns and rows 4a. <strong>Scales:</strong> scale translate back and forth between variable ranges and property ranges (numbers &gt;&gt; position; log-scaled or discrete)</li>
+<li><strong>Statistics:</strong> data binning, smoothing (e.g. loess fit), …</li>
+<li><strong>Coordinates:</strong> fixed, polar, set limits, do coord. cartesian</li>
+<li><strong>Themes:</strong> use Plot themes</li>
+</ol>
+<div class="figure">
+<img src="figures/ggplot-grammar-of-graphics-stack.png" alt="grammar of graphics" />
+<p class="caption">grammar of graphics</p>
+</div>
+<div id="ggplot2---themes" class="section level3">
+<h3>ggplot2 - Themes</h3>
+<pre class="r"><code>library(datasets)
+library(ggplot2)
+p &lt;- ggplot(diamonds) + 
+     geom_point(aes(x = carat, y = price, colour = color),alpha=0.5) + 
+     facet_wrap(~cut) + 
+     labs(title=&quot;overview of diamonds dataset&quot;, 
+          subtitle=&quot;carat vs. price &amp; colored by diamond color&quot;,
+          caption = &quot;a caption text would be placed here&quot; )</code></pre>
+<p><strong>Pay attention to the structure of this function call:</strong> data and aesthetic mappings are supplied in <code>ggplot()</code>, then layers are added on with <code>+</code>.</p>
+<p>This is an important pattern, and as you learn more about ggplot2 you’ll construct increasingly sophisticated plots by adding on more types of components.</p>
+<p><strong>1. theme_gray()</strong></p>
+<pre class="r"><code>p + theme_gray() # the default</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /> <strong>2. theme_bw()</strong></p>
+<pre class="r"><code>p + theme_bw()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /> <strong>3. theme_linedraw()</strong></p>
+<pre class="r"><code>p + theme_linedraw()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /> <strong>4. theme_light()</strong></p>
+<pre class="r"><code>p + theme_light()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /> <strong>5. theme_dark()</strong></p>
+<pre class="r"><code>p + theme_dark()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" /> <strong>6. theme_minimal()</strong></p>
+<pre class="r"><code>p + theme_minimal()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" /> <strong>7. theme_classic()</strong></p>
+<pre class="r"><code>p + theme_classic()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" /> <strong>8. theme_void()</strong></p>
+<pre class="r"><code>p + theme_void()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div id="hrbrthemes-themes" class="section level4">
+<h4><code>hrbrthemes</code> Themes</h4>
+<p>There are also packages that add themes to ggplot like the <code>hrbrthemes</code> package.</p>
+<p><a href="https://github.com/hrbrmstr/hrbrthemes">more information about the hrbrthemes package can be found here</a></p>
+<p>But here are special fonts needed which are proivided in the package:</p>
+<pre class="r"><code>library(hrbrthemes)
+import_plex_sans()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/plex-sans]</code></pre>
+<pre class="r"><code>import_public_sans()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/public-sans]</code></pre>
+<pre class="r"><code>import_roboto_condensed()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/roboto-condensed]</code></pre>
+<pre class="r"><code>import_titillium_web()</code></pre>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/titillium-web]</code></pre>
+<p>** load <code>hrbrthemes</code> package**</p>
+<pre class="r"><code>library(hrbrthemes)</code></pre>
+<p><strong>1. theme_ipsum()</strong></p>
+<pre class="r"><code>p + theme_ipsum()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><strong>2. theme_ipsum_rc()</strong></p>
+<pre class="r"><code>p + theme_ipsum_rc()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><strong>3. theme_ft_rc()</strong></p>
+<pre class="r"><code>p + theme_ft_rc()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-inspired---what-plots-can-be-generated" class="section level3">
+<h3>get inspired - what plots can be generated</h3>
+<ul>
+<li><a href="http://visualizationuniverse.com/charts/?sortBy=volume&amp;sortDir=desc">Visualization Universe</a></li>
+<li><a href="https://projects.susielu.com/viz-palette">Viz-palette (which colors can be used)</a></li>
+<li><a href="https://material.io/design/color/the-color-system.html#tools-for-picking-colors">Google Material Colors (which colors can be used)</a></li>
+<li><a href="https://datavizcatalogue.com">data viz catalogue</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

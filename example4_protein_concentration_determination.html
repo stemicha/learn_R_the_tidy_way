@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>example4_protein_concentration_determination.utf8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li>
+  <a href="examples_general.html">Examples</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="example-3-protein-concentration-determination-bca-assay" class="section level1">
+<h1>Example 3: protein concentration determination (BCA assay)</h1>
+<p>load data from e.g. Nanodrop of your assay and standard curve</p>
+<div id="load-packages-and-raw-data" class="section level2">
+<h2>load packages and raw data</h2>
+<p>Loading packages:</p>
+<pre class="r"><code># load packages -----------------------------------------------------------
+library(tidyverse)
+library(ggrepel)
+library(openxlsx)
+library(stringi)</code></pre>
+<p>Load raw data:</p>
+<pre class="r"><code># load raw data ------------------------------------------------------------
+BCA_assay_data &lt;- read_delim(file = &quot;materials/protein_concentration_determination_BCA/2019_09_12__BCA_standard_curve_and samples_Lysate.txt&quot;,col_names = T,delim = &quot;\t&quot;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   `Plate ID` = col_character(),
+##   `Well ` = col_character(),
+##   `Sample ID` = col_character(),
+##   `User ID` = col_character(),
+##   `Date ` = col_character(),
+##   `Time ` = col_time(format = &quot;&quot;),
+##   `conc. ` = col_double(),
+##   `units ` = col_character(),
+##   `nm ` = col_double(),
+##   `Abs. ` = col_double(),
+##   `Cursor Pos.` = col_double(),
+##   `Cursor abs.` = col_double(),
+##   `Norm nm` = col_double(),
+##   `Norm Abs` = col_double()
+## )</code></pre>
+<pre class="r"><code>BCA_assay_data</code></pre>
+<pre><code>## # A tibble: 86 x 14
+##    `Plate ID` `Well ` `Sample ID` `User ID` `Date ` `Time ` `conc. ` `units `
+##    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;time&gt;     &lt;dbl&gt; &lt;chr&gt;   
+##  1 microBCA_… A1      SMM_contro… A. Reder  9/12/2… 16:06     NA     mg/ml   
+##  2 microBCA_… B1      SMM_contro… A. Reder  9/12/2… 16:06     NA     mg/ml   
+##  3 microBCA_… C1      SMM_contro… A. Reder  9/12/2… 16:06     NA     mg/ml   
+##  4 microBCA_… D1      SMM_EtOH_t… A. Reder  9/12/2… 16:06     NA     mg/ml   
+##  5 microBCA_… E1      SMM_EtOH_t… A. Reder  9/12/2… 16:06      0.166 mg/ml   
+##  6 microBCA_… F1      SMM_EtOH_t… A. Reder  9/12/2… 16:06      0.162 mg/ml   
+##  7 microBCA_… G1      SMM_EtOH_t… A. Reder  9/12/2… 16:06      0.154 mg/ml   
+##  8 microBCA_… H1      SMM_EtOH_t… A. Reder  9/12/2… 16:06      0.143 mg/ml   
+##  9 microBCA_… A2      SMM_contro… A. Reder  9/12/2… 16:08     NA     mg/ml   
+## 10 microBCA_… B2      SMM_contro… A. Reder  9/12/2… 16:08     NA     mg/ml   
+## # … with 76 more rows, and 6 more variables: `nm ` &lt;dbl&gt;, `Abs. ` &lt;dbl&gt;,
+## #   `Cursor Pos.` &lt;dbl&gt;, `Cursor abs.` &lt;dbl&gt;, `Norm nm` &lt;dbl&gt;, `Norm Abs` &lt;dbl&gt;</code></pre>
+<p>load standard curve data:</p>
+<pre class="r"><code># load standard data --------------------------------------------------------
+BCA_std_data &lt;- read_delim(file = &quot;materials/protein_concentration_determination_BCA/2019_09_12__BCA_standard_curve_Lysate.txt&quot;,col_names = T,delim = &quot;\t&quot;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   conc_mg_per_ml = col_double(),
+##   abs1 = col_double(),
+##   abs2 = col_double(),
+##   abs3 = col_double(),
+##   abs4 = col_double()
+## )</code></pre>
+<pre class="r"><code>BCA_std_data</code></pre>
+<pre><code>## # A tibble: 8 x 5
+##   conc_mg_per_ml  abs1  abs2  abs3  abs4
+##            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1           0    0.008 0.009 0.014 0.005
+## 2           0.01 0.053 0.057 0.049 0.049
+## 3           0.02 0.089 0.093 0.082 0.086
+## 4           0.04 0.153 0.152 0.147 0.155
+## 5           0.06 0.209 0.214 0.196 0.204
+## 6           0.08 0.25  0.252 0.239 0.251
+## 7           0.12 0.347 0.349 0.332 0.345
+## 8           0.16 0.42  0.423 0.429 0.42</code></pre>
+<pre class="r"><code>#tidy standard curve data
+BCA_std_data_tidy &lt;- BCA_std_data %&gt;% gather(colnames(BCA_std_data)[-1],key = &quot;measurements&quot;,value = &quot;Abs&quot;)
+BCA_std_data_tidy</code></pre>
+<pre><code>## # A tibble: 32 x 3
+##    conc_mg_per_ml measurements   Abs
+##             &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+##  1           0    abs1         0.008
+##  2           0.01 abs1         0.053
+##  3           0.02 abs1         0.089
+##  4           0.04 abs1         0.153
+##  5           0.06 abs1         0.209
+##  6           0.08 abs1         0.25 
+##  7           0.12 abs1         0.347
+##  8           0.16 abs1         0.42 
+##  9           0    abs2         0.009
+## 10           0.01 abs2         0.057
+## # … with 22 more rows</code></pre>
+</div>
+<div id="summarise-assay-data" class="section level2">
+<h2>summarise assay data</h2>
+<pre class="r"><code>#summarize raw data
+BCA_assay_data_summary&lt;- BCA_assay_data %&gt;% 
+                          group_by(`Sample ID`) %&gt;% 
+                          summarise(meanAbs = mean(`Abs. `),
+                                    SD_Abs = sd(`Abs. `),
+                                    CV_Abs = sd(`Abs. `)/mean(`Abs. `)) %&gt;% 
+  ungroup()
+BCA_assay_data_summary</code></pre>
+<pre><code>## # A tibble: 39 x 4
+##    `Sample ID`     meanAbs  SD_Abs  CV_Abs
+##    &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Comp_control_A    0.421 0.0163  0.0386 
+##  2 Comp_control_B    0.397 0.0159  0.0400 
+##  3 Comp_control_C    0.366 0.00636 0.0174 
+##  4 Comp_OD1.8_A      0.463 0.0170  0.0367 
+##  5 Comp_OD1.8_B      0.502 0.00212 0.00423
+##  6 Comp_OD1.8_C      0.434 0.0262  0.0602 
+##  7 Comp_stat_t60_A   0.363 0.0113  0.0312 
+##  8 Comp_stat_t60_B   0.349 0.00424 0.0122 
+##  9 Comp_stat_t60_C   0.356 0.0148  0.0417 
+## 10 DSM_control_A     0.487 0.0113  0.0232 
+## # … with 29 more rows</code></pre>
+<div id="cv-plot-of-summarized-data" class="section level3">
+<h3>CV plot of summarized data</h3>
+<pre class="r"><code>#CV plot
+data_cv_plot &lt;- ggplot(BCA_assay_data_summary,aes(`Sample ID`,CV_Abs))+
+  geom_bar(stat = &quot;identity&quot;)+
+  theme_minimal(base_size = 18)+
+  theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=8))+
+  labs(title = &quot;CV plot&quot;, caption = &quot; solid line: CV = 0.1 / dotted line: CV = 0.2&quot;)+
+  geom_hline(yintercept = 0.1)+
+  geom_hline(yintercept = 0.2,linetype=&quot;dotted&quot;)+
+  ylim(0,1)
+data_cv_plot</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Check with CV plot if there are outliers in your measurement and if so evaluate in your experimental data why. For example in Nanodrop measurements: Air bubble during measurement?</p>
+</div>
+</div>
+<div id="linear-and-loess-fitregression-modeling-in-r" class="section level2">
+<h2>linear and loess fit/regression modeling in R</h2>
+<p><strong>regression model:</strong> relationship between a variable of interest <strong>Y</strong> and one or more explanatory or predictor variables <strong>x</strong> With a single predictor, the model is a straight line.</p>
+<p><strong>non-linear Regression Model:</strong> “nonlinear regression is a form of regression analysis in which observational data are modeled by a function which is a nonlinear combination of the model parameters and depends on one or more independent variables. The data are fitted by a method of successive approximations.” - wikipedia</p>
+<div id="linear-fit" class="section level3">
+<h3>linear fit</h3>
+<p>A linear fit in R is performed with the <code>lm()</code> function. It can be used to carry out regression, single stratum analysis of variance and analysis of covariance (although aov may provide a more convenient interface for these).</p>
+<pre class="r"><code>lm(formula, data, subset, weights, na.action,
+   method = &quot;qr&quot;, model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
+   singular.ok = TRUE, contrasts = NULL, offset, ...)</code></pre>
+<div id="some-arguments-of-lm" class="section level4">
+<h4>some Arguments of <code>lm()</code></h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>formula</td>
+<td>an object of class “formula” (or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under ‘Details’.</td>
+</tr>
+<tr class="even">
+<td>data*</td>
+<td>an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which lm is called.</td>
+</tr>
+<tr class="odd">
+<td>subset</td>
+<td>an optional vector specifying a subset of observations to be used in the fitting process.</td>
+</tr>
+<tr class="even">
+<td>weights</td>
+<td>an optional vector of weights to be used in the fitting process. Should be NULL or a numeric vector. If non-NULL, weighted least squares is used with weights weights (that is, minimizing sum(w*e^2)); otherwise ordinary least squares is used. See also ‘Details’</td>
+</tr>
+<tr class="odd">
+<td>na.action</td>
+<td>a function which indicates what should happen when the data contain NAs. The default is set by the na.action setting of options, and is na.fail if that is unset. The ‘factory-fresh’ default is na.omit. Another possible value is NULL, no action. Value na.exclude can be useful.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="lm-returns" class="section level4">
+<h4><code>lm()</code> returns</h4>
+<p>An object of class “lm” is a list containing at least the following components:</p>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>coefficients</td>
+<td>a named vector of coefficients</td>
+</tr>
+<tr class="even">
+<td>residuals</td>
+<td>the residuals, that is response minus fitted values.</td>
+</tr>
+<tr class="odd">
+<td>fitted.values</td>
+<td>the fitted mean values.</td>
+</tr>
+<tr class="even">
+<td>rank</td>
+<td>the numeric rank of the fitted linear model.</td>
+</tr>
+<tr class="odd">
+<td>weights</td>
+<td>(only for weighted fits) the specified weights.</td>
+</tr>
+<tr class="even">
+<td>df.residual</td>
+<td>the residual degrees of freedom.</td>
+</tr>
+<tr class="odd">
+<td>call</td>
+<td>the matched call.</td>
+</tr>
+<tr class="even">
+<td>terms</td>
+<td>the terms object used.</td>
+</tr>
+<tr class="odd">
+<td>contrasts</td>
+<td>(only where relevant) the contrasts used.</td>
+</tr>
+<tr class="even">
+<td>xlevels</td>
+<td>(only where relevant) a record of the levels of the factors used in fitting.</td>
+</tr>
+<tr class="odd">
+<td>offset</td>
+<td>the offset used (missing if none were used).</td>
+</tr>
+<tr class="even">
+<td>y</td>
+<td>if requested, the response used.</td>
+</tr>
+<tr class="odd">
+<td>x</td>
+<td>if requested, the model matrix used.</td>
+</tr>
+<tr class="even">
+<td>model</td>
+<td>if requested (the default), the model frame used.</td>
+</tr>
+<tr class="odd">
+<td>na.action</td>
+<td>(where relevant) information returned by model.frame on the special handling of NAs.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-of-lm" class="section level4">
+<h4>Example of <code>lm()</code></h4>
+<pre class="r"><code>lm_norm &lt;- lm(dist ~ speed,data = cars)
+lm_zero &lt;- lm(dist ~ speed - 1,data = cars) # omitting intercept
+#look at output
+lm_norm</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Coefficients:
+## (Intercept)        speed  
+##      -17.58         3.93</code></pre>
+<pre class="r"><code>summary(lm_norm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -29.07  -9.53  -2.27   9.21  43.20 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -17.579      6.758   -2.60    0.012 *  
+## speed          3.932      0.416    9.46  1.5e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.4 on 48 degrees of freedom
+## Multiple R-squared:  0.651,  Adjusted R-squared:  0.644 
+## F-statistic: 89.6 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<pre class="r"><code>#plot data with ggplot
+ggplot(cars,aes(x = speed,y = dist))+
+  geom_point()+
+  labs(title = &quot;linear fit&quot;,subtitle = &quot;red line = model through 0 / blue line  = model with intercept&quot;)+
+  theme_minimal()+
+  stat_smooth(formula = y ~ x,method = &quot;lm&quot;,col=&quot;blue&quot;,fullrange = T,xseq = seq(0,25, length=80))+ #add linear model
+  stat_smooth(formula = y ~ x - 1,method = &quot;lm&quot;,col=&quot;red&quot;,fullrange = T,xseq = seq(0,25, length=80))#+ # add linear model through 0</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>  #add xseq to extrapolate data from fit over the data regions</code></pre>
+</div>
+</div>
+<div id="loess-fit-local-polynomial-regression-fitting" class="section level3">
+<h3>loess fit (Local Polynomial Regression Fitting)</h3>
+<p><code>loess()</code> is a function which fits a polynomial surface determined by one or more numerical predictors, using local fitting. (Local Polynomial Regression Fitting)</p>
+<pre class="r"><code>loess(formula, data, weights, subset, na.action, model = FALSE,
+      span = 0.75, enp.target, degree = 2,
+      parametric = FALSE, drop.square = FALSE, normalize = TRUE,
+      family = c(&quot;gaussian&quot;, &quot;symmetric&quot;),
+      method = c(&quot;loess&quot;, &quot;model.frame&quot;),
+      control = loess.control(...), ...)</code></pre>
+<div id="some-arguments-of-loess" class="section level4">
+<h4>some Arguments of <code>loess()</code></h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>descritpion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>formula</td>
+<td>a formula specifying the numeric response and one to four numeric predictors (best specified via an interaction, but can also be specified additively). Will be coerced to a formula if necessary.</td>
+</tr>
+<tr class="even">
+<td>data</td>
+<td>an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which loess is called.</td>
+</tr>
+<tr class="odd">
+<td>weights</td>
+<td>optional weights for each case.</td>
+</tr>
+<tr class="even">
+<td>subset</td>
+<td>an optional specification of a subset of the data to be used.</td>
+</tr>
+<tr class="odd">
+<td>na.action</td>
+<td>the action to be taken with missing values in the response or predictors. The default is given by getOption(“na.action”).</td>
+</tr>
+<tr class="even">
+<td>model</td>
+<td>should the model frame be returned?</td>
+</tr>
+<tr class="odd">
+<td><strong>span</strong></td>
+<td>the parameter α which controls the degree of smoothing.</td>
+</tr>
+<tr class="even">
+<td>family</td>
+<td>if “gaussian” fitting is by least-squares, and if “symmetric” a re-descending M estimator is used with Tukey’s biweight function. Can be abbreviated.</td>
+</tr>
+<tr class="odd">
+<td>control</td>
+<td>control parameters: see loess.control.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="loess-returns" class="section level4">
+<h4><code>loess()</code> returns</h4>
+<p>An object of class “lm” is a list containing at least the following components:</p>
+<table>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>n</td>
+<td>number of values for fit</td>
+</tr>
+<tr class="even">
+<td>fitted</td>
+<td>fitted values</td>
+</tr>
+<tr class="odd">
+<td>residuals</td>
+<td>vector of residuals</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-of-loess" class="section level4">
+<h4>Example of <code>loess()</code></h4>
+<pre class="r"><code>loess_norm_0_2 &lt;- loess(dist ~ speed,data = cars,span = 0.2)</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 12</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 1</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 1</code></pre>
+<pre class="r"><code>loess_norm_0_75default &lt;- loess(dist ~ speed,data = cars,span = 0.75)
+loess_norm_2 &lt;- loess(dist ~ speed,data = cars,span = 2)
+
+#look at output
+loess_norm_0_75default</code></pre>
+<pre><code>## Call:
+## loess(formula = dist ~ speed, data = cars, span = 0.75)
+## 
+## Number of Observations: 50 
+## Equivalent Number of Parameters: 4.78 
+## Residual Standard Error: 15.3</code></pre>
+<pre class="r"><code>summary(loess_norm_0_75default)</code></pre>
+<pre><code>## Call:
+## loess(formula = dist ~ speed, data = cars, span = 0.75)
+## 
+## Number of Observations: 50 
+## Equivalent Number of Parameters: 4.78 
+## Residual Standard Error: 15.3 
+## Trace of smoother matrix: 5.24  (exact)
+## 
+## Control settings:
+##   span     :  0.75 
+##   degree   :  2 
+##   family   :  gaussian
+##   surface  :  interpolate      cell = 0.2
+##   normalize:  TRUE
+##  parametric:  FALSE
+## drop.square:  FALSE</code></pre>
+<pre class="r"><code>#plot data with ggplot
+ggplot(cars,aes(x = speed,y = dist))+
+  geom_point()+
+  labs(title = &quot;loess fit&quot;,subtitle = &quot;effect of the span argument on loess fit&quot;)+
+  theme_minimal()+
+  stat_smooth(aes(color = &quot;span = 0.75\ndefault&quot;),formula = y ~ x,method = &quot;loess&quot;,span = 0.75,se=F,fullrange = T,xseq = seq(0,25, length=80))+ #add linear model
+  stat_smooth(aes(color = &quot;span = 0.2&quot;),formula = y ~ x,method = &quot;loess&quot;,span = 0.2,se=F,fullrange = T,xseq = seq(0,25, length=80))+
+  stat_smooth(aes(color = &quot;span = 2.0&quot;),formula = y ~ x,method = &quot;loess&quot;,span = 2,se=F,fullrange = T,xseq = seq(0,25, length=80))+
+  scale_color_manual(values = c(&quot;span = 0.75\ndefault&quot; = &quot;blue&quot;,&quot;span = 0.2&quot; = &quot;red&quot;,&quot;span = 2.0&quot; = &quot;green&quot;))</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 12</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 1</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 1</code></pre>
+<pre><code>## Warning: Removed 13 rows containing missing values (geom_smooth).
+
+## Warning: Removed 13 rows containing missing values (geom_smooth).
+
+## Warning: Removed 13 rows containing missing values (geom_smooth).</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><strong>WARNING:</strong> The displayed warnings show you that the <code>span</code> argument should be used wisely since and overfitting might be the result. The <strong>default of 0.75</strong> is a very good starting point. Going below that value will result in a more fuzzy fit see above.</p>
+</div>
+</div>
+</div>
+<div id="perform-linear-and-non-linear-fit-based-on-standard-curve" class="section level2">
+<h2>Perform linear and non-linear fit based on standard curve</h2>
+<p>lets perform the linear and loess fit for the standard curve</p>
+<pre class="r"><code>#perform loess fitt/ exhange axis for predict
+fit_loess &lt;- loess(formula = conc_mg_per_ml~Abs,data = BCA_std_data_tidy,control=loess.control(surface=&quot;direct&quot;))
+#perform linear fit / exhange axis for predict
+fit_linear &lt;- lm(formula = conc_mg_per_ml~Abs,data = BCA_std_data_tidy)
+
+#summary of fits
+summary_loess &lt;- summary(fit_loess)
+summary_linear &lt;- summary(fit_linear)
+
+summary_loess</code></pre>
+<pre><code>## Call:
+## loess(formula = conc_mg_per_ml ~ Abs, data = BCA_std_data_tidy, 
+##     control = loess.control(surface = &quot;direct&quot;))
+## 
+## Number of Observations: 32 
+## Equivalent Number of Parameters: 4.67 
+## Residual Standard Error: 0.00224 
+## Trace of smoother matrix: 5.12  (exact)
+## 
+## Control settings:
+##   span     :  0.75 
+##   degree   :  2 
+##   family   :  gaussian
+##   surface  :  direct
+##   normalize:  TRUE
+##  parametric:  FALSE
+## drop.square:  FALSE</code></pre>
+<pre class="r"><code>summary_linear</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = conc_mg_per_ml ~ Abs, data = BCA_std_data_tidy)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.01053 -0.00466 -0.00111  0.00438  0.01040 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.01234    0.00191   -6.45    4e-07 ***
+## Abs          0.38724    0.00821   47.16   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.00626 on 30 degrees of freedom
+## Multiple R-squared:  0.987,  Adjusted R-squared:  0.986 
+## F-statistic: 2.22e+03 on 1 and 30 DF,  p-value: &lt;2e-16</code></pre>
+<p>Now lets get the residuals and the annotation text for the plots</p>
+<pre class="r"><code>#get std. residual error for bith fits and r-squared for linear fit; fort loess since it is a non-linear approach R-squared not meaningfull
+# because the sum of squares doesn´t sum up to a constant value
+residual_std_err__linear &lt;- summary_linear$sigma
+linear_r_sqared &lt;- summary_linear$r.squared
+residual_std_err__loess &lt;- summary_loess$s
+#get residuals
+residuals_tidy&lt;- bind_rows(tibble(concentration = BCA_std_data_tidy$conc_mg_per_ml, residuals = summary_linear$residuals, fit_type = &quot;linear&quot;),
+          tibble(concentration = BCA_std_data_tidy$conc_mg_per_ml, residuals = summary_loess$residuals, fit_type = &quot;loess&quot;))
+
+
+#annotation text for 
+annot_text &lt;- paste(&quot;loess fit residual std. err. = &quot;,formatC(residual_std_err__loess, format = &quot;e&quot;, digits = 2),&quot;\n&quot;,
+                    &quot;linear fit residual std. err. = &quot;,formatC(residual_std_err__linear, format = &quot;e&quot;, digits = 2),sep=&quot;&quot;)</code></pre>
+<p>Based on the residuals lets decide automatically which fits suits better the data.</p>
+<p><strong>Background from BCA protocol:</strong> Note: If using curve-fitting software, use a best-fit polynomial equation rather than a linear equation for the standard curve. If plotting results by hand, a point-to-point fit is preferable to a linear fit to the standard points.</p>
+<pre class="r"><code>#decission based on fit residual std. err.
+if(residual_std_err__linear&gt;residual_std_err__loess){
+  subtitle_text &lt;- &quot;loess fit performes best and is used for calculations&quot;
+}else{
+  subtitle_text &lt;- &quot;linear fit performes best and is used for calculations&quot;
+}</code></pre>
+<div id="generate-standards-curve-plots" class="section level3">
+<h3>generate standards curve plots</h3>
+<div id="standard-curve-plot" class="section level4">
+<h4>standard curve plot</h4>
+<pre class="r"><code>#standard plot
+standard_plot&lt;- ggplot(BCA_std_data_tidy,aes(Abs,conc_mg_per_ml))+
+  geom_point(size=5,alpha = 0.5)+
+  stat_smooth(aes(col=&quot;loess&quot;),method = &quot;loess&quot;)+
+  stat_smooth(aes(col=&quot;linear&quot;),method = &quot;lm&quot;)+
+  scale_color_manual(values = c(&quot;loess&quot; = &quot;dodgerblue3&quot;,&quot;linear&quot; = &quot;orangered3&quot;))+
+  theme_minimal(base_size = 18)+
+  scale_y_continuous(breaks = seq(0,0.16,length.out = 9))+
+  scale_x_continuous(breaks = seq(0,0.5,length.out = 11))+
+  labs(title = &quot;standard curve (loess / linear fit)&quot;,
+       subtitle = subtitle_text, caption = paste(&quot;R^2 linear fit = &quot;, round(linear_r_sqared,4),sep = &quot;&quot;))+
+  coord_flip()
+standard_plot</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="residuals-plot" class="section level4">
+<h4>residuals plot</h4>
+<pre class="r"><code>#residuals plot
+#*-1 coord flip
+standard_res_plot &lt;- ggplot(residuals_tidy,aes(concentration,residuals*-1,color=fit_type))+ 
+  geom_hline(yintercept = 0) +
+  geom_point(size=5,alpha = 0.5)+
+  scale_color_manual(values = c(loess=&quot;dodgerblue3&quot;,linear = &quot;orangered3&quot;))+
+  scale_x_continuous(breaks = seq(0,0.16,length.out = 9))+
+  theme_minimal(base_size = 18)+
+  labs(title = &quot;residual plot&quot;,caption = annot_text)
+standard_res_plot</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="calculate-protein-concetration-from-standard-curve-fit" class="section level2">
+<h2>calculate protein concetration from standard curve fit</h2>
+<p>use <code>predict()</code> function to predict values based on standard curve</p>
+<div id="predict-function" class="section level3">
+<h3>predict function</h3>
+<p>predict is a generic function for predictions from the results of various model fitting functions. The function invokes particular methods which depend on the class of the first argument.</p>
+<p>for most models <em>predict()</em> is a wrapper for there own functions: like: - predict.loess - predict.lm - predict.glm - predict.nls - …</p>
+<p>Most of the functions allow the variable <strong>newdata</strong>, which allow the calculation of new values based on the model.</p>
+<pre class="r"><code>## S3 method for class &#39;lm&#39;
+predict(object, newdata, se.fit = FALSE, scale = NULL, df = Inf,
+        interval = c(&quot;none&quot;, &quot;confidence&quot;, &quot;prediction&quot;),
+        level = 0.95, type = c(&quot;response&quot;, &quot;terms&quot;),
+        terms = NULL, na.action = na.pass,
+        pred.var = res.var/weights, weights = 1, ...)
+
+## S3 method for class &#39;loess&#39;
+predict(object, newdata = NULL, se = FALSE,
+        na.action = na.pass, ...)</code></pre>
+<p>Now we perform the prediction based on the best suited model. We also provide the dilution factor used in our BCA assay for sample dilution. Here we used a 15fold dilution.</p>
+<pre class="r"><code>dilution_factor = 15 #
+
+#decission based on fit residual std. err.
+if(residual_std_err__linear&gt;residual_std_err__loess){
+  BCA_assay_data_summary$conc_µg_per_µl &lt;- predict(object = fit_loess,newdata = unlist(BCA_assay_data_summary$meanAbs))*dilution_factor
+  }else{
+  BCA_assay_data_summary$conc_µg_per_µl &lt;- predict(object = fit_linear,newdata = new &lt;- data.frame(Abs = unlist(BCA_assay_data_summary$meanAbs)))*dilution_factor
+  }
+
+BCA_assay_data_summary</code></pre>
+<pre><code>## # A tibble: 39 x 5
+##    `Sample ID`     meanAbs  SD_Abs  CV_Abs conc_µg_per_µl
+##    &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;
+##  1 Comp_control_A    0.421 0.0163  0.0386            2.38
+##  2 Comp_control_B    0.397 0.0159  0.0400            2.20
+##  3 Comp_control_C    0.366 0.00636 0.0174            1.97
+##  4 Comp_OD1.8_A      0.463 0.0170  0.0367            2.71
+##  5 Comp_OD1.8_B      0.502 0.00212 0.00423           3.02
+##  6 Comp_OD1.8_C      0.434 0.0262  0.0602            2.48
+##  7 Comp_stat_t60_A   0.363 0.0113  0.0312            1.95
+##  8 Comp_stat_t60_B   0.349 0.00424 0.0122            1.85
+##  9 Comp_stat_t60_C   0.356 0.0148  0.0417            1.90
+## 10 DSM_control_A     0.487 0.0113  0.0232            2.90
+## # … with 29 more rows</code></pre>
+<p>Generate a more detailed overview:</p>
+<ul>
+<li>adding loess and linear fit estimates</li>
+</ul>
+<pre class="r"><code>#generate standard detailed
+BCA_assay_data_summary_detailed &lt;- BCA_assay_data_summary
+BCA_assay_data_summary_detailed$conc_µg_per_µl_LOESS &lt;- predict(object = fit_loess,newdata = unlist(BCA_assay_data_summary$meanAbs))*dilution_factor
+BCA_assay_data_summary_detailed$conc_µg_per_µl_LINEAR &lt;- predict(object = fit_linear,newdata = new &lt;- data.frame(Abs = unlist(BCA_assay_data_summary$meanAbs)))*dilution_factor
+BCA_assay_data_summary_detailed</code></pre>
+<pre><code>## # A tibble: 39 x 7
+##    `Sample ID` meanAbs  SD_Abs  CV_Abs conc_µg_per_µl conc_µg_per_µl_…
+##    &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Comp_contr…   0.421 0.0163  0.0386            2.38             2.38
+##  2 Comp_contr…   0.397 0.0159  0.0400            2.20             2.20
+##  3 Comp_contr…   0.366 0.00636 0.0174            1.97             1.97
+##  4 Comp_OD1.8…   0.463 0.0170  0.0367            2.71             2.71
+##  5 Comp_OD1.8…   0.502 0.00212 0.00423           3.02             3.02
+##  6 Comp_OD1.8…   0.434 0.0262  0.0602            2.48             2.48
+##  7 Comp_stat_…   0.363 0.0113  0.0312            1.95             1.95
+##  8 Comp_stat_…   0.349 0.00424 0.0122            1.85             1.85
+##  9 Comp_stat_…   0.356 0.0148  0.0417            1.90             1.90
+## 10 DSM_contro…   0.487 0.0113  0.0232            2.90             2.90
+## # … with 29 more rows, and 1 more variable: conc_µg_per_µl_LINEAR &lt;dbl&gt;</code></pre>
+</div>
+<div id="add-out-of-standard-curve-range-logic" class="section level3">
+<h3>add out of standard curve range logic</h3>
+<pre class="r"><code>#add outside standard curve logic
+BCA_assay_data_summary_detailed &lt;- BCA_assay_data_summary_detailed %&gt;% mutate(outside_standard_curve = if_else(condition = meanAbs&gt;max(BCA_std_data_tidy$Abs),
+                                                                                 true = TRUE,
+                                                                                 false = FALSE),
+                                                outside_standard_curve_percentage = if_else(condition = meanAbs&gt;max(BCA_std_data_tidy$Abs),
+                                                                                            true = (meanAbs/max(BCA_std_data_tidy$Abs)*100)-100,
+                                                                                            false = 0))</code></pre>
+</div>
+<div id="generate-assay-plots" class="section level3">
+<h3>generate assay plots</h3>
+<p>Since a assay measurement can be above the standard curve value a higher prediction of values must be performed to span the samples measured in the assay.</p>
+<pre class="r"><code>#loess long fit
+loess_fit_predict &lt;- tibble(Abs = seq(0,max(BCA_assay_data_summary_detailed$meanAbs),length.out = 100))
+loess_fit_predict$conc_mg_per_ml &lt;- predict(object = fit_loess,newdata = loess_fit_predict$Abs)
+loess_fit_predict</code></pre>
+<pre><code>## # A tibble: 100 x 2
+##        Abs conc_mg_per_ml
+##      &lt;dbl&gt;          &lt;dbl&gt;
+##  1 0            -0.00184 
+##  2 0.00533      -0.000730
+##  3 0.0107        0.000409
+##  4 0.0160        0.00158 
+##  5 0.0213        0.00277 
+##  6 0.0266        0.00399 
+##  7 0.0320        0.00523 
+##  8 0.0373        0.00650 
+##  9 0.0426        0.00780 
+## 10 0.0480        0.00912 
+## # … with 90 more rows</code></pre>
+<div id="measurement-plot" class="section level4">
+<h4>measurement plot</h4>
+<pre class="r"><code>#measurements plot
+measurements_plot&lt;- ggplot(BCA_std_data_tidy,aes(Abs,conc_mg_per_ml))+
+  geom_point(size=5,alpha = 0.5)+
+  geom_line(aes(color=&quot;loess fit&quot;),data = loess_fit_predict)+
+  stat_smooth(aes(color=&quot;linear fit&quot;),method = &quot;lm&quot;,fullrange=TRUE)+
+  scale_color_manual(values = c(&quot;loess fit&quot; = &quot;dodgerblue3&quot;,&quot;linear fit&quot; = &quot;orangered3&quot;))+
+  theme_minimal(base_size = 18)+
+  labs(title = &quot;standard curve (loess / linear fit)&quot;,
+       subtitle = subtitle_text, caption = paste(&quot;R^2 linear fit = &quot;, round(linear_r_sqared,4),sep = &quot;&quot;))+
+  geom_vline(xintercept = BCA_assay_data_summary_detailed$meanAbs,col=&quot;black&quot;,alpha=0.5, linetype=&quot;dotted&quot;)+ # add horizontal line indicating samples
+  geom_hline(yintercept = min(BCA_std_data_tidy$conc_mg_per_ml))+
+  geom_hline(yintercept = max(BCA_std_data_tidy$conc_mg_per_ml))+
+  coord_flip()
+measurements_plot</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Here dotted lines displaying the measured values from BCA assay from samples</p>
+</div>
+<div id="scatter-plot" class="section level4">
+<h4>scatter plot</h4>
+<pre class="r"><code>#scatter plot
+# get maximum values
+max_scatter &lt;- max(c(BCA_assay_data_summary_detailed$conc_µg_per_µl_LOESS,BCA_assay_data_summary_detailed$conc_µg_per_µl_LINEAR))
+
+scatter_conc&lt;- ggplot(BCA_assay_data_summary_detailed)+
+  geom_point(aes(x=conc_µg_per_µl_LOESS,
+                 y=conc_µg_per_µl_LINEAR,
+                 shape=outside_standard_curve,
+                 color=outside_standard_curve_percentage),size=5,alpha=0.5)+
+  stat_smooth(aes(x=conc_µg_per_µl_LOESS,
+                  y=conc_µg_per_µl_LINEAR),method = &quot;loess&quot;,color = &quot;dodgerblue3&quot;)+
+  stat_smooth(aes(x=conc_µg_per_µl_LOESS,
+                  y=conc_µg_per_µl_LINEAR),method = &quot;lm&quot;,color = &quot;orangered3&quot;)+
+  coord_cartesian(xlim = c(0,max(max_scatter)),ylim = c(0,max(max_scatter)))+
+  theme_minimal(base_size = 18)+
+  scale_color_distiller(palette = &quot;Spectral&quot;)+
+  geom_abline(slope = 1,intercept = 0)+
+  labs(color=&quot;% outside standard curve&quot;,title = &quot;scatter linear and loess calc. conc.&quot;)
+  
+#label topN out of standard curve range values
+if(sum(BCA_assay_data_summary_detailed$outside_standard_curve)&gt;0){
+  scatter_conc &lt;- scatter_conc+geom_text_repel(data = BCA_assay_data_summary_detailed %&gt;% 
+                                 top_n(outside_standard_curve_percentage,n = 10),
+                               mapping = aes(x=conc_µg_per_µl_LOESS,
+                                             y=conc_µg_per_µl_LINEAR,
+                                             label = `Sample ID`),min.segment.length = 0.001)
+}
+
+scatter_conc</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="filter-for-points-outside-standard-curve" class="section level4">
+<h4>filter for points outside standard curve</h4>
+<pre class="r"><code>BCA_assay_data_summary_detailed %&gt;% 
+  filter(outside_standard_curve&gt;0) %&gt;% 
+  arrange(desc(outside_standard_curve))</code></pre>
+<pre><code>## # A tibble: 12 x 9
+##    `Sample ID` meanAbs  SD_Abs  CV_Abs conc_µg_per_µl conc_µg_per_µl_…
+##    &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Comp_OD1.8…   0.463 0.0170  0.0367            2.71             2.71
+##  2 Comp_OD1.8…   0.502 0.00212 0.00423           3.02             3.02
+##  3 Comp_OD1.8…   0.434 0.0262  0.0602            2.48             2.48
+##  4 DSM_contro…   0.487 0.0113  0.0232            2.90             2.90
+##  5 DSM_contro…   0.443 0.00424 0.00958           2.55             2.55
+##  6 DSM_stat_t…   0.470 0.0107  0.0227            2.76             2.76
+##  7 DSM_stat_t…   0.453 0.00153 0.00337           2.62             2.62
+##  8 SMM_contro…   0.518 0.0445  0.0861            3.15             3.15
+##  9 SMM_contro…   0.528 0.0177  0.0335            3.24             3.24
+## 10 SMM_contro…   0.485 0.0354  0.0729            2.88             2.88
+## 11 SMM_EtOH_t…   0.450 0.0375  0.0832            2.61             2.61
+## 12 SMM_Heat_t…   0.437 0.0113  0.0259            2.50             2.50
+## # … with 3 more variables: conc_µg_per_µl_LINEAR &lt;dbl&gt;,
+## #   outside_standard_curve &lt;lgl&gt;, outside_standard_curve_percentage &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="code-for-saving-calculations-in-excel-using-openxlsx-package" class="section level2">
+<h2>Code for saving calculations in Excel using openxlsx package</h2>
+<p>Saving in Excel might be useful when sending Data back to cooperation partners. But I highly recommend use more .csv of .txt files.</p>
+<p>The resulting Excel file:</p>
+<p><a href="materials/protein_concentration_determination_BCA/2019_09_12__BCA_protein_concentration_determination.xlsx">2019_09_12__BCA_protein_concentration_determination.xlsx</a></p>
+<pre class="r"><code>#split dataname BR / condition
+split_names_df&lt;- do.call(rbind.data.frame,lapply(stri_split_regex(stri_reverse(as.character(BCA_assay_data_summary_detailed$`Sample ID`)),
+                                                 pattern = &#39;_&#39;, n = 2),
+                                stri_reverse)
+)
+colnames(split_names_df) &lt;- c(&quot;BR&quot;,&quot;condition&quot;)
+BCA_assay_data_summary_detailed &lt;- cbind(BCA_assay_data_summary_detailed,as_tibble(split_names_df))
+
+
+
+#write raw data to excel
+excel_output &lt;- createWorkbook()
+addWorksheet(wb = excel_output, sheetName = &quot;BCA_assay_data_summary_detailed&quot;)
+#write data into workbook
+writeDataTable(wb = excel_output,sheet =  &quot;BCA_assay_data_summary_detailed&quot;, x = BCA_assay_data_summary_detailed, startRow = 1, startCol = 1, tableStyle = &quot;TableStyleMedium1&quot;)
+
+
+#decission based on fit residual std. err.
+if(residual_std_err__linear&gt;residual_std_err__loess){
+#loess
+  addWorksheet(wb = excel_output, sheetName = &quot;protein_conc_LOESS_lysate&quot;)
+  protein_conc_excel_lysate&lt;- BCA_assay_data_summary_detailed%&gt;% 
+    select(conc_µg_per_µl_LOESS,BR,condition) %&gt;%
+    spread(key = BR,value = conc_µg_per_µl_LOESS) %&gt;% 
+    arrange(condition)
+  #write data into workbook
+  writeDataTable(wb = excel_output,sheet =  &quot;protein_conc_LOESS_lysate&quot;, x = protein_conc_excel_lysate, startRow = 1, startCol = 1, tableStyle = &quot;TableStyleMedium1&quot;)
+  
+  }else{
+    addWorksheet(wb = excel_output, sheetName = &quot;protein_conc_LINEAR_lysate&quot;)
+    protein_conc_excel_lysate&lt;- BCA_assay_data_summary_detailed%&gt;% 
+      select(conc_µg_per_µl_LINEAR,BR,condition) %&gt;%
+      spread(key = BR,value = conc_µg_per_µl_LINEAR) %&gt;% 
+      arrange(condition)
+    #write data into workbook
+    writeDataTable(wb = excel_output,sheet =  &quot;protein_conc_LINEAR_lysate&quot;, x = protein_conc_excel_lysate, startRow = 1, startCol = 1, tableStyle = &quot;TableStyleMedium1&quot;)
+    
+    
+    
+    }
+
+
+saveWorkbook(wb = excel_output,file = &quot;2019_09_12__BCA_protein_concentration_determination.xlsx&quot;,overwrite = T)</code></pre>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

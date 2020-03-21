@@ -1,0 +1,2474 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Stephan Michalik" />
+
+<meta name="date" content="2020-03-21" />
+
+<title>R course - learning R the tidy way</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #232629;
+    color: #7a7c7d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+div.sourceCode
+  { color: #cfcfc2; background-color: #232629; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; } /* Error */
+code span.ex { color: #0099ff; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li>
+  <a href="examples_general.html">Examples</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R course - learning R the tidy way</h1>
+<h4 class="author">Stephan Michalik</h4>
+<h4 class="date">March 21, 2020</h4>
+
+</div>
+
+
+<style>
+a:link {
+    color: #BC0203;
+}
+a:visited {
+    color: #007127;
+}
+ a:hover {
+    color: #E70203;
+}
+</style>
+<p><img src="R_Course_logo_Michalik.png" width="600" style="display: block; margin: auto;" /></p>
+<a href="https://github.com/stemicha" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#333333; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="code" class="section level1">
+<h1><span class="header-section-number">1</span> Code</h1>
+<ul>
+<li>Code tells the computer what to do</li>
+<li>Code is a combination of rules and instructions in a programming language that tell the computer how to do things</li>
+<li>humans have many different languages to communicate, and there are hundreds of programming languages for computers</li>
+<li>Programmers are architects and builders of the digital world</li>
+<li>Short sequences of tasks that the computers are to perform are called algorithms the amount of code can be quite different (1000 lines of code = simple smartphone game, over 2 billion lines of code for Google search)</li>
+</ul>
+</div>
+<div id="initial-thoughts-and-requests" class="section level1">
+<h1><span class="header-section-number">2</span> Initial thoughts and requests</h1>
+<p>Learning R is not difficult since it is a language it can easily be learn like any other language. The only thing you need is to actively use that language to make a progression.</p>
+<p>Like languages, <u>programming languages are alive</u> and from version to version certain functions can change as the development of technology and algorithms is always tried to take up and improve.</p>
+<p>But R is not the only language worth learning. Currently, programming languages are also often mixed, which is made possible by different packages. So it is possible to call and execute C code and Python code in R. Thus the computing performance disadvantages of R can be solved for resource hungry functions.</p>
+<p>So depending on your need it is worth to learn also other languages like Python, C++, JAVA, HTML, …</p>
+<p>You may find online courses on several web-portals like:</p>
+<ul>
+<li><a href="https://www.freecodecamp.org" class="uri">https://www.freecodecamp.org</a></li>
+<li><a href="https://www.datacamp.com" class="uri">https://www.datacamp.com</a></li>
+<li><a href="https://www.coursera.org" class="uri">https://www.coursera.org</a></li>
+</ul>
+<p><strong>Request:</strong> So please instead using Excel again again, try to use R instead even it will take 2 minutes longer at the beginning, it will pay off over time.</p>
+<div id="thoughts-on-microsoft-excel" class="section level2">
+<h2><span class="header-section-number">2.1</span> thoughts on Microsoft Excel</h2>
+<p>“Excel is design for creating spread cheats not extensive data analysis !”</p>
+<ul>
+<li><p>Microsoft Excel is a nice program everybody uses for getting an overview of money spending, orders, shipment, electric meter status ….</p></li>
+<li><p>Excel offers flexibility with ease of use and visualization (with several limitations).</p></li>
+<li><p>I use it sometimes for very small tasks, tasks which are not complex and the calculations are easy to check.</p></li>
+</ul>
+<strong>But</strong>, there are several issues with the automatic cell formating in Excel. <!-- example for excel errors -->
+<div style="border:1px solid #000;">
+<p>“The spreadsheet software Microsoft Excel, when used with default settings, is known to convert gene names to dates and floating-point numbers. A programmatic scan of leading genomics journals reveals that approximately <code>one-fifth of papers with supplementary Excel gene lists contain erroneous gene name conversions.</code>”</p>
+<p>Ziemann, M., Eren, Y., El-Osta, A. (2016). Gene name errors are widespread in the scientific literature Genome Biology 17(1), 1 3. <a href="https://dx.doi.org/10.1186/s13059-016-1044-7" class="uri">https://dx.doi.org/10.1186/s13059-016-1044-7</a></p>
+</div>
+<p>first reported in:</p>
+<p>Zeeberg, B., Riss, J., Kane, D., Bussey, K., Uchio, E., Linehan, W., Barrett, J., Weinstein, J. (2004). Mistaken Identifiers: Gene name errors can be introduced inadvertently when using Excel in bioinformatics BMC Bioinformatics 5(1), 80. <a href="https://dx.doi.org/10.1186/1471-2105-5-80" class="uri">https://dx.doi.org/10.1186/1471-2105-5-80</a></p>
+<p><strong>Example:</strong></p>
+<p>Brent L. Fogel, Eric Wexler, Amanda Wahnich, Tara Friedrich, Chandran Vijayendran, Fuying Gao, Neelroop Parikshak, Genevieve Konopka, Daniel H. Geschwind, RBFOX1 regulates both splicing and transcriptional networks in human neuronal development, Human Molecular Genetics, Volume 21, Issue 19, 1 October 2012, Pages 4171–4186, <a href="https://doi.org/10.1093/hmg/dds240" class="uri">https://doi.org/10.1093/hmg/dds240</a></p>
+<div class="figure">
+<img src="figures/Excel_gene_name_error_example__Brent_et_al2012.png" alt="Brent et al., 2012, supplementary table 1" />
+<p class="caption">Brent et al., 2012, supplementary table 1</p>
+</div>
+<p>also in supplementaryx table 3,5,6,8,10 !!!</p>
+</div>
+</div>
+<div id="data-science" class="section level1">
+<h1><span class="header-section-number">3</span> data science</h1>
+<p>You will learn data science with R.</p>
+<p><strong>So what is data science:</strong> data science is the extraction of knowledge from data</p>
+<p><u><strong>five important step in data science:</strong></u></p>
+<ol style="list-style-type: decimal">
+<li>import data</li>
+<li>tidy (this might take long time, depending on quality of initial data)</li>
+<li>modeling, statistics, visualize intermediate steps for controling …</li>
+<li>visualize results (visualization is the key for communication, Plots should be self-explaining at best)</li>
+<li>communicate (if you can´t communicte your data all the efforts above are useless)</li>
+</ol>
+</div>
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">4</span> Introduction</h1>
+<div id="why-r" class="section level2">
+<h2><span class="header-section-number">4.1</span> Why R?</h2>
+<ul>
+<li>It’s <em>free!</em></li>
+<li>easy to install / maintain</li>
+<li>R runs on all the platforms. Just name it and you got it!! Windows PC, Mac, Linux to name a few</li>
+<li>thousands of free libraries to use in areas of finance, natural language processing, cluster analysis, optimization, prediction, high performance computing etc.</li>
+<li>R is the most comprehensive statistical analysis package as new technology and ideas often appear first in R.</li>
+<li>easy to process big files and analyse huge amounts of data</li>
+<li>integrated data visualization tools, <em>even dynamic</em></li>
+<li>integrates with many programming languages like Java, Ruby, C++, Python</li>
+<li>fast, and even faster with <em>C++</em> integration via <a href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-attributes.pdf" target="_blank">Rcpp</a>.</li>
+<li>generation of interactive applications (shiny apps)</li>
+<li>easy to get help
+<ul>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200552336-Getting-Help-with-R" target="_blank">huge R community in the web</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/r" target="_blank">stackoverflow</a> with a lot of tags like <strong>tidyverse</strong>, <strong>dplyr</strong>, <strong>ggplot2</strong> etc.</li>
+<li><a href="http://www.r-bloggers.com" target="_blank">rbloggers</a></li>
+</ul></li>
+<li>writing books, blogs, html sites in R with ease</li>
+</ul>
+</div>
+<div id="what-is-r" class="section level2">
+<h2><span class="header-section-number">4.2</span> What is R?</h2>
+<p><strong>R is a language and environment for statistical computing and graphics</strong>. It is a GNU project which is similar to the S language and environment which was developed at Bell Laboratories (formerly AT&amp;T, now Lucent Technologies) by John Chambers and colleagues. R can be considered as a different implementation of S. There are some important differences, but much code written for S runs unaltered under R.</p>
+<ul>
+<li>an effective data handling and storage facility,</li>
+<li>a suite of operators for calculations on arrays, in particular matrices,</li>
+<li>a large, coherent, integrated collection of intermediate tools for data analysis,</li>
+<li>graphical facilities for data analysis and display either on-screen or on hardcopy, and</li>
+<li>a well-developed, simple and effective programming language which includes conditionals, loops, user-defined<br />
+recursive functions and input and output facilities.</li>
+</ul>
+</div>
+<div id="r-cheat-sheets" class="section level2">
+<h2><span class="header-section-number">4.3</span> R cheat sheets</h2>
+<p>A collection of useful sheets for programming in R.</p>
+<p><a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank"><em>Cheatsheets online at RStudio site</em></a></p>
+<div id="offline-version-of-relevant-cheat-sheets-august-2018" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> offline version of relevant cheat sheets (August 2018)</h3>
+<p><img src="cheat_sheets/rstudio-ide.png" width="140%" style="display: block; margin: auto;" /></p>
+<p>The <strong>RStudio IDE</strong> (<a href="cheat_sheets/rstudio-ide.pdf" target="_blank">download RStudio IDE cheat sheet</a>)is the most popular integrated development environment for R. Do you want to write, run, and debug your own R code? Work collaboratively on R projects with version control? Build packages or create documents and apps? No matter what you do with R, the RStudio IDE can help you do it faster. This cheat sheet will guide you through the most useful features of the IDE, as well as the long list of keyboard shortcuts built into the RStudio IDE.</p>
+<p><img src="cheat_sheets/base-r-1.png" width="140%" style="display: block; margin: auto;" /></p>
+<p><strong>base R</strong> (<a href="cheat_sheets/base-r-cheetsheat.pdf" target="_blank">download base R cheat sheet</a>) overview of Vectors, Matrices, Lists, Data Frames, Functions and more in base R.</p>
+<p><img src="cheat_sheets/data-import-cheatsheet-1.png" width="140%" style="display: block; margin: auto;" /></p>
+<p>The <strong>Data Import &amp; Transformation</strong> cheat sheet (<a href="cheat_sheets/data-import.pdf" target="_blank">download Data Import cheat sheet</a>) reminds you how to read in flat files with <a href="http://readr.tidyverse.org/" class="uri">http://readr.tidyverse.org/</a>, work with the results as tibbles, and reshape messy data with tidyr. Use tidyr to reshape your tables into tidy data, the data format that works the most seamlessly with R and the tidyverse.</p>
+<p><img src="cheat_sheets/data-transformation-cheatsheet.png" width="140%" style="display: block; margin: auto;" /></p>
+<p><strong>dplyr</strong> (<a href="cheat_sheets/data-transformation.pdf" target="_blank">download Data transformation cheat sheet</a>) provides a grammar for manipulating tables in R. This cheat sheet will guide you through the grammar, reminding you how to select, filter, arrange, mutate, summarise, group, and join data frames and tibbles.</p>
+<p>Also very informative is the older <strong>data wrangling</strong> cheat sheet (<a href="cheat_sheets/data-wrangling-cheatsheet.pdf" target="_blank">download data wrangling cheat sheet</a>)</p>
+<p><img src="cheat_sheets/ggplot2-cheatsheet-2.1.png" width="140%" style="display: block; margin: auto;" /></p>
+<p>The <strong>ggplot2</strong> package (<a href="cheat_sheets/data-visualization-2.1.pdf" target="_blank">download Data visualization cheat sheet</a>) lets you make beautiful and customizable plots of your data. It implements the grammar of graphics, an easy to use system for building plots. See docs.ggplot2.org for detailed examples.</p>
+<p><img src="cheat_sheets/purrr-cheatsheet.png" width="140%" style="display: block; margin: auto;" /></p>
+<p>The <strong>purrr</strong> package (<a href="cheat_sheets/purrr.pdf" target="_blank">download purrr cheat sheet</a>) makes it easy to work with lists and functions. This cheatsheet will remind you how to manipulate lists with purrr as well as how to apply functions iteratively to each element of a list or vector. The back of the cheatsheet explains how to work with list-columns. With list columns, you can use a simple data frame to organize any collection of objects in R.</p>
+<p><img src="cheat_sheets/strings.png" width="140%" style="display: block; margin: auto;" /></p>
+<p>The <strong>stringr</strong> package (<a href="cheat_sheets/strings.pdf" target="_blank">download stringr cheat sheet</a>) provides an easy to use toolkit for working with strings, i.e. character data, in R. This cheatsheet guides you through stringr’s functions for manipulating strings. The back page provides a concise reference to regular expresssions, a mini-language for describing, finding, and matching patterns in strings.</p>
+<p><img src="cheat_sheets/lubridate.png" width="140%" style="display: block; margin: auto;" /></p>
+<p><strong>Lubridate</strong> (<a href="cheat_sheets/lubridate.pdf" target="_blank">download Lubridate cheat sheet</a>) makes it easier to work with dates and times in R. This lubridate cheatsheet covers how to round dates, work with time zones, extract elements of a date or time, parse dates into R and more. The back of the cheatsheet describes lubridate’s three timespan classes: periods, durations, and intervals; and explains how to do math with date-times.</p>
+<p><img src="cheat_sheets/survminer-1.png" width="140%" style="display: block; margin: auto;" /></p>
+<p><strong>survminer</strong> (<a href="cheat_sheets/survminer.pdf" target="_blank">download Lubridate cheat sheet</a>) - elegant survival plots</p>
+</div>
+</div>
+<div id="r---help" class="section level2">
+<h2><span class="header-section-number">4.4</span> R - Help</h2>
+<p>Getting help is easy.</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="30%" />
+<col width="58%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>help</th>
+<th>what it does</th>
+<th>output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>?mean</code></td>
+<td>get the help for mean() function (you can also mark the function and press <code>F1</code></td>
+<td>Generic function for the (trimmed) arithmetic mean. Usage: mean(x, …)</td>
+</tr>
+<tr class="even">
+<td><code>help.search(&quot;mean&quot;)</code></td>
+<td>search all help files accross all installed packages for a word or phrase</td>
+<td>output is list of several packages containing the word or phrase …</td>
+</tr>
+<tr class="odd">
+<td><code>help(package=&quot;dplyr&quot;)</code></td>
+<td>redirection to the help page of the package</td>
+<td>will show the help of all functions in the package</td>
+</tr>
+</tbody>
+</table>
+<p><strong>At some point you will stuck. Please use google and try to explain your problem in the simplest way and tag it with <code>R</code>.</strong></p>
+</div>
+</div>
+<div id="r---packages" class="section level1">
+<h1><span class="header-section-number">5</span> R - Packages</h1>
+<p>R packages are a collection of R functions, complied code and sample data. They are stored under a directory called “library” in the R environment. By default, R installs a set of packages during installation other packages must be installed after R installation.</p>
+<div id="where-do-i-get-r---packages" class="section level2">
+<h2><span class="header-section-number">5.1</span> Where do I get R - Packages</h2>
+<div id="cran" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> CRAN</h3>
+<p><a href="https://cran.r-project.org/web/packages/available_packages_by_date.html" target="_blank">CRAN</a></p>
+<p>In RStudio you can use the Packages register card and hit the <em>Install</em> button.</p>
+<p><strong>reliable</strong>: package is checked during submission process</p>
+<p><a href="https://mran.microsoft.com/packages/" target="_blank">MRAN</a> for Windows users</p>
+</div>
+<div id="bioconductor" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Bioconductor</h3>
+<p><a href="https://www.bioconductor.org/" target="_blank">bioconductor</a></p>
+<p>dedicated to biology. <a href="https://www.bioconductor.org/packages/release/bioc/html/limma.html" target="_blank">status of famous limma package</a></p>
+<p>typical install:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">biocLite</span>(<span class="st">&quot;limma&quot;</span>)</a></code></pre></div>
+<p><a href="https://www.bioconductor.org/packages/release/BiocViews.html#___Software" target="_blank">explore packages on Bioconductor</a></p>
+</div>
+<div id="github" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Github</h3>
+<p><a href="https://github.com/" target="_blank">GitHub</a></p>
+<p>easy install thanks to <a href="https://github.com/hadley/devtools" target="_blank">devtools</a>. <a href="https://github.com/hadley/readr" target="_blank">status</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages(&quot;devtools&quot;)</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tidyverse/readr&quot;</span>)</a></code></pre></div>
+</div>
+<div id="metacran" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> MetaCRAN</h3>
+<p><a href="https://www.r-pkg.org" target="_blank">MetaCRAN</a></p>
+</div>
+</div>
+<div id="r---using-packages" class="section level2">
+<h2><span class="header-section-number">5.2</span> R - Using Packages</h2>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>syntax</th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>install.packages(&quot;dplyr&quot;)</code></td>
+<td>download and install package <em>dplyr</em> from CRAN</td>
+</tr>
+<tr class="even">
+<td><code>library(&quot;dplyr&quot;)</code></td>
+<td>load the package into the session, making all its functions available to use</td>
+</tr>
+<tr class="odd">
+<td><code>dplyr::select</code></td>
+<td>use a particular function form the package</td>
+</tr>
+<tr class="even">
+<td><code>data(iris)</code></td>
+<td>loads a build in dataset into the environment</td>
+</tr>
+<tr class="odd">
+<td><code>citation(&quot;dplyr&quot;)</code></td>
+<td>print the reference for citation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="r---working-directory" class="section level1">
+<h1><span class="header-section-number">6</span> R - Working directory</h1>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>syntax</th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>getwd()</code></td>
+<td>print out the current working directory (where inputs are found and outputs are sent)</td>
+</tr>
+<tr class="even">
+<td><code>setwd(&quot;path&quot;)</code></td>
+<td>change the current working directory to <em>path</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>USE projects in RStudio to set the working directory to the folder you are working in.</strong></p>
+</div>
+<div id="rstudio-ide-httpsrstudio.com" class="section level1">
+<h1><span class="header-section-number">7</span> RStudio IDE (<a href="https://rstudio.com" class="uri">https://rstudio.com</a>)</h1>
+<p>RStudio is an <strong>integrated development environment (IDE)</strong>. It is critical tool for writing and exucuting R-code.</p>
+<p>RStudio was build for R but it supports also:</p>
+<ul>
+<li>RMarkdown (HTML, PDF, Word Documents, and slide shows)</li>
+<li>C++</li>
+<li>Python</li>
+<li>SQL</li>
+<li>Stan</li>
+<li>HTML</li>
+</ul>
+<div class="figure">
+<img src="figures/RStudio_cheat_sheet_screenshot.png" alt="screenshot from RStudio cheat sheet" />
+<p class="caption">screenshot from RStudio cheat sheet</p>
+</div>
+<ul>
+<li><em>Console</em> to run <strong>R</strong>, with syntax highlighter</li>
+<li><em>Editor</em> to work with scripts</li>
+<li><em>Viewer</em> for data / plots / website</li>
+<li><em>Package management</em> (including building)</li>
+<li><em>Autocompletion</em> using <kbd>TAB</kbd></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank"><em>Cheatsheets</em></a></li>
+<li><em>Git</em> integration for versioning</li>
+<li><em>Inline</em> outputs (&gt;= v1.03)</li>
+<li><em>Keyboard shortcuts</em></li>
+<li><a href="https://rviews.rstudio.com/2017/03/15/why-i-love-r-notebooks/" target="_blank"><em>Notebooks</em></a></li>
+</ul>
+<p>Don’t mix up <strong>R</strong> and <strong>RStudio</strong>.<br />
+<strong>R</strong> needs to be installed first.</p>
+<p>And for windows PC install <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> as well since it contains several additional system tools like compiler and zip executables.</p>
+<div id="useful-rstudio-shortcuts" class="section level2">
+<h2><span class="header-section-number">7.1</span> Useful Rstudio shortcuts</h2>
+<p>replace <kbd>Cmd</kbd> by <kbd>Ctrl</kbd> for PC</p>
+<table>
+<thead>
+<tr class="header">
+<th>shortcut</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><kbd>Cmd</kbd> + <kbd>Enter</kbd></td>
+<td><em>run code</em></td>
+</tr>
+<tr class="even">
+<td><kbd>tab</kbd></td>
+<td><em>auto-complete code</em></td>
+</tr>
+<tr class="odd">
+<td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></td>
+<td><em>multi-line edition</em></td>
+</tr>
+<tr class="even">
+<td><kbd>Cmd</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></td>
+<td><em>copy line up / down</em></td>
+</tr>
+<tr class="odd">
+<td><kbd>Alt</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></td>
+<td><em>move line up / down</em></td>
+</tr>
+<tr class="even">
+<td><kbd>Alt</kbd>+<kbd>-</kbd></td>
+<td><em>&lt;-</em> (assign e.g. a value to a variable)</td>
+</tr>
+</tbody>
+</table>
+<center>
+<img src="figures/tips_keyboard_shortcuts.gif" alt="edit shortcuts in RStudio" align="center" />
+</center>
+<p><strong>quick view of keyboard shortcuts:</strong></p>
+<p><kbd>Alt</kbd> + <kbd>↑</kbd> + <kbd>K</kbd></p>
+</div>
+</div>
+<div id="projects" class="section level1">
+<h1><span class="header-section-number">8</span> Projects</h1>
+<p><font size="12" color="#D50000"><strong>always use projects !!!</strong></font></p>
+<div id="using-projects" class="section level2">
+<h2><span class="header-section-number">8.1</span> Using Projects</h2>
+<p>RStudio projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents.</p>
+<p>With projects file path are relative from your project and are not relying on your system.</p>
+<p><u>example:</u></p>
+<p>you generated a R-Script loading files &gt;&gt; doing some calculations &gt;&gt; writing some output.</p>
+<ul>
+<li><p><em>your R-project folder:</em> R_analysis</p></li>
+<li><p><em>your working directory absolute:</em> <u>c:/user/admin/documents/2020_projects/03_subproject/measurements/</u>R_analysis</p></li>
+<li><p><em>your working directory relative (project directory):</em> R_analysis</p></li>
+</ul>
+<p>When you open a project the working directory is always the proejct directory.</p>
+<p><strong>If you did your scripting in a project you can give someone else the project folder and he or she doesn’t have to worry about the paths that are used because they are relative.</strong></p>
+</div>
+<div id="creating-projects" class="section level2">
+<h2><span class="header-section-number">8.2</span> Creating projects</h2>
+<p>RStudio projects are associated with R working directories. You can create an RStudio project:</p>
+<ul>
+<li>In a brand new directory</li>
+<li>In an existing directory where you already have R code and data</li>
+<li>By cloning a version control (Git or Subversion) repository</li>
+</ul>
+<p>To create a new project use the Create Project command (available on the Projects menu and on the global toolbar): <img src="figures/create_new_projects.png" alt="create new project" /></p>
+<p>When a new project is created RStudio:</p>
+<ol style="list-style-type: decimal">
+<li>Creates a project file (with an .Rproj extension) within the project directory. This file contains various project options (discussed below) and can also be used as a shortcut for opening the project directly from the filesystem.</li>
+<li>Creates a hidden directory (named .Rproj.user) where project-specific temporary files (e.g. auto-saved source documents, window-state, etc.) are stored. This directory is also automatically added to .Rbuildignore, .gitignore, etc. if required.</li>
+<li>Loads the project into RStudio and display its name in the Projects toolbar (which is located on the far right side of the main toolbar)</li>
+</ol>
+<div id="suggest-project-folder-structure" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> suggest project folder structure</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># my_project</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#    ├── data &lt;folder&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#    │   ├── raw_data &lt;subfolder&gt;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#    │   └── processed_data &lt;subfolder&gt;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#    │   └── source_data &lt;subfolder&gt;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#    ├── figures &lt;folder&gt;</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#    ├── R_scritps &lt;folder&gt;</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#    ├── README.md</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#    ├── run_analyses.R</span></a></code></pre></div>
+</div>
+</div>
+<div id="working-with-projects" class="section level2">
+<h2><span class="header-section-number">8.3</span> Working with projects</h2>
+<div id="opening-projects" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Opening Projects</h3>
+<p>There are several ways to open a project:</p>
+<ol style="list-style-type: decimal">
+<li>Using the Open Project command (available from both the Projects menu and the Projects toolbar) to browse for and select an existing project file (e.g. MyProject.Rproj).</li>
+<li>Selecting a project from the list of most recently opened projects (also available from both the Projects menu and toolbar).</li>
+<li>Double-clicking on the project file within the system shell (e.g. Windows Explorer, OSX Finder, etc.).</li>
+</ol>
+<div id="when-a-project-is-opened-within-rstudio-the-following-actions-are-taken" class="section level4">
+<h4><span class="header-section-number">8.3.1.1</span> When a project is opened within RStudio the following actions are taken:</h4>
+<ul>
+<li>A new R session (process) is started</li>
+<li>The .Rprofile file in the project’s main directory (if any) is sourced by R</li>
+<li>The .RData file in the project’s main directory is loaded (if project options indicate that it should be loaded).</li>
+<li>The .Rhistory file in the project’s main directory is loaded into the RStudio History pane (and used for Console Up/Down arrow command history).</li>
+<li>The current working directory is set to the project directory.</li>
+<li>Previously edited source documents are restored into editor tabs</li>
+<li>Other RStudio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed.</li>
+</ul>
+</div>
+</div>
+<div id="quitting-a-project" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Quitting a Project</h3>
+<p>When you are within a project and choose to either Quit, close the project, or open another project the following actions are taken:</p>
+<ol style="list-style-type: decimal">
+<li>.RData and/or .Rhistory are written to the project directory (if current options indicate they should be)</li>
+<li>The list of open source documents is saved (so it can be restored next time the project is opened)</li>
+<li>Other RStudio settings (as described above) are saved.</li>
+<li>The R session is terminated.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="r-script-header" class="section level1">
+<h1><span class="header-section-number">9</span> R-script header</h1>
+<p>Use a intuitive Script header. This is important especially if the script needs be shared with colleagues.</p>
+<p>Default script header (suggestion):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">################################################ </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">## Project:</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">## Script purpose: </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">## Date: </span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">## Author: </span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">## Version:</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">## Version Release notes:</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">##################################################</span></a></code></pre></div>
+<p>Example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">################################################ </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">## Project: Rho DIA-MS proteome data analysis</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">## Script purpose: analysis of Rho-mutant and HG001 proteome data and reveal differential proteome levels</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">## Date: 12.09.2018</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">## Author: Stephan Michalik</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">## Version: 1.00</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">## Version Release notes:</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">##################################################</span></a></code></pre></div>
+</div>
+<div id="r-basics" class="section level1">
+<h1><span class="header-section-number">10</span> R basics</h1>
+<p>The base R cheat sheet ( <a href="cheat_sheets/base-r-cheetsheat.pdf" target="_blank">base R cheat sheet</a> ) covers a broad range of the points of the chapter and is worth looking at.</p>
+<div id="writing-code" class="section level2">
+<h2><span class="header-section-number">10.1</span> writing code</h2>
+<p><strong>The # sign is used to out-comment code. (code will NOT run)</strong></p>
+<p><strong>use <kbd>Cmd</kbd> + <kbd>Shift</kbd>+ <kbd>R</kbd> for comment a new code section</strong></p>
+<p>This will appear in the drop down level menu in the scripting window for navigation.</p>
+<p><font size="10" color="#D50000">DO NOT use &quot; &quot; (spaces) in variables etc., use always &quot;_&quot; or “.” instead of spaces !!!</font></p>
+<p>The best is to use &quot;_&quot; since “.” is used in other programming languages. In python the “.” means look inside the space that is before the dot for code to execute.</p>
+<p>So if intermixing codes becomes more feasable this might be very disturbing.</p>
+</div>
+<div id="how-to-use-help" class="section level2">
+<h2><span class="header-section-number">10.2</span> how to use help</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">#help for mean</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">?mean</a></code></pre></div>
+<p>or mark the function (mean) and press F1</p>
+</div>
+<div id="arithmetic-with-r" class="section level2">
+<h2><span class="header-section-number">10.3</span> Arithmetic with R</h2>
+<p>In its most basic form, R can be used as a simple calculator. Consider the following arithmetic operators:</p>
+<ul>
+<li><code>+</code>: addition<br />
+</li>
+<li><code>-</code>: subtraction<br />
+</li>
+<li><code>*</code>: multiplication<br />
+</li>
+<li><code>/</code>: division<br />
+</li>
+<li><code>^</code> or <code>**</code>: exponentiation</li>
+</ul>
+<p><strong>R</strong> will:</p>
+<ul>
+<li>first perform <strong>exponentiation</strong></li>
+<li>then multiplications and/or divisions</li>
+<li>and finally additions and/or subtractions.</li>
+</ul>
+<p>If you need to change the priority during the evaluation, use parentheses – <em>i.e.</em> <code>(</code> and <code>)</code> – to group calculations.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># An addition</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> </a></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># A subtraction</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="dv">5</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span> </a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># A multiplication</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"> <span class="co"># A division</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">(<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span> </a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Exponentiation</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="dv">2</span><span class="op">^</span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># sequence</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dt">by=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## [1] 2.0 2.5 3.0</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># repeats</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">times=</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 1 2 1 2 1 2</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each=</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 1 1 1 2 2 2</code></pre>
+<p><strong>other function:</strong></p>
+<ul>
+<li><code>mean()</code> = average</li>
+<li><code>median()</code> = median</li>
+<li><code>sum()</code> = sum</li>
+<li><code>IQR()</code> = interquartile range</li>
+<li><code>var()</code> = variance</li>
+<li><code>cov()</code> = covariance</li>
+<li><code>cor()</code> = correlation</li>
+<li><code>quantile()</code> = produces sample quantiles corresponding to the given probabilities</li>
+<li>… (please see e.g. R stats packages for available basic function)</li>
+</ul>
+</div>
+<div id="variable-assignment" class="section level2">
+<h2><span class="header-section-number">10.4</span> Variable assignment</h2>
+<p>A basic concept in (statistical) programming is called a variable.</p>
+<p>A variable allows you to store a value (e.g. 4) or an object (e.g. a function description) in R. You can then later use this variable’s name to easily access the value or the object that is stored within this variable.</p>
+<p>You can assign a value <code>4</code> to a variable <code>my_var</code> with the command</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># An addition</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">my_var &lt;-<span class="st"> </span><span class="dv">4</span> <span class="co"># my_var = 4 can alos be used but &quot;&lt;-&quot; is the more universal correct assignment operator</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co"># Print out the value of the variable my_var</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">my_var</a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># Assign a value to the variables my_apples and my_oranges</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">my_apples &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">my_oranges &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="co"># Add these two variables together</span></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">my_apples <span class="op">+</span><span class="st"> </span>my_oranges</a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># Create the variable my_fruit</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">my_fruit &lt;-<span class="st"> </span>my_apples <span class="op">+</span><span class="st"> </span>my_oranges</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">my_fruit <span class="co"># return result again</span></a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="basic-data-types-in-r" class="section level2">
+<h2><span class="header-section-number">10.5</span> Basic data types in R</h2>
+<p>R works with numerous data types. Some of the most basic types to get started are:</p>
+<ul>
+<li><p><strong>Decimal values</strong> like 4.5 are called numerics.</p></li>
+<li><p><strong>Natural numbers</strong> like 4 are called integers. Integers are also numerics.</p></li>
+<li><p><strong>Boolean values</strong> (TRUE or FALSE) are called logical.</p></li>
+<li><p><strong>Text</strong> (or string) values are called characters.</p></li>
+</ul>
+<p>Note how the quotation marks on the right indicate that “some text” is a character.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># Declare variables of different types</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">my_numeric &lt;-<span class="st"> </span><span class="dv">42</span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">my_character &lt;-<span class="st"> &quot;universe&quot;</span></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">my_logical &lt;-<span class="st"> </span><span class="ot">FALSE</span> </a></code></pre></div>
+<div id="special-cases" class="section level3">
+<h3><span class="header-section-number">10.5.1</span> Special cases</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="ot">NA</span>   <span class="co"># not available, missing data</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="ot">NA_real_</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="ot">NA_integer_</span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="ot">NA_character_</span></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="ot">NA_complex_</span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="ot">NULL</span> <span class="co"># empty</span></a>
+<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="op">-</span><span class="ot">Inf</span><span class="op">/</span><span class="ot">Inf</span> <span class="co"># infinite values</span></a></code></pre></div>
+</div>
+<div id="missing-and-infinite" class="section level3">
+<h3><span class="header-section-number">10.5.2</span> missing and infinite</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">c</span>(<span class="ot">NA_real_</span>, <span class="fl">2.45</span>, <span class="fl">45.67</span>)</a></code></pre></div>
+<pre><code>## [1]    NA  2.45 45.67</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">c</span>(<span class="ot">Inf</span>, <span class="fl">2.45</span>, <span class="fl">45.67</span>)</a></code></pre></div>
+<pre><code>## [1]   Inf  2.45 45.67</code></pre>
+</div>
+<div id="whats-that-data-type" class="section level3">
+<h3><span class="header-section-number">10.5.3</span> What’s that data type?</h3>
+<p>when you added <code>5 + &quot;six&quot;</code>, you got an error due to a mismatch in data types? You can avoid such embarrassing situations by checking the data type of a variable beforehand. You can do this with the <code>class()</code> function, as the code on the right shows.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># Declare variables of different types</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">my_numeric &lt;-<span class="st"> </span><span class="dv">42</span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">my_character &lt;-<span class="st"> &quot;universe&quot;</span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">my_logical &lt;-<span class="st"> </span><span class="ot">FALSE</span> </a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="co"># Check class of my_numeric</span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="kw">class</span>(my_numeric)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># Check class of my_character</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw">class</span>(my_character)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># Check class of my_logical</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="kw">class</span>(my_logical)</a></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+</div>
+<div id="creating-a-vector" class="section level2">
+<h2><span class="header-section-number">10.6</span> creating a vector</h2>
+<p>In R, you create a vector with the combine function <code>c()</code>. You place the vector elements separated by a comma between the parentheses. For example:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">numeric_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">character_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3">boolean_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">TRUE</span>)</a></code></pre></div>
+<div id="naming-a-vector" class="section level3">
+<h3><span class="header-section-number">10.6.1</span> Naming a vector</h3>
+<p>As a data analyst, it is important to have a clear view on the data that you are using. Understanding what each element refers to is therefore essential.</p>
+<p>In the previous exercise, we created a vector with your winnings over the week. Each vector element refers to a day of the week but it is hard to tell which element belongs to which day. It would be nice if you could show that in the vector itself.</p>
+<p>You can give a name to the elements of a vector with the names() function. Have a look at this example:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">some_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;John Doe&quot;</span>, <span class="st">&quot;poker player&quot;</span>)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="co">#output before naming</span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3">some_vector</a></code></pre></div>
+<pre><code>## [1] &quot;John Doe&quot;     &quot;poker player&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">names</span>(some_vector) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Profession&quot;</span>)</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="co">#output after naming</span></a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">some_vector</a></code></pre></div>
+<pre><code>##           Name     Profession 
+##     &quot;John Doe&quot; &quot;poker player&quot;</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co">#same result can be directly achieved by naming inside c()</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">some_vector1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">Name =</span> <span class="st">&quot;John Doe&quot;</span>, <span class="dt">Profession=</span> <span class="st">&quot;poker player&quot;</span>)</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">some_vector1</a></code></pre></div>
+<pre><code>##           Name     Profession 
+##     &quot;John Doe&quot; &quot;poker player&quot;</code></pre>
+</div>
+<div id="vector-functions" class="section level3">
+<h3><span class="header-section-number">10.6.2</span> vector functions</h3>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="co">#generate vector x</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co"># Return x sorted. table(x)</span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="kw">sort</span>(x)</a></code></pre></div>
+<pre><code>##  [1]  1  1  2  2  3  4  4  4  5  5  6  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># See counts of values</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">table</span>(x)</a></code></pre></div>
+<pre><code>## x
+##  1  2  3  4  5  6  7  8  9 10 
+##  2  2  1  3  2  2  1  1  1  1</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># Return x reversed</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="kw">rev</span>(x)</a></code></pre></div>
+<pre><code>##  [1]  6  4  2  1  5  4  4  1  8  7  9 10  6  5  2  3</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co">#See unique values</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="kw">unique</span>(x)</a></code></pre></div>
+<pre><code>##  [1]  3  2  5  6 10  9  7  8  1  4</code></pre>
+</div>
+</div>
+<div id="matrix" class="section level2">
+<h2><span class="header-section-number">10.7</span> Matrix</h2>
+<div id="what-is-a-matrix" class="section level3">
+<h3><span class="header-section-number">10.7.1</span> What is a matrix?</h3>
+<p>In R, a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. Since you are only working with rows and columns, a matrix is called two-dimensional.</p>
+<p>You can construct a matrix in R with the <code>matrix()</code> function. Consider the following example:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<p>In the <strong>matrix()</strong> function:</p>
+<p>The first argument is the collection of elements that R will arrange into the rows and columns of the matrix. Here, we use <code>1:9</code> which is a shortcut for <code>c(1, 2, 3, 4, 5, 6, 7, 8, 9)</code>. The argument byrow indicates that the matrix is filled by the rows. If we want the matrix to be filled by the columns, we just place <code>byrow = FALSE</code>. The third argument nrow indicates that the matrix should have three rows.</p>
+</div>
+<div id="naming-a-matrix" class="section level3">
+<h3><span class="header-section-number">10.7.2</span> Naming a matrix</h3>
+<p>To help you remember what is stored in a matrix, you would like to add the names for the rows. Not only does this help you to read the data, but it is also useful to select certain elements from the matrix.</p>
+<p>Similar to vectors, you can add names for the rows and the columns of a matrix</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">rownames</span>(my_matrix) &lt;-<span class="st"> </span>row_names_vector</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">colnames</span>(my_matrix) &lt;-<span class="st"> </span>col_names_vector</a></code></pre></div>
+</div>
+</div>
+<div id="data-frame" class="section level2">
+<h2><span class="header-section-number">10.8</span> Data frame</h2>
+<p>A data frame is used for storing data tables. It is a list of vectors of equal length. For example, the following variable df is a data frame containing three vectors n, s, b.</p>
+<p><strong>what´s the difference between a matrix and a data.frame?</strong></p>
+<p>Both matrix and data frame are 2 dimensional data structure. While matrix is homogeneous, data frame is not.</p>
+<p>R won’t automatically treat dataframe rows as vectors, because a dataframe’s columns can be of different types. But if e.g. all columns are numeric (no characters, factors, etc), you can convert it to a numeric matrix yourself, using the as.matrix() function, and then treat its rows as vectors.</p>
+<div id="extract-specific-information-from-a-data.frame" class="section level3">
+<h3><span class="header-section-number">10.8.1</span> Extract specific information from a data.frame</h3>
+<p>We will use the build in data.frame <strong>mtcars</strong> for the example.</p>
+<p><strong>select some rows or columns:</strong></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="co"># the data.frame mtcars</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">mtcars</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.32","7":"18.6","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.21","7":"19.4","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.44","7":"17.0","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.46","7":"20.2","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.57","7":"15.8","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.19","7":"20.0","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.15","7":"22.9","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.44","7":"18.9","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"275.8","4":"180","5":"3.07","6":"4.07","7":"17.4","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.73","7":"17.6","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.78","7":"18.0","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"472.0","4":"205","5":"2.93","6":"5.25","7":"18.0","8":"0","9":"0","10":"3","11":"4","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","4":"215","5":"3.00","6":"5.42","7":"17.8","8":"0","9":"0","10":"3","11":"4","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.34","7":"17.4","8":"0","9":"0","10":"3","11":"4","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.20","7":"19.5","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.61","7":"18.5","8":"1","9":"1","10":"4","11":"2","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.83","7":"19.9","8":"1","9":"1","10":"4","11":"1","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.46","7":"20.0","8":"1","9":"0","10":"3","11":"1","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"318.0","4":"150","5":"2.76","6":"3.52","7":"16.9","8":"0","9":"0","10":"3","11":"2","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.44","7":"17.3","8":"0","9":"0","10":"3","11":"2","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"350.0","4":"245","5":"3.73","6":"3.84","7":"15.4","8":"0","9":"0","10":"3","11":"4","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"400.0","4":"175","5":"3.08","6":"3.85","7":"17.1","8":"0","9":"0","10":"3","11":"2","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.94","7":"18.9","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.14","7":"16.7","8":"0","9":"1","10":"5","11":"2","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.51","7":"16.9","8":"1","9":"1","10":"5","11":"2","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.17","7":"14.5","8":"0","9":"1","10":"5","11":"4","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.77","7":"15.5","8":"0","9":"1","10":"5","11":"6","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.57","7":"14.6","8":"0","9":"1","10":"5","11":"8","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.78","7":"18.6","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># get just the first row of the data.frame</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">    <span class="co"># [x,y] --&gt; x==rows / y==columns</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">mtcars[<span class="dv">1</span>,]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21","2":"6","3":"160","4":"110","5":"3.9","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># get just the first column of the data.frame</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">mtcars[,<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">      <span class="co"># or use the &quot;$&quot; sign for return e.g. &quot;mpg&quot; column</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">      mtcars<span class="op">$</span>mpg</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co"># get just the first three rows of the data.frame</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","6":"2.32","7":"18.6","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># get just the first three columns of the data.frame</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">mtcars[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"275.8","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"275.8","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"275.8","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"472.0","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"440.0","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"78.7","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"120.1","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"318.0","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"304.0","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"350.0","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"400.0","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"79.0","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="perform-comparisons" class="section level2">
+<h2><span class="header-section-number">10.9</span> Perform comparisons</h2>
+<p><strong>Perform comparisons and use them for subsetting:</strong></p>
+<ul>
+<li><code>==</code> equal</li>
+<li><code>!=</code> different</li>
+<li><code>&lt;</code> smaller</li>
+<li><code>&lt;=</code> smaller <strong>or</strong> equal</li>
+<li><code>&gt;</code> greater</li>
+<li><code>&gt;=</code> greater <strong>or</strong> equal</li>
+<li><code>!</code> is not</li>
+<li><code>&amp;</code>, <code>&amp;&amp;</code> and</li>
+<li><code>|</code>, <code>||</code> or</li>
+</ul>
+<p><em>comment:</em></p>
+<p><code>&amp;&amp;</code> and <code>||</code> are what is called <em>“short circuiting”</em>. That means that they will not evaluate the second operand if the first operand is enough to determine the value of the expression.</p>
+<p>For example if the first operand to &amp;&amp; is false then there is no point in evaluating the second operand, since it can’t change the value of the expression (false <code>&amp;&amp;</code> true and false <code>&amp;&amp;</code> false are both false). The same goes for <code>||</code> when the first operand is true.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co">#generate a vector from 1 to 6</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">z =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3">z</a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co"># z bigger than 2 and smaller than 5</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">(z <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>(z <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">z[(z<span class="op">&gt;</span><span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>(z<span class="op">&lt;</span><span class="dv">5</span>)]</a></code></pre></div>
+<pre><code>## [1] 3 4</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="co">#now the same with &amp;&amp;</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">(z <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) <span class="op">&amp;&amp;</span><span class="st"> </span>(z <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co">#this is equivalent to:</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2">(z[<span class="dv">1</span>] <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>(z[<span class="dv">1</span>] <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="co">#it will just check the first value</span></a></code></pre></div>
+</div>
+<div id="subsetting" class="section level2">
+<h2><span class="header-section-number">10.10</span> subsetting</h2>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="co">#subset / filter the table with base R</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="co"># choose from mtcars data.frame the cars with 4 gears</span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4">mtcars[<span class="kw">which</span>(mtcars<span class="op">$</span>gear<span class="op">==</span><span class="dv">4</span>),]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.32","7":"18.6","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.19","7":"20.0","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.15","7":"22.9","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.44","7":"18.9","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.20","7":"19.5","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.61","7":"18.5","8":"1","9":"1","10":"4","11":"2","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.83","7":"19.9","8":"1","9":"1","10":"4","11":"1","_rn_":"Toyota Corolla"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.94","7":"18.9","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat X1-9"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.78","7":"18.6","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="co"># choose from mtcars data.frame the cars with 4 gears and min 100 hp</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2">mtcars[<span class="kw">which</span>(mtcars<span class="op">$</span>gear<span class="op">==</span><span class="dv">4</span> <span class="op">&amp;</span><span class="st"> </span>mtcars<span class="op">$</span>hp<span class="op">&gt;=</span><span class="dv">100</span>),]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"19.2","2":"6","3":"168","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"168","4":"123","5":"3.92","6":"3.44","7":"18.9","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"21.4","2":"4","3":"121","4":"109","5":"4.11","6":"2.78","7":"18.6","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>same can be achieved with <em>subset()</em> function</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="co">#subset / filter the table with base R</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="co"># choose from mtcars data.frame the cars with 4 gears</span></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="kw">subset</span>(<span class="dt">x =</span> mtcars,mtcars<span class="op">$</span>gear<span class="op">==</span><span class="dv">4</span>)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.32","7":"18.6","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.19","7":"20.0","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.15","7":"22.9","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.44","7":"18.9","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.20","7":"19.5","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.61","7":"18.5","8":"1","9":"1","10":"4","11":"2","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.83","7":"19.9","8":"1","9":"1","10":"4","11":"1","_rn_":"Toyota Corolla"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.94","7":"18.9","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat X1-9"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.78","7":"18.6","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="co"># choose from mtcars data.frame the cars with 4 gears and min 100 hp</span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="kw">subset</span>(<span class="dt">x =</span> mtcars,mtcars<span class="op">$</span>gear<span class="op">==</span><span class="dv">4</span> <span class="op">&amp;</span><span class="st"> </span>mtcars<span class="op">$</span>hp<span class="op">&gt;=</span><span class="dv">100</span>)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"19.2","2":"6","3":"168","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"168","4":"123","5":"3.92","6":"3.44","7":"18.9","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"21.4","2":"4","3":"121","4":"109","5":"4.11","6":"2.78","7":"18.6","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="recap-vectors-matrices-data-frames" class="section level2">
+<h2><span class="header-section-number">10.11</span> Recap: Vectors, Matrices, Data frames</h2>
+<ul>
+<li><strong>Vectors</strong> (one dimensional array): can hold numeric, character or logical values. The elements in a vector all have the same data type.</li>
+<li><strong>Matrices</strong> (two dimensional array): can hold numeric, character or logical values. The elements in a matrix all have the same data type.</li>
+<li><strong>Data frames</strong> (two-dimensional objects): can hold numeric, character or logical values. Within a column all elements have the same data type, but different columns can be of different data type.</li>
+</ul>
+</div>
+<div id="lists" class="section level2">
+<h2><span class="header-section-number">10.12</span> Lists</h2>
+<p>A list in R is similar to your to-do list at work or school: the different items on that list most likely differ in length, characteristic, and type of activity that has to do be done.</p>
+<p>A list in R allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. These objects can be matrices, vectors, data frames, even other lists, etc. It is not even required that these objects are related to each other in any way.</p>
+<p>You could say that a list is some kind super data type: you can store practically any piece of information in it!</p>
+<p><strong>create a list:</strong></p>
+<p>Let us create our first list! To construct a list you use the function <code>list()</code>:</p>
+<p><code>my_list &lt;- list(comp1, comp2 ...)</code></p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="co"># Vector with numerics from 1 up to 10</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> </a>
+<a class="sourceLine" id="cb84-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co"># Matrix with numerics from 1 up to 9</span></a>
+<a class="sourceLine" id="cb84-5" data-line-number="5">my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb84-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb84-7" data-line-number="7"><span class="co"># First 10 elements of the built-in data frame mtcars</span></a>
+<a class="sourceLine" id="cb84-8" data-line-number="8">my_df &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</a>
+<a class="sourceLine" id="cb84-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb84-10" data-line-number="10"><span class="co"># Construct list with these different elements:</span></a>
+<a class="sourceLine" id="cb84-11" data-line-number="11">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">vector =</span> my_vector,</a>
+<a class="sourceLine" id="cb84-12" data-line-number="12">                <span class="dt">matrix =</span> my_matrix,</a>
+<a class="sourceLine" id="cb84-13" data-line-number="13">                <span class="dt">data.frame =</span> my_df)</a>
+<a class="sourceLine" id="cb84-14" data-line-number="14">my_list</a></code></pre></div>
+<pre><code>## $vector
+##  [1]  1  2  3  4  5  6  7  8  9 10
+## 
+## $matrix
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+## 
+## $data.frame
+##                    mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.32 18.6  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.21 19.4  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.0  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.46 20.2  1  0    3    1
+## Duster 360        14.3   8  360 245 3.21 3.57 15.8  0  0    3    4
+## Merc 240D         24.4   4  147  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230          22.8   4  141  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280          19.2   6  168 123 3.92 3.44 18.3  1  0    4    4</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="co">#get data out of the list</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="co"># Vector with numerics from 1 up to 10</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> </a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="co"># Matrix with numerics from 1 up to 9</span></a>
+<a class="sourceLine" id="cb86-6" data-line-number="6">my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb86-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb86-8" data-line-number="8"><span class="co"># First 10 elements of the built-in data frame mtcars</span></a>
+<a class="sourceLine" id="cb86-9" data-line-number="9">my_df &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</a>
+<a class="sourceLine" id="cb86-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb86-11" data-line-number="11"><span class="co"># Construct list with these different elements and naming of the list:</span></a>
+<a class="sourceLine" id="cb86-12" data-line-number="12">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">vector =</span> my_vector,</a>
+<a class="sourceLine" id="cb86-13" data-line-number="13">                <span class="dt">matrix =</span> my_matrix,</a>
+<a class="sourceLine" id="cb86-14" data-line-number="14">                <span class="dt">data.frame =</span> my_df)</a>
+<a class="sourceLine" id="cb86-15" data-line-number="15">    <span class="co"># naming can be done also after creating a list using &quot;names(my_list) &lt;- c(&quot;name1&quot;, &quot;name2&quot;)&quot;</span></a>
+<a class="sourceLine" id="cb86-16" data-line-number="16"><span class="co">#get the data.frame</span></a>
+<a class="sourceLine" id="cb86-17" data-line-number="17">my_list<span class="op">$</span>data.frame</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","6":"2.32","7":"18.6","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","6":"3.21","7":"19.4","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360","4":"175","5":"3.15","6":"3.44","7":"17.0","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225","4":"105","5":"2.76","6":"3.46","7":"20.2","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360","4":"245","5":"3.21","6":"3.57","7":"15.8","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"147","4":"62","5":"3.69","6":"3.19","7":"20.0","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"141","4":"95","5":"3.92","6":"3.15","7":"22.9","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"168","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">    <span class="co">#or</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2">    my_list[[<span class="dv">3</span>]]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","6":"2.32","7":"18.6","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","6":"3.21","7":"19.4","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360","4":"175","5":"3.15","6":"3.44","7":"17.0","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225","4":"105","5":"2.76","6":"3.46","7":"20.2","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360","4":"245","5":"3.21","6":"3.57","7":"15.8","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"147","4":"62","5":"3.69","6":"3.19","7":"20.0","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"141","4":"95","5":"3.92","6":"3.15","7":"22.9","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"168","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">    <span class="co">#or</span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">    my_list[[<span class="st">&quot;data.frame&quot;</span>]]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.88","7":"17.0","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","6":"2.32","7":"18.6","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","6":"3.21","7":"19.4","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360","4":"175","5":"3.15","6":"3.44","7":"17.0","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225","4":"105","5":"2.76","6":"3.46","7":"20.2","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360","4":"245","5":"3.21","6":"3.57","7":"15.8","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"147","4":"62","5":"3.69","6":"3.19","7":"20.0","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"141","4":"95","5":"3.92","6":"3.15","7":"22.9","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"168","4":"123","5":"3.92","6":"3.44","7":"18.3","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="co">#get data.frame and just the first row</span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2">my_list[[<span class="st">&quot;data.frame&quot;</span>]][<span class="dv">1</span>,]</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21","2":"6","3":"160","4":"110","5":"3.9","6":"2.62","7":"16.5","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="co">#get data.frame and just the first column</span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">my_list[[<span class="st">&quot;data.frame&quot;</span>]]<span class="op">$</span>mpg</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">    <span class="co">#or</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">    <span class="co">#get data.frame and just the first column</span></a>
+<a class="sourceLine" id="cb92-3" data-line-number="3">    my_list[[<span class="st">&quot;data.frame&quot;</span>]][,<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">    <span class="co">#or</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">    my_list[[<span class="st">&quot;data.frame&quot;</span>]][,<span class="st">&quot;mpg&quot;</span>]</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2</code></pre>
+<p><strong>add more data to a list:</strong></p>
+<p>To conveniently add elements to lists you can use the <code>c()</code> function, that you also used to build vectors:</p>
+<p><code>ext_list &lt;- c(my_list , my_val)</code> This will simply extend the original list, <em>my_list</em>, with the component <em>my_val</em>. This component gets appended to the end of the list. If you want to give the new list item a name, you just add the name as you did before:</p>
+<p><code>ext_list &lt;- c(my_list, my_name = my_val)</code></p>
+</div>
+<div id="factor" class="section level2">
+<h2><span class="header-section-number">10.13</span> Factor</h2>
+<div id="whats-a-factor-and-why-would-you-use-it" class="section level3">
+<h3><span class="header-section-number">10.13.1</span> What’s a factor and why would you use it?</h3>
+<p>In this chapter you dive into the wonderful world of factors.</p>
+<p>The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a limited number of categories. A continuous variable, on the other hand, can correspond to an infinite number of values.</p>
+<p>It is important that R knows whether it is dealing with a continuous or a categorical variable, as the statistical models you will develop in the future treat both types differently. (You will see later why this is the case.)</p>
+<p>A good example of a categorical variable is sex. In many circumstances you can limit the sex categories to “Male” or “Female”. (Sometimes you may need different categories. For example, you may need to consider chromosomal variation, hermaphroditic animals, or different cultural norms, but you will always have a finite number of categories.)</p>
+<p>To create factors in R, you make use of the function <code>factor()</code>. First thing that you have to do is create a vector that contains all the observations that belong to a limited number of categories. For example, sex_vector contains the sex of 5 different individuals:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">sex_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Male&quot;</span>)</a></code></pre></div>
+<p>It is clear that there are two categories, or in R-terms <strong>‘factor levels’</strong>, at work here: <em>“Male” and “Female”</em>.</p>
+<p>The function <code>factor()</code> will encode the vector as a factor:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">sex_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Male&quot;</span>)</a>
+<a class="sourceLine" id="cb97-2" data-line-number="2">sex_vector</a></code></pre></div>
+<pre><code>## [1] &quot;Male&quot;   &quot;Female&quot; &quot;Female&quot; &quot;Male&quot;   &quot;Male&quot;</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">factor_sex_vector &lt;-<span class="st"> </span><span class="kw">factor</span>(sex_vector)</a>
+<a class="sourceLine" id="cb99-2" data-line-number="2">factor_sex_vector</a></code></pre></div>
+<pre><code>## [1] Male   Female Female Male   Male  
+## Levels: Female Male</code></pre>
+<p>There are two types of categorical variables: a nominal categorical variable and an ordinal categorical variable.</p>
+<p>A nominal variable is a categorical variable without an implied order. This means that it is impossible to say that ‘one is worth more than the other’.</p>
+<p>For example, think of the categorical variable <strong>animals_vector</strong> with the categories <em>“Elephant”, “Giraffe”, “Donkey” and “Horse”</em>. Here, it is impossible to say that one stands above or below the other. (Note that some of you might disagree ;-) ).</p>
+<p>In contrast, ordinal variables do have a natural ordering. Consider for example the categorical variable <strong>temperature_vector</strong> with the categories: <em>“Low”, “Medium” and “High”</em>. Here it is obvious that “Medium” stands above “Low”, and “High” stands above “Medium”.</p>
+</div>
+<div id="factor-levels" class="section level3">
+<h3><span class="header-section-number">10.13.2</span> Factor levels</h3>
+<p>When you first get a data set, you will often notice that it contains factors with specific factor levels. However, sometimes you will want to change the names of these levels for clarity or other reasons. R allows you to do this with the function <code>levels()</code>:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">levels</span>(factor_vector) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;name1&quot;</span>, <span class="st">&quot;name2&quot;</span>,...)</a></code></pre></div>
+<p>A good illustration is the raw data that is provided to you by a survey. A common question for every questionnaire is the sex of the respondent. Here, for simplicity, just two categories were recorded, <strong>“M”</strong> and <strong>“F”</strong>. (You usually need more categories for survey data; either way, you use a factor to store the categorical data.)</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">survey_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>)</a></code></pre></div>
+<p>Recording the sex with the abbreviations <strong>“M”</strong> and <strong>“F”</strong> can be convenient if you are collecting data with pen and paper, but it can introduce confusion when analyzing the data. At that point, you will often want to change the factor levels to <strong>“Male”</strong> and <strong>“Female”</strong> instead of <strong>“M”</strong> and <strong>“F”</strong> for clarity.</p>
+<p><em>Watch out:</em> the order with which you assign the levels is important !!!</p>
+<p>If you type <code>levels(factor_survey_vector)</code>, you’ll see that it outputs <em>[1] “F” “M”</em>. If you don’t specify the levels of the factor when creating the vector, R will automatically assign them alphabetically. To correctly map “F” to “Female” and “M” to “Male”, the levels should be set to <code>c(&quot;Female&quot;, &quot;Male&quot;)</code>, in this order.</p>
+</div>
+<div id="summarizing-a-factor" class="section level3">
+<h3><span class="header-section-number">10.13.3</span> Summarizing a factor</h3>
+<p>After finishing this course, one of your favorite functions in R will be <code>summary()</code>. This will give you a quick overview of the contents of a variable:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">summary</span>(my_var)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       4       4       4       4       4       4</code></pre>
+<p>Going back to our survey, you would like to know how many <em>“Male”</em> responses you have in your study, and how many <em>“Female”</em> responses. The <code>summary()</code> function gives you the answer to this question.</p>
+</div>
+</div>
+</div>
+<div id="what-means-tidy-tidy-data" class="section level1">
+<h1><span class="header-section-number">11</span> What means “tidy / tidy data”?</h1>
+<p><strong>Tidy data</strong> is a way to organize tabular data. It provides a consistent data structure accross packages</p>
+<p><img src="figures/tidy_data.png" width="600" /></p>
+<div id="example-of-data-vs-tidy-data" class="section level2">
+<h2><span class="header-section-number">11.1</span> Example of data vs tidy data</h2>
+<p><img src="figures/tidy_data_example.png" width="600" /></p>
+</div>
+</div>
+<div id="messy-data-to-tidy-data" class="section level1">
+<h1><span class="header-section-number">12</span> “Messy data” to tidy data !!!</h1>
+<p><img src="figures/tidy_data_reshape.png" width="600" /></p>
+</div>
+<div id="tidy" class="section level1">
+<h1><span class="header-section-number">13</span> The Tidyverse</h1>
+<p>This “meta-package” consists of several R packages, or as the Founding Father Hadley Wickahm says, “The tidyverse is an opinionated collection of R packages designed for data science.”</p>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="20%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>package</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="hex_sticker/hex-ggplot2.png" /></td>
+<td><strong>ggplot2</strong> <em>(plotting)</em></td>
+<td>ggplot2 is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-dplyr.png" /></td>
+<td><strong>dplyr</strong> <em>(for transforming and summarizing dataframe content)</em></td>
+<td>dplyr provides a grammar of data manipulation, providing a consistent set of verbs that solve the most common data manipulation challenges.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-tidyr.png" /></td>
+<td><strong>tidyr</strong> <em>(for transforming (“tidying”) data frame structure)</em></td>
+<td>tidyrprovides a set of functions that help you get to tidy data. Tidy data is data with a consistent form: in brief, every variable goes in a column, and every column is a variable.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-readr.png" /></td>
+<td><strong>readr</strong> <em>(reading/saving data)</em></td>
+<td>readr provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-purrr.png" /></td>
+<td><strong>purrr</strong> <em>(functional programming)</em></td>
+<td>purrr enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors. Once you master the basic concepts, purrr allows you to replace many for loops with code that is easier to write and more expressive. ( an upgrade of base R functional programming tools. (Beyond scope of class.))</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-tibble.png" /></td>
+<td><strong>tibble</strong> <em>(an improved data frame)</em></td>
+<td>tibble is a modern re-imagining of the data frame, keeping what time has proven to be effective, and throwing out what it has not. Tibbles are data.frames that are lazy and surly: they do less and complain more forcing you to confront problems earlier, typically leading to cleaner, more expressive code.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-stringr.png" /></td>
+<td><strong>stringr</strong> <em>(dealing and manipulation of strings)</em></td>
+<td>stringr provides a cohesive set of functions designed to make working with strings as easy as possible. It is built on top of stringi, which uses the ICU C library to provide fast, correct implementations of common string manipulations.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-forcats.png" /></td>
+<td><strong>forcats</strong> <em>(dealing with factors)</em></td>
+<td>provides a suite of useful tools that solve common problems with factors. R uses factors to handle categorical variables, variables that have a fixed and known set of possible values.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-magrittr.jpg" /></td>
+<td><strong>magrittr</strong> <em>(pipeline mode of functions)</em></td>
+<td>offers a set of operators which make your code more readable by: structuring sequences of data operations left-to-right (as opposed to from the inside and out),avoiding nested function calls, minimizing the need for local variables and function definitions, and making it easy to add steps anywhere in the sequence of operations.The operators pipe their left-hand side values forward into expressions that appear on the right-hand side, i.e. one can replace f(x) with x %&gt;% f(), where %&gt;% is the (main) pipe-operator. When coupling several function calls with the pipe-operator, the benefit will become more apparent.</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:#b71c1c;font-size: 12pt"><strong>Important:</strong> Commands/functions of each package can be strung together in order using the pipe <code>%&gt;%</code> (<kbd>Ctrl</kbd> + <kbd>↑</kbd> + <kbd>M</kbd>) operator. (example follows…)</span></p>
+<p><a href="https://www.tidyverse.org">read more abaout the tidyverse on the webpage</a></p>
+<p>You will learn functionalities of each package during the course via useful example scripts.</p>
+<div id="where-do-the-package-names-come-from" class="section level2">
+<h2><span class="header-section-number">13.1</span> where do the package names come from ?</h2>
+<p>Well the name (choosen by the programmer) of a package often conveys a story and is focused mainly on the usage of the package.</p>
+<p><u><strong>examples:</strong></u></p>
+<ul>
+<li><strong>dplyr</strong> - So the <code>d</code> stands for data frames (others <code>db</code> for databases, <code>dt</code> for data tables…) ; <code>plyr</code> R apply-functions – „split-apply-combine“ strategy</li>
+<li><strong>ggplot2</strong> - Grammer of Graphics plotting (<a href="https://vita.had.co.nz/papers/layered-grammar.html" class="uri">https://vita.had.co.nz/papers/layered-grammar.html</a>)</li>
+<li><strong>purrr</strong> - Hadley Wickham - “your pure R functions purrr”</li>
+<li><strong>vroom</strong> - reads data so fast, you almost can hear it making vroom vroom like a sports car</li>
+</ul>
+</div>
+<div id="first-things-first-what-is-a-tibble" class="section level2">
+<h2><span class="header-section-number">13.2</span> First things first, “What is a tibble?”</h2>
+<p>A <strong>tibble</strong> is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.</p>
+<ul>
+<li>tibble is a modern re-imagining of the data frame –&gt; <strong>tibble is a list in data.frame style</strong></li>
+</ul>
+<div class="figure">
+<img src="figures/tibble_example.png" alt="tibble example:" />
+<p class="caption">tibble example:</p>
+</div>
+<p>Tibbles enhance data frames in three ways:</p>
+<ol style="list-style-type: decimal">
+<li>Subsetting - [ always returns a new tibble, [[ and $ always return a new vector</li>
+<li>No partial matching - You must use full column names when subsetting</li>
+<li>Display - When you print a tibble, R provides a concise view of the data that fits on one screen</li>
+</ol>
+<p><strong>many tidyverse functions you may find explained and coupled with a pratical examples in the Examples section</strong></p>
+</div>
+<div id="ggplot2---elegant-graphics-for-data-analysis-part-of-tidyverse" class="section level2">
+<h2><span class="header-section-number">13.3</span> ggplot2 - elegant graphics for data analysis (part of tidyverse)</h2>
+<p><img src="hex_sticker/hex-ggplot2.png" width="100" /></p>
+<p><strong>ggplot2 package:</strong> It’s one of the most commonly downloaded R packages (over a million downloads in the last year!) and has influenced the design of graphics packages for other languages.</p>
+<p>ggplot2 is an R package for producing statistical, or data, graphics, but it is unlike most other graphics packages because it has a deep underlying gram- mar. This grammar, based on the Grammar of Graphics (<a href="https://www.springer.com/de/book/9780387245447">Grammar of Graphics (Wilkinson, Leland; 2015)</a>).</p>
+<p>You can find a fast and brief overview of ggplot2 at <a href="http://www.cookbook-r.com/Graphs/" target="_blank">R graphics cookbook</a></p>
+<p>In addition to the powerful basis of ggplot2 several (100+) extension were developed <a href="https://www.ggplot2-exts.org" target="_blank">ggplot2-exts.org</a></p>
+<p><code>In brief, the grammar tells us that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars).</code></p>
+<ol style="list-style-type: decimal">
+<li><strong>Data</strong></li>
+<li><strong>Aesthetics or Mapping:</strong> What should be plotted on x and y-axis. group-wise: colour, fill, size, shape,line width, line type.</li>
+<li><strong>Geometrics:</strong> Should a point, line, histogram, bar or boxplot (…) be used. (<code>geom_...()</code>)</li>
+<li><strong>Facets:</strong> data groups plot by columns and rows 4a. <strong>Scales:</strong> scale translate back and forth between variable ranges and property ranges (numbers &gt;&gt; position; log-scaled or discrete)</li>
+<li><strong>Statistics:</strong> data binning, smoothing (e.g. loess fit), …</li>
+<li><strong>Coordinates:</strong> fixed, polar, set limits, do coord. cartesian</li>
+<li><strong>Themes:</strong> use Plot themes</li>
+</ol>
+<div class="figure">
+<img src="figures/ggplot-grammar-of-graphics-stack.png" alt="grammar of graphics" />
+<p class="caption">grammar of graphics</p>
+</div>
+<div id="ggplot2---themes" class="section level3">
+<h3><span class="header-section-number">13.3.1</span> ggplot2 - Themes</h3>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">library</span>(datasets)</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price, <span class="dt">colour =</span> color),<span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-5" data-line-number="5"><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>cut) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-6" data-line-number="6"><span class="st">     </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;overview of diamonds dataset&quot;</span>, </a>
+<a class="sourceLine" id="cb105-7" data-line-number="7">          <span class="dt">subtitle=</span><span class="st">&quot;carat vs. price &amp; colored by diamond color&quot;</span>,</a>
+<a class="sourceLine" id="cb105-8" data-line-number="8">          <span class="dt">caption =</span> <span class="st">&quot;a caption text would be placed here&quot;</span> )</a></code></pre></div>
+<p><strong>Pay attention to the structure of this function call:</strong> data and aesthetic mappings are supplied in <code>ggplot()</code>, then layers are added on with <code>+</code>.</p>
+<p>This is an important pattern, and as you learn more about ggplot2 you’ll construct increasingly sophisticated plots by adding on more types of components.</p>
+<p><strong>1. theme_gray()</strong></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_gray</span>() <span class="co"># the default</span></a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-47-1.png" width="140%" style="display: block; margin: auto;" /> <strong>2. theme_bw()</strong></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" width="140%" style="display: block; margin: auto;" /> <strong>3. theme_linedraw()</strong></p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_linedraw</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" width="140%" style="display: block; margin: auto;" /> <strong>4. theme_light()</strong></p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-50-1.png" width="140%" style="display: block; margin: auto;" /> <strong>5. theme_dark()</strong></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-51-1.png" width="140%" style="display: block; margin: auto;" /> <strong>6. theme_minimal()</strong></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-52-1.png" width="140%" style="display: block; margin: auto;" /> <strong>7. theme_classic()</strong></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-53-1.png" width="140%" style="display: block; margin: auto;" /> <strong>8. theme_void()</strong></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-54-1.png" width="140%" style="display: block; margin: auto;" /></p>
+<div id="hrbrthemes-themes" class="section level4">
+<h4><span class="header-section-number">13.3.1.1</span> <code>hrbrthemes</code> Themes</h4>
+<p>There are also packages that add themes to ggplot like the <code>hrbrthemes</code> package.</p>
+<p><a href="https://github.com/hrbrmstr/hrbrthemes">more information about the hrbrthemes package can be found here</a></p>
+<p>But here are special fonts needed which are proivided in the package:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">library</span>(hrbrthemes)</a>
+<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="kw">import_plex_sans</span>()</a></code></pre></div>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/plex-sans]</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">import_public_sans</span>()</a></code></pre></div>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/public-sans]</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">import_roboto_condensed</span>()</a></code></pre></div>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/roboto-condensed]</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">import_titillium_web</span>()</a></code></pre></div>
+<pre><code>## You will likely need to install these fonts on your system as well.
+## 
+## You can find them in [/Library/Frameworks/R.framework/Versions/3.6/Resources/library/hrbrthemes/fonts/titillium-web]</code></pre>
+<p>** load <code>hrbrthemes</code> package**</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">library</span>(hrbrthemes)</a></code></pre></div>
+<p><strong>1. theme_ipsum()</strong></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_ipsum</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" width="140%" style="display: block; margin: auto;" /></p>
+<p><strong>2. theme_ipsum_rc()</strong></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_ipsum_rc</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-58-1.png" width="140%" style="display: block; margin: auto;" /></p>
+<p><strong>3. theme_ft_rc()</strong></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_ft_rc</span>()</a></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-59-1.png" width="140%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="get-inspired---what-plots-can-be-generated" class="section level3">
+<h3><span class="header-section-number">13.3.2</span> get inspired - what plots can be generated</h3>
+<ul>
+<li><a href="http://visualizationuniverse.com/charts/?sortBy=volume&amp;sortDir=desc">Visualization Universe</a></li>
+<li><a href="https://projects.susielu.com/viz-palette">Viz-palette (which colors can be used)</a></li>
+<li><a href="https://material.io/design/color/the-color-system.html#tools-for-picking-colors">Google Material Colors (which colors can be used)</a></li>
+<li><a href="https://datavizcatalogue.com">data viz catalogue</a></li>
+</ul>
+</div>
+</div>
+<div id="broom---elegant-graphics-for-data-analysis-part-of-tidyverse" class="section level2">
+<h2><span class="header-section-number">13.4</span> broom - elegant graphics for data analysis (part of tidyverse)</h2>
+<p><img src="hex_sticker/broom.png" width="100" /></p>
+<p><strong>broom package:</strong> broom summarizes key information about models in tidy tibble()s. broom provides three verbs to make it convenient to interact with model objects.</p>
+<ul>
+<li><code>tidy()</code> summarizes information about fit components</li>
+<li><code>glance()</code> report goodness of fit measures</li>
+<li><code>augment()</code> adds informations about observations to a dataset</li>
+</ul>
+<p>broom can handle 100+ models from popular modelling packages.</p>
+<p>The following methods are currently available in <code>broom</code>: (code from <a href="https://github.com/tidymodels/broom/blob/master/vignettes/available-methods.Rmd" class="uri">https://github.com/tidymodels/broom/blob/master/vignettes/available-methods.Rmd</a>)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">class</th>
+<th align="left">tidy</th>
+<th align="left">glance</th>
+<th align="left">augment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">aareg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">acf</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">anova</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">aov</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">aovlist</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Arima</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">betareg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">biglm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">binDesign</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">binWidth</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">boot</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">brmsfit</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">btergm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">cch</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">cld</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">clm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">clmm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">coeftest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">confint.glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">confusionMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">coxph</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">cv.glmnet</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">data.frame</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">default</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">density</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">dgCMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">dgTMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">dist</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">durbinWatsonTest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">emmGrid</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ergm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">factanal</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">felm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">fitdistr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ftable</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">gam</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Gam</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">gamlss</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">garch</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">geeglm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">glm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">glmnet</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">gmm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">htest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">ivreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">kappa</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">kde</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Kendall</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">kmeans</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">lavaan</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Line</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Lines</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">list</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">lm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">lme</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">lmodel2</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">logical</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">lsmobj</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">manova</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">map</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">matrix</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Mclust</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">merMod</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">mle2</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">muhaz</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">multinom</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">nlrq</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">nls</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">NULL</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">orcutt</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">pairwise.htest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">plm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">poLCA</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">polr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">Polygon</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Polygons</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">power.htest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">prcomp</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">pyears</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rcorr</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ref.grid</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">ridgelm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">rjags</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">roc</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rowwise_df</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">rq</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">rqs</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">sparseMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">SpatialLinesDataFrame</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">SpatialPolygons</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">SpatialPolygonsDataFrame</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">spec</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">speedlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">stanfit</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">stanreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">summary.glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">summary.lm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">summaryDefault</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">survdiff</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">survexp</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">survfit</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">survreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">svyolr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">table</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">tbl_df</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">ts</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">TukeyHSD</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">zoo</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div id="broom-usage" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> broom usage</h3>
+<p>(codes from tidyverse.org + talk Alex Hayes Rconf2019)</p>
+<div id="tidy---summarizes-information-about-fit-components" class="section level4">
+<h4><span class="header-section-number">13.4.1.1</span> <code>tidy()</code> - summarizes information about fit components</h4>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ tibble  2.1.3     ✓ purrr   0.3.3
+## ✓ tidyr   1.0.2     ✓ forcats 0.5.0
+## ✓ readr   1.3.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">library</span>(broom)</a>
+<a class="sourceLine" id="cb130-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb130-3" data-line-number="3">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Length <span class="op">+</span><span class="st"> </span>Petal.Width, iris)</a>
+<a class="sourceLine" id="cb130-4" data-line-number="4"><span class="kw">tidy</span>(fit)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"3.587","3":"0.0937","4":"38.27","5":"2.51e-78"},{"1":"Petal.Length","2":"-0.257","3":"0.0669","4":"-3.84","5":"1.80e-04"},{"1":"Petal.Width","2":"0.364","3":"0.1550","4":"2.35","5":"2.01e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>you can also use that in RMarkdown and create a nice table right away with knitr package</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">kable2 &lt;-<span class="st"> </span><span class="cf">function</span>(data){</a>
+<a class="sourceLine" id="cb131-2" data-line-number="2">  knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">mutate_if</span>(data,is.numeric,round,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb131-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb131-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb131-5" data-line-number="5"><span class="kw">tidy</span>(fit) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-6" data-line-number="6"><span class="st">  </span><span class="kw">kable2</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">3.59</td>
+<td align="right">0.09</td>
+<td align="right">38.27</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Length</td>
+<td align="right">-0.26</td>
+<td align="right">0.07</td>
+<td align="right">-3.84</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Width</td>
+<td align="right">0.36</td>
+<td align="right">0.15</td>
+<td align="right">2.35</td>
+<td align="right">0.02</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="glance---report-goodness-of-fit-measures" class="section level4">
+<h4><span class="header-section-number">13.4.1.2</span> <code>glance()</code> - report goodness of fit measures</h4>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">glance</span>(fit)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["int"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]}],"data":[{"1":"0.213","2":"0.202","3":"0.389","4":"19.9","5":"2.24e-08","6":"3","7":"-69.8","8":"148","9":"160","10":"22.3","11":"147"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>if you would like to compare models:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">fits &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb133-2" data-line-number="2">  <span class="dt">fit1 =</span> <span class="kw">lm</span>(hp <span class="op">~</span><span class="st"> </span>cyl, mtcars),</a>
+<a class="sourceLine" id="cb133-3" data-line-number="3">  <span class="dt">fit2 =</span> <span class="kw">lm</span>(hp <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>mpg, mtcars),</a>
+<a class="sourceLine" id="cb133-4" data-line-number="4">  <span class="dt">fit3 =</span> <span class="kw">lm</span>(hp <span class="op">~</span><span class="st"> </span>., mtcars)</a>
+<a class="sourceLine" id="cb133-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb133-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb133-7" data-line-number="7">gof &lt;-<span class="st"> </span><span class="kw">map_df</span>(fits, glance, <span class="dt">.id =</span> <span class="st">&quot;model&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb133-8" data-line-number="8"><span class="st">  </span><span class="kw">arrange</span>(AIC)</a>
+<a class="sourceLine" id="cb133-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb133-10" data-line-number="10">gof</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["model"],"name":[1],"type":["chr"],"align":["left"]},{"label":["r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["int"],"align":["right"]},{"label":["logLik"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"fit3","2":"0.903","3":"0.857","4":"26.0","5":"19.5","6":"1.90e-08","7":"11","8":"-143","9":"310","10":"327","11":"14165","12":"21"},{"1":"fit1","2":"0.693","3":"0.683","4":"38.6","5":"67.7","6":"3.48e-09","7":"2","8":"-161","9":"329","10":"333","11":"44743","12":"30"},{"1":"fit2","2":"0.709","3":"0.689","4":"38.2","5":"35.4","6":"1.66e-08","7":"3","8":"-160","9":"329","10":"335","11":"42369","12":"29"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="augment---adds-informations-about-observations-to-a-dataset" class="section level4">
+<h4><span class="header-section-number">13.4.1.3</span> <code>augment()</code> - adds informations about observations to a dataset</h4>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">augment</span>(fit)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Sepal.Width"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".se.fit"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[9],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"3.5","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"0.200135","7":"0.01870","8":"0.390","9":"1.71e-03","10":"0.519010"},{"1":"3.0","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"-0.299865","7":"0.01870","8":"0.390","9":"3.84e-03","10":"-0.777638"},{"1":"3.2","2":"1.3","3":"0.2","4":"3.33","5":"0.0547","6":"-0.125579","7":"0.01976","8":"0.390","9":"7.13e-04","10":"-0.325839"},{"1":"3.1","2":"1.5","3":"0.2","4":"3.27","5":"0.0526","6":"-0.174151","7":"0.01823","8":"0.390","9":"1.26e-03","10":"-0.451517"},{"1":"3.6","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"0.300135","7":"0.01870","8":"0.390","9":"3.85e-03","10":"0.778340"},{"1":"3.9","2":"1.7","3":"0.4","4":"3.30","5":"0.0497","6":"0.604468","7":"0.01629","8":"0.387","9":"1.35e-02","10":"1.565645"},{"1":"3.4","2":"1.4","3":"0.3","4":"3.34","5":"0.0546","6":"0.063731","7":"0.01968","8":"0.391","9":"1.83e-04","10":"0.165356"},{"1":"3.4","2":"1.5","3":"0.2","4":"3.27","5":"0.0526","6":"0.125849","7":"0.01823","8":"0.390","9":"6.59e-04","10":"0.326286"},{"1":"2.9","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"-0.399865","7":"0.01870","8":"0.389","9":"6.83e-03","10":"-1.036968"},{"1":"3.1","2":"1.5","3":"0.1","4":"3.24","5":"0.0574","6":"-0.137747","7":"0.02173","8":"0.390","9":"9.48e-04","10":"-0.357772"},{"1":"3.7","2":"1.5","3":"0.2","4":"3.27","5":"0.0526","6":"0.425849","7":"0.01823","8":"0.389","9":"7.54e-03","10":"1.104088"},{"1":"3.4","2":"1.6","3":"0.2","4":"3.25","5":"0.0527","6":"0.151563","7":"0.01835","8":"0.390","9":"9.62e-04","10":"0.392977"},{"1":"3.0","2":"1.4","3":"0.1","4":"3.26","5":"0.0563","6":"-0.263461","7":"0.02088","8":"0.390","9":"3.33e-03","10":"-0.683994"},{"1":"3.0","2":"1.1","3":"0.1","4":"3.34","5":"0.0576","6":"-0.340602","7":"0.02189","8":"0.390","9":"5.84e-03","10":"-0.884720"},{"1":"4.0","2":"1.2","3":"0.2","4":"3.35","5":"0.0570","6":"0.648708","7":"0.02141","8":"0.387","9":"2.07e-02","10":"1.684622"},{"1":"4.4","2":"1.5","3":"0.4","4":"3.35","5":"0.0560","6":"1.053041","7":"0.02073","8":"0.381","9":"5.27e-02","10":"2.733676"},{"1":"3.9","2":"1.3","3":"0.4","4":"3.40","5":"0.0646","6":"0.501613","7":"0.02753","8":"0.388","9":"1.61e-02","10":"1.306725"},{"1":"3.5","2":"1.4","3":"0.3","4":"3.34","5":"0.0546","6":"0.163731","7":"0.01968","8":"0.390","9":"1.21e-03","10":"0.424816"},{"1":"3.8","2":"1.7","3":"0.3","4":"3.26","5":"0.0494","6":"0.540872","7":"0.01609","8":"0.388","9":"1.07e-02","10":"1.400782"},{"1":"3.8","2":"1.5","3":"0.3","4":"3.31","5":"0.0521","6":"0.489445","7":"0.01789","8":"0.388","9":"9.78e-03","10":"1.268755"},{"1":"3.4","2":"1.7","3":"0.2","4":"3.22","5":"0.0537","6":"0.177277","7":"0.01906","8":"0.390","9":"1.37e-03","10":"0.459816"},{"1":"3.7","2":"1.5","3":"0.4","4":"3.35","5":"0.0560","6":"0.353041","7":"0.02073","8":"0.389","9":"5.93e-03","10":"0.916487"},{"1":"3.6","2":"1.0","3":"0.2","4":"3.40","5":"0.0634","6":"0.197280","7":"0.02649","8":"0.390","9":"2.39e-03","10":"0.513649"},{"1":"3.3","2":"1.7","3":"0.5","4":"3.33","5":"0.0546","6":"-0.031936","7":"0.01966","8":"0.391","9":"4.59e-05","10":"-0.082860"},{"1":"3.4","2":"1.9","3":"0.2","4":"3.17","5":"0.0581","6":"0.228704","7":"0.02226","8":"0.390","9":"2.68e-03","10":"0.594176"},{"1":"3.0","2":"1.6","3":"0.2","4":"3.25","5":"0.0527","6":"-0.248437","7":"0.01835","8":"0.390","9":"2.59e-03","10":"-0.644157"},{"1":"3.4","2":"1.6","3":"0.4","4":"3.32","5":"0.0525","6":"0.078754","7":"0.01821","8":"0.391","9":"2.58e-04","10":"0.204183"},{"1":"3.5","2":"1.5","3":"0.2","4":"3.27","5":"0.0526","6":"0.225849","7":"0.01823","8":"0.390","9":"2.12e-03","10":"0.585553"},{"1":"3.4","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"0.100135","7":"0.01870","8":"0.391","9":"4.28e-04","10":"0.259680"},{"1":"3.2","2":"1.6","3":"0.2","4":"3.25","5":"0.0527","6":"-0.048437","7":"0.01835","8":"0.391","9":"9.83e-05","10":"-0.125590"},{"1":"3.1","2":"1.6","3":"0.2","4":"3.25","5":"0.0527","6":"-0.148437","7":"0.01835","8":"0.390","9":"9.23e-04","10":"-0.384873"},{"1":"3.4","2":"1.5","3":"0.4","4":"3.35","5":"0.0560","6":"0.053041","7":"0.02073","8":"0.391","9":"1.34e-04","10":"0.137692"},{"1":"4.1","2":"1.5","3":"0.1","4":"3.24","5":"0.0574","6":"0.862253","7":"0.02173","8":"0.384","9":"3.71e-02","10":"2.239543"},{"1":"4.2","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"0.900135","7":"0.01870","8":"0.383","9":"3.46e-02","10":"2.334317"},{"1":"3.1","2":"1.5","3":"0.2","4":"3.27","5":"0.0526","6":"-0.174151","7":"0.01823","8":"0.390","9":"1.26e-03","10":"-0.451517"},{"1":"3.2","2":"1.2","3":"0.2","4":"3.35","5":"0.0570","6":"-0.151292","7":"0.02141","8":"0.390","9":"1.13e-03","10":"-0.392889"},{"1":"3.5","2":"1.3","3":"0.2","4":"3.33","5":"0.0547","6":"0.174421","7":"0.01976","8":"0.390","9":"1.38e-03","10":"0.452571"},{"1":"3.6","2":"1.4","3":"0.1","4":"3.26","5":"0.0563","6":"0.336539","7":"0.02088","8":"0.390","9":"5.43e-03","10":"0.873720"},{"1":"3.0","2":"1.3","3":"0.2","4":"3.33","5":"0.0547","6":"-0.325579","7":"0.01976","8":"0.390","9":"4.80e-03","10":"-0.844779"},{"1":"3.4","2":"1.5","3":"0.2","4":"3.27","5":"0.0526","6":"0.125849","7":"0.01823","8":"0.390","9":"6.59e-04","10":"0.326286"},{"1":"3.5","2":"1.3","3":"0.3","4":"3.36","5":"0.0578","6":"0.138017","7":"0.02206","8":"0.390","9":"9.67e-04","10":"0.358534"},{"1":"2.3","2":"1.3","3":"0.3","4":"3.36","5":"0.0578","6":"-1.061983","7":"0.02206","8":"0.380","9":"5.72e-02","10":"-2.758766"},{"1":"3.2","2":"1.3","3":"0.2","4":"3.33","5":"0.0547","6":"-0.125579","7":"0.01976","8":"0.390","9":"7.13e-04","10":"-0.325839"},{"1":"3.5","2":"1.6","3":"0.6","4":"3.39","5":"0.0683","6":"0.105946","7":"0.03076","8":"0.390","9":"8.08e-04","10":"0.276453"},{"1":"3.8","2":"1.9","3":"0.4","4":"3.24","5":"0.0464","6":"0.555896","7":"0.01422","8":"0.388","9":"9.94e-03","10":"1.438321"},{"1":"3.0","2":"1.4","3":"0.3","4":"3.34","5":"0.0546","6":"-0.336269","7":"0.01968","8":"0.390","9":"5.09e-03","10":"-0.872482"},{"1":"3.8","2":"1.6","3":"0.2","4":"3.25","5":"0.0527","6":"0.551563","7":"0.01835","8":"0.388","9":"1.27e-02","10":"1.430111"},{"1":"3.2","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"-0.099865","7":"0.01870","8":"0.391","9":"4.26e-04","10":"-0.258979"},{"1":"3.7","2":"1.5","3":"0.2","4":"3.27","5":"0.0526","6":"0.425849","7":"0.01823","8":"0.389","9":"7.54e-03","10":"1.104088"},{"1":"3.3","2":"1.4","3":"0.2","4":"3.30","5":"0.0532","6":"0.000135","7":"0.01870","8":"0.391","9":"7.81e-10","10":"0.000351"},{"1":"3.2","2":"4.7","3":"1.4","4":"2.89","5":"0.0466","6":"0.311839","7":"0.01436","8":"0.390","9":"3.16e-03","10":"0.806909"},{"1":"3.2","2":"4.5","3":"1.5","4":"2.98","5":"0.0345","6":"0.224008","7":"0.00786","8":"0.390","9":"8.82e-04","10":"0.577737"},{"1":"3.1","2":"4.9","3":"1.5","4":"2.87","5":"0.0465","6":"0.226863","7":"0.01428","8":"0.390","9":"1.66e-03","10":"0.587002"},{"1":"2.3","2":"4.0","3":"1.3","4":"3.03","5":"0.0321","6":"-0.731753","7":"0.00679","8":"0.386","9":"8.11e-03","10":"-1.886244"},{"1":"2.8","2":"4.6","3":"1.5","4":"2.95","5":"0.0361","6":"-0.150279","7":"0.00858","8":"0.390","9":"4.34e-04","10":"-0.387723"},{"1":"2.8","2":"4.5","3":"1.3","4":"2.90","5":"0.0472","6":"-0.103184","7":"0.01470","8":"0.391","9":"3.55e-04","10":"-0.267043"},{"1":"3.3","2":"4.7","3":"1.6","4":"2.96","5":"0.0361","6":"0.339031","7":"0.00859","8":"0.390","9":"2.21e-03","10":"0.874714"},{"1":"2.4","2":"3.3","3":"1.0","4":"3.10","5":"0.0329","6":"-0.702537","7":"0.00713","8":"0.386","9":"7.85e-03","10":"-1.811242"},{"1":"2.9","2":"4.6","3":"1.3","4":"2.88","5":"0.0523","6":"0.022530","7":"0.01805","8":"0.391","9":"2.09e-05","10":"0.058407"},{"1":"2.7","2":"3.9","3":"1.4","4":"3.09","5":"0.0387","6":"-0.393871","7":"0.00989","8":"0.389","9":"3.44e-03","10":"-1.016870"},{"1":"2.0","2":"3.5","3":"1.0","4":"3.05","5":"0.0351","6":"-1.051109","7":"0.00815","8":"0.381","9":"2.01e-02","10":"-2.711309"},{"1":"3.0","2":"4.2","3":"1.5","4":"3.05","5":"0.0374","6":"-0.053134","7":"0.00925","8":"0.391","9":"5.85e-05","10":"-0.137133"},{"1":"2.2","2":"4.0","3":"1.0","4":"2.92","5":"0.0565","6":"-0.722540","7":"0.02105","8":"0.386","9":"2.52e-02","10":"-1.876011"},{"1":"2.9","2":"4.7","3":"1.4","4":"2.89","5":"0.0466","6":"0.011839","7":"0.01436","8":"0.391","9":"4.56e-06","10":"0.030635"},{"1":"2.9","2":"3.6","3":"1.3","4":"3.13","5":"0.0410","6":"-0.234608","7":"0.01111","8":"0.390","9":"1.38e-03","10":"-0.606068"},{"1":"3.1","2":"4.4","3":"1.4","4":"2.97","5":"0.0354","6":"0.134698","7":"0.00825","8":"0.390","9":"3.35e-04","10":"0.347467"},{"1":"3.0","2":"4.5","3":"1.5","4":"2.98","5":"0.0345","6":"0.024008","7":"0.00786","8":"0.391","9":"1.01e-05","10":"0.061918"},{"1":"2.7","2":"4.1","3":"1.0","4":"2.90","5":"0.0620","6":"-0.196827","7":"0.02540","8":"0.390","9":"2.28e-03","10":"-0.512182"},{"1":"2.2","2":"4.5","3":"1.5","4":"2.98","5":"0.0345","6":"-0.775992","7":"0.00786","8":"0.385","9":"1.06e-02","10":"-2.001358"},{"1":"2.5","2":"3.9","3":"1.1","4":"2.98","5":"0.0402","6":"-0.484658","7":"0.01068","8":"0.389","9":"5.64e-03","10":"-1.251762"},{"1":"3.2","2":"4.8","3":"1.8","4":"3.01","5":"0.0451","6":"0.191936","7":"0.01345","8":"0.390","9":"1.12e-03","10":"0.496422"},{"1":"2.8","2":"4.0","3":"1.3","4":"3.03","5":"0.0321","6":"-0.231753","7":"0.00679","8":"0.390","9":"8.14e-04","10":"-0.597391"},{"1":"2.5","2":"4.9","3":"1.5","4":"2.87","5":"0.0465","6":"-0.373137","7":"0.01428","8":"0.389","9":"4.50e-03","10":"-0.965485"},{"1":"2.8","2":"4.7","3":"1.2","4":"2.82","5":"0.0705","6":"-0.015352","7":"0.03280","8":"0.391","9":"1.82e-05","10":"-0.040102"},{"1":"2.9","2":"4.3","3":"1.3","4":"2.95","5":"0.0385","6":"-0.054612","7":"0.00976","8":"0.391","9":"6.53e-05","10":"-0.140984"},{"1":"3.0","2":"4.4","3":"1.4","4":"2.97","5":"0.0354","6":"0.034698","7":"0.00825","8":"0.391","9":"2.22e-05","10":"0.089507"},{"1":"2.8","2":"4.8","3":"1.4","4":"2.86","5":"0.0516","6":"-0.062447","7":"0.01758","8":"0.391","9":"1.56e-04","10":"-0.161851"},{"1":"3.0","2":"5.0","3":"1.7","4":"2.92","5":"0.0390","6":"0.079768","7":"0.01003","8":"0.391","9":"1.43e-04","10":"0.205954"},{"1":"2.9","2":"4.5","3":"1.5","4":"2.98","5":"0.0345","6":"-0.075992","7":"0.00786","8":"0.391","9":"1.01e-04","10":"-0.195992"},{"1":"2.6","2":"3.5","3":"1.0","4":"3.05","5":"0.0351","6":"-0.451109","7":"0.00815","8":"0.389","9":"3.71e-03","10":"-1.163624"},{"1":"2.4","2":"3.8","3":"1.1","4":"3.01","5":"0.0366","6":"-0.610372","7":"0.00883","8":"0.387","9":"7.37e-03","10":"-1.574978"},{"1":"2.4","2":"3.7","3":"1.0","4":"3.00","5":"0.0418","6":"-0.599682","7":"0.01154","8":"0.387","9":"9.34e-03","10":"-1.549510"},{"1":"2.7","2":"3.9","3":"1.2","4":"3.02","5":"0.0331","6":"-0.321062","7":"0.00725","8":"0.390","9":"1.67e-03","10":"-0.827795"},{"1":"2.7","2":"5.1","3":"1.6","4":"2.86","5":"0.0468","6":"-0.158114","7":"0.01447","8":"0.390","9":"8.19e-04","10":"-0.409155"},{"1":"3.0","2":"4.5","3":"1.5","4":"2.98","5":"0.0345","6":"0.024008","7":"0.00786","8":"0.391","9":"1.01e-05","10":"0.061918"},{"1":"3.4","2":"4.5","3":"1.6","4":"3.01","5":"0.0373","6":"0.387603","7":"0.00920","8":"0.389","9":"3.10e-03","10":"1.000340"},{"1":"3.1","2":"4.7","3":"1.5","4":"2.92","5":"0.0387","6":"0.175435","7":"0.00989","8":"0.390","9":"6.83e-04","10":"0.452927"},{"1":"2.3","2":"4.4","3":"1.3","4":"2.93","5":"0.0425","6":"-0.628898","7":"0.01193","8":"0.387","9":"1.06e-02","10":"-1.625326"},{"1":"3.0","2":"4.1","3":"1.3","4":"3.01","5":"0.0330","6":"-0.006039","7":"0.00719","8":"0.391","9":"5.85e-07","10":"-0.015570"},{"1":"2.5","2":"4.0","3":"1.3","4":"3.03","5":"0.0321","6":"-0.531753","7":"0.00679","8":"0.388","9":"4.28e-03","10":"-1.370703"},{"1":"2.6","2":"4.4","3":"1.2","4":"2.89","5":"0.0534","6":"-0.292494","7":"0.01879","8":"0.390","9":"3.67e-03","10":"-0.758557"},{"1":"3.0","2":"4.6","3":"1.4","4":"2.91","5":"0.0422","6":"0.086126","7":"0.01173","8":"0.391","9":"1.96e-04","10":"0.222560"},{"1":"2.6","2":"4.0","3":"1.2","4":"3.00","5":"0.0356","6":"-0.395349","7":"0.00838","8":"0.389","9":"2.93e-03","10":"-1.019906"},{"1":"2.3","2":"3.3","3":"1.0","4":"3.10","5":"0.0329","6":"-0.802537","7":"0.00713","8":"0.385","9":"1.02e-02","10":"-2.069056"},{"1":"2.7","2":"4.2","3":"1.3","4":"2.98","5":"0.0352","6":"-0.280325","7":"0.00818","8":"0.390","9":"1.44e-03","10":"-0.723102"},{"1":"3.0","2":"4.2","3":"1.2","4":"2.94","5":"0.0433","6":"0.056079","7":"0.01240","8":"0.391","9":"8.80e-05","10":"0.144965"},{"1":"2.9","2":"4.2","3":"1.3","4":"2.98","5":"0.0352","6":"-0.080325","7":"0.00818","8":"0.391","9":"1.18e-04","10":"-0.207200"},{"1":"2.9","2":"4.3","3":"1.3","4":"2.95","5":"0.0385","6":"-0.054612","7":"0.00976","8":"0.391","9":"6.53e-05","10":"-0.140984"},{"1":"2.5","2":"3.0","3":"1.1","4":"3.22","5":"0.0481","6":"-0.716082","7":"0.01528","8":"0.386","9":"1.78e-02","10":"-1.853792"},{"1":"2.8","2":"4.1","3":"1.3","4":"3.01","5":"0.0330","6":"-0.206039","7":"0.00719","8":"0.390","9":"6.81e-04","10":"-0.531215"},{"1":"3.3","2":"6.0","3":"2.5","4":"2.95","5":"0.0769","6":"0.345672","7":"0.03902","8":"0.390","9":"1.11e-02","10":"0.905858"},{"1":"2.7","2":"5.1","3":"1.9","4":"2.97","5":"0.0457","6":"-0.267327","7":"0.01377","8":"0.390","9":"2.23e-03","10":"-0.691524"},{"1":"3.0","2":"5.9","3":"2.1","4":"2.83","5":"0.0501","6":"0.165575","7":"0.01656","8":"0.390","9":"1.03e-03","10":"0.428919"},{"1":"2.9","2":"5.6","3":"1.8","4":"2.80","5":"0.0527","6":"0.097646","7":"0.01830","8":"0.391","9":"3.98e-04","10":"0.253174"},{"1":"3.0","2":"5.8","3":"2.2","4":"2.90","5":"0.0541","6":"0.103457","7":"0.01929","8":"0.391","9":"4.72e-04","10":"0.268377"},{"1":"3.0","2":"6.6","3":"2.1","4":"2.65","5":"0.0744","6":"0.345572","7":"0.03657","8":"0.390","9":"1.03e-02","10":"0.904442"},{"1":"2.5","2":"4.5","3":"1.7","4":"3.05","5":"0.0456","6":"-0.548801","7":"0.01371","8":"0.388","9":"9.33e-03","10":"-1.419596"},{"1":"2.9","2":"6.3","3":"1.8","4":"2.62","5":"0.0901","6":"0.277643","7":"0.05356","8":"0.390","9":"1.01e-02","10":"0.733152"},{"1":"2.5","2":"5.8","3":"1.8","4":"2.75","5":"0.0621","6":"-0.250926","7":"0.02542","8":"0.390","9":"3.71e-03","10":"-0.652965"},{"1":"3.6","2":"6.1","3":"2.5","4":"2.93","5":"0.0733","6":"0.671386","7":"0.03542","8":"0.386","9":"3.78e-02","10":"1.756131"},{"1":"3.2","2":"5.1","3":"2.0","4":"3.00","5":"0.0549","6":"0.196269","7":"0.01988","8":"0.390","9":"1.75e-03","10":"0.509291"},{"1":"2.7","2":"5.3","3":"1.9","4":"2.92","5":"0.0433","6":"-0.215899","7":"0.01235","8":"0.390","9":"1.30e-03","10":"-0.558088"},{"1":"3.0","2":"5.5","3":"2.1","4":"2.94","5":"0.0524","6":"0.062720","7":"0.01813","8":"0.391","9":"1.63e-04","10":"0.162605"},{"1":"2.5","2":"5.0","3":"2.0","4":"3.03","5":"0.0588","6":"-0.529445","7":"0.02280","8":"0.388","9":"1.47e-02","10":"-1.375884"},{"1":"2.8","2":"5.1","3":"2.4","4":"3.15","5":"0.1073","6":"-0.349348","7":"0.07601","8":"0.389","9":"2.39e-02","10":"-0.933636"},{"1":"3.2","2":"5.3","3":"2.3","4":"3.06","5":"0.0828","6":"0.138484","7":"0.04526","8":"0.390","9":"2.09e-03","10":"0.364092"},{"1":"3.0","2":"5.5","3":"1.8","4":"2.83","5":"0.0487","6":"0.171933","7":"0.01562","8":"0.390","9":"1.05e-03","10":"0.445175"},{"1":"3.8","2":"6.7","3":"2.2","4":"2.67","5":"0.0709","6":"1.134881","7":"0.03315","8":"0.379","9":"1.00e-01","10":"2.965000"},{"1":"2.6","2":"6.9","3":"2.3","4":"2.65","5":"0.0724","6":"-0.050095","7":"0.03463","8":"0.391","9":"2.05e-04","10":"-0.130980"},{"1":"2.2","2":"5.0","3":"1.5","4":"2.85","5":"0.0513","6":"-0.647424","7":"0.01736","8":"0.387","9":"1.66e-02","10":"-1.677819"},{"1":"3.2","2":"5.7","3":"2.3","4":"2.96","5":"0.0656","6":"0.241339","7":"0.02842","8":"0.390","9":"3.86e-03","10":"0.628987"},{"1":"2.8","2":"4.9","3":"2.0","4":"3.06","5":"0.0631","6":"-0.255158","7":"0.02630","8":"0.390","9":"3.97e-03","10":"-0.664281"},{"1":"2.8","2":"6.7","3":"2.0","4":"2.59","5":"0.0901","6":"0.207690","7":"0.05359","8":"0.390","9":"5.68e-03","10":"0.548441"},{"1":"2.7","2":"4.9","3":"1.8","4":"2.98","5":"0.0426","6":"-0.282350","7":"0.01199","8":"0.390","9":"2.15e-03","10":"-0.729726"},{"1":"3.3","2":"5.7","3":"2.1","4":"2.89","5":"0.0495","6":"0.414148","7":"0.01617","8":"0.389","9":"6.30e-03","10":"1.072625"},{"1":"3.2","2":"6.0","3":"1.8","4":"2.70","5":"0.0727","6":"0.500502","7":"0.03490","8":"0.388","9":"2.06e-02","10":"1.308800"},{"1":"2.8","2":"4.8","3":"1.8","4":"3.01","5":"0.0451","6":"-0.208064","7":"0.01345","8":"0.390","9":"1.32e-03","10":"-0.538133"},{"1":"3.0","2":"4.9","3":"1.8","4":"2.98","5":"0.0426","6":"0.017650","7":"0.01199","8":"0.391","9":"8.41e-06","10":"0.045616"},{"1":"2.8","2":"5.6","3":"2.1","4":"2.91","5":"0.0505","6":"-0.111566","7":"0.01686","8":"0.390","9":"4.77e-04","10":"-0.289053"},{"1":"3.0","2":"5.8","3":"1.6","4":"2.68","5":"0.0848","6":"0.321882","7":"0.04750","8":"0.390","9":"1.19e-02","10":"0.847262"},{"1":"2.8","2":"6.1","3":"1.9","4":"2.71","5":"0.0678","6":"0.089811","7":"0.03029","8":"0.391","9":"5.72e-04","10":"0.234295"},{"1":"3.8","2":"6.4","3":"2.0","4":"2.67","5":"0.0736","6":"1.130548","7":"0.03575","8":"0.379","9":"1.08e-01","10":"2.957656"},{"1":"2.8","2":"5.6","3":"2.2","4":"2.95","5":"0.0587","6":"-0.147970","7":"0.02271","8":"0.390","9":"1.15e-03","10":"-0.384519"},{"1":"2.8","2":"5.1","3":"1.5","4":"2.82","5":"0.0565","6":"-0.021710","7":"0.02104","8":"0.391","9":"2.28e-05","10":"-0.056367"},{"1":"2.6","2":"5.6","3":"1.4","4":"2.66","5":"0.0989","6":"-0.056737","7":"0.06459","8":"0.391","9":"5.23e-04","10":"-0.150701"},{"1":"3.0","2":"6.1","3":"2.3","4":"2.86","5":"0.0565","6":"0.144194","7":"0.02103","8":"0.390","9":"1.00e-03","10":"0.374384"},{"1":"3.4","2":"5.6","3":"2.4","4":"3.02","5":"0.0816","6":"0.379221","7":"0.04394","8":"0.389","9":"1.52e-02","10":"0.996331"},{"1":"3.1","2":"5.5","3":"1.8","4":"2.83","5":"0.0487","6":"0.271933","7":"0.01562","8":"0.390","9":"2.62e-03","10":"0.704099"},{"1":"3.0","2":"4.8","3":"1.8","4":"3.01","5":"0.0451","6":"-0.008064","7":"0.01345","8":"0.391","9":"1.98e-06","10":"-0.020856"},{"1":"3.1","2":"5.4","3":"2.1","4":"2.96","5":"0.0551","6":"0.137006","7":"0.02000","8":"0.390","9":"8.60e-04","10":"0.355535"},{"1":"3.1","2":"5.6","3":"2.4","4":"3.02","5":"0.0816","6":"0.079221","7":"0.04394","8":"0.391","9":"6.64e-04","10":"0.208139"},{"1":"3.1","2":"5.1","3":"2.3","4":"3.11","5":"0.0931","6":"-0.012943","7":"0.05722","8":"0.391","9":"2.37e-05","10":"-0.034245"},{"1":"2.7","2":"5.1","3":"1.9","4":"2.97","5":"0.0457","6":"-0.267327","7":"0.01377","8":"0.390","9":"2.23e-03","10":"-0.691524"},{"1":"3.2","2":"5.9","3":"2.3","4":"2.91","5":"0.0597","6":"0.292767","7":"0.02354","8":"0.390","9":"4.66e-03","10":"0.761113"},{"1":"3.3","2":"5.7","3":"2.5","4":"3.03","5":"0.0899","6":"0.268531","7":"0.05335","8":"0.390","9":"9.44e-03","10":"0.709010"},{"1":"3.0","2":"5.2","3":"2.3","4":"3.09","5":"0.0879","6":"-0.087230","7":"0.05095","8":"0.391","9":"9.47e-04","10":"-0.230023"},{"1":"2.5","2":"5.0","3":"1.9","4":"2.99","5":"0.0483","6":"-0.493040","7":"0.01537","8":"0.388","9":"8.48e-03","10":"-1.276438"},{"1":"3.0","2":"5.2","3":"2.0","4":"2.98","5":"0.0516","6":"0.021983","7":"0.01756","8":"0.391","9":"1.93e-05","10":"0.056975"},{"1":"3.4","2":"5.4","3":"2.3","4":"3.04","5":"0.0780","6":"0.364198","7":"0.04016","8":"0.389","9":"1.27e-02","10":"0.954975"},{"1":"3.0","2":"5.1","3":"1.8","4":"2.93","5":"0.0405","6":"0.069078","7":"0.01083","8":"0.391","9":"1.16e-04","10":"0.178425"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

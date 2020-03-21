@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>example1_growth_curves.utf8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li>
+  <a href="examples_general.html">Examples</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="example-1-growth-curves" class="section level1">
+<h1>Example 1: growth curves</h1>
+<p>you may set a proper working directory using the <code>setwd()</code> function - e.g.: setwd(“path”) - <code>getwd()</code> –&gt; print out current working directory</p>
+<p><strong>but use a PROJECT in RStudio!</strong></p>
+<div id="loading-and-looking-at-data" class="section level2">
+<h2>loading and looking at data</h2>
+<pre class="r"><code>#set a proper working directory using the setwd() function
+    # e.g.: &quot;setwd(c:\....)&quot;
+    # getwd()    --&gt;   print out current working directory
+
+#load packages
+library(tidyverse) # loading tidyverse meta package
+
+#load data using readr
+    #you have to download the growth curve tables from the materials section and copy them in the working directory folder
+hg_rpmi&lt;-read_delim(&quot;HG_RPMI.txt&quot;,delim = &quot;\t&quot;,col_names = T)
+
+
+#load rest of data
+st_rpmi&lt;-read_delim(&quot;ST_RPMI.txt&quot;,delim = &quot;\t&quot;,col_names = T)
+hg_tsb&lt;-read_delim(&quot;TSB_HG.txt&quot;,delim = &quot;\t&quot;,col_names = T)
+st_tsb&lt;-read_delim(&quot;TSB_ST.txt&quot;,delim = &quot;\t&quot;,col_names = T)</code></pre>
+<pre class="r"><code>#look at data:
+hg_rpmi</code></pre>
+<pre><code>## # A tibble: 11 x 4
+##    `Zeit (h)`   BR1   BR2   BR3
+##         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1        0   0.055 0.058 0.058
+##  2        1   0.156 0.153 0.153
+##  3        2   0.38  0.38  0.38 
+##  4        2.3 0.48  0.46  0.46 
+##  5        3   0.66  0.65  0.65 
+##  6        4   0.73  0.68  0.68 
+##  7        5   0.8   0.77  0.77 
+##  8        6   0.84  0.81  0.81 
+##  9        7   0.91  0.92  0.92 
+## 10        8   0.98  0.97  0.97 
+## 11        8.5 1     1.03  1.03</code></pre>
+<pre class="r"><code>hg_tsb</code></pre>
+<pre><code>## # A tibble: 11 x 4
+##    `Zeit (h)`  BR1HG  BR2HG  BR3HG
+##         &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1        0    0.052  0.053  0.052
+##  2        1    0.21   0.237  0.202
+##  3        1.3  0.42   0.46   0.5  
+##  4        2    1.17   1.19   1    
+##  5        3    3.32   3.52   2.65 
+##  6        4    7.49   6.98   5.66 
+##  7        5    8.85   8.5    8.38 
+##  8        6    9.45   9.95   9.1  
+##  9        7   10.6   10.9    9.57 
+## 10        8   11.1   12.3   10.8  
+## 11        9   12.2   12.4   11.6</code></pre>
+<pre class="r"><code>#or using View(hg_rpmi) in RStudio or click on the data inthe &quot;Environment&quot; tab Panel
+
+#colnames are not equal
+colnames(hg_rpmi)</code></pre>
+<pre><code>## [1] &quot;Zeit (h)&quot; &quot;BR1&quot;      &quot;BR2&quot;      &quot;BR3&quot;</code></pre>
+<pre class="r"><code>colnames(hg_tsb)</code></pre>
+<pre><code>## [1] &quot;Zeit (h)&quot; &quot;BR1HG&quot;    &quot;BR2HG&quot;    &quot;BR3HG&quot;</code></pre>
+</div>
+<div id="generate-tidy-data-tibble" class="section level2">
+<h2>generate tidy data –&gt; tibble</h2>
+<p><img src="figures/tidy_data_reshape.png" width="600" /></p>
+<pre class="r"><code>#generate tidy data
+ # gather moves column names into &quot;key&quot; column, gathering the column values into a single &quot;value&quot; column
+hg_rpmi_tidy &lt;- tidyr::gather(data = hg_rpmi,colnames(hg_rpmi)[-1],key = &quot;replicates&quot;,value = &quot;OD&quot;)
+st_rpmi_tidy &lt;- tidyr::gather(data = st_rpmi,colnames(st_rpmi)[-1],key = &quot;replicates&quot;,value = &quot;OD&quot;)
+hg_tsb_tidy &lt;- tidyr::gather(data = hg_tsb,colnames(hg_tsb)[-1],key = &quot;replicates&quot;,value = &quot;OD&quot;)
+st_tsb_tidy &lt;- tidyr::gather(data = st_tsb,colnames(st_tsb)[-1],key = &quot;replicates&quot;,value = &quot;OD&quot;)
+
+# another way of writing that code would be &quot;hg_rpmi %&gt;% gather(colnames(hg_rpmi)[-1],key = &quot;replicates&quot;,value = &quot;OD&quot;)&quot;
+#look at tidy data
+hg_rpmi_tidy</code></pre>
+<pre><code>## # A tibble: 33 x 3
+##    `Zeit (h)` replicates    OD
+##         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1        0   BR1        0.055
+##  2        1   BR1        0.156
+##  3        2   BR1        0.38 
+##  4        2.3 BR1        0.48 
+##  5        3   BR1        0.66 
+##  6        4   BR1        0.73 
+##  7        5   BR1        0.8  
+##  8        6   BR1        0.84 
+##  9        7   BR1        0.91 
+## 10        8   BR1        0.98 
+## # … with 23 more rows</code></pre>
+</div>
+<div id="add-missing-data-description" class="section level2">
+<h2>add missing data description</h2>
+<pre class="r"><code>#still missing is the strain and growth media information which is hidden in the file name
+
+#add growth media and strain to tibble
+  #&quot;$&quot; will not only select a column, if the column is abscent in the tibble it will create a new column filled with the assigned value
+hg_rpmi_tidy$media &lt;- &quot;RPMI&quot;;hg_rpmi_tidy$strain &lt;- &quot;HG001&quot;
+st_rpmi_tidy$media &lt;- &quot;RPMI&quot;;st_rpmi_tidy$strain &lt;- &quot;rho_mutant&quot;
+hg_tsb_tidy$media &lt;- &quot;TSB&quot;;hg_tsb_tidy$strain &lt;- &quot;HG001&quot;
+st_tsb_tidy$media &lt;- &quot;TSB&quot;;st_tsb_tidy$strain &lt;- &quot;rho_mutant&quot;
+
+#look at the modified tibble
+st_tsb_tidy</code></pre>
+<pre><code>## # A tibble: 33 x 5
+##    `Zeit (h)` replicates     OD media strain    
+##         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     
+##  1        0   BR1ST       0.057 TSB   rho_mutant
+##  2        1   BR1ST       0.256 TSB   rho_mutant
+##  3        1.3 BR1ST       0.48  TSB   rho_mutant
+##  4        2   BR1ST       1.26  TSB   rho_mutant
+##  5        3   BR1ST       3.4   TSB   rho_mutant
+##  6        4   BR1ST       6.52  TSB   rho_mutant
+##  7        5   BR1ST       7.75  TSB   rho_mutant
+##  8        6   BR1ST       8.4   TSB   rho_mutant
+##  9        7   BR1ST       9.85  TSB   rho_mutant
+## 10        8   BR1ST      10.2   TSB   rho_mutant
+## # … with 23 more rows</code></pre>
+</div>
+<div id="modify-a-column-using-stringr" class="section level2">
+<h2>modify a column using stringr</h2>
+<pre class="r"><code>#since we have TIDY !!! data now we can easily combine the data by 
+  #&quot;bind_rows&quot; combines tibbles by rows (similar to rbind())
+  #&quot;bind_cols&quot; combines tibbles by columns (similar to cbind())
+growth_tibble &lt;- bind_rows(hg_rpmi_tidy,st_rpmi_tidy,hg_tsb_tidy,st_tsb_tidy)
+
+#we still have the problem of inconsitent naming of replicates
+unique(growth_tibble$replicates) #unique() gives us the unique entries of the vector</code></pre>
+<pre><code>## [1] &quot;BR1&quot;   &quot;BR2&quot;   &quot;BR3&quot;   &quot;BR1HG&quot; &quot;BR2HG&quot; &quot;BR3HG&quot; &quot;BR1ST&quot; &quot;BR2ST&quot; &quot;BR3ST&quot;</code></pre>
+<pre class="r"><code># so we have to replace &quot;BR1HG&quot; --&gt; &quot;BR1&quot; &amp;  &quot;BR1ST&quot; --&gt; &quot;BR1&quot;
+
+growth_tibble$replicates &lt;- stringr::str_replace_all(string = growth_tibble$replicates,pattern = &quot;HG&quot;,replacement = &quot;&quot;)
+growth_tibble$replicates &lt;- stringr::str_replace_all(string = growth_tibble$replicates,pattern = &quot;ST&quot;,replacement = &quot;&quot;)
+#check if cleaning was successful
+unique(growth_tibble$replicates) </code></pre>
+<pre><code>## [1] &quot;BR1&quot; &quot;BR2&quot; &quot;BR3&quot;</code></pre>
+</div>
+<div id="plot-growth-curve-using-ggplot2" class="section level2">
+<h2>plot growth curve using ggplot2</h2>
+<pre class="r"><code>#now the growth_tibble is ready for plotting with ggplot
+ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD))+
+  geom_point()+ #add point layer
+  scale_y_log10()+ #do log10 scaling of y axis
+  theme_minimal(base_size = 12)+ # add a theme with the base size 12
+  labs(title = &quot;growth curves&quot;,#add labeling of title etc.
+       subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+       caption = &quot;photmeter: SpecMANIAC&quot;,
+       y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+       x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div id="adding-color" class="section level3">
+<h3>adding color</h3>
+<p>R can handle several different color inputs like RGB (e.g. <code>rgb(red, green, blue,max=255)</code>), hex color codes (e.g. <code>#63cbd3</code>) or color names (e.g. <code>steelblue1</code>).</p>
+<p><strong>a small list of possible color names and color palettes with base R (grDevices) and R color brewer (package):</strong></p>
+<p><img src="figures/RcolorNames.png" alt="R color names" /> <a href="figures/RcolorNames.png" target="_blank">view larger or download: R color names</a></p>
+<pre class="r"><code>#to color for strain we must define color aesthetics
+ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=strain))+ #add strain to color
+  geom_point()+ 
+  scale_y_log10()+ 
+  theme_minimal(base_size = 12)+ 
+  labs(title = &quot;growth curves&quot;,
+       subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+       caption = &quot;photmeter: SpecMANIAC&quot;,
+       y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+       x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="adding-color-advanced" class="section level4">
+<h4>adding color (advanced)</h4>
+<p>We need <strong>tidyr</strong> and <code>unite()</code> function.</p>
+<p><img src="figures/tidyr_unite.png" width="400" /></p>
+<pre class="r"><code>#if we want to color for strain and Media the save way is to generate a new column with the combination
+growth_tibble &lt;- growth_tibble %&gt;% unite(media,strain,col=&quot;media_strain&quot;,sep = &quot;_&quot;,remove = F)
+growth_tibble</code></pre>
+<pre><code>## # A tibble: 132 x 6
+##    `Zeit (h)` replicates    OD media_strain media strain
+##         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; 
+##  1        0   BR1        0.055 RPMI_HG001   RPMI  HG001 
+##  2        1   BR1        0.156 RPMI_HG001   RPMI  HG001 
+##  3        2   BR1        0.38  RPMI_HG001   RPMI  HG001 
+##  4        2.3 BR1        0.48  RPMI_HG001   RPMI  HG001 
+##  5        3   BR1        0.66  RPMI_HG001   RPMI  HG001 
+##  6        4   BR1        0.73  RPMI_HG001   RPMI  HG001 
+##  7        5   BR1        0.8   RPMI_HG001   RPMI  HG001 
+##  8        6   BR1        0.84  RPMI_HG001   RPMI  HG001 
+##  9        7   BR1        0.91  RPMI_HG001   RPMI  HG001 
+## 10        8   BR1        0.98  RPMI_HG001   RPMI  HG001 
+## # … with 122 more rows</code></pre>
+<pre class="r"><code>#do color for media_strain column
+ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain))+ #add media_strain to color
+  geom_point()+ 
+  scale_y_log10()+ 
+  theme_minimal(base_size = 12)+ 
+  labs(title = &quot;growth curves&quot;,
+       subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+       caption = &quot;photmeter: SpecMANIAC&quot;,
+       y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+       x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+<div id="adding-shapes" class="section level3">
+<h3>adding shapes</h3>
+<p><img src="figures/ggplot_shapes.png" width="600" /></p>
+<pre class="r"><code>#add a different shape for replicates
+ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ #add shape for replicates
+  geom_point()+
+  scale_shape_manual(values = c(BR1=6,BR2=18,BR3=24))+ #adding manual shapes
+  scale_y_log10()+ 
+  theme_minimal(base_size = 12)+ 
+  labs(title = &quot;growth curves&quot;,
+       subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+       caption = &quot;photmeter: SpecMANIAC&quot;,
+       y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+       x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="adding-lines" class="section level3">
+<h3>adding lines</h3>
+<pre class="r"><code>#add lines
+ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ 
+  geom_point()+ 
+  geom_line()+ #add line layer
+  scale_y_log10()+ 
+  theme_minimal(base_size = 12)+ 
+  labs(title = &quot;growth curves&quot;,
+       subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+       caption = &quot;photmeter: SpecMANIAC&quot;,
+       y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+       x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="setup-manual-colors" class="section level3">
+<h3>setup manual colors</h3>
+<pre class="r"><code>#and finally we want to have different colors
+
+  #generate color vector with names = entries of media_strain
+  my_colors &lt;- c(TSB_HG001=&quot;steelblue1&quot;,
+                 RPMI_HG001=&quot;steelblue3&quot;,
+                 RPMI_rho_mutant=&quot;orangered3&quot;,
+                 TSB_rho_mutant=&quot;orangered1&quot;)
+
+ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ 
+  geom_point()+ 
+  geom_line()+ 
+  scale_y_log10()+ 
+  scale_color_manual(values = my_colors)+ #add our manual colors
+  theme_minimal(base_size = 12)+ 
+  labs(title = &quot;growth curves&quot;,
+       subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+       caption = &quot;photmeter: SpecMANIAC&quot;,
+       y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+       x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="faceting-plots" class="section level3">
+<h3>faceting plots</h3>
+<pre class="r"><code>#since TSB and RPMI differs a lot from final OD we would like to have them split up
+
+    ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ 
+      geom_point()+ 
+      geom_line()+ 
+      scale_y_log10()+ 
+      scale_color_manual(values = my_colors)+ 
+      facet_wrap(~media)+ #add a facet wrap and split them by &quot;media&quot;
+      theme_minimal(base_size = 12)+ 
+      labs(title = &quot;growth curves&quot;,
+           subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+           caption = &quot;photmeter: SpecMANIAC&quot;,
+           y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+           x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="faceting-plots-use-free-scales" class="section level4">
+<h4>faceting plots: use free scales</h4>
+<pre class="r"><code># by default ggplot2 uses same scales for every plot; 
+# now: do not use the same scale when using facet wrap
+    ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ 
+      geom_point()+ 
+      geom_line()+ 
+      scale_y_log10()+ 
+      scale_color_manual(values = my_colors)+ 
+      facet_wrap(~media, scales=&quot;free&quot;)+ #scaling is performed individually and NOT globally
+      theme_minimal(base_size = 12)+ 
+      labs(title = &quot;growth curves&quot;,
+           subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+           caption = &quot;photmeter: SpecMANIAC&quot;,
+           y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+           x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="faceting-plots-using-two-variables" class="section level4">
+<h4>faceting plots: using two variables</h4>
+<pre class="r"><code>   #  facet wrap by strain and media
+    ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ 
+      geom_point()+ 
+      geom_line()+ 
+      scale_y_log10()+ 
+      scale_color_manual(values = my_colors)+ 
+      facet_wrap(~strain+media, scales=&quot;free&quot;)+ #add strain to facet wrap
+      theme_minimal(base_size = 12)+ 
+      labs(title = &quot;growth curves&quot;,
+           subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+           caption = &quot;photmeter: SpecMANIAC&quot;,
+           y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+           x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
+<div id="adding-manual-breaks-to-axis" class="section level3">
+<h3>adding manual breaks to axis</h3>
+<pre class="r"><code>   #  adding costum breaks
+    ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ 
+      geom_point()+ 
+      geom_line()+ 
+      scale_y_log10(breaks = c(0.05,0.1,0.25,0.5,1,seq(2,10,by=5)))+ #add costum breaks
+      scale_color_manual(values = my_colors)+ 
+      facet_wrap(~strain+media, scales=&quot;free&quot;)+ 
+      theme_minimal(base_size = 12)+ 
+      labs(title = &quot;growth curves&quot;,
+           subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+           caption = &quot;photmeter: SpecMANIAC&quot;,
+           y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+           x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="adding-transparancy-and-size-to-points-and-lines" class="section level3">
+<h3>adding transparancy and size to points and lines</h3>
+<pre class="r"><code>   #  adding transparent lines and increase size of points and lines
+    ggplot(data = growth_tibble,mapping=aes(x = `Zeit (h)`,y = OD,color=media_strain,shape=replicates))+ 
+      geom_point(size=3,alpha=0.5)+ #adding transprancy and size
+      geom_line(alpha=0.5,size=1.5)+ #adding transprancy and size
+      scale_y_log10(breaks = c(0.05,0.1,0.25,0.5,1,seq(2,10,by=5)))+ 
+      scale_color_manual(values = my_colors)+ 
+      facet_wrap(~strain+media, scales=&quot;free&quot;)+ 
+      theme_minimal(base_size = 12)+ 
+      labs(title = &quot;growth curves&quot;,
+           subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+           caption = &quot;photmeter: SpecMANIAC&quot;,
+           y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+           x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="aggregate-data-and-plot-aggregated-data-with-error-bars" class="section level3">
+<h3>aggregate data and plot aggregated data with error bars</h3>
+<p>To summarize the data we will need <code>group_by()</code> and <code>summarise</code> function from <strong>dplyr</strong> package and <code>mean()</code> and <code>sd()</code> function from R base.</p>
+<p float="center">
+<img src="figures/dplyr_grouping.png" width="300" /> <img src="figures/dplyr_summarize.png" width="300" />
+</p>
+<pre class="r"><code>   #if you want just a bioreplicate aggregates plot with mean and SD we first have to summarize our tibble by using the mean and SD over bioreplicates
+growth_tibble_summary &lt;- growth_tibble %&gt;%
+  group_by(`Zeit (h)`,media,strain) %&gt;%
+  summarise(mean_OD=mean(OD,na.rm=T),SD_OD=sd(OD,na.rm=T)) %&gt;%
+  ungroup() %&gt;% 
+  unite(media,strain,col=&quot;media_strain&quot;,sep = &quot;_&quot;,remove = F)
+  
+growth_tibble_summary</code></pre>
+<pre><code>## # A tibble: 44 x 6
+##    `Zeit (h)` media_strain    media strain     mean_OD    SD_OD
+##         &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+##  1        0   RPMI_HG001      RPMI  HG001       0.057  0.00173 
+##  2        0   RPMI_rho_mutant RPMI  rho_mutant  0.053  0.00173 
+##  3        0   TSB_HG001       TSB   HG001       0.0523 0.000577
+##  4        0   TSB_rho_mutant  TSB   rho_mutant  0.0543 0.00551 
+##  5        1   RPMI_HG001      RPMI  HG001       0.154  0.00173 
+##  6        1   RPMI_rho_mutant RPMI  rho_mutant  0.139  0.00751 
+##  7        1   TSB_HG001       TSB   HG001       0.216  0.0183  
+##  8        1   TSB_rho_mutant  TSB   rho_mutant  0.252  0.0100  
+##  9        1.3 TSB_HG001       TSB   HG001       0.46   0.04    
+## 10        1.3 TSB_rho_mutant  TSB   rho_mutant  0.493  0.0231  
+## # … with 34 more rows</code></pre>
+<pre class="r"><code>ggplot(data = growth_tibble_summary,mapping=aes(x = `Zeit (h)`,y = mean_OD,color=media_strain))+ 
+      geom_line()+
+      geom_point(alpha=0.5)+ 
+      geom_errorbar(aes(ymin = mean_OD-SD_OD, ymax = mean_OD+SD_OD))+
+      scale_y_log10(breaks = c(0.05,0.1,0.25,0.5,1,seq(2,10,by=5)))+ #add costum breaks
+      scale_color_manual(values = my_colors)+ 
+      facet_wrap(~media, scales=&quot;free&quot;)+ 
+      theme_minimal(base_size = 12)+ 
+      labs(title = &quot;growth curves&quot;,
+           subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+           caption = &quot;photmeter: SpecMANIAC&quot;,
+           y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+           x = &quot;time (h)&quot;) </code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="generate-and-save-a-plot" class="section level3">
+<h3>generate and save a plot</h3>
+<pre class="r"><code>#for saving a plot assing the plot to a variable and save it using ggsave()
+final_plot &lt;- ggplot(data = growth_tibble_summary,mapping=aes(x = `Zeit (h)`,y = mean_OD,color=media_strain))+ 
+      geom_line()+
+      geom_point(alpha=0.5)+ 
+      geom_errorbar(aes(ymin = mean_OD-SD_OD, ymax = mean_OD+SD_OD))+
+      scale_y_log10(breaks = c(0.05,0.1,0.25,0.5,1,seq(2,10,by=5)))+ #add costum breaks
+      scale_color_manual(values = my_colors)+ 
+      facet_wrap(~media, scales=&quot;free&quot;)+ 
+      theme_minimal(base_size = 12)+ 
+      labs(title = &quot;growth curves&quot;,
+           subtitle = &quot;comparison of HG001 vs. rho-mutant&quot;,
+           caption = &quot;photmeter: SpecMANIAC&quot;,
+           y = expression(OD[&quot;540nm&quot;]~&quot;measurement&quot;),
+           x = &quot;time (h)&quot;) 
+#ggsave(filename = &quot;my_plot.pdf&quot;,plot = final_plot,device = &quot;pdf&quot;,width = 12,height = 5)</code></pre>
+</div>
+<div id="generate-interactive-plot" class="section level3">
+<h3>generate interactive plot</h3>
+<p>You can just simply use the <code>ggplotly()</code> function from the <strong>plolty</strong> package to make a ggplot graph interactive. There are some limitations in the plotly plot so it might be that not all option that you set from ggplot were not plotted in plolty plot. You can also manipulate the hover box of the plot and add additional content, which might be benificial for gen or protein wise plots over experiments.</p>
+<pre class="r"><code>#make plot interactive very easily with plotly
+suppressMessages(library(plotly))
+
+ggplotly(final_plot)</code></pre>
+<div id="htmlwidget-14d5992801777f4abbc5" style="width:672px;height:336px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-14d5992801777f4abbc5">{"x":{"data":[{"x":[0,1,2,2.3,3,4,5,6,7,8,8.5],"y":[-1.24412514432751,-0.812479279163537,-0.42021640338319,-0.330993219041424,-0.184865183363186,-0.156974968608608,-0.10790539730952,-0.0861861476162833,-0.0377885608893998,-0.0117384032712442,0.00860017176191757],"text":["Zeit (h): 0.0<br />mean_OD:  0.0570<br />media_strain: RPMI_HG001","Zeit (h): 1.0<br />mean_OD:  0.1540<br />media_strain: RPMI_HG001","Zeit (h): 2.0<br />mean_OD:  0.3800<br />media_strain: RPMI_HG001","Zeit (h): 2.3<br />mean_OD:  0.4667<br />media_strain: RPMI_HG001","Zeit (h): 3.0<br />mean_OD:  0.6533<br />media_strain: RPMI_HG001","Zeit (h): 4.0<br />mean_OD:  0.6967<br />media_strain: RPMI_HG001","Zeit (h): 5.0<br />mean_OD:  0.7800<br />media_strain: RPMI_HG001","Zeit (h): 6.0<br />mean_OD:  0.8200<br />media_strain: RPMI_HG001","Zeit (h): 7.0<br />mean_OD:  0.9167<br />media_strain: RPMI_HG001","Zeit (h): 8.0<br />mean_OD:  0.9733<br />media_strain: RPMI_HG001","Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_HG001"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(79,148,205,1)","dash":"solid"},"hoveron":"points","name":"RPMI_HG001","legendgroup":"RPMI_HG001","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(79,148,205,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(79,148,205,1)"}},"frame":null},{"x":[0,1,2,2.3,3,4,5,6,7,8,8.5],"y":[-1.27572413039921,-0.85802792409292,-0.468521082957745,-0.359849959063898,-0.236572006437063,-0.144682794804057,-0.10054429766315,-0.0671881313883679,-0.0284149348145826,-0.00436480540245009,0.00860017176191757],"text":["Zeit (h): 0.0<br />mean_OD:  0.0530<br />media_strain: RPMI_rho_mutant","Zeit (h): 1.0<br />mean_OD:  0.1387<br />media_strain: RPMI_rho_mutant","Zeit (h): 2.0<br />mean_OD:  0.3400<br />media_strain: RPMI_rho_mutant","Zeit (h): 2.3<br />mean_OD:  0.4367<br />media_strain: RPMI_rho_mutant","Zeit (h): 3.0<br />mean_OD:  0.5800<br />media_strain: RPMI_rho_mutant","Zeit (h): 4.0<br />mean_OD:  0.7167<br />media_strain: RPMI_rho_mutant","Zeit (h): 5.0<br />mean_OD:  0.7933<br />media_strain: RPMI_rho_mutant","Zeit (h): 6.0<br />mean_OD:  0.8567<br />media_strain: RPMI_rho_mutant","Zeit (h): 7.0<br />mean_OD:  0.9367<br />media_strain: RPMI_rho_mutant","Zeit (h): 8.0<br />mean_OD:  0.9900<br />media_strain: RPMI_rho_mutant","Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_rho_mutant"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(205,55,0,1)","dash":"solid"},"hoveron":"points","name":"RPMI_rho_mutant","legendgroup":"RPMI_rho_mutant","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(205,55,0,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(205,55,0,1)"}},"frame":null},{"x":[0,1,1.3,2,3,4,5,6,7,8,9],"y":[-1.28122160231043,-0.664876557919293,-0.337242168318426,0.0492180226701816,0.50014495770763,0.826722520168992,0.933318531490684,0.977723605288848,1.0146605208645,1.05601503355898,1.0815873158135],"text":["Zeit (h): 0.0<br />mean_OD:  0.0523<br />media_strain: TSB_HG001","Zeit (h): 1.0<br />mean_OD:  0.2163<br />media_strain: TSB_HG001","Zeit (h): 1.3<br />mean_OD:  0.4600<br />media_strain: TSB_HG001","Zeit (h): 2.0<br />mean_OD:  1.1200<br />media_strain: TSB_HG001","Zeit (h): 3.0<br />mean_OD:  3.1633<br />media_strain: TSB_HG001","Zeit (h): 4.0<br />mean_OD:  6.7100<br />media_strain: TSB_HG001","Zeit (h): 5.0<br />mean_OD:  8.5767<br />media_strain: TSB_HG001","Zeit (h): 6.0<br />mean_OD:  9.5000<br />media_strain: TSB_HG001","Zeit (h): 7.0<br />mean_OD: 10.3433<br />media_strain: TSB_HG001","Zeit (h): 8.0<br />mean_OD: 11.3767<br />media_strain: TSB_HG001","Zeit (h): 9.0<br />mean_OD: 12.0667<br />media_strain: TSB_HG001"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(99,184,255,1)","dash":"solid"},"hoveron":"points","name":"TSB_HG001","legendgroup":"TSB_HG001","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(99,184,255,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(99,184,255,1)"}},"frame":null},{"x":[0,1,1.3,2,3,4,5,6,7,8,9],"y":[-1.2649336503157,-0.59802537521959,-0.306859539324705,0.0839801289293936,0.518075036877517,0.813803304663092,0.881764949686207,0.915751490682417,0.963787827345555,0.978484857862204,1.00432137378264],"text":["Zeit (h): 0.0<br />mean_OD:  0.0543<br />media_strain: TSB_rho_mutant","Zeit (h): 1.0<br />mean_OD:  0.2523<br />media_strain: TSB_rho_mutant","Zeit (h): 1.3<br />mean_OD:  0.4933<br />media_strain: TSB_rho_mutant","Zeit (h): 2.0<br />mean_OD:  1.2133<br />media_strain: TSB_rho_mutant","Zeit (h): 3.0<br />mean_OD:  3.2967<br />media_strain: TSB_rho_mutant","Zeit (h): 4.0<br />mean_OD:  6.5133<br />media_strain: TSB_rho_mutant","Zeit (h): 5.0<br />mean_OD:  7.6167<br />media_strain: TSB_rho_mutant","Zeit (h): 6.0<br />mean_OD:  8.2367<br />media_strain: TSB_rho_mutant","Zeit (h): 7.0<br />mean_OD:  9.2000<br />media_strain: TSB_rho_mutant","Zeit (h): 8.0<br />mean_OD:  9.5167<br />media_strain: TSB_rho_mutant","Zeit (h): 9.0<br />mean_OD: 10.1000<br />media_strain: TSB_rho_mutant"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(255,69,0,1)","dash":"solid"},"hoveron":"points","name":"TSB_rho_mutant","legendgroup":"TSB_rho_mutant","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(255,69,0,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,69,0,1)"}},"frame":null},{"x":[0,3,1,7,4,2,2.3,6,8,8.5,5],"y":[-1.24412514432751,-0.184865183363186,-0.812479279163537,-0.0377885608893998,-0.156974968608608,-0.42021640338319,-0.330993219041424,-0.0861861476162833,-0.0117384032712442,0.00860017176191757,-0.10790539730952],"text":["mean_OD - SD_OD: -1.25753<br />mean_OD + SD_OD: -1.23112<br />Zeit (h): 0.0<br />mean_OD:  0.0570<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.18872<br />mean_OD + SD_OD: -0.18104<br />Zeit (h): 3.0<br />mean_OD:  0.6533<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.81739<br />mean_OD + SD_OD: -0.80762<br />Zeit (h): 1.0<br />mean_OD:  0.1540<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.04053<br />mean_OD + SD_OD: -0.03506<br />Zeit (h): 7.0<br />mean_OD:  0.9167<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.17535<br />mean_OD + SD_OD: -0.13934<br />Zeit (h): 4.0<br />mean_OD:  0.6967<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.42022<br />mean_OD + SD_OD: -0.42022<br />Zeit (h): 2.0<br />mean_OD:  0.3800<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.34187<br />mean_OD + SD_OD: -0.32038<br />Zeit (h): 2.3<br />mean_OD:  0.4667<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.09546<br />mean_OD + SD_OD: -0.07711<br />Zeit (h): 6.0<br />mean_OD:  0.8200<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.01432<br />mean_OD + SD_OD: -0.00917<br />Zeit (h): 8.0<br />mean_OD:  0.9733<br />media_strain: RPMI_HG001","mean_OD - SD_OD:  0.00116<br />mean_OD + SD_OD:  0.01591<br />Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_HG001","mean_OD - SD_OD: -0.11766<br />mean_OD + SD_OD: -0.09837<br />Zeit (h): 5.0<br />mean_OD:  0.7800<br />media_strain: RPMI_HG001"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0130003101434009,0.00382099937695854,0.00485728194618884,0.00272676774208251,0.0176328456036079,0,0.0106152074066907,0.00907787591407089,0.0025684860496016,0.00731279232476984,0.00953833214106993],"arrayminus":[0.0134015059981707,0.00385491582638187,0.00491222231800559,0.00274399629466048,0.0183791673733688,0,0.0108811834169862,0.00927168528072499,0.00258376689928163,0.00743803947254584,0.0097525341093596],"type":"data","width":4.70197989012128,"symmetric":false,"color":"rgba(79,148,205,1)"},"name":"RPMI_HG001","legendgroup":"RPMI_HG001","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,2.3,1,4,3,2,5,8,6,7,8.5],"y":[-1.27572413039921,-0.359849959063898,-0.85802792409292,-0.144682794804057,-0.236572006437063,-0.468521082957745,-0.10054429766315,-0.00436480540245009,-0.0671881313883679,-0.0284149348145826,0.00860017176191757],"text":["mean_OD - SD_OD: -1.29015<br />mean_OD + SD_OD: -1.26176<br />Zeit (h): 0.0<br />mean_OD:  0.0530<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.37149<br />mean_OD + SD_OD: -0.34851<br />Zeit (h): 2.3<br />mean_OD:  0.4367<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.88219<br />mean_OD + SD_OD: -0.83514<br />Zeit (h): 1.0<br />mean_OD:  0.1387<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.15174<br />mean_OD + SD_OD: -0.13774<br />Zeit (h): 4.0<br />mean_OD:  0.7167<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.24974<br />mean_OD + SD_OD: -0.22379<br />Zeit (h): 3.0<br />mean_OD:  0.5800<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.49123<br />mean_OD + SD_OD: -0.44694<br />Zeit (h): 2.0<br />mean_OD:  0.3400<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.10691<br />mean_OD + SD_OD: -0.09427<br />Zeit (h): 5.0<br />mean_OD:  0.7933<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.01203<br />mean_OD + SD_OD:  0.00317<br />Zeit (h): 8.0<br />mean_OD:  0.9900<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.07308<br />mean_OD + SD_OD: -0.06137<br />Zeit (h): 6.0<br />mean_OD:  0.8567<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.03926<br />mean_OD + SD_OD: -0.01784<br />Zeit (h): 7.0<br />mean_OD:  0.9367<br />media_strain: RPMI_rho_mutant","mean_OD - SD_OD: -0.00641<br />mean_OD + SD_OD:  0.02310<br />Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_rho_mutant"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0139658518419903,0.0113350589325296,0.0228927674745579,0.00694162326126649,0.0127794322693651,0.0215790258002906,0.00627561641895927,0.00753248126082842,0.00581475192504927,0.0105778872007762,0.0145044857529876],"arrayminus":[0.0144299243512271,0.0116388498969914,0.0241669820274596,0.00705438065134664,0.0131669069257622,0.0227075525901019,0.00636763121118947,0.0076654353356164,0.00589366314648344,0.0108419729371698,0.0150056912118513],"type":"data","width":4.70197989012128,"symmetric":false,"color":"rgba(205,55,0,1)"},"name":"RPMI_rho_mutant","legendgroup":"RPMI_rho_mutant","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3,4,1.3,5,1,2,6,7,8,0,9],"y":[0.50014495770763,0.826722520168992,-0.337242168318426,0.933318531490684,-0.664876557919293,0.0492180226701816,0.977723605288848,1.0146605208645,1.05601503355898,-1.28122160231043,1.0815873158135],"text":["mean_OD - SD_OD:  0.43259<br />mean_OD + SD_OD:  0.55859<br />Zeit (h): 3.0<br />mean_OD:  3.1633<br />media_strain: TSB_HG001","mean_OD - SD_OD:  0.76084<br />mean_OD + SD_OD:  0.88391<br />Zeit (h): 4.0<br />mean_OD:  6.7100<br />media_strain: TSB_HG001","mean_OD - SD_OD: -0.37675<br />mean_OD + SD_OD: -0.30103<br />Zeit (h): 1.3<br />mean_OD:  0.4600<br />media_strain: TSB_HG001","mean_OD - SD_OD:  0.92077<br />mean_OD + SD_OD:  0.94551<br />Zeit (h): 5.0<br />mean_OD:  8.5767<br />media_strain: TSB_HG001","mean_OD - SD_OD: -0.70335<br />mean_OD + SD_OD: -0.62954<br />Zeit (h): 1.0<br />mean_OD:  0.2163<br />media_strain: TSB_HG001","mean_OD - SD_OD:  0.00672<br />mean_OD + SD_OD:  0.08792<br />Zeit (h): 2.0<br />mean_OD:  1.1200<br />media_strain: TSB_HG001","mean_OD - SD_OD:  0.95774<br />mean_OD + SD_OD:  0.99683<br />Zeit (h): 6.0<br />mean_OD:  9.5000<br />media_strain: TSB_HG001","mean_OD - SD_OD:  0.98503<br />mean_OD + SD_OD:  1.04240<br />Zeit (h): 7.0<br />mean_OD: 10.3433<br />media_strain: TSB_HG001","mean_OD - SD_OD:  1.02428<br />mean_OD + SD_OD:  1.08559<br />Zeit (h): 8.0<br />mean_OD: 11.3767<br />media_strain: TSB_HG001","mean_OD - SD_OD: -1.28604<br />mean_OD + SD_OD: -1.27646<br />Zeit (h): 0.0<br />mean_OD:  0.0523<br />media_strain: TSB_HG001","mean_OD - SD_OD:  1.06668<br />mean_OD + SD_OD:  1.09600<br />Zeit (h): 9.0<br />mean_OD: 12.0667<br />media_strain: TSB_HG001"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0584437863420262,0.0571888930045645,0.0362121726544447,0.012192695068867,0.0353391766267435,0.0387063854403644,0.0191031744579302,0.0277401392531744,0.0295720202094643,0.00476497493463568,0.0144147005756878],"arrayminus":[0.0675499743033945,0.06587835567906,0.0395085412836736,0.0125449137865565,0.0384715431986075,0.0424966411747729,0.019982276819158,0.0296336473342237,0.0317337325441196,0.00481783560802307,0.0149096136684526],"type":"data","width":4.44836716681376,"symmetric":false,"color":"rgba(99,184,255,1)"},"name":"TSB_HG001","legendgroup":"TSB_HG001","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1.3,2,6,3,0,7,4,1,8,5,9],"y":[-0.306859539324705,0.0839801289293936,0.915751490682417,0.518075036877517,-1.2649336503157,0.963787827345555,0.813803304663092,-0.59802537521959,0.978484857862204,0.881764949686207,1.00432137378264],"text":["mean_OD - SD_OD: -0.32768<br />mean_OD + SD_OD: -0.28699<br />Zeit (h): 1.3<br />mean_OD:  0.4933<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.03987<br />mean_OD + SD_OD:  0.12402<br />Zeit (h): 2.0<br />mean_OD:  1.2133<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.90242<br />mean_OD + SD_OD:  0.92869<br />Zeit (h): 6.0<br />mean_OD:  8.2367<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.50053<br />mean_OD + SD_OD:  0.53494<br />Zeit (h): 3.0<br />mean_OD:  3.2967<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD: -1.31135<br />mean_OD + SD_OD: -1.22300<br />Zeit (h): 0.0<br />mean_OD:  0.0543<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.93316<br />mean_OD + SD_OD:  0.99240<br />Zeit (h): 7.0<br />mean_OD:  9.2000<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.80909<br />mean_OD + SD_OD:  0.81846<br />Zeit (h): 4.0<br />mean_OD:  6.5133<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD: -0.61562<br />mean_OD + SD_OD: -0.58112<br />Zeit (h): 1.0<br />mean_OD:  0.2523<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.94997<br />mean_OD + SD_OD:  1.00525<br />Zeit (h): 8.0<br />mean_OD:  9.5167<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.87297<br />mean_OD + SD_OD:  0.89039<br />Zeit (h): 5.0<br />mean_OD:  7.6167<br />media_strain: TSB_rho_mutant","mean_OD - SD_OD:  0.96826<br />mean_OD + SD_OD:  1.03761<br />Zeit (h): 9.0<br />mean_OD: 10.1000<br />media_strain: TSB_rho_mutant"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0198687688093729,0.0400421395520271,0.012937799630456,0.0168616852113215,0.0419317951219864,0.0286109517791597,0.00465822052767439,0.0169064208005045,0.0267603753055338,0.00862360423965769,0.0332913068080256],"arrayminus":[0.0208215175978491,0.0441125069292347,0.0133350872915758,0.0175428848960369,0.0464173128563339,0.0306295841947151,0.00470872657896393,0.0175913137635992,0.0285182037490622,0.00879831455574798,0.0360567409468667],"type":"data","width":4.44836716681377,"symmetric":false,"color":"rgba(255,69,0,1)"},"name":"TSB_rho_mutant","legendgroup":"TSB_rho_mutant","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":63.8206724782067,"r":7.97011207970112,"b":48.6176836861768,"l":53.3997509339975},"font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022},"title":{"text":"growth curves","font":{"color":"rgba(0,0,0,1)","family":"","size":19.1282689912827},"x":0,"xref":"paper"},"xaxis":{"domain":[0,0.450186799501868],"automargin":true,"type":"linear","autorange":false,"range":[-0.5735,9.0735],"tickmode":"array","ticktext":["0.0","2.5","5.0","7.5"],"tickvals":[0,2.5,5,7.5],"categoryorder":"array","categoryarray":["0.0","2.5","5.0","7.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.98505603985056,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.724555643609193,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"annotations":[{"text":"time (h)","x":0.5,"y":-0.0735337721639092,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis"},{"text":{},"x":-0.0557433434145763,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"RPMI","x":0.225093399750934,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":12.7521793275218},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"TSB","x":0.774906600249066,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":12.7521793275218},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"media_strain","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.35581699036371,0.0887675931281724],"tickmode":"array","ticktext":["0.05","0.10","0.25","0.50","1.00"],"tickvals":[-1.30102999566398,-1,-0.602059991327962,-0.301029995663981,0],"categoryorder":"array","categoryarray":["0.05","0.10","0.25","0.50","1.00"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.98505603985056,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.724555643609193,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.450186799501868,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.450186799501868,"y0":0,"y1":25.5043586550436,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.549813200498132,"x1":1,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.549813200498132,"x1":1,"y0":0,"y1":25.5043586550436,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[-0.5985,9.5985],"tickmode":"array","ticktext":["0.0","2.5","5.0","7.5"],"tickvals":[0,2.5,5,7.5],"categoryorder":"array","categoryarray":["0.0","2.5","5.0","7.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.98505603985056,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.549813200498132,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.724555643609193,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-1.4317186121501,1.21636966536725],"tickmode":"array","ticktext":["0.05","0.10","0.25","0.50","1.00","2.00","7.00"],"tickvals":[-1.30102999566398,-1,-0.602059991327962,-0.301029995663981,0,0.301029995663981,0.845098040014257],"categoryorder":"array","categoryarray":["0.05","0.10","0.25","0.50","1.00","2.00","7.00"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.98505603985056,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.724555643609193,"zeroline":false,"anchor":"x2","title":"","hoverformat":".2f"},"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":12.7521793275218},"y":0.865016872890889},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"cf5da4a580":{"x":{},"y":{},"colour":{},"type":"scatter"},"cf5346d7d7f":{"x":{},"y":{},"colour":{}},"cf54a37bd":{"ymin":{},"ymax":{},"x":{},"y":{},"colour":{}}},"cur_data":"cf5da4a580","visdat":{"cf5da4a580":["function (y) ","x"],"cf5346d7d7f":["function (y) ","x"],"cf54a37bd":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="add-text-annotation-to-plot" class="section level3">
+<h3>add text annotation to plot</h3>
+<p>Our growth curve plot is already nice and ready for publication, but one important thing is missing, which is mostly added by hand. The sampling time points. This manuall addition is not very convenient and the information for the real final plot in the manuscript is scatter around in R and e.g. Powerpoint.</p>
+<p>In ggplot2 we can easily add annotations to the plot using <code>geom_text()</code> or <code>geom_label()</code> function. (<code>geom_text</code> adds text directly to the plot. <code>geom_label</code> draws a rectangle behind the text, making it easier to read)</p>
+<p>But first we need to define the position of the text label.</p>
+<pre class="r"><code>#we need to define the position of the text label
+#therefore we will compute the max (label above data points) OD per time point and per media since comparing the growth of strains by eye shows no differences in growth.
+
+final_plot_label_data &lt;- growth_tibble_summary %&gt;% group_by(media,`Zeit (h)`) %&gt;% dplyr::summarise(OD_label=max(mean_OD)+max(SD_OD))
+
+
+#we have different time of the sampling per media lets generate a tibble with the data time points
+sampling_times&lt;-tibble(`Zeit (h)`=c(c(2,3,4,8),
+                                    c(1.3,3,4,8)
+                                   ),
+                        sampling_time_point=c(c(&quot;exp.&quot;,&quot;trans.&quot;,&quot;early stat.&quot;,&quot;late stat.&quot;),
+                                              c(&quot;exp.&quot;,&quot;trans.&quot;,&quot;early stat.&quot;,&quot;late stat.&quot;)
+                                             ),
+                        media=c(rep(&quot;RPMI&quot;,4),
+                                rep(&quot;TSB&quot;,4)
+                               )
+                      )
+
+sampling_times</code></pre>
+<pre><code>## # A tibble: 8 x 3
+##   `Zeit (h)` sampling_time_point media
+##        &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;
+## 1        2   exp.                RPMI 
+## 2        3   trans.              RPMI 
+## 3        4   early stat.         RPMI 
+## 4        8   late stat.          RPMI 
+## 5        1.3 exp.                TSB  
+## 6        3   trans.              TSB  
+## 7        4   early stat.         TSB  
+## 8        8   late stat.          TSB</code></pre>
+<p>We use left_join() function from <strong>dplyr</strong> package to combine tables.</p>
+<p><em>Mutating joins combine variables from the two data.frames:</em></p>
+<ul>
+<li><strong>inner_join()</strong>
+<ul>
+<li>return all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.</li>
+</ul></li>
+<li><strong>left_join()</strong>
+<ul>
+<li>return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.</li>
+</ul></li>
+<li><strong>right_join()</strong>
+<ul>
+<li>return all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.</li>
+</ul></li>
+<li><strong>full_join()</strong>
+<ul>
+<li>return all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.</li>
+</ul></li>
+</ul>
+<p><em>Filtering joins keep cases from the left-hand data.frame:</em></p>
+<ul>
+<li><strong>semi_join()</strong>
+<ul>
+<li>return all rows from x where there are matching values in y, keeping just columns from x.</li>
+<li>A semi join differs from an inner join because an inner join will return one row of x for each matching row of y, where a semi join will never duplicate rows of x.</li>
+</ul></li>
+<li><strong>anti_join()</strong>
+<ul>
+<li>return all rows from x where there are not matching values in y, keeping just columns from x.</li>
+</ul></li>
+</ul>
+<p float="center">
+<img src="figures/dplyr_join1.png" width="300" /> <img src="figures/dplyr_join2.png" width="300" />
+</p>
+<pre class="r"><code>#now we will combine final_plot_label_data and sampling_times by media and `Zeit (h)` using dplyr::left_join()
+
+final_plot_label_data&lt;-left_join(x = final_plot_label_data,y = sampling_times,by = c(&quot;Zeit (h)&quot;,&quot;media&quot;))
+final_plot_label_data</code></pre>
+<pre><code>## # A tibble: 22 x 4
+## # Groups:   media [2]
+##    media `Zeit (h)` OD_label sampling_time_point
+##    &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;              
+##  1 RPMI         0     0.0587 &lt;NA&gt;               
+##  2 RPMI         1     0.162  &lt;NA&gt;               
+##  3 RPMI         2     0.397  exp.               
+##  4 RPMI         2.3   0.478  &lt;NA&gt;               
+##  5 RPMI         3     0.671  trans.             
+##  6 RPMI         4     0.746  early stat.        
+##  7 RPMI         5     0.811  &lt;NA&gt;               
+##  8 RPMI         6     0.874  &lt;NA&gt;               
+##  9 RPMI         7     0.960  &lt;NA&gt;               
+## 10 RPMI         8     1.01   late stat.         
+## # … with 12 more rows</code></pre>
+<pre class="r"><code>#now we can add out labels to the plot
+  # the plot is already ready (assigned to final_plot) and you can review the plot using &quot;final_plot&quot;
+final_plot</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<pre class="r"><code> #small hint: since ggplot2 version 3.0 its possible to assign tags to plots
+final_plot+labs(tag = &quot;a)&quot;)</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre class="r"><code>final_plot+
+  geom_text(data = final_plot_label_data,mapping = aes(x = `Zeit (h)`,y = OD_label,label=sampling_time_point),nudge_y=0.05,inherit.aes = F) #adding text label</code></pre>
+<pre><code>## Warning: Removed 14 rows containing missing values (geom_text).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-24-1.png" width="960" /></p>
+<pre class="r"><code>#nudge_y .... vertical adjustment to nudge labels
+  #inherit.aes .... If FALSE, overrides the default aesthetics, rather than combining with them. This is most useful for helper functions that define both 
+                    #data and aesthetics and shouldn&#39;t inherit behaviour from the default plot specification, e.g. borders().</code></pre>
+<pre class="r"><code>final_plot+
+  geom_label(data = final_plot_label_data,mapping = aes(x = `Zeit (h)`,y = OD_label,label=sampling_time_point),nudge_y=0.05,inherit.aes = F,alpha=0.5) #adding label</code></pre>
+<pre><code>## Warning: Removed 14 rows containing missing values (geom_label).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-25-1.png" width="960" /></p>
+</div>
+</div>
+<div id="test-growth-data---statistical-significant-differences" class="section level2">
+<h2>Test growth data - statistical significant differences</h2>
+<div id="statistical-testing" class="section level3">
+<h3>statistical testing</h3>
+<p>To test for statistical significant differences we use the <strong>ggpubr</strong> (publication ready plots) package (<a href="http://www.sthda.com/english/rpkgs/ggpubr/">ggpubr package</a>) which is extremly powerful and easy to use. (<a href="http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/">online examples - ggpubr</a>)</p>
+<pre class="r"><code>suppressMessages(library(ggpubr)) #load ggpubr package
+
+#use compare_means() function from ggpubr package
+
+#since ggpubr has problems with &quot; &quot; etc. in column name we rename the time column to &quot;time_in_h&quot;
+growth_tibble_col_formatted &lt;- growth_tibble %&gt;% rename(time_in_h = `Zeit (h)`) #rename() function --&gt; rename column header
+#check result
+  growth_tibble_col_formatted</code></pre>
+<pre><code>## # A tibble: 132 x 6
+##    time_in_h replicates    OD media_strain media strain
+##        &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; 
+##  1       0   BR1        0.055 RPMI_HG001   RPMI  HG001 
+##  2       1   BR1        0.156 RPMI_HG001   RPMI  HG001 
+##  3       2   BR1        0.38  RPMI_HG001   RPMI  HG001 
+##  4       2.3 BR1        0.48  RPMI_HG001   RPMI  HG001 
+##  5       3   BR1        0.66  RPMI_HG001   RPMI  HG001 
+##  6       4   BR1        0.73  RPMI_HG001   RPMI  HG001 
+##  7       5   BR1        0.8   RPMI_HG001   RPMI  HG001 
+##  8       6   BR1        0.84  RPMI_HG001   RPMI  HG001 
+##  9       7   BR1        0.91  RPMI_HG001   RPMI  HG001 
+## 10       8   BR1        0.98  RPMI_HG001   RPMI  HG001 
+## # … with 122 more rows</code></pre>
+<pre class="r"><code>#now compare means with a t-test
+growth_tibble_stats &lt;- compare_means(data = growth_tibble_col_formatted,formula = OD ~ media_strain,method = &quot;t.test&quot;,p.adjust.method = &quot;BH&quot;,group.by = &quot;time_in_h&quot;)
+        #formula ....   formula of the form x ~ group where x is a numeric variable giving the data values and group is a factor with one or multiple levels                         giving the corresponding groups. For example, formula = TP53 ~ cancer_group.
+#look at stats
+growth_tibble_stats</code></pre>
+<pre><code>## # A tibble: 58 x 9
+##    time_in_h .y.   group1     group2           p  p.adj p.format p.signif method
+##        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+##  1         0 OD    RPMI_HG001 RPMI_rho_… 0.0474  0.067  0.04742  *        T-test
+##  2         0 OD    RPMI_HG001 TSB_HG001  0.0326  0.051  0.03257  *        T-test
+##  3         0 OD    RPMI_HG001 TSB_rho_m… 0.495   0.55   0.49545  ns       T-test
+##  4         0 OD    RPMI_rho_… TSB_HG001  0.581   0.64   0.58131  ns       T-test
+##  5         0 OD    RPMI_rho_… TSB_rho_m… 0.722   0.75   0.72212  ns       T-test
+##  6         0 OD    TSB_HG001  TSB_rho_m… 0.594   0.64   0.59428  ns       T-test
+##  7         1 OD    RPMI_HG001 RPMI_rho_… 0.0647  0.085  0.06473  ns       T-test
+##  8         1 OD    RPMI_HG001 TSB_HG001  0.0268  0.044  0.02677  *        T-test
+##  9         1 OD    RPMI_HG001 TSB_rho_m… 0.00274 0.0072 0.00274  **       T-test
+## 10         1 OD    RPMI_rho_… TSB_HG001  0.00956 0.018  0.00956  **       T-test
+## # … with 48 more rows</code></pre>
+<p>The test was performed using <code>media_strain</code> as group variable for the test and the test was grouped by the <code>time_in_h</code> variable. This results also in comparisons, which are not necessary meaningful. Since the growth in different media is obviously different and testing for that is not very meaningful. Therefore we will split our data into <em>RPMI</em> and <em>TSB</em> data and test them seperately. We can now use the <code>filter()</code> function from the <strong>dplyr</strong> package to filter the compare_means result for only significant changed ones.</p>
+<p><img src="figures/dplyr_filter.png" />{width=“400px”,align=“center”}</p>
+<pre class="r"><code>#test growth in RPMI
+growth_tibble_stats_RPMI &lt;- growth_tibble_col_formatted %&gt;% 
+                            filter(media==&quot;RPMI&quot;) %&gt;% 
+                            compare_means(formula = OD ~ strain,method = &quot;t.test&quot;,p.adjust.method = &quot;BH&quot;,group.by = &quot;time_in_h&quot;)
+growth_tibble_stats_RPMI</code></pre>
+<pre><code>## # A tibble: 11 x 9
+##    time_in_h .y.   group1 group2          p p.adj p.format p.signif method
+##        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+##  1       0   OD    HG001  rho_mutant 0.0474  0.12 0.047    *        T-test
+##  2       1   OD    HG001  rho_mutant 0.0647  0.12 0.065    ns       T-test
+##  3       2   OD    HG001  rho_mutant 0.0572  0.12 0.057    ns       T-test
+##  4       2.3 OD    HG001  rho_mutant 0.0335  0.12 0.033    *        T-test
+##  5       3   OD    HG001  rho_mutant 0.0115  0.12 0.012    *        T-test
+##  6       4   OD    HG001  rho_mutant 0.357   0.39 0.357    ns       T-test
+##  7       5   OD    HG001  rho_mutant 0.338   0.39 0.338    ns       T-test
+##  8       6   OD    HG001  rho_mutant 0.0455  0.12 0.046    *        T-test
+##  9       7   OD    HG001  rho_mutant 0.270   0.37 0.270    ns       T-test
+## 10       8   OD    HG001  rho_mutant 0.232   0.36 0.232    ns       T-test
+## 11       8.5 OD    HG001  rho_mutant 1       1    1.000    ns       T-test</code></pre>
+<pre class="r"><code>#test growth in TSB
+growth_tibble_stats_TSB &lt;- growth_tibble_col_formatted %&gt;% 
+                            filter(media==&quot;TSB&quot;) %&gt;% 
+                            compare_means(formula = OD ~ strain,method = &quot;t.test&quot;,p.adjust.method = &quot;BH&quot;,group.by = &quot;time_in_h&quot;)
+growth_tibble_stats_TSB</code></pre>
+<pre><code>## # A tibble: 11 x 9
+##    time_in_h .y.   group1 group2           p p.adj p.format p.signif method
+##        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+##  1       0   OD    HG001  rho_mutant 0.594   0.73  0.5943   ns       T-test
+##  2       1   OD    HG001  rho_mutant 0.0561  0.12  0.0561   ns       T-test
+##  3       1.3 OD    HG001  rho_mutant 0.295   0.46  0.2949   ns       T-test
+##  4       2   OD    HG001  rho_mutant 0.362   0.5   0.3619   ns       T-test
+##  5       3   OD    HG001  rho_mutant 0.668   0.74  0.6682   ns       T-test
+##  6       4   OD    HG001  rho_mutant 0.753   0.75  0.7532   ns       T-test
+##  7       5   OD    HG001  rho_mutant 0.00753 0.083 0.0075   **       T-test
+##  8       6   OD    HG001  rho_mutant 0.0185  0.1   0.0185   *        T-test
+##  9       7   OD    HG001  rho_mutant 0.0998  0.18  0.0998   ns       T-test
+## 10       8   OD    HG001  rho_mutant 0.0362  0.1   0.0362   *        T-test
+## 11       9   OD    HG001  rho_mutant 0.0332  0.1   0.0332   *        T-test</code></pre>
+</div>
+<div id="add-significance-indication-to-plot" class="section level3">
+<h3>Add significance indication to plot</h3>
+<p>And finally lets highlight significant results in our plot with &quot;*&quot;.</p>
+<p>Although the differences are very small due to only very low variations over biological replicates these minor differences are significant. But the fold-change is very very small.</p>
+<pre class="r"><code>suppressMessages(library(gtools)) #load gtools packge for stars.pval() function
+suppressMessages(library(ggrepel)) #load ggrepel package for non-overlapping text and labels
+
+#add media column
+growth_tibble_stats_TSB$media &lt;- &quot;TSB&quot;
+growth_tibble_stats_RPMI$media &lt;- &quot;RPMI&quot;
+
+#binding both tibbles together via rows
+growth_tibble_stats_final &lt;- bind_rows(growth_tibble_stats_TSB,growth_tibble_stats_RPMI)
+
+#add OD max values per time
+growth_tibble_stats_final &lt;- left_join(growth_tibble_stats_final,final_plot_label_data %&gt;% rename(time_in_h = `Zeit (h)`),by = c(&quot;media&quot;,&quot;time_in_h&quot;))
+#create new column and assign &quot;stars&quot; to adjusted p-value 
+growth_tibble_stats_final$p.adj.signif&lt;-stars.pval(growth_tibble_stats_final$p.adj)
+
+growth_tibble_stats_final</code></pre>
+<pre><code>## # A tibble: 22 x 13
+##    time_in_h .y.   group1 group2       p p.adj p.format p.signif method media
+##        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;
+##  1       0   OD    HG001  rho_m… 0.594   0.73  0.5943   ns       T-test TSB  
+##  2       1   OD    HG001  rho_m… 0.0561  0.12  0.0561   ns       T-test TSB  
+##  3       1.3 OD    HG001  rho_m… 0.295   0.46  0.2949   ns       T-test TSB  
+##  4       2   OD    HG001  rho_m… 0.362   0.5   0.3619   ns       T-test TSB  
+##  5       3   OD    HG001  rho_m… 0.668   0.74  0.6682   ns       T-test TSB  
+##  6       4   OD    HG001  rho_m… 0.753   0.75  0.7532   ns       T-test TSB  
+##  7       5   OD    HG001  rho_m… 0.00753 0.083 0.0075   **       T-test TSB  
+##  8       6   OD    HG001  rho_m… 0.0185  0.1   0.0185   *        T-test TSB  
+##  9       7   OD    HG001  rho_m… 0.0998  0.18  0.0998   ns       T-test TSB  
+## 10       8   OD    HG001  rho_m… 0.0362  0.1   0.0362   *        T-test TSB  
+## # … with 12 more rows, and 3 more variables: OD_label &lt;dbl&gt;,
+## #   sampling_time_point &lt;chr&gt;, p.adj.signif &lt;chr&gt;</code></pre>
+<pre class="r"><code>#you can use write_delim() function to write statistics on hard drive as extra file
+    # write_delim(x = growth_tibble_stats_final,path = &quot;growth_curve_statistics.txt&quot;,delim = &quot;\t&quot;,col_names = T)
+
+#signs with adjusted p-value
+final_plot+
+  geom_label(data = final_plot_label_data,mapping = aes(x = `Zeit (h)`,y = OD_label,label=sampling_time_point),nudge_y=0.05,inherit.aes = F,alpha=0.5)+
+  geom_text(data = growth_tibble_stats_final,mapping = aes(x = time_in_h,y = OD_label,label=p.adj.signif),nudge_y=-0.08,inherit.aes = F,size=10)+
+  labs(caption=&quot;adjusted p-value&quot;)</code></pre>
+<pre><code>## Warning: Removed 14 rows containing missing values (geom_label).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-28-1.png" width="960" /></p>
+<pre class="r"><code>#signs with un-adjusted p-value
+final_plot+
+  geom_label(data = final_plot_label_data,mapping = aes(x = `Zeit (h)`,y = OD_label,label=sampling_time_point),nudge_y=0.05,inherit.aes = F,alpha=0.5)+
+  geom_text_repel(data = growth_tibble_stats_final,mapping = aes(x = time_in_h,y = OD_label,label=p.signif),nudge_y=-0.1,inherit.aes = F,size=4)+ #geom_text_repel from ggrepel package
+  labs(caption=&quot;un-adjusted p-value&quot;)</code></pre>
+<pre><code>## Warning: Removed 14 rows containing missing values (geom_label).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-28-2.png" width="960" /></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
