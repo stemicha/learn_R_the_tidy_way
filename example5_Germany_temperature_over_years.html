@@ -11,34 +11,118 @@
 
 
 
-<title>example5_Germany_temperature_over_years.utf8</title>
+<title>Examples</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #232629;
+    color: #7a7c7d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+div.sourceCode
+  { color: #cfcfc2; background-color: #232629; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; } /* Error */
+code span.ex { color: #0099ff; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
 
 
 <style type="text/css">
@@ -68,6 +152,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="custom.css" type="text/css" />
 
 
 
@@ -102,33 +187,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 45px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .dropdown-submenu {
   position: relative;
@@ -248,6 +333,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -255,6 +403,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -271,11 +429,35 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="index.html">R general</a>
 </li>
-<li>
-  <a href="examples_general.html">Examples</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="useful_packages.html">useful packages</a>
@@ -286,9 +468,12 @@ $(document).ready(function () {
 <li>
   <a href="books.html">Books</a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -298,25 +483,37 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Examples</h1>
 
 </div>
 
 
-<div id="example-5-plot-data-to-map" class="section level1">
-<h1>Example 5: plot data to map</h1>
+<style>
+a:link {
+    color: #BC0203;
+}
+a:visited {
+    color: #007127;
+}
+ a:hover {
+    color: #E70203;
+}
+</style>
+<div id="example-5-plot-temperature-data-to-map" class="section level1">
+<h1><span class="header-section-number">1</span> Example 5: plot temperature data to map</h1>
 <p>The data is obtained from the DWD. (<a href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/annual/air_temperature_mean/" class="uri">https://opendata.dwd.de/climate_environment/CDC/grids_germany/annual/air_temperature_mean/</a>)</p>
 <div id="load-geographical-data-temperature-data-from-one-year" class="section level2">
-<h2>load geographical data + temperature data from one year</h2>
-<pre class="r"><code>library(adehabitatMA)</code></pre>
+<h2><span class="header-section-number">1.1</span> load geographical data + temperature data from one year</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(adehabitatMA)</a></code></pre></div>
 <pre><code>## Loading required package: sp</code></pre>
 <pre><code>## Registered S3 methods overwritten by &#39;adehabitatMA&#39;:
 ##   method                       from
 ##   print.SpatialPixelsDataFrame sp  
 ##   print.SpatialPixels          sp</code></pre>
-<pre class="r"><code>library(tidyverse)
-#devtools::install_github(&quot;cran/SDMTools&quot;)
-library(SDMTools)
-library(raster)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#devtools::install_github(&quot;cran/SDMTools&quot;)</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">library</span>(SDMTools)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">library</span>(raster)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;raster&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:SDMTools&#39;:
@@ -343,18 +540,18 @@ library(raster)</code></pre>
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<pre class="r"><code>library(scales)
-
-temperature_2000 &lt;-  
-    read.asc.gz(file = &quot;materials/Germany_temperature/grids_germany_annual_air_temp_mean_201017.asc.gz&quot;) %&gt;%
-    raster() %&gt;%
-    rasterToPoints() %&gt;% 
-    data.frame() %&gt;%
-    transmute(longitude = x,
-              latitude = y,
-              temperature = layer/10)
-
-summary(temperature_2000)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(scales)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">temperature_<span class="dv">2000</span> &lt;-<span class="st">  </span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">    </span><span class="kw">read.asc.gz</span>(<span class="dt">file =</span> <span class="st">&quot;materials/Germany_temperature/grids_germany_annual_air_temp_mean_201017.asc.gz&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">    </span><span class="kw">raster</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="st">    </span><span class="kw">rasterToPoints</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="st">    </span><span class="kw">data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="st">    </span><span class="kw">transmute</span>(<span class="dt">longitude =</span> x,</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">              <span class="dt">latitude =</span> y,</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">              <span class="dt">temperature =</span> layer<span class="op">/</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="kw">summary</span>(temperature_<span class="dv">2000</span>)</a></code></pre></div>
 <pre><code>##    longitude          latitude        temperature   
 ##  Min.   :3280915   Min.   :5238001   Min.   :-4.70  
 ##  1st Qu.:3480915   1st Qu.:5485001   1st Qu.: 7.50  
@@ -364,32 +561,32 @@ summary(temperature_2000)</code></pre>
 ##  Max.   :3919915   Max.   :6103001   Max.   :10.30</code></pre>
 </div>
 <div id="plot-annual-mean-temperature" class="section level2">
-<h2>plot Annual mean temperature</h2>
-<pre class="r"><code>ggplot(data = temperature_2000) +
-    geom_raster(aes(x = longitude,
-                    y = latitude,
-                    fill = temperature)) +
-    theme_void() +
-    coord_equal() +
-    labs(fill = &quot;Annual mean temperature&quot;) +
-    theme(legend.position = &quot;bottom&quot;) </code></pre>
+<h2><span class="header-section-number">1.2</span> plot Annual mean temperature</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> temperature_<span class="dv">2000</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">x =</span> longitude,</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">                    <span class="dt">y =</span> latitude,</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">                    <span class="dt">fill =</span> temperature)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="st">    </span><span class="kw">coord_equal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Annual mean temperature&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) </a></code></pre></div>
 <p><img src="example5_Germany_temperature_over_years_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="load-geographical-data-temperature-data-from-all-years-available" class="section level2">
-<h2>load geographical data + temperature data from ALL years available</h2>
-<pre class="r"><code>temperature_all &lt;-  
-    list.files(path = &quot;materials/Germany_temperature/&quot;,pattern = &quot;grids_germany_annual_air_temp_mean&quot;, recursive = TRUE,full.names = T) %&gt;%
-    lapply(function(x) read.asc.gz(x) %&gt;%
-               raster() %&gt;%
-               rasterToPoints() %&gt;% 
-               data.frame()) %&gt;%
-    bind_rows(.id = &quot;year&quot;) %&gt;%
-    transmute(year = as.numeric(year) + 1880,
-              longitude = x,
-              latitude = y,
-              temperature = layer/10)
-
-summary(temperature_all)</code></pre>
+<h2><span class="header-section-number">1.3</span> load geographical data + temperature data from ALL years available</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">temperature_all &lt;-<span class="st">  </span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">    </span><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;materials/Germany_temperature/&quot;</span>,<span class="dt">pattern =</span> <span class="st">&quot;grids_germany_annual_air_temp_mean&quot;</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>,<span class="dt">full.names =</span> T) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">    </span><span class="kw">lapply</span>(<span class="cf">function</span>(x) <span class="kw">read.asc.gz</span>(x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">               </span><span class="kw">raster</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">               </span><span class="kw">rasterToPoints</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="st">               </span><span class="kw">data.frame</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="st">    </span><span class="kw">bind_rows</span>(<span class="dt">.id =</span> <span class="st">&quot;year&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="st">    </span><span class="kw">transmute</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year) <span class="op">+</span><span class="st"> </span><span class="dv">1880</span>,</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">              <span class="dt">longitude =</span> x,</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">              <span class="dt">latitude =</span> y,</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">              <span class="dt">temperature =</span> layer<span class="op">/</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="kw">summary</span>(temperature_all)</a></code></pre></div>
 <pre><code>##       year        longitude          latitude        temperature   
 ##  Min.   :1881   Min.   :3280915   Min.   :5238001   Min.   :-5.60  
 ##  1st Qu.:1915   1st Qu.:3480915   1st Qu.:5485001   1st Qu.: 7.60  
@@ -399,62 +596,62 @@ summary(temperature_all)</code></pre>
 ##  Max.   :2018   Max.   :3919915   Max.   :6103001   Max.   :13.40</code></pre>
 </div>
 <div id="setup-a-reference-temperature" class="section level2">
-<h2>setup a reference temperature</h2>
+<h2><span class="header-section-number">1.4</span> setup a reference temperature</h2>
 <p>Here the reference temperature is set by using the mean over the temperature from 1971 to 2000.</p>
-<pre class="r"><code>reference_temperature &lt;-  
-    temperature_all %&gt;%
-    filter(year &gt;= 1971 &amp; year &lt;= 2000) %&gt;%
-    group_by(longitude, latitude) %&gt;%
-    summarise(reference_temperature = mean(temperature, na.rm = TRUE),
-              reference_sd = sd(temperature, na.rm = TRUE)) %&gt;%
-    ungroup()
-
-summary(reference_temperature$reference_temperature)</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">reference_temperature &lt;-<span class="st">  </span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">    </span>temperature_all <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1971</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2000</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">    </span><span class="kw">group_by</span>(longitude, latitude) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">reference_temperature =</span> <span class="kw">mean</span>(temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">              <span class="dt">reference_sd =</span> <span class="kw">sd</span>(temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="st">    </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="kw">summary</span>(reference_temperature<span class="op">$</span>reference_temperature)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   -4.02    8.15    8.66    8.58    9.18   11.26</code></pre>
 </div>
 <div id="calculate-temperature-difference-from-reference-temperature" class="section level2">
-<h2>calculate temperature difference from reference temperature</h2>
-<pre class="r"><code>deviation_temperature &lt;- 
-    temperature_all %&gt;%
-    left_join(reference_temperature,
-              by = c(&quot;longitude&quot;, &quot;latitude&quot;)) %&gt;%
-    mutate(deviation_mean = temperature - reference_temperature,
-           deviation_sd = deviation_mean/reference_sd)
-           
-summary(deviation_temperature$deviation_sd)</code></pre>
+<h2><span class="header-section-number">1.5</span> calculate temperature difference from reference temperature</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">deviation_temperature &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">    </span>temperature_all <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">    </span><span class="kw">left_join</span>(reference_temperature,</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">              <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">deviation_mean =</span> temperature <span class="op">-</span><span class="st"> </span>reference_temperature,</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">           <span class="dt">deviation_sd =</span> deviation_mean<span class="op">/</span>reference_sd)</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">           </a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="kw">summary</span>(deviation_temperature<span class="op">$</span>deviation_sd)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   -4.78   -1.08   -0.27   -0.26    0.50    7.11</code></pre>
 </div>
 <div id="plot-difference-by-year" class="section level2">
-<h2>plot difference by year</h2>
-<pre class="r"><code>#plot
-ggplot(deviation_temperature) +
-    geom_raster(aes(x = longitude,
-                    y = latitude,
-                    fill = deviation_sd)) +
-    facet_wrap(~ year,
-               nrow = 7) +
-    scale_fill_gradient2(low = &quot;#176fb6&quot;,
-                         mid = &quot;#dfecf7&quot;,
-                         high = &quot;#cc1017&quot;,
-                         limits = c(-2.6, 2.6),
-                         oob = squish) +
-    theme_void() +
-    coord_equal() +
-    theme(legend.position = &quot;bottom&quot;)</code></pre>
+<h2><span class="header-section-number">1.6</span> plot difference by year</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">#plot</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">ggplot</span>(deviation_temperature) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">x =</span> longitude,</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">                    <span class="dt">y =</span> latitude,</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">                    <span class="dt">fill =</span> deviation_sd)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>year,</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">               <span class="dt">nrow =</span> <span class="dv">7</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="st">    </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;#176fb6&quot;</span>,</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">                         <span class="dt">mid =</span> <span class="st">&quot;#dfecf7&quot;</span>,</a>
+<a class="sourceLine" id="cb23-10" data-line-number="10">                         <span class="dt">high =</span> <span class="st">&quot;#cc1017&quot;</span>,</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">                         <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.6</span>, <span class="fl">2.6</span>),</a>
+<a class="sourceLine" id="cb23-12" data-line-number="12">                         <span class="dt">oob =</span> squish) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-13" data-line-number="13"><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-14" data-line-number="14"><span class="st">    </span><span class="kw">coord_equal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-15" data-line-number="15"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
 <p><img src="example5_Germany_temperature_over_years_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="generate-and-plot-warming-strip" class="section level2">
-<h2>generate and plot warming strip</h2>
-<pre class="r"><code>germany_warming_stripe &lt;-  
-    deviation_temperature %&gt;%
-    group_by(year) %&gt;%
-    summarise(germany_sd = mean(deviation_sd, na.rm = TRUE)) %&gt;%
-    ungroup() %&gt;%
-    mutate(dummy = 1)
-
-summary(germany_warming_stripe)</code></pre>
+<h2><span class="header-section-number">1.7</span> generate and plot warming strip</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">germany_warming_stripe &lt;-<span class="st">  </span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">    </span>deviation_temperature <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">    </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">germany_sd =</span> <span class="kw">mean</span>(deviation_sd, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">dummy =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb24-8" data-line-number="8"><span class="kw">summary</span>(germany_warming_stripe)</a></code></pre></div>
 <pre><code>##       year        germany_sd         dummy  
 ##  Min.   :1881   Min.   :-2.495   Min.   :1  
 ##  1st Qu.:1915   1st Qu.:-1.097   1st Qu.:1  
@@ -462,24 +659,26 @@ summary(germany_warming_stripe)</code></pre>
 ##  Mean   :1950   Mean   :-0.262   Mean   :1  
 ##  3rd Qu.:1984   3rd Qu.: 0.461   3rd Qu.:1  
 ##  Max.   :2018   Max.   : 2.468   Max.   :1</code></pre>
-<pre class="r"><code>ggplot(data = germany_warming_stripe) + 
-    geom_col(aes(x = year,
-                 y = dummy,
-                 fill = germany_sd),
-             width = 1) +
-    scale_fill_gradient2(low = &quot;#176fb6&quot;,
-                         mid = &quot;#dfecf7&quot;,
-                         high = &quot;#cc1017&quot;,
-                         limits = c(-2.6, 2.6),
-                         oob = squish) +
-    theme_void() +
-    theme(legend.position = &quot;bottom&quot;)</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> germany_warming_stripe) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">                 <span class="dt">y =</span> dummy,</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">                 <span class="dt">fill =</span> germany_sd),</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">             <span class="dt">width =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="st">    </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;#176fb6&quot;</span>,</a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">                         <span class="dt">mid =</span> <span class="st">&quot;#dfecf7&quot;</span>,</a>
+<a class="sourceLine" id="cb26-8" data-line-number="8">                         <span class="dt">high =</span> <span class="st">&quot;#cc1017&quot;</span>,</a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">                         <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.6</span>, <span class="fl">2.6</span>),</a>
+<a class="sourceLine" id="cb26-10" data-line-number="10">                         <span class="dt">oob =</span> squish) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-12" data-line-number="12"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
 <p><img src="example5_Germany_temperature_over_years_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -512,6 +711,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

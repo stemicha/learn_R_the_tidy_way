@@ -22,6 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -271,11 +273,35 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="index.html">R general</a>
 </li>
-<li>
-  <a href="examples_general.html">Examples</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="useful_packages.html">useful packages</a>
@@ -286,9 +312,12 @@ $(document).ready(function () {
 <li>
   <a href="books.html">Books</a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
