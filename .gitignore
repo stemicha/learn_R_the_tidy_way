@@ -3,3 +3,14 @@
 .RData
 .Ruserdata
 .DS_Store
+*.Rmd
+ROPECA_stat_testing.R
+R_course___learn_R_the_tidy_way__Michalik.Rproj
+R_course___learn_R_the_tidy_way__Michalik__git.Rproj
+index_cache
+understanding_ROPECA_limma.R
+peptide_data.txt
+exampleXX_suppl01_Germany_temperature_over_years.html
+*.DS_Store
+books copy.bak
+code.R
