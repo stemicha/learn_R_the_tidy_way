@@ -388,7 +388,91 @@ dayone</code></pre>
 </div>
 <div id="messy-data-to-tidy-data" class="section level1">
 <h1>“Messy data” to tidy data !!!</h1>
+<ul>
+<li>old functions</li>
+</ul>
 <p><img src="figures/tidy_data_reshape.png" width="600" /></p>
+<ul>
+<li><p><strong>new functions since tidyr v1.0.0:</strong></p>
+<ul>
+<li><code>pivot_wider()</code></li>
+<li><code>pivot_longer()</code></li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="figures/tidy_data_frame__pivot_functions.gif" alt="reshape data frame" />
+<p class="caption">reshape data frame</p>
+</div>
+<div id="pivot_longer" class="section level2">
+<h2>pivot_longer()</h2>
+<p><code>pivot_longer(data, cols, names_to = &quot;name&quot;, values_to = &quot;value&quot;, ...)</code></p>
+<p>some arguments:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>argument</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>data</td>
+<td>a data frame to pivot</td>
+</tr>
+<tr class="even">
+<td>cols</td>
+<td>Columns to pivot into longer format</td>
+</tr>
+<tr class="odd">
+<td>names_to</td>
+<td>A string specifying the name of the column to create from the data stored in the column names of data</td>
+</tr>
+<tr class="even">
+<td>values_to</td>
+<td>A string specifying the name of the column to create from the data stored in cell values.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="pivot_wider" class="section level2">
+<h2>pivot_wider()</h2>
+<p><code>pivot_wider(data, id_cols, names_from = name, values_from = value, ...)</code></p>
+<p>some arguments:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>argument</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>data</td>
+<td>a data frame to pivot</td>
+</tr>
+<tr class="even">
+<td>id_cols</td>
+<td>A set of columns that uniquely identifies each observation. Defaults to all columns in data except for the columns specified in names_from and values_from.</td>
+</tr>
+<tr class="odd">
+<td>names_from</td>
+<td>argument describing which column (or columns) to get the name of the output column (name_from)</td>
+</tr>
+<tr class="even">
+<td>values_from</td>
+<td>argument describing which column (or columns) to get the value of the output column (values_from)</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="tidy" class="section level1">
 <h1>The Tidyverse (+ others)</h1>
