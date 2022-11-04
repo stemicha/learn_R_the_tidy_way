@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>useful_packages___gganatogram.knit</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="gganatogram-package" class="section level2">
+<h2><code>gganatogram</code> package</h2>
+<p>The gganatogram function of the package of the same name can be used
+to create anatogram atlases.</p>
+<p>The package comes with four data sets:</p>
+<ul>
+<li>hgMale_key</li>
+<li>hgMale_key</li>
+<li>cell_key</li>
+<li>other_key.</li>
+</ul>
+<blockquote>
+<p>Note: that you can also create your own data frame.</p>
+</blockquote>
+<div id="installation" class="section level3">
+<h3>Installation</h3>
+<pre reval="F,message=F"><code>#install gganatogram
+install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;jespermaag/gganatogram&quot;)</code></pre>
+</div>
+<div id="male" class="section level3">
+<h3>Male</h3>
+<pre class="r"><code>library(tidyverse)
+library(gganatogram)
+
+# plot male human
+gganatogram(data = hgMale_key,
+            organism = &quot;human&quot;, sex = &quot;male&quot;,
+            fill = &quot;colour&quot;, fillOutline = &quot;#FFCDD2&quot;) +
+  theme_void() + 
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="female" class="section level3">
+<h3>Female</h3>
+<p>The process for creating a human female anatogram is analogous to the
+male anatogram, but passing the <code>hgFemale_key</code> data frame and
+specifying <code>sex = "female"</code>.</p>
+<pre class="r"><code>library(gganatogram)
+
+gganatogram(data = hgFemale_key,
+            organism = &quot;human&quot;, sex = &quot;female&quot;,
+            fill = &quot;colour&quot;, fillOutline = &quot;#FFCDD2&quot;) +
+  theme_void() + 
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="zoom" class="section level3">
+<h3>Zoom</h3>
+<p>In case you need to make zoom to a specific part of the anatogram you
+can use <code>coord_cartesian</code>. Recall to remove the
+<code>theme_void</code> if you want to see the axes values.</p>
+<pre class="r"><code>library(gganatogram)
+
+gganatogram(data = hgMale_key,
+            organism = &quot;human&quot;, sex = &quot;male&quot;,
+            fill = &quot;colour&quot;, fillOutline = &quot;#a6bddb&quot;) +
+  coord_cartesian(xlim = c(30, 75), ylim = c(-40, 0)) +
+  theme_void()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="systems" class="section level3">
+<h3>Systems</h3>
+<p>The default plot displays all the body systems, but you can specify
+only some of them. You can also set <code>outline = FALSE</code> to only
+plot the systems. Type <code>hgMale_key$type</code> or
+<code>hgFemale_key$type</code> to see the available options.</p>
+<pre class="r"><code>library(gganatogram)
+library(dplyr)
+
+hgMale_key %&gt;%
+  filter(type %in% &quot;nervous_system&quot;) %&gt;%
+  gganatogram(organism = &quot;human&quot;, sex = &quot;male&quot;,
+              fill = &quot;colour&quot;, outline = FALSE) +
+  theme_void() + 
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="organs" class="section level3">
+<h3>Organs</h3>
+<p>Similarly to plotting some systems you can plot only some organs.
+Type <code>hgMale_key$organ</code> or <code>hgFemale_key$organ</code>
+for a list containing the organ names.</p>
+<pre class="r"><code>library(gganatogram)
+library(dplyr)
+
+# display brain and heart
+hgMale_key %&gt;%
+  filter(organ %in% c(&quot;brain&quot;, &quot;heart&quot;)) %&gt;%
+  gganatogram(organism = &quot;human&quot;, sex = &quot;male&quot;,
+              fill = &quot;colour&quot;) +
+  theme_void() + 
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="color-scale" class="section level3">
+<h3>Color scale</h3>
+<p>The color scale can be customized based on the values column of the
+data frames and adding a continuous color scale, such as viridis.</p>
+<pre class="r"><code>library(gganatogram)
+
+# use the demo value or if you have your own data just merge it to the data frame before plotting
+gganatogram(data = hgMale_key,
+            organism = &quot;human&quot;, sex = &quot;male&quot;,
+            fill = &quot;value&quot;,
+            fillOutline = &quot;#a6bddb&quot;) +
+  theme_void() + 
+  scale_fill_viridis_c() +
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="other-organisms" class="section level3">
+<h3>Other organisms</h3>
+<p>You can also specify more organisms, such as mice, cells and other
+animal species. Note that you can apply the same customization to the
+following anatograms that the ones described in the previous
+section.</p>
+<div id="mouse" class="section level4">
+<h4>mouse</h4>
+<pre class="r"><code>library(gganatogram)
+# plot mouse gganatogram
+gganatogram(data = mmFemale_key,
+            organism = &quot;mouse&quot;, sex = &quot;female&quot;, 
+            fillOutline = &quot;#a6bddb&quot;, fill = &quot;colour&quot;) +
+  theme_void() +
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="cell" class="section level4">
+<h4>cell</h4>
+<pre class="r"><code>library(gganatogram)
+# plot cell gganatogram
+gganatogram(data = cell_key$cell,
+            organism = &quot;cell&quot;,
+            fillOutline = &quot;#a6bddb&quot;, fill = &quot;colour&quot;) +
+  theme_void() +
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="other_key" class="section level4">
+<h4>other_key</h4>
+<p>The other_key list contains 24 data frames with different organisms.
+In the following examples we selected some of them but recall that there
+are more options available to choose.</p>
+<pre><code>## # A tibble: 24 × 1
+##    value                               
+##    &lt;chr&gt;                               
+##  1 anolis_carolinensis                 
+##  2 arabidopsis_thaliana                
+##  3 bos_taurus                          
+##  4 brachypodium_distachyon.flower_parts
+##  5 brachypodium_distachyon.whole_plant 
+##  6 gallus_gallus                       
+##  7 hordeum_vulgare.flower_parts        
+##  8 hordeum_vulgare.whole_plant         
+##  9 macaca_mulatta                      
+## 10 monodelphis_domestica               
+## # … with 14 more rows</code></pre>
+<pre class="r"><code>library(gganatogram)
+# plot Bos taurus gganatogram
+gganatogram(data = other_key$bos_taurus,
+            organism = &quot;bos_taurus&quot;, sex = &quot;male&quot;,
+            fillOutline = &quot;#a6bddb&quot;, fill = &quot;colour&quot;) +
+  theme_void() +
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>library(gganatogram)
+# plot Gallus gallus gganatogram
+gganatogram(data = other_key$gallus_gallus,
+            organism = &quot;gallus_gallus&quot;, sex = &quot;male&quot;,
+            fillOutline = &quot;#a6bddb&quot;, fill = &quot;colour&quot;) +
+  theme_void() +
+  coord_fixed()</code></pre>
+<p><img src="useful_packages___gganatogram_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced R</title>
+  <meta name="description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side.">
+  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://adv-r.hadley.nz/" />
+  <meta property="og:image" content="http://adv-r.hadley.nz/cover.png" />
+  <meta property="og:description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side." />
+  <meta name="github-repo" content="hadley/adv-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced R" />
+  <meta name="twitter:site" content="@hadley" />
+  <meta name="twitter:description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side." />
+  <meta name="twitter:image" content="http://adv-r.hadley.nz/cover.png" />
+
+<meta name="author" content="Hadley Wickham">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="environments.html">
+<link rel="next" href="functional-programming.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="adv-r.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Advanced R</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-books"><i class="fa fa-check"></i>Other books</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#who-should-read"><i class="fa fa-check"></i><b>1.1</b> Who should read this book</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-will-get"><i class="fa fa-check"></i><b>1.2</b> What you will get out of this book</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#meta-techniques"><i class="fa fa-check"></i><b>1.3</b> Meta-techniques</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#recommended-reading"><i class="fa fa-check"></i><b>1.4</b> Recommended reading</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting help</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#intro-ack"><i class="fa fa-check"></i><b>1.6</b> Acknowledgments</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#conventions"><i class="fa fa-check"></i><b>1.7</b> Conventions</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#colophon"><i class="fa fa-check"></i><b>1.8</b> Colophon</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>2.1.2</b> Lists</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data-structures.html"><a href="data-structures.html#exercises"><i class="fa fa-check"></i><b>2.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#attributes"><i class="fa fa-check"></i><b>2.2</b> Attributes</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-structures.html"><a href="data-structures.html#factors"><i class="fa fa-check"></i><b>2.2.1</b> Factors</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-structures.html"><a href="data-structures.html#exercises-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>2.3</b> Matrices and arrays</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-structures.html"><a href="data-structures.html#exercises-2"><i class="fa fa-check"></i><b>2.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>2.4</b> Data frames</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data-structures.html"><a href="data-structures.html#creation"><i class="fa fa-check"></i><b>2.4.1</b> Creation</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-structures.html"><a href="data-structures.html#testing-and-coercion"><i class="fa fa-check"></i><b>2.4.2</b> Testing and coercion</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data-structures.html"><a href="data-structures.html#combining-data-frames"><i class="fa fa-check"></i><b>2.4.3</b> Combining data frames</a></li>
+<li class="chapter" data-level="2.4.4" data-path="data-structures.html"><a href="data-structures.html#special-columns"><i class="fa fa-check"></i><b>2.4.4</b> Special columns</a></li>
+<li class="chapter" data-level="2.4.5" data-path="data-structures.html"><a href="data-structures.html#exercises-3"><i class="fa fa-check"></i><b>2.4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-structures.html"><a href="data-structures.html#data-structure-answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>3</b> Subsetting</a><ul>
+<li class="chapter" data-level="3.1" data-path="subsetting.html"><a href="subsetting.html#data-types"><i class="fa fa-check"></i><b>3.1</b> Data types</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>3.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="3.1.2" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>3.1.2</b> Lists</a></li>
+<li class="chapter" data-level="3.1.3" data-path="subsetting.html"><a href="subsetting.html#matrix-subsetting"><i class="fa fa-check"></i><b>3.1.3</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="3.1.4" data-path="subsetting.html"><a href="subsetting.html#df-subsetting"><i class="fa fa-check"></i><b>3.1.4</b> Data frames</a></li>
+<li class="chapter" data-level="3.1.5" data-path="subsetting.html"><a href="subsetting.html#s3-objects"><i class="fa fa-check"></i><b>3.1.5</b> S3 objects</a></li>
+<li class="chapter" data-level="3.1.6" data-path="subsetting.html"><a href="subsetting.html#s4-objects"><i class="fa fa-check"></i><b>3.1.6</b> S4 objects</a></li>
+<li class="chapter" data-level="3.1.7" data-path="subsetting.html"><a href="subsetting.html#exercises-4"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="subsetting.html"><a href="subsetting.html#subsetting-operators"><i class="fa fa-check"></i><b>3.2</b> Subsetting operators</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="subsetting.html"><a href="subsetting.html#simplify-preserve"><i class="fa fa-check"></i><b>3.2.1</b> Simplifying vs. preserving subsetting</a></li>
+<li class="chapter" data-level="3.2.2" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>3.2.2</b> <code>$</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>3.2.3</b> Missing/out of bounds indices</a></li>
+<li class="chapter" data-level="3.2.4" data-path="subsetting.html"><a href="subsetting.html#exercises-5"><i class="fa fa-check"></i><b>3.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>3.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="3.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>3.4</b> Applications</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables"><i class="fa fa-check"></i><b>3.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="subsetting.html"><a href="subsetting.html#matching-merging"><i class="fa fa-check"></i><b>3.4.2</b> Matching and merging by hand (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>3.4.3</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>3.4.4</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="subsetting.html"><a href="subsetting.html#expanding-aggregated-counts-integer-subsetting"><i class="fa fa-check"></i><b>3.4.5</b> Expanding aggregated counts (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.6" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>3.4.6</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="3.4.7" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>3.4.7</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="3.4.8" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>3.4.8</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.9" data-path="subsetting.html"><a href="subsetting.html#exercises-6"><i class="fa fa-check"></i><b>3.4.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="subsetting.html"><a href="subsetting.html#subsetting-answers"><i class="fa fa-check"></i><b>3.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a><ul>
+<li class="chapter" data-level="4.1" data-path="functions.html"><a href="functions.html#function-components"><i class="fa fa-check"></i><b>4.1</b> Function components</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="functions.html"><a href="functions.html#primitive-functions"><i class="fa fa-check"></i><b>4.1.1</b> Primitive functions</a></li>
+<li class="chapter" data-level="4.1.2" data-path="functions.html"><a href="functions.html#exercises-7"><i class="fa fa-check"></i><b>4.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>4.2</b> Lexical scoping</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="functions.html"><a href="functions.html#name-masking"><i class="fa fa-check"></i><b>4.2.1</b> Name masking</a></li>
+<li class="chapter" data-level="4.2.2" data-path="functions.html"><a href="functions.html#functions-vs.variables"><i class="fa fa-check"></i><b>4.2.2</b> Functions vs. variables</a></li>
+<li class="chapter" data-level="4.2.3" data-path="functions.html"><a href="functions.html#fresh-start"><i class="fa fa-check"></i><b>4.2.3</b> A fresh start</a></li>
+<li class="chapter" data-level="4.2.4" data-path="functions.html"><a href="functions.html#dynamic-lookup"><i class="fa fa-check"></i><b>4.2.4</b> Dynamic lookup</a></li>
+<li class="chapter" data-level="4.2.5" data-path="functions.html"><a href="functions.html#exercises-8"><i class="fa fa-check"></i><b>4.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="functions.html"><a href="functions.html#all-calls"><i class="fa fa-check"></i><b>4.3</b> Every operation is a function call</a></li>
+<li class="chapter" data-level="4.4" data-path="functions.html"><a href="functions.html#function-arguments"><i class="fa fa-check"></i><b>4.4</b> Function arguments</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="functions.html"><a href="functions.html#calling-functions"><i class="fa fa-check"></i><b>4.4.1</b> Calling functions</a></li>
+<li class="chapter" data-level="4.4.2" data-path="functions.html"><a href="functions.html#calling-a-function-given-a-list-of-arguments"><i class="fa fa-check"></i><b>4.4.2</b> Calling a function given a list of arguments</a></li>
+<li class="chapter" data-level="4.4.3" data-path="functions.html"><a href="functions.html#default-and-missing-arguments"><i class="fa fa-check"></i><b>4.4.3</b> Default and missing arguments</a></li>
+<li class="chapter" data-level="4.4.4" data-path="functions.html"><a href="functions.html#lazy-evaluation"><i class="fa fa-check"></i><b>4.4.4</b> Lazy evaluation</a></li>
+<li class="chapter" data-level="4.4.5" data-path="functions.html"><a href="functions.html#fun-dot-dot-dot"><i class="fa fa-check"></i><b>4.4.5</b> <code>...</code></a></li>
+<li class="chapter" data-level="4.4.6" data-path="functions.html"><a href="functions.html#exercises-9"><i class="fa fa-check"></i><b>4.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="functions.html"><a href="functions.html#special-calls"><i class="fa fa-check"></i><b>4.5</b> Special calls</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="functions.html"><a href="functions.html#infix-functions"><i class="fa fa-check"></i><b>4.5.1</b> Infix functions</a></li>
+<li class="chapter" data-level="4.5.2" data-path="functions.html"><a href="functions.html#replacement-functions"><i class="fa fa-check"></i><b>4.5.2</b> Replacement functions</a></li>
+<li class="chapter" data-level="4.5.3" data-path="functions.html"><a href="functions.html#exercises-10"><i class="fa fa-check"></i><b>4.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="functions.html"><a href="functions.html#return-values"><i class="fa fa-check"></i><b>4.6</b> Return values</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="functions.html"><a href="functions.html#on-exit"><i class="fa fa-check"></i><b>4.6.1</b> On exit</a></li>
+<li class="chapter" data-level="4.6.2" data-path="functions.html"><a href="functions.html#exercises-11"><i class="fa fa-check"></i><b>4.6.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="functions.html"><a href="functions.html#function-answers"><i class="fa fa-check"></i><b>4.7</b> Quiz answers</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="memory.html"><a href="memory.html"><i class="fa fa-check"></i><b>5</b> Memory</a><ul>
+<li class="chapter" data-level="5.1" data-path="memory.html"><a href="memory.html#object-size"><i class="fa fa-check"></i><b>5.1</b> Object size</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="memory.html"><a href="memory.html#exercises-12"><i class="fa fa-check"></i><b>5.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="memory.html"><a href="memory.html#gc"><i class="fa fa-check"></i><b>5.2</b> Memory usage and garbage collection</a></li>
+<li class="chapter" data-level="5.3" data-path="memory.html"><a href="memory.html#memory-profiling"><i class="fa fa-check"></i><b>5.3</b> Memory profiling with lineprof</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="memory.html"><a href="memory.html#exercises-13"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="memory.html"><a href="memory.html#modification"><i class="fa fa-check"></i><b>5.4</b> Modification in place</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="memory.html"><a href="memory.html#loops"><i class="fa fa-check"></i><b>5.4.1</b> Loops</a></li>
+<li class="chapter" data-level="5.4.2" data-path="memory.html"><a href="memory.html#exercises-14"><i class="fa fa-check"></i><b>5.4.2</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="environments.html"><a href="environments.html"><i class="fa fa-check"></i><b>6</b> Environments</a><ul>
+<li class="chapter" data-level="6.1" data-path="environments.html"><a href="environments.html#env-basics"><i class="fa fa-check"></i><b>6.1</b> Environment basics</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="environments.html"><a href="environments.html#exercises-15"><i class="fa fa-check"></i><b>6.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="environments.html"><a href="environments.html#env-recursion"><i class="fa fa-check"></i><b>6.2</b> Recursing over environments</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="environments.html"><a href="environments.html#exercises-16"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="environments.html"><a href="environments.html#function-envs"><i class="fa fa-check"></i><b>6.3</b> Function environments</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="environments.html"><a href="environments.html#the-enclosing-environment"><i class="fa fa-check"></i><b>6.3.1</b> The enclosing environment</a></li>
+<li class="chapter" data-level="6.3.2" data-path="environments.html"><a href="environments.html#binding-environments"><i class="fa fa-check"></i><b>6.3.2</b> Binding environments</a></li>
+<li class="chapter" data-level="6.3.3" data-path="environments.html"><a href="environments.html#execution-environments"><i class="fa fa-check"></i><b>6.3.3</b> Execution environments</a></li>
+<li class="chapter" data-level="6.3.4" data-path="environments.html"><a href="environments.html#calling-environments"><i class="fa fa-check"></i><b>6.3.4</b> Calling environments</a></li>
+<li class="chapter" data-level="6.3.5" data-path="environments.html"><a href="environments.html#exercises-17"><i class="fa fa-check"></i><b>6.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="environments.html"><a href="environments.html#binding"><i class="fa fa-check"></i><b>6.4</b> Binding names to values</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="environments.html"><a href="environments.html#exercises-18"><i class="fa fa-check"></i><b>6.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="environments.html"><a href="environments.html#explicit-envs"><i class="fa fa-check"></i><b>6.5</b> Explicit environments</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="environments.html"><a href="environments.html#avoiding-copies"><i class="fa fa-check"></i><b>6.5.1</b> Avoiding copies</a></li>
+<li class="chapter" data-level="6.5.2" data-path="environments.html"><a href="environments.html#package-state"><i class="fa fa-check"></i><b>6.5.2</b> Package state</a></li>
+<li class="chapter" data-level="6.5.3" data-path="environments.html"><a href="environments.html#as-a-hashmap"><i class="fa fa-check"></i><b>6.5.3</b> As a hashmap</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="environments.html"><a href="environments.html#env-answers"><i class="fa fa-check"></i><b>6.6</b> Quiz answers</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="debugging.html"><a href="debugging.html"><i class="fa fa-check"></i><b>7</b> Debugging, condition handling, and defensive programming</a><ul>
+<li class="chapter" data-level="7.1" data-path="debugging.html"><a href="debugging.html#debugging-techniques"><i class="fa fa-check"></i><b>7.1</b> Debugging techniques</a></li>
+<li class="chapter" data-level="7.2" data-path="debugging.html"><a href="debugging.html#debugging-tools"><i class="fa fa-check"></i><b>7.2</b> Debugging tools</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="debugging.html"><a href="debugging.html#determining-the-sequence-of-calls"><i class="fa fa-check"></i><b>7.2.1</b> Determining the sequence of calls</a></li>
+<li class="chapter" data-level="7.2.2" data-path="debugging.html"><a href="debugging.html#browsing-on-error"><i class="fa fa-check"></i><b>7.2.2</b> Browsing on error</a></li>
+<li class="chapter" data-level="7.2.3" data-path="debugging.html"><a href="debugging.html#browsing-arbitrary-code"><i class="fa fa-check"></i><b>7.2.3</b> Browsing arbitrary code</a></li>
+<li class="chapter" data-level="7.2.4" data-path="debugging.html"><a href="debugging.html#the-call-stack-traceback-where-and-recover"><i class="fa fa-check"></i><b>7.2.4</b> The call stack: <code>traceback()</code>, <code>where</code>, and <code>recover()</code></a></li>
+<li class="chapter" data-level="7.2.5" data-path="debugging.html"><a href="debugging.html#other-types-of-failure"><i class="fa fa-check"></i><b>7.2.5</b> Other types of failure</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="debugging.html"><a href="debugging.html#condition-handling"><i class="fa fa-check"></i><b>7.3</b> Condition handling</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="debugging.html"><a href="debugging.html#try"><i class="fa fa-check"></i><b>7.3.1</b> Ignore errors with try</a></li>
+<li class="chapter" data-level="7.3.2" data-path="debugging.html"><a href="debugging.html#handle-conditions-with-trycatch"><i class="fa fa-check"></i><b>7.3.2</b> Handle conditions with <code>tryCatch()</code></a></li>
+<li class="chapter" data-level="7.3.3" data-path="debugging.html"><a href="debugging.html#withcallinghandlers"><i class="fa fa-check"></i><b>7.3.3</b> <code>withCallingHandlers()</code></a></li>
+<li class="chapter" data-level="7.3.4" data-path="debugging.html"><a href="debugging.html#custom-signal-classes"><i class="fa fa-check"></i><b>7.3.4</b> Custom signal classes</a></li>
+<li class="chapter" data-level="7.3.5" data-path="debugging.html"><a href="debugging.html#exercises-19"><i class="fa fa-check"></i><b>7.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="debugging.html"><a href="debugging.html#defensive-programming"><i class="fa fa-check"></i><b>7.4</b> Defensive programming</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="debugging.html"><a href="debugging.html#exercises-20"><i class="fa fa-check"></i><b>7.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="debugging.html"><a href="debugging.html#debugging-answers"><i class="fa fa-check"></i><b>7.5</b> Quiz answers</a></li>
+</ul></li>
+<li class="part"><span><b>II Functional programming</b></span></li>
+<li class="chapter" data-level="8" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>8</b> Functional programming</a><ul>
+<li class="chapter" data-level="8.1" data-path="functional-programming.html"><a href="functional-programming.html#fp-motivation"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i><b>8.2</b> Anonymous functions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="functional-programming.html"><a href="functional-programming.html#exercises-21"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>8.3</b> Closures</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="functional-programming.html"><a href="functional-programming.html#function-factories"><i class="fa fa-check"></i><b>8.3.1</b> Function factories</a></li>
+<li class="chapter" data-level="8.3.2" data-path="functional-programming.html"><a href="functional-programming.html#mutable-state"><i class="fa fa-check"></i><b>8.3.2</b> Mutable state</a></li>
+<li class="chapter" data-level="8.3.3" data-path="functional-programming.html"><a href="functional-programming.html#exercises-22"><i class="fa fa-check"></i><b>8.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="functional-programming.html"><a href="functional-programming.html#lists-of-functions"><i class="fa fa-check"></i><b>8.4</b> Lists of functions</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="functional-programming.html"><a href="functional-programming.html#moving-lists-of-functions-to-the-global-environment"><i class="fa fa-check"></i><b>8.4.1</b> Moving lists of functions to the global environment</a></li>
+<li class="chapter" data-level="8.4.2" data-path="functional-programming.html"><a href="functional-programming.html#exercises-23"><i class="fa fa-check"></i><b>8.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="functional-programming.html"><a href="functional-programming.html#numerical-integration"><i class="fa fa-check"></i><b>8.5</b> Case study: numerical integration</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="functional-programming.html"><a href="functional-programming.html#exercises-24"><i class="fa fa-check"></i><b>8.5.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="functionals.html"><a href="functionals.html"><i class="fa fa-check"></i><b>9</b> Functionals</a><ul>
+<li class="chapter" data-level="9.1" data-path="functionals.html"><a href="functionals.html#lapply"><i class="fa fa-check"></i><b>9.1</b> My first functional: lapply()</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="functionals.html"><a href="functionals.html#looping-patterns"><i class="fa fa-check"></i><b>9.1.1</b> Looping patterns</a></li>
+<li class="chapter" data-level="9.1.2" data-path="functionals.html"><a href="functionals.html#exercises-25"><i class="fa fa-check"></i><b>9.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="functionals.html"><a href="functionals.html#functionals-loop"><i class="fa fa-check"></i><b>9.2</b> For loop functionals: friends of lapply()</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="functionals.html"><a href="functionals.html#vector-output-sapply-and-vapply"><i class="fa fa-check"></i><b>9.2.1</b> Vector output: <code>sapply</code> and <code>vapply</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="functionals.html"><a href="functionals.html#map"><i class="fa fa-check"></i><b>9.2.2</b> Multiple inputs: <code>Map</code> (and <code>mapply</code>)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="functionals.html"><a href="functionals.html#rolling-computations"><i class="fa fa-check"></i><b>9.2.3</b> Rolling computations</a></li>
+<li class="chapter" data-level="9.2.4" data-path="functionals.html"><a href="functionals.html#parallelisation"><i class="fa fa-check"></i><b>9.2.4</b> Parallelisation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="functionals.html"><a href="functionals.html#exercises-26"><i class="fa fa-check"></i><b>9.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functionals.html"><a href="functionals.html#functionals-ds"><i class="fa fa-check"></i><b>9.3</b> Manipulating matrices and data frames</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="functionals.html"><a href="functionals.html#matrix-and-array-operations"><i class="fa fa-check"></i><b>9.3.1</b> Matrix and array operations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functionals.html"><a href="functionals.html#group-apply"><i class="fa fa-check"></i><b>9.3.2</b> Group apply</a></li>
+<li class="chapter" data-level="9.3.3" data-path="functionals.html"><a href="functionals.html#the-plyr-package"><i class="fa fa-check"></i><b>9.3.3</b> The plyr package</a></li>
+<li class="chapter" data-level="9.3.4" data-path="functionals.html"><a href="functionals.html#exercises-27"><i class="fa fa-check"></i><b>9.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="functionals.html"><a href="functionals.html#functionals-fp"><i class="fa fa-check"></i><b>9.4</b> Manipulating lists</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="functionals.html"><a href="functionals.html#reduce"><i class="fa fa-check"></i><b>9.4.1</b> <code>Reduce()</code></a></li>
+<li class="chapter" data-level="9.4.2" data-path="functionals.html"><a href="functionals.html#predicate-functionals"><i class="fa fa-check"></i><b>9.4.2</b> Predicate functionals</a></li>
+<li class="chapter" data-level="9.4.3" data-path="functionals.html"><a href="functionals.html#exercises-28"><i class="fa fa-check"></i><b>9.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="functionals.html"><a href="functionals.html#functionals-math"><i class="fa fa-check"></i><b>9.5</b> Mathematical functionals</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="functionals.html"><a href="functionals.html#exercises-29"><i class="fa fa-check"></i><b>9.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="functionals.html"><a href="functionals.html#functionals-not"><i class="fa fa-check"></i><b>9.6</b> Loops that should be left as is</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="functionals.html"><a href="functionals.html#modifying-in-place"><i class="fa fa-check"></i><b>9.6.1</b> Modifying in place</a></li>
+<li class="chapter" data-level="9.6.2" data-path="functionals.html"><a href="functionals.html#recursive-relationships"><i class="fa fa-check"></i><b>9.6.2</b> Recursive relationships</a></li>
+<li class="chapter" data-level="9.6.3" data-path="functionals.html"><a href="functionals.html#while-loops"><i class="fa fa-check"></i><b>9.6.3</b> While loops</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="functionals.html"><a href="functionals.html#function-family"><i class="fa fa-check"></i><b>9.7</b> A family of functions</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="functionals.html"><a href="functionals.html#exercises-30"><i class="fa fa-check"></i><b>9.7.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="function-operators.html"><a href="function-operators.html"><i class="fa fa-check"></i><b>10</b> Function operators</a><ul>
+<li class="chapter" data-level="10.1" data-path="function-operators.html"><a href="function-operators.html#behavioural-fos"><i class="fa fa-check"></i><b>10.1</b> Behavioural FOs</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="function-operators.html"><a href="function-operators.html#memoisation"><i class="fa fa-check"></i><b>10.1.1</b> Memoisation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="function-operators.html"><a href="function-operators.html#tee"><i class="fa fa-check"></i><b>10.1.2</b> Capturing function invocations</a></li>
+<li class="chapter" data-level="10.1.3" data-path="function-operators.html"><a href="function-operators.html#laziness"><i class="fa fa-check"></i><b>10.1.3</b> Laziness</a></li>
+<li class="chapter" data-level="10.1.4" data-path="function-operators.html"><a href="function-operators.html#exercises-31"><i class="fa fa-check"></i><b>10.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="function-operators.html"><a href="function-operators.html#output-fos"><i class="fa fa-check"></i><b>10.2</b> Output FOs</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="function-operators.html"><a href="function-operators.html#minor-modifications"><i class="fa fa-check"></i><b>10.2.1</b> Minor modifications</a></li>
+<li class="chapter" data-level="10.2.2" data-path="function-operators.html"><a href="function-operators.html#changing-what-a-function-does"><i class="fa fa-check"></i><b>10.2.2</b> Changing what a function does</a></li>
+<li class="chapter" data-level="10.2.3" data-path="function-operators.html"><a href="function-operators.html#exercises-32"><i class="fa fa-check"></i><b>10.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="function-operators.html"><a href="function-operators.html#input-fos"><i class="fa fa-check"></i><b>10.3</b> Input FOs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="function-operators.html"><a href="function-operators.html#prefilling-function-arguments-partial-function-application"><i class="fa fa-check"></i><b>10.3.1</b> Prefilling function arguments: partial function application</a></li>
+<li class="chapter" data-level="10.3.2" data-path="function-operators.html"><a href="function-operators.html#changing-input-types"><i class="fa fa-check"></i><b>10.3.2</b> Changing input types</a></li>
+<li class="chapter" data-level="10.3.3" data-path="function-operators.html"><a href="function-operators.html#exercises-33"><i class="fa fa-check"></i><b>10.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="function-operators.html"><a href="function-operators.html#combining-fos"><i class="fa fa-check"></i><b>10.4</b> Combining FOs</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="function-operators.html"><a href="function-operators.html#function-composition"><i class="fa fa-check"></i><b>10.4.1</b> Function composition</a></li>
+<li class="chapter" data-level="10.4.2" data-path="function-operators.html"><a href="function-operators.html#logical-predicates-and-boolean-algebra"><i class="fa fa-check"></i><b>10.4.2</b> Logical predicates and boolean algebra</a></li>
+<li class="chapter" data-level="10.4.3" data-path="function-operators.html"><a href="function-operators.html#exercises-34"><i class="fa fa-check"></i><b>10.4.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Object oriented programming</b></span></li>
+<li class="chapter" data-level="11" data-path="oo.html"><a href="oo.html"><i class="fa fa-check"></i><b>11</b> Introduction</a><ul>
+<li class="chapter" data-level="11.1" data-path="oo.html"><a href="oo.html#oop-systems"><i class="fa fa-check"></i><b>11.1</b> OOP Systems</a></li>
+<li class="chapter" data-level="11.2" data-path="oo.html"><a href="oo.html#oop-in-r"><i class="fa fa-check"></i><b>11.2</b> OOP in R</a></li>
+<li class="chapter" data-level="11.3" data-path="oo.html"><a href="oo.html#field-guide"><i class="fa fa-check"></i><b>11.3</b> Field guide</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="base-types.html"><a href="base-types.html"><i class="fa fa-check"></i><b>12</b> Base types</a><ul>
+<li class="chapter" data-level="12.1" data-path="base-types.html"><a href="base-types.html#base-objects-vs-oo-objects"><i class="fa fa-check"></i><b>12.1</b> Base objects vs OO objects</a></li>
+<li class="chapter" data-level="12.2" data-path="base-types.html"><a href="base-types.html#base-types-2"><i class="fa fa-check"></i><b>12.2</b> Base types</a></li>
+<li class="chapter" data-level="12.3" data-path="base-types.html"><a href="base-types.html#the-is-functions"><i class="fa fa-check"></i><b>12.3</b> The is functions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="s3.html"><a href="s3.html"><i class="fa fa-check"></i><b>13</b> S3</a><ul>
+<li class="chapter" data-level="13.1" data-path="s3.html"><a href="s3.html#s3-basics"><i class="fa fa-check"></i><b>13.1</b> Basics</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="s3.html"><a href="s3.html#exercises-35"><i class="fa fa-check"></i><b>13.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="s3.html"><a href="s3.html#classes"><i class="fa fa-check"></i><b>13.2</b> Classes</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="s3.html"><a href="s3.html#constructors"><i class="fa fa-check"></i><b>13.2.1</b> Constructors</a></li>
+<li class="chapter" data-level="13.2.2" data-path="s3.html"><a href="s3.html#validators"><i class="fa fa-check"></i><b>13.2.2</b> Validators</a></li>
+<li class="chapter" data-level="13.2.3" data-path="s3.html"><a href="s3.html#helpers"><i class="fa fa-check"></i><b>13.2.3</b> Helpers</a></li>
+<li class="chapter" data-level="13.2.4" data-path="s3.html"><a href="s3.html#object-styles"><i class="fa fa-check"></i><b>13.2.4</b> Object styles</a></li>
+<li class="chapter" data-level="13.2.5" data-path="s3.html"><a href="s3.html#exercises-36"><i class="fa fa-check"></i><b>13.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="s3.html"><a href="s3.html#generics-and-methods"><i class="fa fa-check"></i><b>13.3</b> Generics and methods</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="s3.html"><a href="s3.html#coercion-1"><i class="fa fa-check"></i><b>13.3.1</b> Coercion</a></li>
+<li class="chapter" data-level="13.3.2" data-path="s3.html"><a href="s3.html#s3-arguments"><i class="fa fa-check"></i><b>13.3.2</b> Arguments</a></li>
+<li class="chapter" data-level="13.3.3" data-path="s3.html"><a href="s3.html#exercises-37"><i class="fa fa-check"></i><b>13.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="s3.html"><a href="s3.html#method-dispatch"><i class="fa fa-check"></i><b>13.4</b> Method dispatch</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="s3.html"><a href="s3.html#usemethod"><i class="fa fa-check"></i><b>13.4.1</b> <code>UseMethod()</code></a></li>
+<li class="chapter" data-level="13.4.2" data-path="s3.html"><a href="s3.html#nextmethod"><i class="fa fa-check"></i><b>13.4.2</b> <code>NextMethod()</code></a></li>
+<li class="chapter" data-level="13.4.3" data-path="s3.html"><a href="s3.html#exercises-38"><i class="fa fa-check"></i><b>13.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="s3.html"><a href="s3.html#inheritance"><i class="fa fa-check"></i><b>13.5</b> Inheritance</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="s3.html"><a href="s3.html#constructors-1"><i class="fa fa-check"></i><b>13.5.1</b> Constructors</a></li>
+<li class="chapter" data-level="13.5.2" data-path="s3.html"><a href="s3.html#coercion-2"><i class="fa fa-check"></i><b>13.5.2</b> Coercion</a></li>
+<li class="chapter" data-level="13.5.3" data-path="s3.html"><a href="s3.html#methods"><i class="fa fa-check"></i><b>13.5.3</b> Methods</a></li>
+<li class="chapter" data-level="13.5.4" data-path="s3.html"><a href="s3.html#exercises-39"><i class="fa fa-check"></i><b>13.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="s3.html"><a href="s3.html#dispatch-details"><i class="fa fa-check"></i><b>13.6</b> Dispatch details</a><ul>
+<li class="chapter" data-level="13.6.1" data-path="s3.html"><a href="s3.html#environments-and-namespaces"><i class="fa fa-check"></i><b>13.6.1</b> Environments and namespaces</a></li>
+<li class="chapter" data-level="13.6.2" data-path="s3.html"><a href="s3.html#s3-and-base-types"><i class="fa fa-check"></i><b>13.6.2</b> S3 and base types</a></li>
+<li class="chapter" data-level="13.6.3" data-path="s3.html"><a href="s3.html#internal-generics"><i class="fa fa-check"></i><b>13.6.3</b> Internal generics</a></li>
+<li class="chapter" data-level="13.6.4" data-path="s3.html"><a href="s3.html#group-generics"><i class="fa fa-check"></i><b>13.6.4</b> Group generics</a></li>
+<li class="chapter" data-level="13.6.5" data-path="s3.html"><a href="s3.html#double-dispatch"><i class="fa fa-check"></i><b>13.6.5</b> Double dispatch</a></li>
+<li class="chapter" data-level="13.6.6" data-path="s3.html"><a href="s3.html#exercises-40"><i class="fa fa-check"></i><b>13.6.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="s4.html"><a href="s4.html"><i class="fa fa-check"></i><b>14</b> S4</a><ul>
+<li class="chapter" data-level="14.1" data-path="s4.html"><a href="s4.html#classes-1"><i class="fa fa-check"></i><b>14.1</b> Classes</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="s4.html"><a href="s4.html#slots"><i class="fa fa-check"></i><b>14.1.1</b> Slots</a></li>
+<li class="chapter" data-level="14.1.2" data-path="s4.html"><a href="s4.html#helper"><i class="fa fa-check"></i><b>14.1.2</b> Helper</a></li>
+<li class="chapter" data-level="14.1.3" data-path="s4.html"><a href="s4.html#introspection"><i class="fa fa-check"></i><b>14.1.3</b> Introspection</a></li>
+<li class="chapter" data-level="14.1.4" data-path="s4.html"><a href="s4.html#exercises-41"><i class="fa fa-check"></i><b>14.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="s4.html"><a href="s4.html#generics-and-methods-1"><i class="fa fa-check"></i><b>14.2</b> Generics and methods</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="s4.html"><a href="s4.html#show-method"><i class="fa fa-check"></i><b>14.2.1</b> Show method</a></li>
+<li class="chapter" data-level="14.2.2" data-path="s4.html"><a href="s4.html#accessor-methods"><i class="fa fa-check"></i><b>14.2.2</b> Accessor methods</a></li>
+<li class="chapter" data-level="14.2.3" data-path="s4.html"><a href="s4.html#coercion-methods"><i class="fa fa-check"></i><b>14.2.3</b> Coercion methods</a></li>
+<li class="chapter" data-level="14.2.4" data-path="s4.html"><a href="s4.html#introspection-1"><i class="fa fa-check"></i><b>14.2.4</b> Introspection</a></li>
+<li class="chapter" data-level="14.2.5" data-path="s4.html"><a href="s4.html#exercises-42"><i class="fa fa-check"></i><b>14.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="s4.html"><a href="s4.html#method-dispatch-1"><i class="fa fa-check"></i><b>14.3</b> Method dispatch</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="s4.html"><a href="s4.html#single-dispatch"><i class="fa fa-check"></i><b>14.3.1</b> Single dispatch</a></li>
+<li class="chapter" data-level="14.3.2" data-path="s4.html"><a href="s4.html#multiple-inheritance"><i class="fa fa-check"></i><b>14.3.2</b> Multiple inheritance</a></li>
+<li class="chapter" data-level="14.3.3" data-path="s4.html"><a href="s4.html#multiple-dispatch"><i class="fa fa-check"></i><b>14.3.3</b> Multiple dispatch</a></li>
+<li class="chapter" data-level="14.3.4" data-path="s4.html"><a href="s4.html#multiple-dispatch-and-multiple-inheritance"><i class="fa fa-check"></i><b>14.3.4</b> Multiple dispatch and multiple inheritance</a></li>
+<li class="chapter" data-level="14.3.5" data-path="s4.html"><a href="s4.html#exercises-43"><i class="fa fa-check"></i><b>14.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="s4.html"><a href="s4.html#s4-and-existing-code"><i class="fa fa-check"></i><b>14.4</b> S4 and existing code</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="s4.html"><a href="s4.html#classes-2"><i class="fa fa-check"></i><b>14.4.1</b> Classes</a></li>
+<li class="chapter" data-level="14.4.2" data-path="s4.html"><a href="s4.html#generics"><i class="fa fa-check"></i><b>14.4.2</b> Generics</a></li>
+<li class="chapter" data-level="14.4.3" data-path="s4.html"><a href="s4.html#exercises-44"><i class="fa fa-check"></i><b>14.4.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="r6.html"><a href="r6.html"><i class="fa fa-check"></i><b>15</b> R6</a><ul>
+<li class="chapter" data-level="15.1" data-path="r6.html"><a href="r6.html#classes-and-methods"><i class="fa fa-check"></i><b>15.1</b> Classes and methods</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="r6.html"><a href="r6.html#method-chaining"><i class="fa fa-check"></i><b>15.1.1</b> Method chaining</a></li>
+<li class="chapter" data-level="15.1.2" data-path="r6.html"><a href="r6.html#important-methods"><i class="fa fa-check"></i><b>15.1.2</b> Important methods</a></li>
+<li class="chapter" data-level="15.1.3" data-path="r6.html"><a href="r6.html#adding-methods-after-creation"><i class="fa fa-check"></i><b>15.1.3</b> Adding methods after creation</a></li>
+<li class="chapter" data-level="15.1.4" data-path="r6.html"><a href="r6.html#inheritance-1"><i class="fa fa-check"></i><b>15.1.4</b> Inheritance</a></li>
+<li class="chapter" data-level="15.1.5" data-path="r6.html"><a href="r6.html#introspection-2"><i class="fa fa-check"></i><b>15.1.5</b> Introspection</a></li>
+<li class="chapter" data-level="15.1.6" data-path="r6.html"><a href="r6.html#exercises-45"><i class="fa fa-check"></i><b>15.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="r6.html"><a href="r6.html#controlling-access"><i class="fa fa-check"></i><b>15.2</b> Controlling access</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="r6.html"><a href="r6.html#privacy"><i class="fa fa-check"></i><b>15.2.1</b> Privacy</a></li>
+<li class="chapter" data-level="15.2.2" data-path="r6.html"><a href="r6.html#active-fields"><i class="fa fa-check"></i><b>15.2.2</b> Active fields</a></li>
+<li class="chapter" data-level="15.2.3" data-path="r6.html"><a href="r6.html#exercises-46"><i class="fa fa-check"></i><b>15.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="r6.html"><a href="r6.html#reference-semantics"><i class="fa fa-check"></i><b>15.3</b> Reference semantics</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="r6.html"><a href="r6.html#reasoning"><i class="fa fa-check"></i><b>15.3.1</b> Reasoning</a></li>
+<li class="chapter" data-level="15.3.2" data-path="r6.html"><a href="r6.html#finalizer"><i class="fa fa-check"></i><b>15.3.2</b> Finalizer</a></li>
+<li class="chapter" data-level="15.3.3" data-path="r6.html"><a href="r6.html#r6-fields"><i class="fa fa-check"></i><b>15.3.3</b> R6 fields</a></li>
+<li class="chapter" data-level="15.3.4" data-path="r6.html"><a href="r6.html#exercises-47"><i class="fa fa-check"></i><b>15.3.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html"><i class="fa fa-check"></i><b>16</b> Trade-offs</a><ul>
+<li class="chapter" data-level="16.1" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#s3-s4"><i class="fa fa-check"></i><b>16.1</b> S4 vs S3</a></li>
+<li class="chapter" data-level="16.2" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#s3-r6"><i class="fa fa-check"></i><b>16.2</b> R6 vs S3</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#namespacing"><i class="fa fa-check"></i><b>16.2.1</b> Namespacing</a></li>
+<li class="chapter" data-level="16.2.2" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#threading-state"><i class="fa fa-check"></i><b>16.2.2</b> Threading state</a></li>
+<li class="chapter" data-level="16.2.3" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#tradeoffs-pipe"><i class="fa fa-check"></i><b>16.2.3</b> Method chaining</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Metaprogramming</b></span></li>
+<li class="chapter" data-level="17" data-path="meta.html"><a href="meta.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="18" data-path="expressions.html"><a href="expressions.html"><i class="fa fa-check"></i><b>18</b> Expressions</a><ul>
+<li class="chapter" data-level="18.1" data-path="expressions.html"><a href="expressions.html#abstract-syntax-trees"><i class="fa fa-check"></i><b>18.1</b> Abstract syntax trees</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="expressions.html"><a href="expressions.html#infix-vs.prefix-calls"><i class="fa fa-check"></i><b>18.1.1</b> Infix vs. prefix calls</a></li>
+<li class="chapter" data-level="18.1.2" data-path="expressions.html"><a href="expressions.html#special-forms"><i class="fa fa-check"></i><b>18.1.2</b> Special forms</a></li>
+<li class="chapter" data-level="18.1.3" data-path="expressions.html"><a href="expressions.html#function-factories-1"><i class="fa fa-check"></i><b>18.1.3</b> Function factories</a></li>
+<li class="chapter" data-level="18.1.4" data-path="expressions.html"><a href="expressions.html#argument-names"><i class="fa fa-check"></i><b>18.1.4</b> Argument names</a></li>
+<li class="chapter" data-level="18.1.5" data-path="expressions.html"><a href="expressions.html#exercises-48"><i class="fa fa-check"></i><b>18.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="expressions.html"><a href="expressions.html#rs-grammar"><i class="fa fa-check"></i><b>18.2</b> R’s grammar</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="expressions.html"><a href="expressions.html#operator-precedence-and-associativity"><i class="fa fa-check"></i><b>18.2.1</b> Operator precedence and associativity</a></li>
+<li class="chapter" data-level="18.2.2" data-path="expressions.html"><a href="expressions.html#whitespace"><i class="fa fa-check"></i><b>18.2.2</b> Whitespace</a></li>
+<li class="chapter" data-level="18.2.3" data-path="expressions.html"><a href="expressions.html#parsing-a-string"><i class="fa fa-check"></i><b>18.2.3</b> Parsing a string</a></li>
+<li class="chapter" data-level="18.2.4" data-path="expressions.html"><a href="expressions.html#deparsing"><i class="fa fa-check"></i><b>18.2.4</b> Deparsing</a></li>
+<li class="chapter" data-level="18.2.5" data-path="expressions.html"><a href="expressions.html#exercises-49"><i class="fa fa-check"></i><b>18.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="data-structures.html"><a href="data-structures.html#data-structures"><i class="fa fa-check"></i><b>18.3</b> Data structures</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="expressions.html"><a href="expressions.html#constants-and-symbols"><i class="fa fa-check"></i><b>18.3.1</b> Constants and symbols</a></li>
+<li class="chapter" data-level="18.3.2" data-path="expressions.html"><a href="expressions.html#calls"><i class="fa fa-check"></i><b>18.3.2</b> Calls</a></li>
+<li class="chapter" data-level="18.3.3" data-path="expressions.html"><a href="expressions.html#pairlists"><i class="fa fa-check"></i><b>18.3.3</b> Pairlists</a></li>
+<li class="chapter" data-level="18.3.4" data-path="expressions.html"><a href="expressions.html#expression-objects"><i class="fa fa-check"></i><b>18.3.4</b> Expression objects</a></li>
+<li class="chapter" data-level="18.3.5" data-path="expressions.html"><a href="expressions.html#exercises-50"><i class="fa fa-check"></i><b>18.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="expressions.html"><a href="expressions.html#case-study-anaphoric-functions"><i class="fa fa-check"></i><b>18.4</b> Case study: anaphoric functions</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="expressions.html"><a href="expressions.html#exercises-51"><i class="fa fa-check"></i><b>18.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="expressions.html"><a href="expressions.html#ast-funs"><i class="fa fa-check"></i><b>18.5</b> Case study: Walking the AST with recursive functions</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="expressions.html"><a href="expressions.html#finding-f-and-t"><i class="fa fa-check"></i><b>18.5.1</b> Finding F and T</a></li>
+<li class="chapter" data-level="18.5.2" data-path="expressions.html"><a href="expressions.html#finding-all-variables-created-by-assignment"><i class="fa fa-check"></i><b>18.5.2</b> Finding all variables created by assignment</a></li>
+<li class="chapter" data-level="18.5.3" data-path="expressions.html"><a href="expressions.html#exercises-52"><i class="fa fa-check"></i><b>18.5.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="quasiquotation.html"><a href="quasiquotation.html"><i class="fa fa-check"></i><b>19</b> Quasiquotation</a><ul>
+<li class="chapter" data-level="19.1" data-path="quasiquotation.html"><a href="quasiquotation.html#introduction-1"><i class="fa fa-check"></i><b>19.1</b> Introduction</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="quasiquotation.html"><a href="quasiquotation.html#motivation"><i class="fa fa-check"></i><b>19.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="19.1.2" data-path="quasiquotation.html"><a href="quasiquotation.html#theory"><i class="fa fa-check"></i><b>19.1.2</b> Theory</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="quasiquotation.html"><a href="quasiquotation.html#quotation"><i class="fa fa-check"></i><b>19.2</b> Quotation</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="quasiquotation.html"><a href="quasiquotation.html#with-rlang"><i class="fa fa-check"></i><b>19.2.1</b> With rlang</a></li>
+<li class="chapter" data-level="19.2.2" data-path="quasiquotation.html"><a href="quasiquotation.html#with-base-r"><i class="fa fa-check"></i><b>19.2.2</b> With base R</a></li>
+<li class="chapter" data-level="19.2.3" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-53"><i class="fa fa-check"></i><b>19.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="quasiquotation.html"><a href="quasiquotation.html#eval-basics"><i class="fa fa-check"></i><b>19.3</b> Evaluation</a></li>
+<li class="chapter" data-level="19.4" data-path="quasiquotation.html"><a href="quasiquotation.html#unquotation"><i class="fa fa-check"></i><b>19.4</b> Unquotation</a><ul>
+<li class="chapter" data-level="19.4.1" data-path="quasiquotation.html"><a href="quasiquotation.html#with-rlang-1"><i class="fa fa-check"></i><b>19.4.1</b> With rlang</a></li>
+<li class="chapter" data-level="19.4.2" data-path="quasiquotation.html"><a href="quasiquotation.html#the-polite-fiction-of"><i class="fa fa-check"></i><b>19.4.2</b> The polite fiction of <code>!!</code></a></li>
+<li class="chapter" data-level="19.4.3" data-path="quasiquotation.html"><a href="quasiquotation.html#unquote-base"><i class="fa fa-check"></i><b>19.4.3</b> With base R</a></li>
+<li class="chapter" data-level="19.4.4" data-path="quasiquotation.html"><a href="quasiquotation.html#non-standard-asts"><i class="fa fa-check"></i><b>19.4.4</b> Non-standard ASTs</a></li>
+<li class="chapter" data-level="19.4.5" data-path="quasiquotation.html"><a href="quasiquotation.html#missing-arguments"><i class="fa fa-check"></i><b>19.4.5</b> Missing arguments</a></li>
+<li class="chapter" data-level="19.4.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-54"><i class="fa fa-check"></i><b>19.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="quasiquotation.html"><a href="quasiquotation.html#quasi-case-studies"><i class="fa fa-check"></i><b>19.5</b> Case studies</a><ul>
+<li class="chapter" data-level="19.5.1" data-path="quasiquotation.html"><a href="quasiquotation.html#map-reduce-to-generate-code"><i class="fa fa-check"></i><b>19.5.1</b> Map-reduce to generate code</a></li>
+<li class="chapter" data-level="19.5.2" data-path="quasiquotation.html"><a href="quasiquotation.html#calling-quoting-functions"><i class="fa fa-check"></i><b>19.5.2</b> Calling quoting functions</a></li>
+<li class="chapter" data-level="19.5.3" data-path="quasiquotation.html"><a href="quasiquotation.html#partition"><i class="fa fa-check"></i><b>19.5.3</b> Partition</a></li>
+<li class="chapter" data-level="19.5.4" data-path="quasiquotation.html"><a href="quasiquotation.html#tangling-with-dots"><i class="fa fa-check"></i><b>19.5.4</b> Tangling with dots</a></li>
+<li class="chapter" data-level="19.5.5" data-path="quasiquotation.html"><a href="quasiquotation.html#slicing-an-array"><i class="fa fa-check"></i><b>19.5.5</b> Slicing an array</a></li>
+<li class="chapter" data-level="19.5.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-55"><i class="fa fa-check"></i><b>19.5.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="quasiquotation.html"><a href="quasiquotation.html#dot-dot-dot-..."><i class="fa fa-check"></i><b>19.6</b> Dot-dot-dot (<code>...</code>)</a><ul>
+<li class="chapter" data-level="19.6.1" data-path="quasiquotation.html"><a href="quasiquotation.html#do.call"><i class="fa fa-check"></i><b>19.6.1</b> <code>do.call()</code></a></li>
+<li class="chapter" data-level="19.6.2" data-path="quasiquotation.html"><a href="quasiquotation.html#the-tidyverse-approach"><i class="fa fa-check"></i><b>19.6.2</b> The tidyverse approach</a></li>
+<li class="chapter" data-level="19.6.3" data-path="quasiquotation.html"><a href="quasiquotation.html#dots_list"><i class="fa fa-check"></i><b>19.6.3</b> <code>dots_list()</code></a></li>
+<li class="chapter" data-level="19.6.4" data-path="quasiquotation.html"><a href="quasiquotation.html#application-invoke-and-lang"><i class="fa fa-check"></i><b>19.6.4</b> Application: <code>invoke()</code> and <code>lang()</code></a></li>
+<li class="chapter" data-level="19.6.5" data-path="quasiquotation.html"><a href="quasiquotation.html#other-approaches"><i class="fa fa-check"></i><b>19.6.5</b> Other approaches</a></li>
+<li class="chapter" data-level="19.6.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-56"><i class="fa fa-check"></i><b>19.6.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>20</b> Evaluation</a><ul>
+<li class="chapter" data-level="20.1" data-path="evaluation.html"><a href="evaluation.html#introduction-2"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="evaluation.html"><a href="evaluation.html#evaluation-basics"><i class="fa fa-check"></i><b>20.2</b> Evaluation basics</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="evaluation.html"><a href="evaluation.html#application-local"><i class="fa fa-check"></i><b>20.2.1</b> Application: <code>local()</code></a></li>
+<li class="chapter" data-level="20.2.2" data-path="evaluation.html"><a href="evaluation.html#application-source"><i class="fa fa-check"></i><b>20.2.2</b> Application: <code>source()</code></a></li>
+<li class="chapter" data-level="20.2.3" data-path="evaluation.html"><a href="evaluation.html#gotcha-function"><i class="fa fa-check"></i><b>20.2.3</b> Gotcha: <code>function()</code></a></li>
+<li class="chapter" data-level="20.2.4" data-path="evaluation.html"><a href="evaluation.html#base-r"><i class="fa fa-check"></i><b>20.2.4</b> Base R</a></li>
+<li class="chapter" data-level="20.2.5" data-path="evaluation.html"><a href="evaluation.html#exercises-57"><i class="fa fa-check"></i><b>20.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="evaluation.html"><a href="evaluation.html#quosures"><i class="fa fa-check"></i><b>20.3</b> Quosures</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="evaluation.html"><a href="evaluation.html#motivation-1"><i class="fa fa-check"></i><b>20.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="20.3.2" data-path="evaluation.html"><a href="evaluation.html#creating-and-manipulating"><i class="fa fa-check"></i><b>20.3.2</b> Creating and manipulating</a></li>
+<li class="chapter" data-level="20.3.3" data-path="evaluation.html"><a href="evaluation.html#implementation"><i class="fa fa-check"></i><b>20.3.3</b> Implementation</a></li>
+<li class="chapter" data-level="20.3.4" data-path="evaluation.html"><a href="evaluation.html#multiple-environments"><i class="fa fa-check"></i><b>20.3.4</b> Multiple environments</a></li>
+<li class="chapter" data-level="20.3.5" data-path="evaluation.html"><a href="evaluation.html#embedded-quosures"><i class="fa fa-check"></i><b>20.3.5</b> Embedded quosures</a></li>
+<li class="chapter" data-level="20.3.6" data-path="evaluation.html"><a href="evaluation.html#when-not-to-use-quosures"><i class="fa fa-check"></i><b>20.3.6</b> When not to use quosures</a></li>
+<li class="chapter" data-level="20.3.7" data-path="evaluation.html"><a href="evaluation.html#exercises-58"><i class="fa fa-check"></i><b>20.3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="evaluation.html"><a href="evaluation.html#tidy-evaluation"><i class="fa fa-check"></i><b>20.4</b> Tidy evaluation</a><ul>
+<li class="chapter" data-level="20.4.1" data-path="evaluation.html"><a href="evaluation.html#eval_tidy"><i class="fa fa-check"></i><b>20.4.1</b> <code>eval_tidy()</code></a></li>
+<li class="chapter" data-level="20.4.2" data-path="evaluation.html"><a href="evaluation.html#data-masks"><i class="fa fa-check"></i><b>20.4.2</b> Data masks</a></li>
+<li class="chapter" data-level="20.4.3" data-path="evaluation.html"><a href="evaluation.html#application-subset"><i class="fa fa-check"></i><b>20.4.3</b> Application: <code>subset()</code></a></li>
+<li class="chapter" data-level="20.4.4" data-path="evaluation.html"><a href="evaluation.html#application-arrange"><i class="fa fa-check"></i><b>20.4.4</b> Application: <code>arrange()</code></a></li>
+<li class="chapter" data-level="20.4.5" data-path="evaluation.html"><a href="evaluation.html#ambiguity-and-pronouns"><i class="fa fa-check"></i><b>20.4.5</b> Ambiguity and pronouns</a></li>
+<li class="chapter" data-level="20.4.6" data-path="evaluation.html"><a href="evaluation.html#base-subset"><i class="fa fa-check"></i><b>20.4.6</b> Base <code>subset()</code></a></li>
+<li class="chapter" data-level="20.4.7" data-path="evaluation.html"><a href="evaluation.html#tidy-eval-performance"><i class="fa fa-check"></i><b>20.4.7</b> Performance</a></li>
+<li class="chapter" data-level="20.4.8" data-path="evaluation.html"><a href="evaluation.html#exercises-59"><i class="fa fa-check"></i><b>20.4.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="evaluation.html"><a href="evaluation.html#case-study-calling-base-nse-functions"><i class="fa fa-check"></i><b>20.5</b> Case study: calling base NSE functions</a><ul>
+<li class="chapter" data-level="20.5.1" data-path="evaluation.html"><a href="evaluation.html#basics"><i class="fa fa-check"></i><b>20.5.1</b> Basics</a></li>
+<li class="chapter" data-level="20.5.2" data-path="evaluation.html"><a href="evaluation.html#the-evaluation-environment"><i class="fa fa-check"></i><b>20.5.2</b> The evaluation environment</a></li>
+<li class="chapter" data-level="20.5.3" data-path="evaluation.html"><a href="evaluation.html#making-formulas"><i class="fa fa-check"></i><b>20.5.3</b> Making formulas</a></li>
+<li class="chapter" data-level="20.5.4" data-path="evaluation.html"><a href="evaluation.html#exercises-60"><i class="fa fa-check"></i><b>20.5.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="translation.html"><a href="translation.html"><i class="fa fa-check"></i><b>21</b> Translating R code</a><ul>
+<li class="chapter" data-level="21.1" data-path="translation.html"><a href="translation.html#html"><i class="fa fa-check"></i><b>21.1</b> HTML</a><ul>
+<li class="chapter" data-level="21.1.1" data-path="translation.html"><a href="translation.html#goal"><i class="fa fa-check"></i><b>21.1.1</b> Goal</a></li>
+<li class="chapter" data-level="21.1.2" data-path="translation.html"><a href="translation.html#escaping"><i class="fa fa-check"></i><b>21.1.2</b> Escaping</a></li>
+<li class="chapter" data-level="21.1.3" data-path="translation.html"><a href="translation.html#basic-tag-functions"><i class="fa fa-check"></i><b>21.1.3</b> Basic tag functions</a></li>
+<li class="chapter" data-level="21.1.4" data-path="translation.html"><a href="translation.html#tag-functions"><i class="fa fa-check"></i><b>21.1.4</b> Tag functions</a></li>
+<li class="chapter" data-level="21.1.5" data-path="translation.html"><a href="translation.html#processing-all-tags"><i class="fa fa-check"></i><b>21.1.5</b> Processing all tags</a></li>
+<li class="chapter" data-level="21.1.6" data-path="translation.html"><a href="translation.html#exercises-61"><i class="fa fa-check"></i><b>21.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="translation.html"><a href="translation.html#latex"><i class="fa fa-check"></i><b>21.2</b> LaTeX</a><ul>
+<li class="chapter" data-level="21.2.1" data-path="translation.html"><a href="translation.html#latex-mathematics"><i class="fa fa-check"></i><b>21.2.1</b> LaTeX mathematics</a></li>
+<li class="chapter" data-level="21.2.2" data-path="translation.html"><a href="translation.html#goal-1"><i class="fa fa-check"></i><b>21.2.2</b> Goal</a></li>
+<li class="chapter" data-level="21.2.3" data-path="translation.html"><a href="translation.html#to_math"><i class="fa fa-check"></i><b>21.2.3</b> <code>to_math</code></a></li>
+<li class="chapter" data-level="21.2.4" data-path="translation.html"><a href="translation.html#known-symbols"><i class="fa fa-check"></i><b>21.2.4</b> Known symbols</a></li>
+<li class="chapter" data-level="21.2.5" data-path="translation.html"><a href="translation.html#unknown-symbols"><i class="fa fa-check"></i><b>21.2.5</b> Unknown symbols</a></li>
+<li class="chapter" data-level="21.2.6" data-path="translation.html"><a href="translation.html#known-functions"><i class="fa fa-check"></i><b>21.2.6</b> Known functions</a></li>
+<li class="chapter" data-level="21.2.7" data-path="translation.html"><a href="translation.html#unknown-functions"><i class="fa fa-check"></i><b>21.2.7</b> Unknown functions</a></li>
+<li class="chapter" data-level="21.2.8" data-path="translation.html"><a href="translation.html#exercises-62"><i class="fa fa-check"></i><b>21.2.8</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Performance</b></span></li>
+<li class="chapter" data-level="22" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>22</b> Performance</a><ul>
+<li class="chapter" data-level="22.1" data-path="performance.html"><a href="performance.html#why-is-r-slow"><i class="fa fa-check"></i><b>22.1</b> Why is R slow?</a></li>
+<li class="chapter" data-level="22.2" data-path="performance.html"><a href="performance.html#microbenchmarking"><i class="fa fa-check"></i><b>22.2</b> Microbenchmarking</a><ul>
+<li class="chapter" data-level="22.2.1" data-path="performance.html"><a href="performance.html#exercises-63"><i class="fa fa-check"></i><b>22.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="performance.html"><a href="performance.html#language-performance"><i class="fa fa-check"></i><b>22.3</b> Language performance</a><ul>
+<li class="chapter" data-level="22.3.1" data-path="performance.html"><a href="performance.html#extreme-dynamism"><i class="fa fa-check"></i><b>22.3.1</b> Extreme dynamism</a></li>
+<li class="chapter" data-level="22.3.2" data-path="performance.html"><a href="performance.html#name-lookup-with-mutable-environments"><i class="fa fa-check"></i><b>22.3.2</b> Name lookup with mutable environments</a></li>
+<li class="chapter" data-level="22.3.3" data-path="performance.html"><a href="performance.html#lazy-evaluation-overhead"><i class="fa fa-check"></i><b>22.3.3</b> Lazy evaluation overhead</a></li>
+<li class="chapter" data-level="22.3.4" data-path="performance.html"><a href="performance.html#exercises-64"><i class="fa fa-check"></i><b>22.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="performance.html"><a href="performance.html#implementation-performance"><i class="fa fa-check"></i><b>22.4</b> Implementation performance</a><ul>
+<li class="chapter" data-level="22.4.1" data-path="performance.html"><a href="performance.html#extracting-a-single-value-from-a-data-frame"><i class="fa fa-check"></i><b>22.4.1</b> Extracting a single value from a data frame</a></li>
+<li class="chapter" data-level="22.4.2" data-path="performance.html"><a href="performance.html#ifelse-pmin-and-pmax"><i class="fa fa-check"></i><b>22.4.2</b> <code>ifelse()</code>, <code>pmin()</code>, and <code>pmax()</code></a></li>
+<li class="chapter" data-level="22.4.3" data-path="performance.html"><a href="performance.html#exercises-65"><i class="fa fa-check"></i><b>22.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="performance.html"><a href="performance.html#faster-r"><i class="fa fa-check"></i><b>22.5</b> Alternative R implementations</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="profiling.html"><a href="profiling.html"><i class="fa fa-check"></i><b>23</b> Optimising code</a><ul>
+<li class="chapter" data-level="23.1" data-path="profiling.html"><a href="profiling.html#measure-perf"><i class="fa fa-check"></i><b>23.1</b> Measuring performance</a><ul>
+<li class="chapter" data-level="23.1.1" data-path="profiling.html"><a href="profiling.html#limitations"><i class="fa fa-check"></i><b>23.1.1</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="23.2" data-path="profiling.html"><a href="profiling.html#improve-perf"><i class="fa fa-check"></i><b>23.2</b> Improving performance</a></li>
+<li class="chapter" data-level="23.3" data-path="profiling.html"><a href="profiling.html#code-organisation"><i class="fa fa-check"></i><b>23.3</b> Code organisation</a></li>
+<li class="chapter" data-level="23.4" data-path="profiling.html"><a href="profiling.html#already-solved"><i class="fa fa-check"></i><b>23.4</b> Has someone already solved the problem?</a><ul>
+<li class="chapter" data-level="23.4.1" data-path="profiling.html"><a href="profiling.html#exercises-66"><i class="fa fa-check"></i><b>23.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.5" data-path="profiling.html"><a href="profiling.html#be-lazy"><i class="fa fa-check"></i><b>23.5</b> Do as little as possible</a><ul>
+<li class="chapter" data-level="23.5.1" data-path="profiling.html"><a href="profiling.html#exercises-67"><i class="fa fa-check"></i><b>23.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.6" data-path="profiling.html"><a href="profiling.html#vectorise"><i class="fa fa-check"></i><b>23.6</b> Vectorise</a><ul>
+<li class="chapter" data-level="23.6.1" data-path="profiling.html"><a href="profiling.html#exercises-68"><i class="fa fa-check"></i><b>23.6.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.7" data-path="profiling.html"><a href="profiling.html#avoid-copies"><i class="fa fa-check"></i><b>23.7</b> Avoid copies</a></li>
+<li class="chapter" data-level="23.8" data-path="profiling.html"><a href="profiling.html#byte-code"><i class="fa fa-check"></i><b>23.8</b> Byte code compilation</a></li>
+<li class="chapter" data-level="23.9" data-path="profiling.html"><a href="profiling.html#t-test"><i class="fa fa-check"></i><b>23.9</b> Case study: t-test</a></li>
+<li class="chapter" data-level="23.10" data-path="profiling.html"><a href="profiling.html#parallelise"><i class="fa fa-check"></i><b>23.10</b> Parallelise</a></li>
+<li class="chapter" data-level="23.11" data-path="profiling.html"><a href="profiling.html#more-techniques"><i class="fa fa-check"></i><b>23.11</b> Other techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>24</b> High performance functions with Rcpp</a><ul>
+<li class="chapter" data-level="24.1" data-path="rcpp.html"><a href="rcpp.html#rcpp-intro"><i class="fa fa-check"></i><b>24.1</b> Getting started with C++</a><ul>
+<li class="chapter" data-level="24.1.1" data-path="rcpp.html"><a href="rcpp.html#no-inputs-scalar-output"><i class="fa fa-check"></i><b>24.1.1</b> No inputs, scalar output</a></li>
+<li class="chapter" data-level="24.1.2" data-path="rcpp.html"><a href="rcpp.html#scalar-input-scalar-output"><i class="fa fa-check"></i><b>24.1.2</b> Scalar input, scalar output</a></li>
+<li class="chapter" data-level="24.1.3" data-path="rcpp.html"><a href="rcpp.html#vector-input-scalar-output"><i class="fa fa-check"></i><b>24.1.3</b> Vector input, scalar output</a></li>
+<li class="chapter" data-level="24.1.4" data-path="rcpp.html"><a href="rcpp.html#vector-input-vector-output"><i class="fa fa-check"></i><b>24.1.4</b> Vector input, vector output</a></li>
+<li class="chapter" data-level="24.1.5" data-path="rcpp.html"><a href="rcpp.html#matrix-input-vector-output"><i class="fa fa-check"></i><b>24.1.5</b> Matrix input, vector output</a></li>
+<li class="chapter" data-level="24.1.6" data-path="rcpp.html"><a href="rcpp.html#sourceCpp"><i class="fa fa-check"></i><b>24.1.6</b> Using sourceCpp</a></li>
+<li class="chapter" data-level="24.1.7" data-path="rcpp.html"><a href="rcpp.html#exercises-69"><i class="fa fa-check"></i><b>24.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="rcpp.html"><a href="rcpp.html#rcpp-classes"><i class="fa fa-check"></i><b>24.2</b> Attributes and other classes</a><ul>
+<li class="chapter" data-level="24.2.1" data-path="rcpp.html"><a href="rcpp.html#lists-and-data-frames"><i class="fa fa-check"></i><b>24.2.1</b> Lists and data frames</a></li>
+<li class="chapter" data-level="24.2.2" data-path="rcpp.html"><a href="rcpp.html#functions-rcpp"><i class="fa fa-check"></i><b>24.2.2</b> Functions</a></li>
+<li class="chapter" data-level="24.2.3" data-path="rcpp.html"><a href="rcpp.html#other-types"><i class="fa fa-check"></i><b>24.2.3</b> Other types</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="rcpp.html"><a href="rcpp.html#rcpp-na"><i class="fa fa-check"></i><b>24.3</b> Missing values</a><ul>
+<li class="chapter" data-level="24.3.1" data-path="rcpp.html"><a href="rcpp.html#scalars"><i class="fa fa-check"></i><b>24.3.1</b> Scalars</a></li>
+<li class="chapter" data-level="24.3.2" data-path="rcpp.html"><a href="rcpp.html#strings"><i class="fa fa-check"></i><b>24.3.2</b> Strings</a></li>
+<li class="chapter" data-level="24.3.3" data-path="rcpp.html"><a href="rcpp.html#boolean"><i class="fa fa-check"></i><b>24.3.3</b> Boolean</a></li>
+<li class="chapter" data-level="24.3.4" data-path="rcpp.html"><a href="rcpp.html#vectors-rcpp"><i class="fa fa-check"></i><b>24.3.4</b> Vectors</a></li>
+<li class="chapter" data-level="24.3.5" data-path="rcpp.html"><a href="rcpp.html#exercises-70"><i class="fa fa-check"></i><b>24.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.4" data-path="rcpp.html"><a href="rcpp.html#rcpp-sugar"><i class="fa fa-check"></i><b>24.4</b> Rcpp sugar</a><ul>
+<li class="chapter" data-level="24.4.1" data-path="rcpp.html"><a href="rcpp.html#arithmetic-and-logical-operators"><i class="fa fa-check"></i><b>24.4.1</b> Arithmetic and logical operators</a></li>
+<li class="chapter" data-level="24.4.2" data-path="rcpp.html"><a href="rcpp.html#logical-summary-functions"><i class="fa fa-check"></i><b>24.4.2</b> Logical summary functions</a></li>
+<li class="chapter" data-level="24.4.3" data-path="rcpp.html"><a href="rcpp.html#vector-views"><i class="fa fa-check"></i><b>24.4.3</b> Vector views</a></li>
+<li class="chapter" data-level="24.4.4" data-path="rcpp.html"><a href="rcpp.html#other-useful-functions"><i class="fa fa-check"></i><b>24.4.4</b> Other useful functions</a></li>
+</ul></li>
+<li class="chapter" data-level="24.5" data-path="rcpp.html"><a href="rcpp.html#stl"><i class="fa fa-check"></i><b>24.5</b> The STL</a><ul>
+<li class="chapter" data-level="24.5.1" data-path="rcpp.html"><a href="rcpp.html#using-iterators"><i class="fa fa-check"></i><b>24.5.1</b> Using iterators</a></li>
+<li class="chapter" data-level="24.5.2" data-path="rcpp.html"><a href="rcpp.html#algorithms"><i class="fa fa-check"></i><b>24.5.2</b> Algorithms</a></li>
+<li class="chapter" data-level="24.5.3" data-path="rcpp.html"><a href="rcpp.html#data-structures-rcpp"><i class="fa fa-check"></i><b>24.5.3</b> Data structures</a></li>
+<li class="chapter" data-level="24.5.4" data-path="rcpp.html"><a href="rcpp.html#vectors-stl"><i class="fa fa-check"></i><b>24.5.4</b> Vectors</a></li>
+<li class="chapter" data-level="24.5.5" data-path="rcpp.html"><a href="rcpp.html#sets"><i class="fa fa-check"></i><b>24.5.5</b> Sets</a></li>
+<li class="chapter" data-level="24.5.6" data-path="functionals.html"><a href="functionals.html#map"><i class="fa fa-check"></i><b>24.5.6</b> Map</a></li>
+<li class="chapter" data-level="24.5.7" data-path="rcpp.html"><a href="rcpp.html#exercises-71"><i class="fa fa-check"></i><b>24.5.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.6" data-path="rcpp.html"><a href="rcpp.html#rcpp-case-studies"><i class="fa fa-check"></i><b>24.6</b> Case studies</a><ul>
+<li class="chapter" data-level="24.6.1" data-path="rcpp.html"><a href="rcpp.html#gibbs-sampler"><i class="fa fa-check"></i><b>24.6.1</b> Gibbs sampler</a></li>
+<li class="chapter" data-level="24.6.2" data-path="rcpp.html"><a href="rcpp.html#r-vectorisation-vs.c-vectorisation"><i class="fa fa-check"></i><b>24.6.2</b> R vectorisation vs. C++ vectorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="24.7" data-path="rcpp.html"><a href="rcpp.html#rcpp-package"><i class="fa fa-check"></i><b>24.7</b> Using Rcpp in a package</a></li>
+<li class="chapter" data-level="24.8" data-path="rcpp.html"><a href="rcpp.html#rcpp-more"><i class="fa fa-check"></i><b>24.8</b> Learning more</a></li>
+<li class="chapter" data-level="24.9" data-path="rcpp.html"><a href="rcpp.html#acknowledgments"><i class="fa fa-check"></i><b>24.9</b> Acknowledgments</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="debugging" class="section level1">
+<h1><span class="header-section-number">7</span> Debugging, condition handling, and defensive programming</h1>
+<p>What happens when something goes wrong with your R code? What do you do? What tools do you have to address the problem? This chapter will teach you how to fix unanticipated problems (debugging), show you how functions can communicate problems and how you can take action based on those communications (condition handling), and teach you how to avoid common problems before they occur (defensive programming).</p>
+<p>Debugging is the art and science of fixing unexpected problems in your code. In this section you’ll learn the tools and techniques that help you get to the root cause of an error. You’ll learn general strategies for debugging, useful R functions like <code>traceback()</code> and <code>browser()</code>, and interactive tools in RStudio.</p>
+<p>Not all problems are unexpected. When writing a function, you can often anticipate potential problems (like a non-existent file or the wrong type of input). Communicating these problems to the user is the job of <strong>conditions</strong>: errors, warnings, and messages.</p>
+<ul>
+<li><p>Fatal errors are raised by <code>stop()</code> and force all execution to terminate. Errors are used when there is no way for a function to continue.  </p></li>
+<li><p>Warnings are generated by <code>warning()</code> and are used to display potential problems, such as when some elements of a vectorised input are invalid, like <code>log(-1:2)</code>.</p></li>
+<li><p>Messages are generated by <code>message()</code> and are used to give informative output in a way that can easily be suppressed by the user (<code>?suppressMessages()</code>). I often use messages to let the user know what value the function has chosen for an important missing argument.</p></li>
+</ul>
+<p>Conditions are usually displayed prominently, in a bold font or coloured red depending on your R interface. You can tell them apart because errors always start with “Error” and warnings with “Warning message”. Function authors can also communicate with their users with <code>print()</code> or <code>cat()</code>, but I think that’s a bad idea because it’s hard to capture and selectively ignore this sort of output. Printed output is not a condition, so you can’t use any of the useful condition handling tools you’ll learn about below.</p>
+<p>Condition handling tools, like <code>withCallingHandlers()</code>, <code>tryCatch()</code>, and <code>try()</code> allow you to take specific actions when a condition occurs. For example, if you’re fitting many models, you might want to continue fitting the others even if one fails to converge. R offers an exceptionally powerful condition handling system based on ideas from Common Lisp, but it’s currently not very well documented or often used. This chapter will introduce you to the most important basics, but if you want to learn more, I recommend the following two sources:</p>
+<ul>
+<li><p><a href="http://homepage.stat.uiowa.edu/~luke/R/exceptions/simpcond.html"><em>A prototype of a condition system for R</em></a> by Robert Gentleman and Luke Tierney. This describes an early version of R’s condition system. While the implementation has changed somewhat since this document was written, it provides a good overview of how the pieces fit together, and some motivation for its design.</p></li>
+<li><p><a href="http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html"><em>Beyond Exception Handling: Conditions and Restarts</em></a> by Peter Seibel. This describes exception handling in Lisp, which happens to be very similar to R’s approach. It provides useful motivation and more sophisticated examples. I have provided an R translation of the chapter at <a href="http://adv-r.had.co.nz/beyond-exception-handling.html" class="uri">http://adv-r.had.co.nz/beyond-exception-handling.html</a>.</p></li>
+</ul>
+<p>The chapter concludes with a discussion of “defensive” programming: ways to avoid common errors before they occur. In the short run you’ll spend more time writing code, but in the long run you’ll save time because error messages will be more informative and will let you narrow in on the root cause more quickly. The basic principle of defensive programming is to “fail fast”, to raise an error as soon as something goes wrong. In R, this takes three particular forms: checking that inputs are correct, avoiding non-standard evaluation, and avoiding functions that can return different types of output.</p>
+<div id="quiz-4" class="section level5">
+<h5><span class="header-section-number">7.0.0.0.1</span> Quiz</h5>
+<p>Want to skip this chapter? Go for it, if you can answer the questions below. Find the answers at the end of the chapter in <a href="debugging.html#debugging-answers">answers</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>How can you find out where an error occurred?</p></li>
+<li><p>What does <code>browser()</code> do? List the five useful single-key commands that you can use inside of a <code>browser()</code> environment.</p></li>
+<li><p>What function do you use to ignore errors in block of code?</p></li>
+<li><p>Why might you want to create an error with a custom S3 class?</p></li>
+</ol>
+</div>
+<div id="outline-5" class="section level5">
+<h5><span class="header-section-number">7.0.0.0.2</span> Outline</h5>
+<ol style="list-style-type: decimal">
+<li><p><a href="debugging.html#debugging-techniques">Debugging techniques</a> outlines a general approach for finding and resolving bugs.</p></li>
+<li><p><a href="debugging.html#debugging-tools">Debugging tools</a> introduces you to the R functions and RStudio features that help you locate exactly where an error occurred.</p></li>
+<li><p><a href="debugging.html#condition-handling">Condition handling</a> shows you how you can catch conditions (errors, warnings, and messages) in your own code. This allows you to create code that’s both more robust and more informative in the presence of errors.</p></li>
+<li><p><a href="debugging.html#defensive-programming">Defensive programming</a> introduces you to some important techniques for defensive programming, techniques that help prevent bugs from occurring in the first place.</p></li>
+</ol>
+</div>
+<div id="debugging-techniques" class="section level2">
+<h2><span class="header-section-number">7.1</span> Debugging techniques</h2>
+<blockquote>
+<p>“Finding your bug is a process of confirming the many things that you believe are true — until you find one which is not true.”</p>
+<p>—Norm Matloff</p>
+</blockquote>
+<p>Debugging code is challenging. Many bugs are subtle and hard to find. Indeed, if a bug was obvious, you probably would’ve been able to avoid it in the first place. While it’s true that with a good technique, you can productively debug a problem with just <code>print()</code>, there are times when additional help would be welcome. In this section, we’ll discuss some useful tools, which R and RStudio provide, and outline a general procedure for debugging.  </p>
+<p>While the procedure below is by no means foolproof, it will hopefully help you to organise your thoughts when debugging. There are four steps:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Realise that you have a bug</strong></p>
+<p>If you’re reading this chapter, you’ve probably already completed this step. It is a surprisingly important one: you can’t fix a bug until you know it exists. This is one reason why automated test suites are important when producing high-quality code. Unfortunately, automated testing is outside the scope of this book, but you can read more about it at <a href="http://r-pkgs.had.co.nz/tests.html" class="uri">http://r-pkgs.had.co.nz/tests.html</a>.</p></li>
+<li><p><strong>Make it repeatable</strong></p>
+<p>Once you’ve determined you have a bug, you need to be able to reproduce it on command. Without this, it becomes extremely difficult to isolate its cause and to confirm that you’ve successfully fixed it.</p>
+<p>Generally, you will start with a big block of code that you know causes the error and then slowly whittle it down to get to the smallest possible snippet that still causes the error. Binary search is particularly useful for this. To do a binary search, you repeatedly remove half of the code until you find the bug. This is fast because, with each step, you reduce the amount of code to look through by half.</p>
+<p>If it takes a long time to generate the bug, it’s also worthwhile to figure out how to generate it faster. The quicker you can do this, the quicker you can figure out the cause.</p>
+<p>As you work on creating a minimal example, you’ll also discover similar inputs that don’t trigger the bug. Make note of them: they will be helpful when diagnosing the cause of the bug.</p>
+<p>If you’re using automated testing, this is also a good time to create an automated test case. If your existing test coverage is low, take the opportunity to add some nearby tests to ensure that existing good behaviour is preserved. This reduces the chances of creating a new bug.</p></li>
+<li><p><strong>Figure out where it is</strong></p>
+<p>If you’re lucky, one of the tools in the following section will help you to quickly identify the line of code that’s causing the bug. Usually, however, you’ll have to think a bit more about the problem. It’s a great idea to adopt the scientific method. Generate hypotheses, design experiments to test them, and record your results. This may seem like a lot of work, but a systematic approach will end up saving you time. I often waste a lot of time relying on my intuition to solve a bug (“oh, it must be an off-by-one error, so I’ll just subtract 1 here”), when I would have been better off taking a systematic approach.</p></li>
+<li><p><strong>Fix it and test it</strong></p>
+<p>Once you’ve found the bug, you need to figure out how to fix it and to check that the fix actually worked. Again, it’s very useful to have automated tests in place. Not only does this help to ensure that you’ve actually fixed the bug, it also helps to ensure you haven’t introduced any new bugs in the process. In the absence of automated tests, make sure to carefully record the correct output, and check against the inputs that previously failed.</p></li>
+</ol>
+</div>
+<div id="debugging-tools" class="section level2">
+<h2><span class="header-section-number">7.2</span> Debugging tools</h2>
+<p>To implement a strategy of debugging, you’ll need tools. In this section, you’ll learn about the tools provided by R and the RStudio IDE. RStudio’s integrated debugging support makes life easier by exposing existing R tools in a user friendly way. I’ll show you both the R and RStudio ways so that you can work with whatever environment you use. You may also want to refer to the official <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">RStudio debugging documentation</a> which always reflects the tools in the latest version of RStudio.</p>
+<p>There are three key debugging tools:</p>
+<ul>
+<li><p>RStudio’s error inspector and <code>traceback()</code> which list the sequence of calls that lead to the error.</p></li>
+<li><p>RStudio’s “Rerun with Debug” tool and <code>options(error = browser)</code> which open an interactive session where the error occurred.</p></li>
+<li><p>RStudio’s breakpoints and <code>browser()</code> which open an interactive session at an arbitrary location in the code.</p></li>
+</ul>
+<p>I’ll explain each tool in more detail below.</p>
+<p>You shouldn’t need to use these tools when writing new functions. If you find yourself using them frequently with new code, you may want to reconsider your approach. Instead of trying to write one big function all at once, work interactively on small pieces. If you start small, you can quickly identify why something doesn’t work. But if you start large, you may end up struggling to identify the source of the problem.</p>
+<div id="determining-the-sequence-of-calls" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Determining the sequence of calls</h3>
+<p>The first tool is the <strong>call stack</strong>, the sequence of calls that lead up to an error. Here’s a simple example: you can see that <code>f()</code> calls <code>g()</code> calls <code>h()</code> calls <code>i()</code> which adds together a number and a string creating a error:  </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(a) <span class="kw">g</span>(a)
+g &lt;-<span class="st"> </span><span class="cf">function</span>(b) <span class="kw">h</span>(b)
+h &lt;-<span class="st"> </span><span class="cf">function</span>(c) <span class="kw">i</span>(c)
+i &lt;-<span class="st"> </span><span class="cf">function</span>(d) <span class="st">&quot;a&quot;</span> <span class="op">+</span><span class="st"> </span>d
+<span class="kw">f</span>(<span class="dv">10</span>)</code></pre></div>
+<p>When we run this code in RStudio we see:</p>
+<p><img src="screenshots/traceback-hidden.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Two options appear to the right of the error message: “Show Traceback” and “Rerun with Debug”. If you click “Show traceback” you see:</p>
+<p><img src="screenshots/traceback-shown.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>If you’re not using RStudio, you can use <code>traceback()</code> to get the same information:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">traceback</span>()
+<span class="co"># 4: i(c) at exceptions-example.R#3</span>
+<span class="co"># 3: h(b) at exceptions-example.R#2</span>
+<span class="co"># 2: g(a) at exceptions-example.R#1</span>
+<span class="co"># 1: f(10)</span></code></pre></div>
+<p>Read the call stack from bottom to top: the initial call is <code>f()</code>, which calls <code>g()</code>, then <code>h()</code>, then <code>i()</code>, which triggers the error. If you’re calling code that you <code>source()</code>d into R, the traceback will also display the location of the function, in the form <code>filename.r#linenumber</code>. These are clickable in RStudio, and will take you to the corresponding line of code in the editor.</p>
+<p>Sometimes this is enough information to let you track down the error and fix it. However, it’s usually not. <code>traceback()</code> shows you where the error occurred, but not why. The next useful tool is the interactive debugger, which allows you to pause execution of a function and interactively explore its state.</p>
+</div>
+<div id="browsing-on-error" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Browsing on error</h3>
+<p>The easiest way to enter the interactive debugger is through RStudio’s “Rerun with Debug” tool. This reruns the command that created the error, pausing execution where the error occurred. You’re now in an interactive state inside the function, and you can interact with any object defined there. You’ll see the corresponding code in the editor (with the statement that will be run next highlighted), objects in the current environment in the “Environment” pane, the call stack in a “Traceback” pane, and you can run arbitrary R code in the console. </p>
+<p>As well as any regular R function, there are a few special commands you can use in debug mode. You can access them either with the RStudio toolbar (<img src="screenshots/debug-toolbar.png" height="20" />) or with the keyboard:</p>
+<ul>
+<li><p>Next, <code>n</code>: executes the next step in the function. Be careful if you have a variable named <code>n</code>; to print it you’ll need to do <code>print(n)</code>.</p></li>
+<li><p>Step into, <img src="screenshots/step-into.png" height="20" /> or <code>s</code>: works like next, but if the next step is a function, it will step into that function so you can work through each line.</p></li>
+<li><p>Finish, <img src="screenshots/finish-loop.png" height="20" /> or <code>f</code>: finishes execution of the current loop or function.</p></li>
+<li><p>Continue, <code>c</code>: leaves interactive debugging and continues regular execution of the function. This is useful if you’ve fixed the bad state and want to check that the function proceeds correctly.</p></li>
+<li><p>Stop, <code>Q</code>: stops debugging, terminates the function, and returns to the global workspace. Use this once you’ve figured out where the problem is, and you’re ready to fix it and reload the code.</p></li>
+</ul>
+<p>There are two other slightly less useful commands that aren’t available in the toolbar:</p>
+<ul>
+<li><p>Enter: repeats the previous command. I find this too easy to activate accidentally, so I turn it off using <code>options(browserNLdisabled = TRUE)</code>.</p></li>
+<li><p><code>where</code>: prints stack trace of active calls (the interactive equivalent of <code>traceback</code>).</p></li>
+</ul>
+<p>To enter this style of debugging outside of RStudio, you can use the <code>error</code> option which specifies a function to run when an error occurs. The function most similar to RStudio’s debug is <code>browser()</code>: this will start an interactive console in the environment where the error occurred. Use <code>options(error = browser)</code> to turn it on, re-run the previous command, then use <code>options(error = NULL)</code> to return to the default error behaviour. You could automate this with the <code>browseOnce()</code> function as defined below: </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">browseOnce &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  old &lt;-<span class="st"> </span><span class="kw">getOption</span>(<span class="st">&quot;error&quot;</span>)
+  <span class="cf">function</span>() {
+    <span class="kw">options</span>(<span class="dt">error =</span> old)
+    <span class="kw">browser</span>()
+  }
+}
+<span class="kw">options</span>(<span class="dt">error =</span> <span class="kw">browseOnce</span>())
+
+f &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">stop</span>(<span class="st">&quot;!&quot;</span>)
+<span class="co"># Enters browser</span>
+<span class="kw">f</span>()
+<span class="co"># Runs normally</span>
+<span class="kw">f</span>()</code></pre></div>
+<p>(You’ll learn more about functions that return functions in <a href="functional-programming.html#functional-programming">Functional programming</a>.)</p>
+<p>There are two other useful functions that you can use with the <code>error</code> option:</p>
+<ul>
+<li><p><code>recover</code> is a step up from <code>browser</code>, as it allows you to enter the environment of any of the calls in the call stack. This is useful because often the root cause of the error is a number of calls back. </p></li>
+<li><p><code>dump.frames</code> is an equivalent to <code>recover</code> for non-interactive code. It creates a <code>last.dump.rda</code> file in the current working directory. Then, in a later interactive R session, you load that file, and use <code>debugger()</code> to enter an interactive debugger with the same interface as <code>recover()</code>. This allows interactive debugging of batch code. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In batch R process ----</span>
+dump_and_quit &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  <span class="co"># Save debugging info to file last.dump.rda</span>
+  <span class="kw">dump.frames</span>(<span class="dt">to.file =</span> <span class="ot">TRUE</span>)
+  <span class="co"># Quit R with error status</span>
+  <span class="kw">q</span>(<span class="dt">status =</span> <span class="dv">1</span>)
+}
+<span class="kw">options</span>(<span class="dt">error =</span> dump_and_quit)
+
+<span class="co"># In a later interactive session ----</span>
+<span class="kw">load</span>(<span class="st">&quot;last.dump.rda&quot;</span>)
+<span class="kw">debugger</span>()</code></pre></div></li>
+</ul>
+<p>To reset error behaviour to the default, use <code>options(error = NULL)</code>. Then errors will print a message and abort function execution.</p>
+</div>
+<div id="browsing-arbitrary-code" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> Browsing arbitrary code</h3>
+<p>As well as entering an interactive console on error, you can enter it at an arbitrary code location by using either an RStudio breakpoint or <code>browser()</code>. You can set a breakpoint in RStudio by clicking to the left of the line number, or pressing <code>Shift + F9</code>. Equivalently, add <code>browser()</code> where you want execution to pause. Breakpoints behave similarly to <code>browser()</code> but they are easier to set (one click instead of nine key presses), and you don’t run the risk of accidentally including a <code>browser()</code> statement in your source code. There are two small downsides to breakpoints:  </p>
+<ul>
+<li><p>There are a few unusual situations in which breakpoints will not work: read <a href="http://www.rstudio.com/ide/docs/debugging/breakpoint-troubleshooting">breakpoint troubleshooting</a> for more details.</p></li>
+<li><p>RStudio currently does not support conditional breakpoints, whereas you can always put <code>browser()</code> inside an <code>if</code> statement.</p></li>
+</ul>
+<p>As well as adding <code>browser()</code> yourself, there are two other functions that will add it to code:</p>
+<ul>
+<li><p><code>debug()</code> inserts a browser statement in the first line of the specified function. <code>undebug()</code> removes it. Alternatively, you can use <code>debugonce()</code> to browse only on the next run. </p></li>
+<li><p><code>utils::setBreakpoint()</code> works similarly, but instead of taking a function name, it takes a file name and line number and finds the appropriate function for you. </p></li>
+</ul>
+<p>These two functions are both special cases of <code>trace()</code>, which inserts arbitrary code at any position in an existing function. <code>trace()</code> is occasionally useful when you’re debugging code that you don’t have the source for. To remove tracing from a function, use <code>untrace()</code>. You can only perform one trace per function, but that one trace can call multiple functions. </p>
+</div>
+<div id="the-call-stack-traceback-where-and-recover" class="section level3">
+<h3><span class="header-section-number">7.2.4</span> The call stack: <code>traceback()</code>, <code>where</code>, and <code>recover()</code></h3>
+<p>Unfortunately, the call stacks printed by <code>traceback()</code>, <code>browser()</code> + <code>where</code>, and <code>recover()</code> are not consistent. The following table shows how the call stacks from a simple nested set of calls are displayed by the three tools. </p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><code>traceback()</code></th>
+<th align="left"><code>where</code></th>
+<th align="left"><code>recover()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>4: stop(&quot;Error&quot;)</code></td>
+<td align="left"><code>where 1: stop(&quot;Error&quot;)</code></td>
+<td align="left"><code>1: f()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>3: h(x)</code></td>
+<td align="left"><code>where 2: h(x)</code></td>
+<td align="left"><code>2: g(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>2: g(x)</code></td>
+<td align="left"><code>where 3: g(x)</code></td>
+<td align="left"><code>3: h(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>1: f()</code></td>
+<td align="left"><code>where 4: f()</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Note that numbering is different between <code>traceback()</code> and <code>where</code>, and that <code>recover()</code> displays calls in the opposite order, and omits the call to <code>stop()</code>. RStudio displays calls in the same order as <code>traceback()</code> but omits the numbers.</p>
+</div>
+<div id="other-types-of-failure" class="section level3">
+<h3><span class="header-section-number">7.2.5</span> Other types of failure</h3>
+<p>There are other ways for a function to fail apart from throwing an error or returning an incorrect result.</p>
+<ul>
+<li><p>A function may generate an unexpected warning. The easiest way to track down warnings is to convert them into errors with <code>options(warn = 2)</code> and use the regular debugging tools. When you do this you’ll see some extra calls in the call stack, like <code>doWithOneRestart()</code>, <code>withOneRestart()</code>, <code>withRestarts()</code>, and <code>.signalSimpleWarning()</code>. Ignore these: they are internal functions used to turn warnings into errors. </p></li>
+<li><p>A function may generate an unexpected message. There’s no built-in tool to help solve this problem, but it’s possible to create one: </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">message2error &lt;-<span class="st"> </span><span class="cf">function</span>(code) {
+  <span class="kw">withCallingHandlers</span>(code, <span class="dt">message =</span> <span class="cf">function</span>(e) <span class="kw">stop</span>(e))
+}
+
+f &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">g</span>()
+g &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">message</span>(<span class="st">&quot;Hi!&quot;</span>)
+<span class="kw">g</span>()
+<span class="co"># Hi!   </span>
+<span class="kw">message2error</span>(<span class="kw">g</span>())
+<span class="co"># Error in message(&quot;Hi!&quot;): Hi!</span>
+<span class="kw">traceback</span>()
+<span class="co"># 10: stop(e) at #2</span>
+<span class="co"># 9: (function (e) stop(e))(list(message = &quot;Hi!\n&quot;, </span>
+<span class="co">#      call = message(&quot;Hi!&quot;)))</span>
+<span class="co"># 8: signalCondition(cond)</span>
+<span class="co"># 7: doWithOneRestart(return(expr), restart)</span>
+<span class="co"># 6: withOneRestart(expr, restarts[[1L]])</span>
+<span class="co"># 5: withRestarts()</span>
+<span class="co"># 4: message(&quot;Hi!&quot;) at #1</span>
+<span class="co"># 3: g()</span>
+<span class="co"># 2: withCallingHandlers(code, message = function(e) stop(e)) </span>
+<span class="co">#      at #2</span>
+<span class="co"># 1: message2error(g())</span></code></pre></div>
+<p>As with warnings, you’ll need to ignore some of the calls on the traceback (i.e., the first two and the last six).</p></li>
+<li><p>A function might never return. This is particularly hard to debug automatically, but sometimes terminating the function and looking at the call stack is informative. Otherwise, use the basic debugging strategies described above.</p></li>
+<li><p>The worst scenario is that your code might crash R completely, leaving you with no way to interactively debug your code. This indicates a bug in the underlying C code. This is hard to debug. Sometimes an interactive debugger, like <code>gdb</code>, can be useful, but describing how to use it is beyond the scope of this book. </p>
+<p>If the crash is caused by base R code, post a reproducible example to R-help. If it’s in a package, contact the package maintainer. If it’s your own C or C++ code, you’ll need to use numerous <code>print()</code> statements to narrow down the location of the bug, and then you’ll need to use many more print statements to figure out which data structure doesn’t have the properties that you expect.</p></li>
+</ul>
+</div>
+</div>
+<div id="condition-handling" class="section level2">
+<h2><span class="header-section-number">7.3</span> Condition handling</h2>
+<p>Unexpected errors require interactive debugging to figure out what went wrong. Some errors, however, are expected, and you want to handle them automatically. In R, expected errors crop up most frequently when you’re fitting many models to different datasets, such as bootstrap replicates. Sometimes the model might fail to fit and throw an error, but you don’t want to stop everything. Instead, you want to fit as many models as possible and then perform diagnostics after the fact. </p>
+<p>In R, there are three tools for handling conditions (including errors) programmatically:</p>
+<ul>
+<li><p><code>try()</code> gives you the ability to continue execution even when an error occurs.</p></li>
+<li><p><code>tryCatch()</code> lets you specify <strong>handler</strong> functions that control what happens when a condition is signalled.</p></li>
+<li><p><code>withCallingHandlers()</code> is a variant of <code>tryCatch()</code> that establishes local handlers, whereas <code>tryCatch()</code> registers exiting handlers. Local handlers are called in the same context as where the condition is signalled, without interrupting the execution of the function. When an exiting handler from <code>tryCatch()</code> is called, the execution of the function is interrupted and the handler is called. <code>withCallingHandlers()</code> is rarely needed, but is useful to be aware of.</p></li>
+</ul>
+<p>The following sections describe these tools in more detail.</p>
+<div id="try" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Ignore errors with try</h3>
+<p><code>try()</code> allows execution to continue even after an error has occurred. For example, normally if you run a function that throws an error, it terminates immediately and doesn’t return a value: </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">log</span>(x)
+  <span class="dv">10</span>
+}
+<span class="kw">f1</span>(<span class="st">&quot;x&quot;</span>)
+<span class="co">#&gt; Error in log(x): Nicht-numerisches Argument für mathematische Funktion</span></code></pre></div>
+<p>However, if you wrap the statement that creates the error in <code>try()</code>, the error message will be printed but execution will continue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">try</span>(<span class="kw">log</span>(x))
+  <span class="dv">10</span>
+}
+<span class="kw">f2</span>(<span class="st">&quot;a&quot;</span>)
+<span class="co">#&gt; Error in log(x) : non-numeric argument to mathematical function</span>
+<span class="co">#&gt; [1] 10</span></code></pre></div>
+<p>You can suppress the message with <code>try(..., silent = TRUE)</code>.</p>
+<p>To pass larger blocks of code to <code>try()</code>, wrap them in <code>{}</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">try</span>({
+  a &lt;-<span class="st"> </span><span class="dv">1</span>
+  b &lt;-<span class="st"> &quot;x&quot;</span>
+  a <span class="op">+</span><span class="st"> </span>b
+})</code></pre></div>
+<p>You can also capture the output of the <code>try()</code> function. If successful, it will be the last result evaluated in the block (just like a function). If unsuccessful it will be an (invisible) object of class “try-error”:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">success &lt;-<span class="st"> </span><span class="kw">try</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)
+failure &lt;-<span class="st"> </span><span class="kw">try</span>(<span class="st">&quot;a&quot;</span> <span class="op">+</span><span class="st"> &quot;b&quot;</span>)
+<span class="kw">class</span>(success)
+<span class="co">#&gt; [1] &quot;numeric&quot;</span>
+<span class="kw">class</span>(failure)
+<span class="co">#&gt; [1] &quot;try-error&quot;</span></code></pre></div>
+<p><code>try()</code> is particularly useful when you’re applying a function to multiple elements in a list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">elements &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), letters)
+results &lt;-<span class="st"> </span><span class="kw">lapply</span>(elements, log)
+<span class="co">#&gt; Warning in FUN(X[[i]], ...): NaNs wurden erzeugt</span>
+<span class="co">#&gt; Error in FUN(X[[i]], ...): Nicht-numerisches Argument für mathematische Funktion</span>
+results &lt;-<span class="st"> </span><span class="kw">lapply</span>(elements, <span class="cf">function</span>(x) <span class="kw">try</span>(<span class="kw">log</span>(x)))
+<span class="co">#&gt; Warning in log(x): NaNs wurden erzeugt</span></code></pre></div>
+<p>There isn’t a built-in function to test for the try-error class, so we’ll define one. Then you can easily find the locations of errors with <code>sapply()</code> (as discussed in <a href="functionals.html#functionals">Functionals</a>), and extract the successes or look at the inputs that lead to failures.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is.error &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">inherits</span>(x, <span class="st">&quot;try-error&quot;</span>)
+succeeded &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">vapply</span>(results, is.error, <span class="kw">logical</span>(<span class="dv">1</span>))
+
+<span class="co"># look at successful results</span>
+<span class="kw">str</span>(results[succeeded])
+<span class="co">#&gt; List of 3</span>
+<span class="co">#&gt;  $ : num [1:10] 0 0.693 1.099 1.386 1.609 ...</span>
+<span class="co">#&gt;  $ : num [1:2] NaN 2.3</span>
+<span class="co">#&gt;  $ : num [1:2] 0 -Inf</span>
+
+<span class="co"># look at inputs that failed</span>
+<span class="kw">str</span>(elements[<span class="op">!</span>succeeded])
+<span class="co">#&gt; List of 1</span>
+<span class="co">#&gt;  $ : chr [1:26] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; ...</span></code></pre></div>
+<p>Another useful <code>try()</code> idiom is using a default value if an expression fails. Simply assign the default value outside the try block, and then run the risky code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">default &lt;-<span class="st"> </span><span class="ot">NULL</span>
+<span class="kw">try</span>(default &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;possibly-bad-input.csv&quot;</span>), <span class="dt">silent =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>There is also <code>plyr::failwith()</code>, which makes this strategy even easier to implement. See <a href="function-operators.html#output-fos">Function Operators</a> for more details.</p>
+</div>
+<div id="handle-conditions-with-trycatch" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Handle conditions with <code>tryCatch()</code></h3>
+<p><code>tryCatch()</code> is a general tool for handling conditions: in addition to errors, you can take different actions for warnings, messages, and interrupts. You’ve seen errors (made by <code>stop()</code>), warnings (<code>warning()</code>) and messages (<code>message()</code>) before, but interrupts are new. They can’t be generated directly by the programmer, but are raised when the user attempts to terminate execution by pressing Ctrl + Break, Escape, or Ctrl + C (depending on the platform).  </p>
+<p>With <code>tryCatch()</code> you map conditions to <strong>handlers</strong>, named functions that are called with the condition as an input. If a condition is signalled, <code>tryCatch()</code> will call the first handler whose name matches one of the classes of the condition. The only useful built-in names are <code>error</code>, <code>warning</code>, <code>message</code>, <code>interrupt</code>, and the catch-all <code>condition</code>. A handler function can do anything, but typically it will either return a value or create a more informative error message. For example, the <code>show_condition()</code> function below sets up handlers that return the type of condition signalled: </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">show_condition &lt;-<span class="st"> </span><span class="cf">function</span>(code) {
+  <span class="kw">tryCatch</span>(code,
+    <span class="dt">error =</span> <span class="cf">function</span>(c) <span class="st">&quot;error&quot;</span>,
+    <span class="dt">warning =</span> <span class="cf">function</span>(c) <span class="st">&quot;warning&quot;</span>,
+    <span class="dt">message =</span> <span class="cf">function</span>(c) <span class="st">&quot;message&quot;</span>
+  )
+}
+<span class="kw">show_condition</span>(<span class="kw">stop</span>(<span class="st">&quot;!&quot;</span>))
+<span class="co">#&gt; [1] &quot;error&quot;</span>
+<span class="kw">show_condition</span>(<span class="kw">warning</span>(<span class="st">&quot;?!&quot;</span>))
+<span class="co">#&gt; [1] &quot;warning&quot;</span>
+<span class="kw">show_condition</span>(<span class="kw">message</span>(<span class="st">&quot;?&quot;</span>))
+<span class="co">#&gt; [1] &quot;message&quot;</span>
+
+<span class="co"># If no condition is captured, tryCatch returns the </span>
+<span class="co"># value of the input</span>
+<span class="kw">show_condition</span>(<span class="dv">10</span>)
+<span class="co">#&gt; [1] 10</span></code></pre></div>
+<p>You can use <code>tryCatch()</code> to implement <code>try()</code>. A simple implementation is shown below. <code>base::try()</code> is more complicated in order to make the error message look more like what you’d see if <code>tryCatch()</code> wasn’t used. Note the use of <code>conditionMessage()</code> to extract the message associated with the original error.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">try2 &lt;-<span class="st"> </span><span class="cf">function</span>(code, <span class="dt">silent =</span> <span class="ot">FALSE</span>) {
+  <span class="kw">tryCatch</span>(code, <span class="dt">error =</span> <span class="cf">function</span>(c) {
+    msg &lt;-<span class="st"> </span><span class="kw">conditionMessage</span>(c)
+    <span class="cf">if</span> (<span class="op">!</span>silent) <span class="kw">message</span>(c)
+    <span class="kw">invisible</span>(<span class="kw">structure</span>(msg, <span class="dt">class =</span> <span class="st">&quot;try-error&quot;</span>))
+  })
+}
+
+<span class="kw">try2</span>(<span class="dv">1</span>)
+<span class="co">#&gt; [1] 1</span>
+<span class="kw">try2</span>(<span class="kw">stop</span>(<span class="st">&quot;Hi&quot;</span>))
+<span class="kw">try2</span>(<span class="kw">stop</span>(<span class="st">&quot;Hi&quot;</span>), <span class="dt">silent =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>As well as returning default values when a condition is signalled, handlers can be used to make more informative error messages. For example, by modifying the message stored in the error condition object, the following function wraps <code>read.csv()</code> to add the file name to any errors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">read.csv2 &lt;-<span class="st"> </span><span class="cf">function</span>(file, ...) {
+  <span class="kw">tryCatch</span>(<span class="kw">read.csv</span>(file, ...), <span class="dt">error =</span> <span class="cf">function</span>(c) {
+    c<span class="op">$</span>message &lt;-<span class="st"> </span><span class="kw">paste0</span>(c<span class="op">$</span>message, <span class="st">&quot; (in &quot;</span>, file, <span class="st">&quot;)&quot;</span>)
+    <span class="kw">stop</span>(c)
+  })
+}
+<span class="kw">read.csv</span>(<span class="st">&quot;code/dummy.csv&quot;</span>)
+<span class="co">#&gt; Error in file(file, &quot;rt&quot;): kann Verbindung nicht öffnen</span>
+<span class="kw">read.csv2</span>(<span class="st">&quot;code/dummy.csv&quot;</span>)
+<span class="co">#&gt; Error in file(file, &quot;rt&quot;): kann Verbindung nicht öffnen (in code/dummy.csv)</span></code></pre></div>
+<p>Catching interrupts can be useful if you want to take special action when the user tries to abort running code. But be careful, it’s easy to create a loop that you can never escape (unless you kill R)! </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Don&#39;t let the user interrupt the code</span>
+i &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="cf">while</span>(i <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) {
+  <span class="kw">tryCatch</span>({
+    <span class="kw">Sys.sleep</span>(<span class="fl">0.5</span>)
+    <span class="kw">message</span>(<span class="st">&quot;Try to escape&quot;</span>)
+  }, <span class="dt">interrupt =</span> <span class="cf">function</span>(x) {
+    <span class="kw">message</span>(<span class="st">&quot;Try again!&quot;</span>)
+    i &lt;&lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  })
+}</code></pre></div>
+<p><code>tryCatch()</code> has one other argument: <code>finally</code>. It specifies a block of code (not a function) to run regardless of whether the initial expression succeeds or fails. This can be useful for clean up (e.g., deleting files, closing connections). This is functionally equivalent to using <code>on.exit()</code> but it can wrap smaller chunks of code than an entire function. </p>
+</div>
+<div id="withcallinghandlers" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> <code>withCallingHandlers()</code></h3>
+<p>An alternative to <code>tryCatch()</code> is <code>withCallingHandlers()</code>. The difference between the two is that the former establishes <em>exiting</em> handlers while the latter registers <em>local</em> handlers. Here are the main differences between the two kind of handlers: </p>
+<ul>
+<li><p>The handlers in <code>withCallingHandlers()</code> are called in the context of the call that generated the condition whereas the handlers in <code>tryCatch()</code> are called in the context of <code>tryCatch()</code>. This is shown here with <code>sys.calls()</code>, which is the run-time equivalent of <code>traceback()</code> — it lists all calls leading to the current function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">g</span>()
+g &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">h</span>()
+h &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">stop</span>(<span class="st">&quot;!&quot;</span>)
+
+<span class="kw">tryCatch</span>(<span class="kw">f</span>(), <span class="dt">error =</span> <span class="cf">function</span>(e) <span class="kw">print</span>(<span class="kw">sys.calls</span>()))
+<span class="co"># [[1]] tryCatch(f(), error = function(e) print(sys.calls()))</span>
+<span class="co"># [[2]] tryCatchList(expr, classes, parentenv, handlers)</span>
+<span class="co"># [[3]] tryCatchOne(expr, names, parentenv, handlers[[1L]])</span>
+<span class="co"># [[4]] value[[3L]](cond)</span>
+
+<span class="kw">withCallingHandlers</span>(<span class="kw">f</span>(), <span class="dt">error =</span> <span class="cf">function</span>(e) <span class="kw">print</span>(<span class="kw">sys.calls</span>()))
+<span class="co"># [[1]] withCallingHandlers(f(), </span>
+<span class="co">#    error = function(e) print(sys.calls()))</span>
+<span class="co"># [[2]] f()</span>
+<span class="co"># [[3]] g()</span>
+<span class="co"># [[4]] h()</span>
+<span class="co"># [[5]] stop(&quot;!&quot;)</span>
+<span class="co"># [[6]] .handleSimpleError(</span>
+<span class="co">#    function (e) print(sys.calls()), &quot;!&quot;, quote(h()))</span>
+<span class="co"># [[7]] h(simpleError(msg, call))</span></code></pre></div>
+<p>This also affects the order in which <code>on.exit()</code> is called.</p></li>
+<li><p>A related difference is that with <code>tryCatch()</code>, the flow of execution is interrupted when a handler is called, while with <code>withCallingHandlers()</code>, execution continues normally when the handler returns. This includes the signalling function which continues its course after having called the handler (e.g., <code>stop()</code> will continue stopping the program and <code>message()</code> or <code>warning()</code> will continue signalling a message/warning). This is why it is often better to handle a message with <code>withCallingHandlers()</code> rather than <code>tryCatch()</code>, since the latter will stop the program:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">message_handler &lt;-<span class="st"> </span><span class="cf">function</span>(c) <span class="kw">cat</span>(<span class="st">&quot;Caught a message!</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="kw">tryCatch</span>(<span class="dt">message =</span> message_handler, {
+  <span class="kw">message</span>(<span class="st">&quot;Someone there?&quot;</span>)
+  <span class="kw">message</span>(<span class="st">&quot;Why, yes!&quot;</span>)
+})
+<span class="co">#&gt; Caught a message!</span>
+
+<span class="kw">withCallingHandlers</span>(<span class="dt">message =</span> message_handler, {
+  <span class="kw">message</span>(<span class="st">&quot;Someone there?&quot;</span>)
+  <span class="kw">message</span>(<span class="st">&quot;Why, yes!&quot;</span>)
+})
+<span class="co">#&gt; Caught a message!</span>
+<span class="co">#&gt; Someone there?</span>
+<span class="co">#&gt; Caught a message!</span>
+<span class="co">#&gt; Why, yes!</span></code></pre></div></li>
+<li><p>The return value of a handler is returned by <code>tryCatch()</code>, whereas it is ignored with <code>withCallingHandlers()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">message</span>(<span class="st">&quot;!&quot;</span>)
+<span class="kw">tryCatch</span>(<span class="kw">f</span>(), <span class="dt">message =</span> <span class="cf">function</span>(m) <span class="dv">1</span>)
+<span class="co">#&gt; [1] 1</span>
+<span class="kw">withCallingHandlers</span>(<span class="kw">f</span>(), <span class="dt">message =</span> <span class="cf">function</span>(m) <span class="dv">1</span>)
+<span class="co">#&gt; !</span></code></pre></div></li>
+</ul>
+<p>These subtle differences are rarely useful, except when you’re trying to capture exactly what went wrong and pass it on to another function. For most purposes, you should never need to use <code>withCallingHandlers()</code>.</p>
+</div>
+<div id="custom-signal-classes" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> Custom signal classes</h3>
+<p>One of the challenges of error handling in R is that most functions just call <code>stop()</code> with a string. That means if you want to figure out if a particular error occurred, you have to look at the text of the error message. This is error prone, not only because the text of the error might change over time, but also because many error messages are translated, so the message might be completely different to what you expect. </p>
+<p>R has a little known and little used feature to solve this problem. Conditions are S3 classes, so you can define your own classes if you want to distinguish different types of error. Each condition signalling function, <code>stop()</code>, <code>warning()</code>, and <code>message()</code>, can be given either a list of strings, or a custom S3 condition object. Custom condition objects are not used very often, but are very useful because they make it possible for the user to respond to different errors in different ways. For example, “expected” errors (like a model failing to converge for some input datasets) can be silently ignored, while unexpected errors (like no disk space available) can be propagated to the user.</p>
+<p>R doesn’t come with a built-in constructor function for conditions, but we can easily add one. Conditions must contain <code>message</code> and <code>call</code> components, and may contain other useful components. When creating a new condition, it should always inherit from <code>condition</code> and should in most cases inherit from one of <code>error</code>, <code>warning</code>, or <code>message</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">condition &lt;-<span class="st"> </span><span class="cf">function</span>(subclass, message, <span class="dt">call =</span> <span class="kw">sys.call</span>(<span class="op">-</span><span class="dv">1</span>), ...) {
+  <span class="kw">structure</span>(
+    <span class="dt">class =</span> <span class="kw">c</span>(subclass, <span class="st">&quot;condition&quot;</span>),
+    <span class="kw">list</span>(<span class="dt">message =</span> message, <span class="dt">call =</span> call),
+    ...
+  )
+}
+is.condition &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">inherits</span>(x, <span class="st">&quot;condition&quot;</span>)</code></pre></div>
+<p>You can signal an arbitrary condition with <code>signalCondition()</code>, but nothing will happen unless you’ve instantiated a custom signal handler (with <code>tryCatch()</code> or <code>withCallingHandlers()</code>). Instead, pass this condition to <code>stop()</code>, <code>warning()</code>, or <code>message()</code> as appropriate to trigger the usual handling. R won’t complain if the class of your condition doesn’t match the function, but in real code you should pass a condition that inherits from the appropriate class: <code>&quot;error&quot;</code> for <code>stop()</code>, <code>&quot;warning&quot;</code> for <code>warning()</code>, and <code>&quot;message&quot;</code> for <code>message()</code>. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(<span class="st">&quot;my_error&quot;</span>, <span class="st">&quot;error&quot;</span>), <span class="st">&quot;This is an error&quot;</span>)
+<span class="kw">signalCondition</span>(e)
+<span class="co"># NULL</span>
+<span class="kw">stop</span>(e)
+<span class="co"># Error: This is an error</span>
+w &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(<span class="st">&quot;my_warning&quot;</span>, <span class="st">&quot;warning&quot;</span>), <span class="st">&quot;This is a warning&quot;</span>)
+<span class="kw">warning</span>(w)
+<span class="co"># Warning message: This is a warning</span>
+m &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(<span class="st">&quot;my_message&quot;</span>, <span class="st">&quot;message&quot;</span>), <span class="st">&quot;This is a message&quot;</span>)
+<span class="kw">message</span>(m)
+<span class="co"># This is a message</span></code></pre></div>
+<p>You can then use <code>tryCatch()</code> to take different actions for different types of errors. In this example we make a convenient <code>custom_stop()</code> function that allows us to signal error conditions with arbitrary classes. In a real application, it would be better to have individual S3 constructor functions that you could document, describing the error classes in more detail.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">custom_stop &lt;-<span class="st"> </span><span class="cf">function</span>(subclass, message, <span class="dt">call =</span> <span class="kw">sys.call</span>(<span class="op">-</span><span class="dv">1</span>), 
+                        ...) {
+  c &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(subclass, <span class="st">&quot;error&quot;</span>), message, <span class="dt">call =</span> call, ...)
+  <span class="kw">stop</span>(c)
+}
+
+my_log &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(x))
+    <span class="kw">custom_stop</span>(<span class="st">&quot;invalid_class&quot;</span>, <span class="st">&quot;my_log() needs numeric input&quot;</span>)
+  <span class="cf">if</span> (<span class="kw">any</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>))
+    <span class="kw">custom_stop</span>(<span class="st">&quot;invalid_value&quot;</span>, <span class="st">&quot;my_log() needs positive inputs&quot;</span>)
+
+  <span class="kw">log</span>(x)
+}
+<span class="kw">tryCatch</span>(
+  <span class="kw">my_log</span>(<span class="st">&quot;a&quot;</span>),
+  <span class="dt">invalid_class =</span> <span class="cf">function</span>(c) <span class="st">&quot;class&quot;</span>,
+  <span class="dt">invalid_value =</span> <span class="cf">function</span>(c) <span class="st">&quot;value&quot;</span>
+)
+<span class="co">#&gt; [1] &quot;class&quot;</span></code></pre></div>
+<p>Note that when using <code>tryCatch()</code> with multiple handlers and custom classes, the first handler to match any class in the signal’s class hierarchy is called, not the best match. For this reason, you need to make sure to put the most specific handlers first:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tryCatch</span>(<span class="kw">custom_stop</span>(<span class="st">&quot;my_error&quot;</span>, <span class="st">&quot;!&quot;</span>),
+  <span class="dt">error =</span> <span class="cf">function</span>(c) <span class="st">&quot;error&quot;</span>,
+  <span class="dt">my_error =</span> <span class="cf">function</span>(c) <span class="st">&quot;my_error&quot;</span>
+)
+<span class="co">#&gt; [1] &quot;error&quot;</span>
+<span class="kw">tryCatch</span>(<span class="kw">custom_stop</span>(<span class="st">&quot;my_error&quot;</span>, <span class="st">&quot;!&quot;</span>),
+  <span class="dt">my_error =</span> <span class="cf">function</span>(c) <span class="st">&quot;my_error&quot;</span>,
+  <span class="dt">error =</span> <span class="cf">function</span>(c) <span class="st">&quot;error&quot;</span>
+)
+<span class="co">#&gt; [1] &quot;my_error&quot;</span></code></pre></div>
+</div>
+<div id="exercises-19" class="section level3">
+<h3><span class="header-section-number">7.3.5</span> Exercises</h3>
+<ul>
+<li><p>Compare the following two implementations of <code>message2error()</code>. What is the main advantage of <code>withCallingHandlers()</code> in this scenario? (Hint: look carefully at the traceback.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">message2error &lt;-<span class="st"> </span><span class="cf">function</span>(code) {
+  <span class="kw">withCallingHandlers</span>(code, <span class="dt">message =</span> <span class="cf">function</span>(e) <span class="kw">stop</span>(e))
+}
+message2error &lt;-<span class="st"> </span><span class="cf">function</span>(code) {
+  <span class="kw">tryCatch</span>(code, <span class="dt">message =</span> <span class="cf">function</span>(e) <span class="kw">stop</span>(e))
+}</code></pre></div></li>
+</ul>
+</div>
+</div>
+<div id="defensive-programming" class="section level2">
+<h2><span class="header-section-number">7.4</span> Defensive programming</h2>
+<p>Defensive programming is the art of making code fail in a well-defined manner even when something unexpected occurs. A key principle of defensive programming is to “fail fast”: as soon as something wrong is discovered, signal an error. This is more work for the author of the function (you!), but it makes debugging easier for users because they get errors earlier rather than later, after unexpected input has passed through several functions.  </p>
+<p>In R, the “fail fast” principle is implemented in three ways:</p>
+<ul>
+<li><p>Be strict about what you accept. For example, if your function is not vectorised in its inputs, but uses functions that are, make sure to check that the inputs are scalars. You can use <code>stopifnot()</code>, the <a href="https://github.com/hadley/assertthat">assertthat</a> package, or simple <code>if</code> statements and <code>stop()</code>.</p></li>
+<li><p>Avoid functions that use non-standard evaluation, like <code>subset</code>, <code>transform</code>, and <code>with</code>. These functions save time when used interactively, but because they make assumptions to reduce typing, when they fail, they often fail with uninformative error messages. You can learn more about non-standard evaluation in <a href="#nse">non-standard evaluation</a>.</p></li>
+<li><p>Avoid functions that return different types of output depending on their input. The two biggest offenders are <code>[</code> and <code>sapply()</code>. Whenever subsetting a data frame in a function, you should always use <code>drop = FALSE</code>, otherwise you will accidentally convert 1-column data frames into vectors. Similarly, never use <code>sapply()</code> inside a function: always use the stricter <code>vapply()</code> which will throw an error if the inputs are incorrect types and return the correct type of output even for zero-length inputs.</p></li>
+</ul>
+<p>There is a tension between interactive analysis and programming. When you’re working interactively, you want R to do what you mean. If it guesses wrong, you want to discover that right away so you can fix it. When you’re programming, you want functions that signal errors if anything is even slightly wrong or underspecified. Keep this tension in mind when writing functions. If you’re writing functions to facilitate interactive data analysis, feel free to guess what the analyst wants and recover from minor misspecifications automatically. If you’re writing functions for programming, be strict. Never try to guess what the caller wants.</p>
+<div id="exercises-20" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Exercises</h3>
+<ul>
+<li><p>The goal of the <code>col_means()</code> function defined below is to compute the means of all numeric columns in a data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">col_means &lt;-<span class="st"> </span><span class="cf">function</span>(df) {
+  numeric &lt;-<span class="st"> </span><span class="kw">sapply</span>(df, is.numeric)
+  numeric_cols &lt;-<span class="st"> </span>df[, numeric]
+
+  <span class="kw">data.frame</span>(<span class="kw">lapply</span>(numeric_cols, mean))
+}</code></pre></div>
+<p>However, the function is not robust to unusual inputs. Look at the following results, decide which ones are incorrect, and modify <code>col_means()</code> to be more robust. (Hint: there are two function calls in <code>col_means()</code> that are particularly prone to problems.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">col_means</span>(mtcars)
+<span class="kw">col_means</span>(mtcars[, <span class="dv">0</span>])
+<span class="kw">col_means</span>(mtcars[<span class="dv">0</span>, ])
+<span class="kw">col_means</span>(mtcars[, <span class="st">&quot;mpg&quot;</span>, <span class="dt">drop =</span> F])
+<span class="kw">col_means</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+<span class="kw">col_means</span>(<span class="kw">as.matrix</span>(mtcars))
+<span class="kw">col_means</span>(<span class="kw">as.list</span>(mtcars))
+
+mtcars2 &lt;-<span class="st"> </span>mtcars
+mtcars2[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">lapply</span>(mtcars2[<span class="op">-</span><span class="dv">1</span>], as.character)
+<span class="kw">col_means</span>(mtcars2)</code></pre></div></li>
+<li><p>The following function “lags” a vector, returning a version of <code>x</code> that is <code>n</code> values behind the original. Improve the function so that it (1) returns a useful error message if <code>n</code> is not a vector, and (2) has reasonable behaviour when <code>n</code> is 0 or longer than <code>x</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lag &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">n =</span> 1L) {
+  xlen &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+  <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">NA</span>, n), x[<span class="kw">seq_len</span>(xlen <span class="op">-</span><span class="st"> </span>n)])
+}</code></pre></div></li>
+</ul>
+</div>
+</div>
+<div id="debugging-answers" class="section level2">
+<h2><span class="header-section-number">7.5</span> Quiz answers</h2>
+<ol style="list-style-type: decimal">
+<li><p>The most useful tool to determine where a error occurred is <code>traceback()</code>. Or use RStudio, which displays it automatically where an error occurs.</p></li>
+<li><p><code>browser()</code> pauses execution at the specified line and allows you to enter an interactive environment. In that environment, there are five useful commands: <code>n</code>, execute the next command; <code>s</code>, step into the next function; <code>f</code>, finish the current loop or function; <code>c</code>, continue execution normally; <code>Q</code>, stop the function and return to the console.</p></li>
+<li><p>You could use <code>try()</code> or <code>tryCatch()</code>.</p></li>
+<li><p>Because you can then capture specific types of error with <code>tryCatch()</code>, rather than relying on the comparison of error strings, which is risky, especially when messages are translated.</p></li>
+</ol>
+
+</div>
+</div>
+
+
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="environments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functional-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/adv-r/edit/master/Exceptions-Debugging.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

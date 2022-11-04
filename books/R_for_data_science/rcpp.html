@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced R</title>
+  <meta name="description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side.">
+  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://adv-r.hadley.nz/" />
+  <meta property="og:image" content="http://adv-r.hadley.nz/cover.png" />
+  <meta property="og:description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side." />
+  <meta name="github-repo" content="hadley/adv-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced R" />
+  <meta name="twitter:site" content="@hadley" />
+  <meta name="twitter:description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side." />
+  <meta name="twitter:image" content="http://adv-r.hadley.nz/cover.png" />
+
+<meta name="author" content="Hadley Wickham">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="profiling.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="adv-r.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Advanced R</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-books"><i class="fa fa-check"></i>Other books</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#who-should-read"><i class="fa fa-check"></i><b>1.1</b> Who should read this book</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-will-get"><i class="fa fa-check"></i><b>1.2</b> What you will get out of this book</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#meta-techniques"><i class="fa fa-check"></i><b>1.3</b> Meta-techniques</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#recommended-reading"><i class="fa fa-check"></i><b>1.4</b> Recommended reading</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting help</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#intro-ack"><i class="fa fa-check"></i><b>1.6</b> Acknowledgments</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#conventions"><i class="fa fa-check"></i><b>1.7</b> Conventions</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#colophon"><i class="fa fa-check"></i><b>1.8</b> Colophon</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>2.1.2</b> Lists</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data-structures.html"><a href="data-structures.html#exercises"><i class="fa fa-check"></i><b>2.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#attributes"><i class="fa fa-check"></i><b>2.2</b> Attributes</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-structures.html"><a href="data-structures.html#factors"><i class="fa fa-check"></i><b>2.2.1</b> Factors</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-structures.html"><a href="data-structures.html#exercises-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>2.3</b> Matrices and arrays</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-structures.html"><a href="data-structures.html#exercises-2"><i class="fa fa-check"></i><b>2.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>2.4</b> Data frames</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data-structures.html"><a href="data-structures.html#creation"><i class="fa fa-check"></i><b>2.4.1</b> Creation</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-structures.html"><a href="data-structures.html#testing-and-coercion"><i class="fa fa-check"></i><b>2.4.2</b> Testing and coercion</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data-structures.html"><a href="data-structures.html#combining-data-frames"><i class="fa fa-check"></i><b>2.4.3</b> Combining data frames</a></li>
+<li class="chapter" data-level="2.4.4" data-path="data-structures.html"><a href="data-structures.html#special-columns"><i class="fa fa-check"></i><b>2.4.4</b> Special columns</a></li>
+<li class="chapter" data-level="2.4.5" data-path="data-structures.html"><a href="data-structures.html#exercises-3"><i class="fa fa-check"></i><b>2.4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-structures.html"><a href="data-structures.html#data-structure-answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>3</b> Subsetting</a><ul>
+<li class="chapter" data-level="3.1" data-path="subsetting.html"><a href="subsetting.html#data-types"><i class="fa fa-check"></i><b>3.1</b> Data types</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>3.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="3.1.2" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>3.1.2</b> Lists</a></li>
+<li class="chapter" data-level="3.1.3" data-path="subsetting.html"><a href="subsetting.html#matrix-subsetting"><i class="fa fa-check"></i><b>3.1.3</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="3.1.4" data-path="subsetting.html"><a href="subsetting.html#df-subsetting"><i class="fa fa-check"></i><b>3.1.4</b> Data frames</a></li>
+<li class="chapter" data-level="3.1.5" data-path="subsetting.html"><a href="subsetting.html#s3-objects"><i class="fa fa-check"></i><b>3.1.5</b> S3 objects</a></li>
+<li class="chapter" data-level="3.1.6" data-path="subsetting.html"><a href="subsetting.html#s4-objects"><i class="fa fa-check"></i><b>3.1.6</b> S4 objects</a></li>
+<li class="chapter" data-level="3.1.7" data-path="subsetting.html"><a href="subsetting.html#exercises-4"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="subsetting.html"><a href="subsetting.html#subsetting-operators"><i class="fa fa-check"></i><b>3.2</b> Subsetting operators</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="subsetting.html"><a href="subsetting.html#simplify-preserve"><i class="fa fa-check"></i><b>3.2.1</b> Simplifying vs. preserving subsetting</a></li>
+<li class="chapter" data-level="3.2.2" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>3.2.2</b> <code>$</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>3.2.3</b> Missing/out of bounds indices</a></li>
+<li class="chapter" data-level="3.2.4" data-path="subsetting.html"><a href="subsetting.html#exercises-5"><i class="fa fa-check"></i><b>3.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>3.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="3.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>3.4</b> Applications</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables"><i class="fa fa-check"></i><b>3.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="subsetting.html"><a href="subsetting.html#matching-merging"><i class="fa fa-check"></i><b>3.4.2</b> Matching and merging by hand (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>3.4.3</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>3.4.4</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="subsetting.html"><a href="subsetting.html#expanding-aggregated-counts-integer-subsetting"><i class="fa fa-check"></i><b>3.4.5</b> Expanding aggregated counts (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.6" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>3.4.6</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="3.4.7" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>3.4.7</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="3.4.8" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>3.4.8</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.9" data-path="subsetting.html"><a href="subsetting.html#exercises-6"><i class="fa fa-check"></i><b>3.4.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="subsetting.html"><a href="subsetting.html#subsetting-answers"><i class="fa fa-check"></i><b>3.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a><ul>
+<li class="chapter" data-level="4.1" data-path="functions.html"><a href="functions.html#function-components"><i class="fa fa-check"></i><b>4.1</b> Function components</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="functions.html"><a href="functions.html#primitive-functions"><i class="fa fa-check"></i><b>4.1.1</b> Primitive functions</a></li>
+<li class="chapter" data-level="4.1.2" data-path="functions.html"><a href="functions.html#exercises-7"><i class="fa fa-check"></i><b>4.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>4.2</b> Lexical scoping</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="functions.html"><a href="functions.html#name-masking"><i class="fa fa-check"></i><b>4.2.1</b> Name masking</a></li>
+<li class="chapter" data-level="4.2.2" data-path="functions.html"><a href="functions.html#functions-vs.variables"><i class="fa fa-check"></i><b>4.2.2</b> Functions vs. variables</a></li>
+<li class="chapter" data-level="4.2.3" data-path="functions.html"><a href="functions.html#fresh-start"><i class="fa fa-check"></i><b>4.2.3</b> A fresh start</a></li>
+<li class="chapter" data-level="4.2.4" data-path="functions.html"><a href="functions.html#dynamic-lookup"><i class="fa fa-check"></i><b>4.2.4</b> Dynamic lookup</a></li>
+<li class="chapter" data-level="4.2.5" data-path="functions.html"><a href="functions.html#exercises-8"><i class="fa fa-check"></i><b>4.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="functions.html"><a href="functions.html#all-calls"><i class="fa fa-check"></i><b>4.3</b> Every operation is a function call</a></li>
+<li class="chapter" data-level="4.4" data-path="functions.html"><a href="functions.html#function-arguments"><i class="fa fa-check"></i><b>4.4</b> Function arguments</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="functions.html"><a href="functions.html#calling-functions"><i class="fa fa-check"></i><b>4.4.1</b> Calling functions</a></li>
+<li class="chapter" data-level="4.4.2" data-path="functions.html"><a href="functions.html#calling-a-function-given-a-list-of-arguments"><i class="fa fa-check"></i><b>4.4.2</b> Calling a function given a list of arguments</a></li>
+<li class="chapter" data-level="4.4.3" data-path="functions.html"><a href="functions.html#default-and-missing-arguments"><i class="fa fa-check"></i><b>4.4.3</b> Default and missing arguments</a></li>
+<li class="chapter" data-level="4.4.4" data-path="functions.html"><a href="functions.html#lazy-evaluation"><i class="fa fa-check"></i><b>4.4.4</b> Lazy evaluation</a></li>
+<li class="chapter" data-level="4.4.5" data-path="functions.html"><a href="functions.html#fun-dot-dot-dot"><i class="fa fa-check"></i><b>4.4.5</b> <code>...</code></a></li>
+<li class="chapter" data-level="4.4.6" data-path="functions.html"><a href="functions.html#exercises-9"><i class="fa fa-check"></i><b>4.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="functions.html"><a href="functions.html#special-calls"><i class="fa fa-check"></i><b>4.5</b> Special calls</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="functions.html"><a href="functions.html#infix-functions"><i class="fa fa-check"></i><b>4.5.1</b> Infix functions</a></li>
+<li class="chapter" data-level="4.5.2" data-path="functions.html"><a href="functions.html#replacement-functions"><i class="fa fa-check"></i><b>4.5.2</b> Replacement functions</a></li>
+<li class="chapter" data-level="4.5.3" data-path="functions.html"><a href="functions.html#exercises-10"><i class="fa fa-check"></i><b>4.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="functions.html"><a href="functions.html#return-values"><i class="fa fa-check"></i><b>4.6</b> Return values</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="functions.html"><a href="functions.html#on-exit"><i class="fa fa-check"></i><b>4.6.1</b> On exit</a></li>
+<li class="chapter" data-level="4.6.2" data-path="functions.html"><a href="functions.html#exercises-11"><i class="fa fa-check"></i><b>4.6.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="functions.html"><a href="functions.html#function-answers"><i class="fa fa-check"></i><b>4.7</b> Quiz answers</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="memory.html"><a href="memory.html"><i class="fa fa-check"></i><b>5</b> Memory</a><ul>
+<li class="chapter" data-level="5.1" data-path="memory.html"><a href="memory.html#object-size"><i class="fa fa-check"></i><b>5.1</b> Object size</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="memory.html"><a href="memory.html#exercises-12"><i class="fa fa-check"></i><b>5.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="memory.html"><a href="memory.html#gc"><i class="fa fa-check"></i><b>5.2</b> Memory usage and garbage collection</a></li>
+<li class="chapter" data-level="5.3" data-path="memory.html"><a href="memory.html#memory-profiling"><i class="fa fa-check"></i><b>5.3</b> Memory profiling with lineprof</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="memory.html"><a href="memory.html#exercises-13"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="memory.html"><a href="memory.html#modification"><i class="fa fa-check"></i><b>5.4</b> Modification in place</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="memory.html"><a href="memory.html#loops"><i class="fa fa-check"></i><b>5.4.1</b> Loops</a></li>
+<li class="chapter" data-level="5.4.2" data-path="memory.html"><a href="memory.html#exercises-14"><i class="fa fa-check"></i><b>5.4.2</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="environments.html"><a href="environments.html"><i class="fa fa-check"></i><b>6</b> Environments</a><ul>
+<li class="chapter" data-level="6.1" data-path="environments.html"><a href="environments.html#env-basics"><i class="fa fa-check"></i><b>6.1</b> Environment basics</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="environments.html"><a href="environments.html#exercises-15"><i class="fa fa-check"></i><b>6.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="environments.html"><a href="environments.html#env-recursion"><i class="fa fa-check"></i><b>6.2</b> Recursing over environments</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="environments.html"><a href="environments.html#exercises-16"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="environments.html"><a href="environments.html#function-envs"><i class="fa fa-check"></i><b>6.3</b> Function environments</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="environments.html"><a href="environments.html#the-enclosing-environment"><i class="fa fa-check"></i><b>6.3.1</b> The enclosing environment</a></li>
+<li class="chapter" data-level="6.3.2" data-path="environments.html"><a href="environments.html#binding-environments"><i class="fa fa-check"></i><b>6.3.2</b> Binding environments</a></li>
+<li class="chapter" data-level="6.3.3" data-path="environments.html"><a href="environments.html#execution-environments"><i class="fa fa-check"></i><b>6.3.3</b> Execution environments</a></li>
+<li class="chapter" data-level="6.3.4" data-path="environments.html"><a href="environments.html#calling-environments"><i class="fa fa-check"></i><b>6.3.4</b> Calling environments</a></li>
+<li class="chapter" data-level="6.3.5" data-path="environments.html"><a href="environments.html#exercises-17"><i class="fa fa-check"></i><b>6.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="environments.html"><a href="environments.html#binding"><i class="fa fa-check"></i><b>6.4</b> Binding names to values</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="environments.html"><a href="environments.html#exercises-18"><i class="fa fa-check"></i><b>6.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="environments.html"><a href="environments.html#explicit-envs"><i class="fa fa-check"></i><b>6.5</b> Explicit environments</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="environments.html"><a href="environments.html#avoiding-copies"><i class="fa fa-check"></i><b>6.5.1</b> Avoiding copies</a></li>
+<li class="chapter" data-level="6.5.2" data-path="environments.html"><a href="environments.html#package-state"><i class="fa fa-check"></i><b>6.5.2</b> Package state</a></li>
+<li class="chapter" data-level="6.5.3" data-path="environments.html"><a href="environments.html#as-a-hashmap"><i class="fa fa-check"></i><b>6.5.3</b> As a hashmap</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="environments.html"><a href="environments.html#env-answers"><i class="fa fa-check"></i><b>6.6</b> Quiz answers</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="debugging.html"><a href="debugging.html"><i class="fa fa-check"></i><b>7</b> Debugging, condition handling, and defensive programming</a><ul>
+<li class="chapter" data-level="7.1" data-path="debugging.html"><a href="debugging.html#debugging-techniques"><i class="fa fa-check"></i><b>7.1</b> Debugging techniques</a></li>
+<li class="chapter" data-level="7.2" data-path="debugging.html"><a href="debugging.html#debugging-tools"><i class="fa fa-check"></i><b>7.2</b> Debugging tools</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="debugging.html"><a href="debugging.html#determining-the-sequence-of-calls"><i class="fa fa-check"></i><b>7.2.1</b> Determining the sequence of calls</a></li>
+<li class="chapter" data-level="7.2.2" data-path="debugging.html"><a href="debugging.html#browsing-on-error"><i class="fa fa-check"></i><b>7.2.2</b> Browsing on error</a></li>
+<li class="chapter" data-level="7.2.3" data-path="debugging.html"><a href="debugging.html#browsing-arbitrary-code"><i class="fa fa-check"></i><b>7.2.3</b> Browsing arbitrary code</a></li>
+<li class="chapter" data-level="7.2.4" data-path="debugging.html"><a href="debugging.html#the-call-stack-traceback-where-and-recover"><i class="fa fa-check"></i><b>7.2.4</b> The call stack: <code>traceback()</code>, <code>where</code>, and <code>recover()</code></a></li>
+<li class="chapter" data-level="7.2.5" data-path="debugging.html"><a href="debugging.html#other-types-of-failure"><i class="fa fa-check"></i><b>7.2.5</b> Other types of failure</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="debugging.html"><a href="debugging.html#condition-handling"><i class="fa fa-check"></i><b>7.3</b> Condition handling</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="debugging.html"><a href="debugging.html#try"><i class="fa fa-check"></i><b>7.3.1</b> Ignore errors with try</a></li>
+<li class="chapter" data-level="7.3.2" data-path="debugging.html"><a href="debugging.html#handle-conditions-with-trycatch"><i class="fa fa-check"></i><b>7.3.2</b> Handle conditions with <code>tryCatch()</code></a></li>
+<li class="chapter" data-level="7.3.3" data-path="debugging.html"><a href="debugging.html#withcallinghandlers"><i class="fa fa-check"></i><b>7.3.3</b> <code>withCallingHandlers()</code></a></li>
+<li class="chapter" data-level="7.3.4" data-path="debugging.html"><a href="debugging.html#custom-signal-classes"><i class="fa fa-check"></i><b>7.3.4</b> Custom signal classes</a></li>
+<li class="chapter" data-level="7.3.5" data-path="debugging.html"><a href="debugging.html#exercises-19"><i class="fa fa-check"></i><b>7.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="debugging.html"><a href="debugging.html#defensive-programming"><i class="fa fa-check"></i><b>7.4</b> Defensive programming</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="debugging.html"><a href="debugging.html#exercises-20"><i class="fa fa-check"></i><b>7.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="debugging.html"><a href="debugging.html#debugging-answers"><i class="fa fa-check"></i><b>7.5</b> Quiz answers</a></li>
+</ul></li>
+<li class="part"><span><b>II Functional programming</b></span></li>
+<li class="chapter" data-level="8" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>8</b> Functional programming</a><ul>
+<li class="chapter" data-level="8.1" data-path="functional-programming.html"><a href="functional-programming.html#fp-motivation"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i><b>8.2</b> Anonymous functions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="functional-programming.html"><a href="functional-programming.html#exercises-21"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>8.3</b> Closures</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="functional-programming.html"><a href="functional-programming.html#function-factories"><i class="fa fa-check"></i><b>8.3.1</b> Function factories</a></li>
+<li class="chapter" data-level="8.3.2" data-path="functional-programming.html"><a href="functional-programming.html#mutable-state"><i class="fa fa-check"></i><b>8.3.2</b> Mutable state</a></li>
+<li class="chapter" data-level="8.3.3" data-path="functional-programming.html"><a href="functional-programming.html#exercises-22"><i class="fa fa-check"></i><b>8.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="functional-programming.html"><a href="functional-programming.html#lists-of-functions"><i class="fa fa-check"></i><b>8.4</b> Lists of functions</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="functional-programming.html"><a href="functional-programming.html#moving-lists-of-functions-to-the-global-environment"><i class="fa fa-check"></i><b>8.4.1</b> Moving lists of functions to the global environment</a></li>
+<li class="chapter" data-level="8.4.2" data-path="functional-programming.html"><a href="functional-programming.html#exercises-23"><i class="fa fa-check"></i><b>8.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="functional-programming.html"><a href="functional-programming.html#numerical-integration"><i class="fa fa-check"></i><b>8.5</b> Case study: numerical integration</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="functional-programming.html"><a href="functional-programming.html#exercises-24"><i class="fa fa-check"></i><b>8.5.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="functionals.html"><a href="functionals.html"><i class="fa fa-check"></i><b>9</b> Functionals</a><ul>
+<li class="chapter" data-level="9.1" data-path="functionals.html"><a href="functionals.html#lapply"><i class="fa fa-check"></i><b>9.1</b> My first functional: lapply()</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="functionals.html"><a href="functionals.html#looping-patterns"><i class="fa fa-check"></i><b>9.1.1</b> Looping patterns</a></li>
+<li class="chapter" data-level="9.1.2" data-path="functionals.html"><a href="functionals.html#exercises-25"><i class="fa fa-check"></i><b>9.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="functionals.html"><a href="functionals.html#functionals-loop"><i class="fa fa-check"></i><b>9.2</b> For loop functionals: friends of lapply()</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="functionals.html"><a href="functionals.html#vector-output-sapply-and-vapply"><i class="fa fa-check"></i><b>9.2.1</b> Vector output: <code>sapply</code> and <code>vapply</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="functionals.html"><a href="functionals.html#map"><i class="fa fa-check"></i><b>9.2.2</b> Multiple inputs: <code>Map</code> (and <code>mapply</code>)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="functionals.html"><a href="functionals.html#rolling-computations"><i class="fa fa-check"></i><b>9.2.3</b> Rolling computations</a></li>
+<li class="chapter" data-level="9.2.4" data-path="functionals.html"><a href="functionals.html#parallelisation"><i class="fa fa-check"></i><b>9.2.4</b> Parallelisation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="functionals.html"><a href="functionals.html#exercises-26"><i class="fa fa-check"></i><b>9.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functionals.html"><a href="functionals.html#functionals-ds"><i class="fa fa-check"></i><b>9.3</b> Manipulating matrices and data frames</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="functionals.html"><a href="functionals.html#matrix-and-array-operations"><i class="fa fa-check"></i><b>9.3.1</b> Matrix and array operations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functionals.html"><a href="functionals.html#group-apply"><i class="fa fa-check"></i><b>9.3.2</b> Group apply</a></li>
+<li class="chapter" data-level="9.3.3" data-path="functionals.html"><a href="functionals.html#the-plyr-package"><i class="fa fa-check"></i><b>9.3.3</b> The plyr package</a></li>
+<li class="chapter" data-level="9.3.4" data-path="functionals.html"><a href="functionals.html#exercises-27"><i class="fa fa-check"></i><b>9.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="functionals.html"><a href="functionals.html#functionals-fp"><i class="fa fa-check"></i><b>9.4</b> Manipulating lists</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="functionals.html"><a href="functionals.html#reduce"><i class="fa fa-check"></i><b>9.4.1</b> <code>Reduce()</code></a></li>
+<li class="chapter" data-level="9.4.2" data-path="functionals.html"><a href="functionals.html#predicate-functionals"><i class="fa fa-check"></i><b>9.4.2</b> Predicate functionals</a></li>
+<li class="chapter" data-level="9.4.3" data-path="functionals.html"><a href="functionals.html#exercises-28"><i class="fa fa-check"></i><b>9.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="functionals.html"><a href="functionals.html#functionals-math"><i class="fa fa-check"></i><b>9.5</b> Mathematical functionals</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="functionals.html"><a href="functionals.html#exercises-29"><i class="fa fa-check"></i><b>9.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="functionals.html"><a href="functionals.html#functionals-not"><i class="fa fa-check"></i><b>9.6</b> Loops that should be left as is</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="functionals.html"><a href="functionals.html#modifying-in-place"><i class="fa fa-check"></i><b>9.6.1</b> Modifying in place</a></li>
+<li class="chapter" data-level="9.6.2" data-path="functionals.html"><a href="functionals.html#recursive-relationships"><i class="fa fa-check"></i><b>9.6.2</b> Recursive relationships</a></li>
+<li class="chapter" data-level="9.6.3" data-path="functionals.html"><a href="functionals.html#while-loops"><i class="fa fa-check"></i><b>9.6.3</b> While loops</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="functionals.html"><a href="functionals.html#function-family"><i class="fa fa-check"></i><b>9.7</b> A family of functions</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="functionals.html"><a href="functionals.html#exercises-30"><i class="fa fa-check"></i><b>9.7.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="function-operators.html"><a href="function-operators.html"><i class="fa fa-check"></i><b>10</b> Function operators</a><ul>
+<li class="chapter" data-level="10.1" data-path="function-operators.html"><a href="function-operators.html#behavioural-fos"><i class="fa fa-check"></i><b>10.1</b> Behavioural FOs</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="function-operators.html"><a href="function-operators.html#memoisation"><i class="fa fa-check"></i><b>10.1.1</b> Memoisation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="function-operators.html"><a href="function-operators.html#tee"><i class="fa fa-check"></i><b>10.1.2</b> Capturing function invocations</a></li>
+<li class="chapter" data-level="10.1.3" data-path="function-operators.html"><a href="function-operators.html#laziness"><i class="fa fa-check"></i><b>10.1.3</b> Laziness</a></li>
+<li class="chapter" data-level="10.1.4" data-path="function-operators.html"><a href="function-operators.html#exercises-31"><i class="fa fa-check"></i><b>10.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="function-operators.html"><a href="function-operators.html#output-fos"><i class="fa fa-check"></i><b>10.2</b> Output FOs</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="function-operators.html"><a href="function-operators.html#minor-modifications"><i class="fa fa-check"></i><b>10.2.1</b> Minor modifications</a></li>
+<li class="chapter" data-level="10.2.2" data-path="function-operators.html"><a href="function-operators.html#changing-what-a-function-does"><i class="fa fa-check"></i><b>10.2.2</b> Changing what a function does</a></li>
+<li class="chapter" data-level="10.2.3" data-path="function-operators.html"><a href="function-operators.html#exercises-32"><i class="fa fa-check"></i><b>10.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="function-operators.html"><a href="function-operators.html#input-fos"><i class="fa fa-check"></i><b>10.3</b> Input FOs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="function-operators.html"><a href="function-operators.html#prefilling-function-arguments-partial-function-application"><i class="fa fa-check"></i><b>10.3.1</b> Prefilling function arguments: partial function application</a></li>
+<li class="chapter" data-level="10.3.2" data-path="function-operators.html"><a href="function-operators.html#changing-input-types"><i class="fa fa-check"></i><b>10.3.2</b> Changing input types</a></li>
+<li class="chapter" data-level="10.3.3" data-path="function-operators.html"><a href="function-operators.html#exercises-33"><i class="fa fa-check"></i><b>10.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="function-operators.html"><a href="function-operators.html#combining-fos"><i class="fa fa-check"></i><b>10.4</b> Combining FOs</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="function-operators.html"><a href="function-operators.html#function-composition"><i class="fa fa-check"></i><b>10.4.1</b> Function composition</a></li>
+<li class="chapter" data-level="10.4.2" data-path="function-operators.html"><a href="function-operators.html#logical-predicates-and-boolean-algebra"><i class="fa fa-check"></i><b>10.4.2</b> Logical predicates and boolean algebra</a></li>
+<li class="chapter" data-level="10.4.3" data-path="function-operators.html"><a href="function-operators.html#exercises-34"><i class="fa fa-check"></i><b>10.4.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Object oriented programming</b></span></li>
+<li class="chapter" data-level="11" data-path="oo.html"><a href="oo.html"><i class="fa fa-check"></i><b>11</b> Introduction</a><ul>
+<li class="chapter" data-level="11.1" data-path="oo.html"><a href="oo.html#oop-systems"><i class="fa fa-check"></i><b>11.1</b> OOP Systems</a></li>
+<li class="chapter" data-level="11.2" data-path="oo.html"><a href="oo.html#oop-in-r"><i class="fa fa-check"></i><b>11.2</b> OOP in R</a></li>
+<li class="chapter" data-level="11.3" data-path="oo.html"><a href="oo.html#field-guide"><i class="fa fa-check"></i><b>11.3</b> Field guide</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="base-types.html"><a href="base-types.html"><i class="fa fa-check"></i><b>12</b> Base types</a><ul>
+<li class="chapter" data-level="12.1" data-path="base-types.html"><a href="base-types.html#base-objects-vs-oo-objects"><i class="fa fa-check"></i><b>12.1</b> Base objects vs OO objects</a></li>
+<li class="chapter" data-level="12.2" data-path="base-types.html"><a href="base-types.html#base-types-2"><i class="fa fa-check"></i><b>12.2</b> Base types</a></li>
+<li class="chapter" data-level="12.3" data-path="base-types.html"><a href="base-types.html#the-is-functions"><i class="fa fa-check"></i><b>12.3</b> The is functions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="s3.html"><a href="s3.html"><i class="fa fa-check"></i><b>13</b> S3</a><ul>
+<li class="chapter" data-level="13.1" data-path="s3.html"><a href="s3.html#s3-basics"><i class="fa fa-check"></i><b>13.1</b> Basics</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="s3.html"><a href="s3.html#exercises-35"><i class="fa fa-check"></i><b>13.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="s3.html"><a href="s3.html#classes"><i class="fa fa-check"></i><b>13.2</b> Classes</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="s3.html"><a href="s3.html#constructors"><i class="fa fa-check"></i><b>13.2.1</b> Constructors</a></li>
+<li class="chapter" data-level="13.2.2" data-path="s3.html"><a href="s3.html#validators"><i class="fa fa-check"></i><b>13.2.2</b> Validators</a></li>
+<li class="chapter" data-level="13.2.3" data-path="s3.html"><a href="s3.html#helpers"><i class="fa fa-check"></i><b>13.2.3</b> Helpers</a></li>
+<li class="chapter" data-level="13.2.4" data-path="s3.html"><a href="s3.html#object-styles"><i class="fa fa-check"></i><b>13.2.4</b> Object styles</a></li>
+<li class="chapter" data-level="13.2.5" data-path="s3.html"><a href="s3.html#exercises-36"><i class="fa fa-check"></i><b>13.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="s3.html"><a href="s3.html#generics-and-methods"><i class="fa fa-check"></i><b>13.3</b> Generics and methods</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="s3.html"><a href="s3.html#coercion-1"><i class="fa fa-check"></i><b>13.3.1</b> Coercion</a></li>
+<li class="chapter" data-level="13.3.2" data-path="s3.html"><a href="s3.html#s3-arguments"><i class="fa fa-check"></i><b>13.3.2</b> Arguments</a></li>
+<li class="chapter" data-level="13.3.3" data-path="s3.html"><a href="s3.html#exercises-37"><i class="fa fa-check"></i><b>13.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="s3.html"><a href="s3.html#method-dispatch"><i class="fa fa-check"></i><b>13.4</b> Method dispatch</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="s3.html"><a href="s3.html#usemethod"><i class="fa fa-check"></i><b>13.4.1</b> <code>UseMethod()</code></a></li>
+<li class="chapter" data-level="13.4.2" data-path="s3.html"><a href="s3.html#nextmethod"><i class="fa fa-check"></i><b>13.4.2</b> <code>NextMethod()</code></a></li>
+<li class="chapter" data-level="13.4.3" data-path="s3.html"><a href="s3.html#exercises-38"><i class="fa fa-check"></i><b>13.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="s3.html"><a href="s3.html#inheritance"><i class="fa fa-check"></i><b>13.5</b> Inheritance</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="s3.html"><a href="s3.html#constructors-1"><i class="fa fa-check"></i><b>13.5.1</b> Constructors</a></li>
+<li class="chapter" data-level="13.5.2" data-path="s3.html"><a href="s3.html#coercion-2"><i class="fa fa-check"></i><b>13.5.2</b> Coercion</a></li>
+<li class="chapter" data-level="13.5.3" data-path="s3.html"><a href="s3.html#methods"><i class="fa fa-check"></i><b>13.5.3</b> Methods</a></li>
+<li class="chapter" data-level="13.5.4" data-path="s3.html"><a href="s3.html#exercises-39"><i class="fa fa-check"></i><b>13.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="s3.html"><a href="s3.html#dispatch-details"><i class="fa fa-check"></i><b>13.6</b> Dispatch details</a><ul>
+<li class="chapter" data-level="13.6.1" data-path="s3.html"><a href="s3.html#environments-and-namespaces"><i class="fa fa-check"></i><b>13.6.1</b> Environments and namespaces</a></li>
+<li class="chapter" data-level="13.6.2" data-path="s3.html"><a href="s3.html#s3-and-base-types"><i class="fa fa-check"></i><b>13.6.2</b> S3 and base types</a></li>
+<li class="chapter" data-level="13.6.3" data-path="s3.html"><a href="s3.html#internal-generics"><i class="fa fa-check"></i><b>13.6.3</b> Internal generics</a></li>
+<li class="chapter" data-level="13.6.4" data-path="s3.html"><a href="s3.html#group-generics"><i class="fa fa-check"></i><b>13.6.4</b> Group generics</a></li>
+<li class="chapter" data-level="13.6.5" data-path="s3.html"><a href="s3.html#double-dispatch"><i class="fa fa-check"></i><b>13.6.5</b> Double dispatch</a></li>
+<li class="chapter" data-level="13.6.6" data-path="s3.html"><a href="s3.html#exercises-40"><i class="fa fa-check"></i><b>13.6.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="s4.html"><a href="s4.html"><i class="fa fa-check"></i><b>14</b> S4</a><ul>
+<li class="chapter" data-level="14.1" data-path="s4.html"><a href="s4.html#classes-1"><i class="fa fa-check"></i><b>14.1</b> Classes</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="s4.html"><a href="s4.html#slots"><i class="fa fa-check"></i><b>14.1.1</b> Slots</a></li>
+<li class="chapter" data-level="14.1.2" data-path="s4.html"><a href="s4.html#helper"><i class="fa fa-check"></i><b>14.1.2</b> Helper</a></li>
+<li class="chapter" data-level="14.1.3" data-path="s4.html"><a href="s4.html#introspection"><i class="fa fa-check"></i><b>14.1.3</b> Introspection</a></li>
+<li class="chapter" data-level="14.1.4" data-path="s4.html"><a href="s4.html#exercises-41"><i class="fa fa-check"></i><b>14.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="s4.html"><a href="s4.html#generics-and-methods-1"><i class="fa fa-check"></i><b>14.2</b> Generics and methods</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="s4.html"><a href="s4.html#show-method"><i class="fa fa-check"></i><b>14.2.1</b> Show method</a></li>
+<li class="chapter" data-level="14.2.2" data-path="s4.html"><a href="s4.html#accessor-methods"><i class="fa fa-check"></i><b>14.2.2</b> Accessor methods</a></li>
+<li class="chapter" data-level="14.2.3" data-path="s4.html"><a href="s4.html#coercion-methods"><i class="fa fa-check"></i><b>14.2.3</b> Coercion methods</a></li>
+<li class="chapter" data-level="14.2.4" data-path="s4.html"><a href="s4.html#introspection-1"><i class="fa fa-check"></i><b>14.2.4</b> Introspection</a></li>
+<li class="chapter" data-level="14.2.5" data-path="s4.html"><a href="s4.html#exercises-42"><i class="fa fa-check"></i><b>14.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="s4.html"><a href="s4.html#method-dispatch-1"><i class="fa fa-check"></i><b>14.3</b> Method dispatch</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="s4.html"><a href="s4.html#single-dispatch"><i class="fa fa-check"></i><b>14.3.1</b> Single dispatch</a></li>
+<li class="chapter" data-level="14.3.2" data-path="s4.html"><a href="s4.html#multiple-inheritance"><i class="fa fa-check"></i><b>14.3.2</b> Multiple inheritance</a></li>
+<li class="chapter" data-level="14.3.3" data-path="s4.html"><a href="s4.html#multiple-dispatch"><i class="fa fa-check"></i><b>14.3.3</b> Multiple dispatch</a></li>
+<li class="chapter" data-level="14.3.4" data-path="s4.html"><a href="s4.html#multiple-dispatch-and-multiple-inheritance"><i class="fa fa-check"></i><b>14.3.4</b> Multiple dispatch and multiple inheritance</a></li>
+<li class="chapter" data-level="14.3.5" data-path="s4.html"><a href="s4.html#exercises-43"><i class="fa fa-check"></i><b>14.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="s4.html"><a href="s4.html#s4-and-existing-code"><i class="fa fa-check"></i><b>14.4</b> S4 and existing code</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="s4.html"><a href="s4.html#classes-2"><i class="fa fa-check"></i><b>14.4.1</b> Classes</a></li>
+<li class="chapter" data-level="14.4.2" data-path="s4.html"><a href="s4.html#generics"><i class="fa fa-check"></i><b>14.4.2</b> Generics</a></li>
+<li class="chapter" data-level="14.4.3" data-path="s4.html"><a href="s4.html#exercises-44"><i class="fa fa-check"></i><b>14.4.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="r6.html"><a href="r6.html"><i class="fa fa-check"></i><b>15</b> R6</a><ul>
+<li class="chapter" data-level="15.1" data-path="r6.html"><a href="r6.html#classes-and-methods"><i class="fa fa-check"></i><b>15.1</b> Classes and methods</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="r6.html"><a href="r6.html#method-chaining"><i class="fa fa-check"></i><b>15.1.1</b> Method chaining</a></li>
+<li class="chapter" data-level="15.1.2" data-path="r6.html"><a href="r6.html#important-methods"><i class="fa fa-check"></i><b>15.1.2</b> Important methods</a></li>
+<li class="chapter" data-level="15.1.3" data-path="r6.html"><a href="r6.html#adding-methods-after-creation"><i class="fa fa-check"></i><b>15.1.3</b> Adding methods after creation</a></li>
+<li class="chapter" data-level="15.1.4" data-path="r6.html"><a href="r6.html#inheritance-1"><i class="fa fa-check"></i><b>15.1.4</b> Inheritance</a></li>
+<li class="chapter" data-level="15.1.5" data-path="r6.html"><a href="r6.html#introspection-2"><i class="fa fa-check"></i><b>15.1.5</b> Introspection</a></li>
+<li class="chapter" data-level="15.1.6" data-path="r6.html"><a href="r6.html#exercises-45"><i class="fa fa-check"></i><b>15.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="r6.html"><a href="r6.html#controlling-access"><i class="fa fa-check"></i><b>15.2</b> Controlling access</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="r6.html"><a href="r6.html#privacy"><i class="fa fa-check"></i><b>15.2.1</b> Privacy</a></li>
+<li class="chapter" data-level="15.2.2" data-path="r6.html"><a href="r6.html#active-fields"><i class="fa fa-check"></i><b>15.2.2</b> Active fields</a></li>
+<li class="chapter" data-level="15.2.3" data-path="r6.html"><a href="r6.html#exercises-46"><i class="fa fa-check"></i><b>15.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="r6.html"><a href="r6.html#reference-semantics"><i class="fa fa-check"></i><b>15.3</b> Reference semantics</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="r6.html"><a href="r6.html#reasoning"><i class="fa fa-check"></i><b>15.3.1</b> Reasoning</a></li>
+<li class="chapter" data-level="15.3.2" data-path="r6.html"><a href="r6.html#finalizer"><i class="fa fa-check"></i><b>15.3.2</b> Finalizer</a></li>
+<li class="chapter" data-level="15.3.3" data-path="r6.html"><a href="r6.html#r6-fields"><i class="fa fa-check"></i><b>15.3.3</b> R6 fields</a></li>
+<li class="chapter" data-level="15.3.4" data-path="r6.html"><a href="r6.html#exercises-47"><i class="fa fa-check"></i><b>15.3.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html"><i class="fa fa-check"></i><b>16</b> Trade-offs</a><ul>
+<li class="chapter" data-level="16.1" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#s3-s4"><i class="fa fa-check"></i><b>16.1</b> S4 vs S3</a></li>
+<li class="chapter" data-level="16.2" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#s3-r6"><i class="fa fa-check"></i><b>16.2</b> R6 vs S3</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#namespacing"><i class="fa fa-check"></i><b>16.2.1</b> Namespacing</a></li>
+<li class="chapter" data-level="16.2.2" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#threading-state"><i class="fa fa-check"></i><b>16.2.2</b> Threading state</a></li>
+<li class="chapter" data-level="16.2.3" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#tradeoffs-pipe"><i class="fa fa-check"></i><b>16.2.3</b> Method chaining</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Metaprogramming</b></span></li>
+<li class="chapter" data-level="17" data-path="meta.html"><a href="meta.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="18" data-path="expressions.html"><a href="expressions.html"><i class="fa fa-check"></i><b>18</b> Expressions</a><ul>
+<li class="chapter" data-level="18.1" data-path="expressions.html"><a href="expressions.html#abstract-syntax-trees"><i class="fa fa-check"></i><b>18.1</b> Abstract syntax trees</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="expressions.html"><a href="expressions.html#infix-vs.prefix-calls"><i class="fa fa-check"></i><b>18.1.1</b> Infix vs. prefix calls</a></li>
+<li class="chapter" data-level="18.1.2" data-path="expressions.html"><a href="expressions.html#special-forms"><i class="fa fa-check"></i><b>18.1.2</b> Special forms</a></li>
+<li class="chapter" data-level="18.1.3" data-path="expressions.html"><a href="expressions.html#function-factories-1"><i class="fa fa-check"></i><b>18.1.3</b> Function factories</a></li>
+<li class="chapter" data-level="18.1.4" data-path="expressions.html"><a href="expressions.html#argument-names"><i class="fa fa-check"></i><b>18.1.4</b> Argument names</a></li>
+<li class="chapter" data-level="18.1.5" data-path="expressions.html"><a href="expressions.html#exercises-48"><i class="fa fa-check"></i><b>18.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="expressions.html"><a href="expressions.html#rs-grammar"><i class="fa fa-check"></i><b>18.2</b> R’s grammar</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="expressions.html"><a href="expressions.html#operator-precedence-and-associativity"><i class="fa fa-check"></i><b>18.2.1</b> Operator precedence and associativity</a></li>
+<li class="chapter" data-level="18.2.2" data-path="expressions.html"><a href="expressions.html#whitespace"><i class="fa fa-check"></i><b>18.2.2</b> Whitespace</a></li>
+<li class="chapter" data-level="18.2.3" data-path="expressions.html"><a href="expressions.html#parsing-a-string"><i class="fa fa-check"></i><b>18.2.3</b> Parsing a string</a></li>
+<li class="chapter" data-level="18.2.4" data-path="expressions.html"><a href="expressions.html#deparsing"><i class="fa fa-check"></i><b>18.2.4</b> Deparsing</a></li>
+<li class="chapter" data-level="18.2.5" data-path="expressions.html"><a href="expressions.html#exercises-49"><i class="fa fa-check"></i><b>18.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="data-structures.html"><a href="data-structures.html#data-structures"><i class="fa fa-check"></i><b>18.3</b> Data structures</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="expressions.html"><a href="expressions.html#constants-and-symbols"><i class="fa fa-check"></i><b>18.3.1</b> Constants and symbols</a></li>
+<li class="chapter" data-level="18.3.2" data-path="expressions.html"><a href="expressions.html#calls"><i class="fa fa-check"></i><b>18.3.2</b> Calls</a></li>
+<li class="chapter" data-level="18.3.3" data-path="expressions.html"><a href="expressions.html#pairlists"><i class="fa fa-check"></i><b>18.3.3</b> Pairlists</a></li>
+<li class="chapter" data-level="18.3.4" data-path="expressions.html"><a href="expressions.html#expression-objects"><i class="fa fa-check"></i><b>18.3.4</b> Expression objects</a></li>
+<li class="chapter" data-level="18.3.5" data-path="expressions.html"><a href="expressions.html#exercises-50"><i class="fa fa-check"></i><b>18.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="expressions.html"><a href="expressions.html#case-study-anaphoric-functions"><i class="fa fa-check"></i><b>18.4</b> Case study: anaphoric functions</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="expressions.html"><a href="expressions.html#exercises-51"><i class="fa fa-check"></i><b>18.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="expressions.html"><a href="expressions.html#ast-funs"><i class="fa fa-check"></i><b>18.5</b> Case study: Walking the AST with recursive functions</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="expressions.html"><a href="expressions.html#finding-f-and-t"><i class="fa fa-check"></i><b>18.5.1</b> Finding F and T</a></li>
+<li class="chapter" data-level="18.5.2" data-path="expressions.html"><a href="expressions.html#finding-all-variables-created-by-assignment"><i class="fa fa-check"></i><b>18.5.2</b> Finding all variables created by assignment</a></li>
+<li class="chapter" data-level="18.5.3" data-path="expressions.html"><a href="expressions.html#exercises-52"><i class="fa fa-check"></i><b>18.5.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="quasiquotation.html"><a href="quasiquotation.html"><i class="fa fa-check"></i><b>19</b> Quasiquotation</a><ul>
+<li class="chapter" data-level="19.1" data-path="quasiquotation.html"><a href="quasiquotation.html#introduction-1"><i class="fa fa-check"></i><b>19.1</b> Introduction</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="quasiquotation.html"><a href="quasiquotation.html#motivation"><i class="fa fa-check"></i><b>19.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="19.1.2" data-path="quasiquotation.html"><a href="quasiquotation.html#theory"><i class="fa fa-check"></i><b>19.1.2</b> Theory</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="quasiquotation.html"><a href="quasiquotation.html#quotation"><i class="fa fa-check"></i><b>19.2</b> Quotation</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="quasiquotation.html"><a href="quasiquotation.html#with-rlang"><i class="fa fa-check"></i><b>19.2.1</b> With rlang</a></li>
+<li class="chapter" data-level="19.2.2" data-path="quasiquotation.html"><a href="quasiquotation.html#with-base-r"><i class="fa fa-check"></i><b>19.2.2</b> With base R</a></li>
+<li class="chapter" data-level="19.2.3" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-53"><i class="fa fa-check"></i><b>19.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="quasiquotation.html"><a href="quasiquotation.html#eval-basics"><i class="fa fa-check"></i><b>19.3</b> Evaluation</a></li>
+<li class="chapter" data-level="19.4" data-path="quasiquotation.html"><a href="quasiquotation.html#unquotation"><i class="fa fa-check"></i><b>19.4</b> Unquotation</a><ul>
+<li class="chapter" data-level="19.4.1" data-path="quasiquotation.html"><a href="quasiquotation.html#with-rlang-1"><i class="fa fa-check"></i><b>19.4.1</b> With rlang</a></li>
+<li class="chapter" data-level="19.4.2" data-path="quasiquotation.html"><a href="quasiquotation.html#the-polite-fiction-of"><i class="fa fa-check"></i><b>19.4.2</b> The polite fiction of <code>!!</code></a></li>
+<li class="chapter" data-level="19.4.3" data-path="quasiquotation.html"><a href="quasiquotation.html#unquote-base"><i class="fa fa-check"></i><b>19.4.3</b> With base R</a></li>
+<li class="chapter" data-level="19.4.4" data-path="quasiquotation.html"><a href="quasiquotation.html#non-standard-asts"><i class="fa fa-check"></i><b>19.4.4</b> Non-standard ASTs</a></li>
+<li class="chapter" data-level="19.4.5" data-path="quasiquotation.html"><a href="quasiquotation.html#missing-arguments"><i class="fa fa-check"></i><b>19.4.5</b> Missing arguments</a></li>
+<li class="chapter" data-level="19.4.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-54"><i class="fa fa-check"></i><b>19.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="quasiquotation.html"><a href="quasiquotation.html#quasi-case-studies"><i class="fa fa-check"></i><b>19.5</b> Case studies</a><ul>
+<li class="chapter" data-level="19.5.1" data-path="quasiquotation.html"><a href="quasiquotation.html#map-reduce-to-generate-code"><i class="fa fa-check"></i><b>19.5.1</b> Map-reduce to generate code</a></li>
+<li class="chapter" data-level="19.5.2" data-path="quasiquotation.html"><a href="quasiquotation.html#calling-quoting-functions"><i class="fa fa-check"></i><b>19.5.2</b> Calling quoting functions</a></li>
+<li class="chapter" data-level="19.5.3" data-path="quasiquotation.html"><a href="quasiquotation.html#partition"><i class="fa fa-check"></i><b>19.5.3</b> Partition</a></li>
+<li class="chapter" data-level="19.5.4" data-path="quasiquotation.html"><a href="quasiquotation.html#tangling-with-dots"><i class="fa fa-check"></i><b>19.5.4</b> Tangling with dots</a></li>
+<li class="chapter" data-level="19.5.5" data-path="quasiquotation.html"><a href="quasiquotation.html#slicing-an-array"><i class="fa fa-check"></i><b>19.5.5</b> Slicing an array</a></li>
+<li class="chapter" data-level="19.5.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-55"><i class="fa fa-check"></i><b>19.5.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="quasiquotation.html"><a href="quasiquotation.html#dot-dot-dot-..."><i class="fa fa-check"></i><b>19.6</b> Dot-dot-dot (<code>...</code>)</a><ul>
+<li class="chapter" data-level="19.6.1" data-path="quasiquotation.html"><a href="quasiquotation.html#do.call"><i class="fa fa-check"></i><b>19.6.1</b> <code>do.call()</code></a></li>
+<li class="chapter" data-level="19.6.2" data-path="quasiquotation.html"><a href="quasiquotation.html#the-tidyverse-approach"><i class="fa fa-check"></i><b>19.6.2</b> The tidyverse approach</a></li>
+<li class="chapter" data-level="19.6.3" data-path="quasiquotation.html"><a href="quasiquotation.html#dots_list"><i class="fa fa-check"></i><b>19.6.3</b> <code>dots_list()</code></a></li>
+<li class="chapter" data-level="19.6.4" data-path="quasiquotation.html"><a href="quasiquotation.html#application-invoke-and-lang"><i class="fa fa-check"></i><b>19.6.4</b> Application: <code>invoke()</code> and <code>lang()</code></a></li>
+<li class="chapter" data-level="19.6.5" data-path="quasiquotation.html"><a href="quasiquotation.html#other-approaches"><i class="fa fa-check"></i><b>19.6.5</b> Other approaches</a></li>
+<li class="chapter" data-level="19.6.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-56"><i class="fa fa-check"></i><b>19.6.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>20</b> Evaluation</a><ul>
+<li class="chapter" data-level="20.1" data-path="evaluation.html"><a href="evaluation.html#introduction-2"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="evaluation.html"><a href="evaluation.html#evaluation-basics"><i class="fa fa-check"></i><b>20.2</b> Evaluation basics</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="evaluation.html"><a href="evaluation.html#application-local"><i class="fa fa-check"></i><b>20.2.1</b> Application: <code>local()</code></a></li>
+<li class="chapter" data-level="20.2.2" data-path="evaluation.html"><a href="evaluation.html#application-source"><i class="fa fa-check"></i><b>20.2.2</b> Application: <code>source()</code></a></li>
+<li class="chapter" data-level="20.2.3" data-path="evaluation.html"><a href="evaluation.html#gotcha-function"><i class="fa fa-check"></i><b>20.2.3</b> Gotcha: <code>function()</code></a></li>
+<li class="chapter" data-level="20.2.4" data-path="evaluation.html"><a href="evaluation.html#base-r"><i class="fa fa-check"></i><b>20.2.4</b> Base R</a></li>
+<li class="chapter" data-level="20.2.5" data-path="evaluation.html"><a href="evaluation.html#exercises-57"><i class="fa fa-check"></i><b>20.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="evaluation.html"><a href="evaluation.html#quosures"><i class="fa fa-check"></i><b>20.3</b> Quosures</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="evaluation.html"><a href="evaluation.html#motivation-1"><i class="fa fa-check"></i><b>20.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="20.3.2" data-path="evaluation.html"><a href="evaluation.html#creating-and-manipulating"><i class="fa fa-check"></i><b>20.3.2</b> Creating and manipulating</a></li>
+<li class="chapter" data-level="20.3.3" data-path="evaluation.html"><a href="evaluation.html#implementation"><i class="fa fa-check"></i><b>20.3.3</b> Implementation</a></li>
+<li class="chapter" data-level="20.3.4" data-path="evaluation.html"><a href="evaluation.html#multiple-environments"><i class="fa fa-check"></i><b>20.3.4</b> Multiple environments</a></li>
+<li class="chapter" data-level="20.3.5" data-path="evaluation.html"><a href="evaluation.html#embedded-quosures"><i class="fa fa-check"></i><b>20.3.5</b> Embedded quosures</a></li>
+<li class="chapter" data-level="20.3.6" data-path="evaluation.html"><a href="evaluation.html#when-not-to-use-quosures"><i class="fa fa-check"></i><b>20.3.6</b> When not to use quosures</a></li>
+<li class="chapter" data-level="20.3.7" data-path="evaluation.html"><a href="evaluation.html#exercises-58"><i class="fa fa-check"></i><b>20.3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="evaluation.html"><a href="evaluation.html#tidy-evaluation"><i class="fa fa-check"></i><b>20.4</b> Tidy evaluation</a><ul>
+<li class="chapter" data-level="20.4.1" data-path="evaluation.html"><a href="evaluation.html#eval_tidy"><i class="fa fa-check"></i><b>20.4.1</b> <code>eval_tidy()</code></a></li>
+<li class="chapter" data-level="20.4.2" data-path="evaluation.html"><a href="evaluation.html#data-masks"><i class="fa fa-check"></i><b>20.4.2</b> Data masks</a></li>
+<li class="chapter" data-level="20.4.3" data-path="evaluation.html"><a href="evaluation.html#application-subset"><i class="fa fa-check"></i><b>20.4.3</b> Application: <code>subset()</code></a></li>
+<li class="chapter" data-level="20.4.4" data-path="evaluation.html"><a href="evaluation.html#application-arrange"><i class="fa fa-check"></i><b>20.4.4</b> Application: <code>arrange()</code></a></li>
+<li class="chapter" data-level="20.4.5" data-path="evaluation.html"><a href="evaluation.html#ambiguity-and-pronouns"><i class="fa fa-check"></i><b>20.4.5</b> Ambiguity and pronouns</a></li>
+<li class="chapter" data-level="20.4.6" data-path="evaluation.html"><a href="evaluation.html#base-subset"><i class="fa fa-check"></i><b>20.4.6</b> Base <code>subset()</code></a></li>
+<li class="chapter" data-level="20.4.7" data-path="evaluation.html"><a href="evaluation.html#tidy-eval-performance"><i class="fa fa-check"></i><b>20.4.7</b> Performance</a></li>
+<li class="chapter" data-level="20.4.8" data-path="evaluation.html"><a href="evaluation.html#exercises-59"><i class="fa fa-check"></i><b>20.4.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="evaluation.html"><a href="evaluation.html#case-study-calling-base-nse-functions"><i class="fa fa-check"></i><b>20.5</b> Case study: calling base NSE functions</a><ul>
+<li class="chapter" data-level="20.5.1" data-path="evaluation.html"><a href="evaluation.html#basics"><i class="fa fa-check"></i><b>20.5.1</b> Basics</a></li>
+<li class="chapter" data-level="20.5.2" data-path="evaluation.html"><a href="evaluation.html#the-evaluation-environment"><i class="fa fa-check"></i><b>20.5.2</b> The evaluation environment</a></li>
+<li class="chapter" data-level="20.5.3" data-path="evaluation.html"><a href="evaluation.html#making-formulas"><i class="fa fa-check"></i><b>20.5.3</b> Making formulas</a></li>
+<li class="chapter" data-level="20.5.4" data-path="evaluation.html"><a href="evaluation.html#exercises-60"><i class="fa fa-check"></i><b>20.5.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="translation.html"><a href="translation.html"><i class="fa fa-check"></i><b>21</b> Translating R code</a><ul>
+<li class="chapter" data-level="21.1" data-path="translation.html"><a href="translation.html#html"><i class="fa fa-check"></i><b>21.1</b> HTML</a><ul>
+<li class="chapter" data-level="21.1.1" data-path="translation.html"><a href="translation.html#goal"><i class="fa fa-check"></i><b>21.1.1</b> Goal</a></li>
+<li class="chapter" data-level="21.1.2" data-path="translation.html"><a href="translation.html#escaping"><i class="fa fa-check"></i><b>21.1.2</b> Escaping</a></li>
+<li class="chapter" data-level="21.1.3" data-path="translation.html"><a href="translation.html#basic-tag-functions"><i class="fa fa-check"></i><b>21.1.3</b> Basic tag functions</a></li>
+<li class="chapter" data-level="21.1.4" data-path="translation.html"><a href="translation.html#tag-functions"><i class="fa fa-check"></i><b>21.1.4</b> Tag functions</a></li>
+<li class="chapter" data-level="21.1.5" data-path="translation.html"><a href="translation.html#processing-all-tags"><i class="fa fa-check"></i><b>21.1.5</b> Processing all tags</a></li>
+<li class="chapter" data-level="21.1.6" data-path="translation.html"><a href="translation.html#exercises-61"><i class="fa fa-check"></i><b>21.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="translation.html"><a href="translation.html#latex"><i class="fa fa-check"></i><b>21.2</b> LaTeX</a><ul>
+<li class="chapter" data-level="21.2.1" data-path="translation.html"><a href="translation.html#latex-mathematics"><i class="fa fa-check"></i><b>21.2.1</b> LaTeX mathematics</a></li>
+<li class="chapter" data-level="21.2.2" data-path="translation.html"><a href="translation.html#goal-1"><i class="fa fa-check"></i><b>21.2.2</b> Goal</a></li>
+<li class="chapter" data-level="21.2.3" data-path="translation.html"><a href="translation.html#to_math"><i class="fa fa-check"></i><b>21.2.3</b> <code>to_math</code></a></li>
+<li class="chapter" data-level="21.2.4" data-path="translation.html"><a href="translation.html#known-symbols"><i class="fa fa-check"></i><b>21.2.4</b> Known symbols</a></li>
+<li class="chapter" data-level="21.2.5" data-path="translation.html"><a href="translation.html#unknown-symbols"><i class="fa fa-check"></i><b>21.2.5</b> Unknown symbols</a></li>
+<li class="chapter" data-level="21.2.6" data-path="translation.html"><a href="translation.html#known-functions"><i class="fa fa-check"></i><b>21.2.6</b> Known functions</a></li>
+<li class="chapter" data-level="21.2.7" data-path="translation.html"><a href="translation.html#unknown-functions"><i class="fa fa-check"></i><b>21.2.7</b> Unknown functions</a></li>
+<li class="chapter" data-level="21.2.8" data-path="translation.html"><a href="translation.html#exercises-62"><i class="fa fa-check"></i><b>21.2.8</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Performance</b></span></li>
+<li class="chapter" data-level="22" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>22</b> Performance</a><ul>
+<li class="chapter" data-level="22.1" data-path="performance.html"><a href="performance.html#why-is-r-slow"><i class="fa fa-check"></i><b>22.1</b> Why is R slow?</a></li>
+<li class="chapter" data-level="22.2" data-path="performance.html"><a href="performance.html#microbenchmarking"><i class="fa fa-check"></i><b>22.2</b> Microbenchmarking</a><ul>
+<li class="chapter" data-level="22.2.1" data-path="performance.html"><a href="performance.html#exercises-63"><i class="fa fa-check"></i><b>22.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="performance.html"><a href="performance.html#language-performance"><i class="fa fa-check"></i><b>22.3</b> Language performance</a><ul>
+<li class="chapter" data-level="22.3.1" data-path="performance.html"><a href="performance.html#extreme-dynamism"><i class="fa fa-check"></i><b>22.3.1</b> Extreme dynamism</a></li>
+<li class="chapter" data-level="22.3.2" data-path="performance.html"><a href="performance.html#name-lookup-with-mutable-environments"><i class="fa fa-check"></i><b>22.3.2</b> Name lookup with mutable environments</a></li>
+<li class="chapter" data-level="22.3.3" data-path="performance.html"><a href="performance.html#lazy-evaluation-overhead"><i class="fa fa-check"></i><b>22.3.3</b> Lazy evaluation overhead</a></li>
+<li class="chapter" data-level="22.3.4" data-path="performance.html"><a href="performance.html#exercises-64"><i class="fa fa-check"></i><b>22.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="performance.html"><a href="performance.html#implementation-performance"><i class="fa fa-check"></i><b>22.4</b> Implementation performance</a><ul>
+<li class="chapter" data-level="22.4.1" data-path="performance.html"><a href="performance.html#extracting-a-single-value-from-a-data-frame"><i class="fa fa-check"></i><b>22.4.1</b> Extracting a single value from a data frame</a></li>
+<li class="chapter" data-level="22.4.2" data-path="performance.html"><a href="performance.html#ifelse-pmin-and-pmax"><i class="fa fa-check"></i><b>22.4.2</b> <code>ifelse()</code>, <code>pmin()</code>, and <code>pmax()</code></a></li>
+<li class="chapter" data-level="22.4.3" data-path="performance.html"><a href="performance.html#exercises-65"><i class="fa fa-check"></i><b>22.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="performance.html"><a href="performance.html#faster-r"><i class="fa fa-check"></i><b>22.5</b> Alternative R implementations</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="profiling.html"><a href="profiling.html"><i class="fa fa-check"></i><b>23</b> Optimising code</a><ul>
+<li class="chapter" data-level="23.1" data-path="profiling.html"><a href="profiling.html#measure-perf"><i class="fa fa-check"></i><b>23.1</b> Measuring performance</a><ul>
+<li class="chapter" data-level="23.1.1" data-path="profiling.html"><a href="profiling.html#limitations"><i class="fa fa-check"></i><b>23.1.1</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="23.2" data-path="profiling.html"><a href="profiling.html#improve-perf"><i class="fa fa-check"></i><b>23.2</b> Improving performance</a></li>
+<li class="chapter" data-level="23.3" data-path="profiling.html"><a href="profiling.html#code-organisation"><i class="fa fa-check"></i><b>23.3</b> Code organisation</a></li>
+<li class="chapter" data-level="23.4" data-path="profiling.html"><a href="profiling.html#already-solved"><i class="fa fa-check"></i><b>23.4</b> Has someone already solved the problem?</a><ul>
+<li class="chapter" data-level="23.4.1" data-path="profiling.html"><a href="profiling.html#exercises-66"><i class="fa fa-check"></i><b>23.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.5" data-path="profiling.html"><a href="profiling.html#be-lazy"><i class="fa fa-check"></i><b>23.5</b> Do as little as possible</a><ul>
+<li class="chapter" data-level="23.5.1" data-path="profiling.html"><a href="profiling.html#exercises-67"><i class="fa fa-check"></i><b>23.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.6" data-path="profiling.html"><a href="profiling.html#vectorise"><i class="fa fa-check"></i><b>23.6</b> Vectorise</a><ul>
+<li class="chapter" data-level="23.6.1" data-path="profiling.html"><a href="profiling.html#exercises-68"><i class="fa fa-check"></i><b>23.6.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.7" data-path="profiling.html"><a href="profiling.html#avoid-copies"><i class="fa fa-check"></i><b>23.7</b> Avoid copies</a></li>
+<li class="chapter" data-level="23.8" data-path="profiling.html"><a href="profiling.html#byte-code"><i class="fa fa-check"></i><b>23.8</b> Byte code compilation</a></li>
+<li class="chapter" data-level="23.9" data-path="profiling.html"><a href="profiling.html#t-test"><i class="fa fa-check"></i><b>23.9</b> Case study: t-test</a></li>
+<li class="chapter" data-level="23.10" data-path="profiling.html"><a href="profiling.html#parallelise"><i class="fa fa-check"></i><b>23.10</b> Parallelise</a></li>
+<li class="chapter" data-level="23.11" data-path="profiling.html"><a href="profiling.html#more-techniques"><i class="fa fa-check"></i><b>23.11</b> Other techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>24</b> High performance functions with Rcpp</a><ul>
+<li class="chapter" data-level="24.1" data-path="rcpp.html"><a href="rcpp.html#rcpp-intro"><i class="fa fa-check"></i><b>24.1</b> Getting started with C++</a><ul>
+<li class="chapter" data-level="24.1.1" data-path="rcpp.html"><a href="rcpp.html#no-inputs-scalar-output"><i class="fa fa-check"></i><b>24.1.1</b> No inputs, scalar output</a></li>
+<li class="chapter" data-level="24.1.2" data-path="rcpp.html"><a href="rcpp.html#scalar-input-scalar-output"><i class="fa fa-check"></i><b>24.1.2</b> Scalar input, scalar output</a></li>
+<li class="chapter" data-level="24.1.3" data-path="rcpp.html"><a href="rcpp.html#vector-input-scalar-output"><i class="fa fa-check"></i><b>24.1.3</b> Vector input, scalar output</a></li>
+<li class="chapter" data-level="24.1.4" data-path="rcpp.html"><a href="rcpp.html#vector-input-vector-output"><i class="fa fa-check"></i><b>24.1.4</b> Vector input, vector output</a></li>
+<li class="chapter" data-level="24.1.5" data-path="rcpp.html"><a href="rcpp.html#matrix-input-vector-output"><i class="fa fa-check"></i><b>24.1.5</b> Matrix input, vector output</a></li>
+<li class="chapter" data-level="24.1.6" data-path="rcpp.html"><a href="rcpp.html#sourceCpp"><i class="fa fa-check"></i><b>24.1.6</b> Using sourceCpp</a></li>
+<li class="chapter" data-level="24.1.7" data-path="rcpp.html"><a href="rcpp.html#exercises-69"><i class="fa fa-check"></i><b>24.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="rcpp.html"><a href="rcpp.html#rcpp-classes"><i class="fa fa-check"></i><b>24.2</b> Attributes and other classes</a><ul>
+<li class="chapter" data-level="24.2.1" data-path="rcpp.html"><a href="rcpp.html#lists-and-data-frames"><i class="fa fa-check"></i><b>24.2.1</b> Lists and data frames</a></li>
+<li class="chapter" data-level="24.2.2" data-path="rcpp.html"><a href="rcpp.html#functions-rcpp"><i class="fa fa-check"></i><b>24.2.2</b> Functions</a></li>
+<li class="chapter" data-level="24.2.3" data-path="rcpp.html"><a href="rcpp.html#other-types"><i class="fa fa-check"></i><b>24.2.3</b> Other types</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="rcpp.html"><a href="rcpp.html#rcpp-na"><i class="fa fa-check"></i><b>24.3</b> Missing values</a><ul>
+<li class="chapter" data-level="24.3.1" data-path="rcpp.html"><a href="rcpp.html#scalars"><i class="fa fa-check"></i><b>24.3.1</b> Scalars</a></li>
+<li class="chapter" data-level="24.3.2" data-path="rcpp.html"><a href="rcpp.html#strings"><i class="fa fa-check"></i><b>24.3.2</b> Strings</a></li>
+<li class="chapter" data-level="24.3.3" data-path="rcpp.html"><a href="rcpp.html#boolean"><i class="fa fa-check"></i><b>24.3.3</b> Boolean</a></li>
+<li class="chapter" data-level="24.3.4" data-path="rcpp.html"><a href="rcpp.html#vectors-rcpp"><i class="fa fa-check"></i><b>24.3.4</b> Vectors</a></li>
+<li class="chapter" data-level="24.3.5" data-path="rcpp.html"><a href="rcpp.html#exercises-70"><i class="fa fa-check"></i><b>24.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.4" data-path="rcpp.html"><a href="rcpp.html#rcpp-sugar"><i class="fa fa-check"></i><b>24.4</b> Rcpp sugar</a><ul>
+<li class="chapter" data-level="24.4.1" data-path="rcpp.html"><a href="rcpp.html#arithmetic-and-logical-operators"><i class="fa fa-check"></i><b>24.4.1</b> Arithmetic and logical operators</a></li>
+<li class="chapter" data-level="24.4.2" data-path="rcpp.html"><a href="rcpp.html#logical-summary-functions"><i class="fa fa-check"></i><b>24.4.2</b> Logical summary functions</a></li>
+<li class="chapter" data-level="24.4.3" data-path="rcpp.html"><a href="rcpp.html#vector-views"><i class="fa fa-check"></i><b>24.4.3</b> Vector views</a></li>
+<li class="chapter" data-level="24.4.4" data-path="rcpp.html"><a href="rcpp.html#other-useful-functions"><i class="fa fa-check"></i><b>24.4.4</b> Other useful functions</a></li>
+</ul></li>
+<li class="chapter" data-level="24.5" data-path="rcpp.html"><a href="rcpp.html#stl"><i class="fa fa-check"></i><b>24.5</b> The STL</a><ul>
+<li class="chapter" data-level="24.5.1" data-path="rcpp.html"><a href="rcpp.html#using-iterators"><i class="fa fa-check"></i><b>24.5.1</b> Using iterators</a></li>
+<li class="chapter" data-level="24.5.2" data-path="rcpp.html"><a href="rcpp.html#algorithms"><i class="fa fa-check"></i><b>24.5.2</b> Algorithms</a></li>
+<li class="chapter" data-level="24.5.3" data-path="rcpp.html"><a href="rcpp.html#data-structures-rcpp"><i class="fa fa-check"></i><b>24.5.3</b> Data structures</a></li>
+<li class="chapter" data-level="24.5.4" data-path="rcpp.html"><a href="rcpp.html#vectors-stl"><i class="fa fa-check"></i><b>24.5.4</b> Vectors</a></li>
+<li class="chapter" data-level="24.5.5" data-path="rcpp.html"><a href="rcpp.html#sets"><i class="fa fa-check"></i><b>24.5.5</b> Sets</a></li>
+<li class="chapter" data-level="24.5.6" data-path="functionals.html"><a href="functionals.html#map"><i class="fa fa-check"></i><b>24.5.6</b> Map</a></li>
+<li class="chapter" data-level="24.5.7" data-path="rcpp.html"><a href="rcpp.html#exercises-71"><i class="fa fa-check"></i><b>24.5.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.6" data-path="rcpp.html"><a href="rcpp.html#rcpp-case-studies"><i class="fa fa-check"></i><b>24.6</b> Case studies</a><ul>
+<li class="chapter" data-level="24.6.1" data-path="rcpp.html"><a href="rcpp.html#gibbs-sampler"><i class="fa fa-check"></i><b>24.6.1</b> Gibbs sampler</a></li>
+<li class="chapter" data-level="24.6.2" data-path="rcpp.html"><a href="rcpp.html#r-vectorisation-vs.c-vectorisation"><i class="fa fa-check"></i><b>24.6.2</b> R vectorisation vs. C++ vectorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="24.7" data-path="rcpp.html"><a href="rcpp.html#rcpp-package"><i class="fa fa-check"></i><b>24.7</b> Using Rcpp in a package</a></li>
+<li class="chapter" data-level="24.8" data-path="rcpp.html"><a href="rcpp.html#rcpp-more"><i class="fa fa-check"></i><b>24.8</b> Learning more</a></li>
+<li class="chapter" data-level="24.9" data-path="rcpp.html"><a href="rcpp.html#acknowledgments"><i class="fa fa-check"></i><b>24.9</b> Acknowledgments</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rcpp" class="section level1">
+<h1><span class="header-section-number">24</span> High performance functions with Rcpp</h1>
+<p>Sometimes R code just isn’t fast enough. You’ve used profiling to figure out where your bottlenecks are, and you’ve done everything you can in R, but your code still isn’t fast enough. In this chapter you’ll learn how to improve performance by rewriting key functions in C++. This magic comes by way of the <a href="http://www.rcpp.org/">Rcpp</a> package, a fantastic tool written by Dirk Eddelbuettel and Romain Francois (with key contributions by Doug Bates, John Chambers, and JJ Allaire). Rcpp makes it very simple to connect C++ to R. While it is <em>possible</em> to write C or Fortran code for use in R, it will be painful by comparison. Rcpp provides a clean, approachable API that lets you write high-performance code, insulated from R’s arcane C API.  </p>
+<p>Typical bottlenecks that C++ can address include:</p>
+<ul>
+<li><p>Loops that can’t be easily vectorised because subsequent iterations depend on previous ones.</p></li>
+<li><p>Recursive functions, or problems which involve calling functions millions of times. The overhead of calling a function in C++ is much lower than that in R.</p></li>
+<li><p>Problems that require advanced data structures and algorithms that R doesn’t provide. Through the standard template library (STL), C++ has efficient implementations of many important data structures, from ordered maps to double-ended queues.</p></li>
+</ul>
+<p>The aim of this chapter is to discuss only those aspects of C++ and Rcpp that are absolutely necessary to help you eliminate bottlenecks in your code. We won’t spend much time on advanced features like object oriented programming or templates because the focus is on writing small, self-contained functions, not big programs. A working knowledge of C++ is helpful, but not essential. Many good tutorials and references are freely available, including <a href="http://www.learncpp.com/" class="uri">http://www.learncpp.com/</a> and <a href="http://www.cplusplus.com/" class="uri">http://www.cplusplus.com/</a>. For more advanced topics, the <em>Effective C++</em> series by Scott Meyers is a popular choice. You may also enjoy Dirk Eddelbuettel’s <a href="http://www.springer.com/statistics/computational+statistics/book/978-1-4614-6867-7"><em>Seamless R and C++ integration with Rcpp</em></a>, which goes into much greater detail into all aspects of Rcpp.</p>
+<div id="outline-11" class="section level5">
+<h5><span class="header-section-number">24.0.0.0.1</span> Outline</h5>
+<ul>
+<li><p><a href="rcpp.html#rcpp-intro">Getting started with C++</a> teaches you how to write C++ by converting simple R functions to their C++ equivalents. You’ll learn how C++ differs from R, and what the key scalar, vector, and matrix classes are called.</p></li>
+<li><p><a href="rcpp.html#sourceCpp">Using sourceCpp</a> shows you how to use <code>sourceCpp()</code> to load a C++ file from disk in the same way you use <code>source()</code> to load a file of R code.</p></li>
+<li><p><a href="rcpp.html#rcpp-classes">Attributes &amp; other classes</a> discusses how to modify attributes from Rcpp, and mentions some of the other important classes.</p></li>
+<li><p><a href="rcpp.html#rcpp-na">Missing values</a> teaches you how to work with R’s missing values in C++.</p></li>
+<li><p><a href="rcpp.html#rcpp-sugar">Rcpp sugar</a> discusses Rcpp “sugar”, which allows you to avoid loops in C++ and write code that looks very similar to vectorised R code.</p></li>
+<li><p><a href="rcpp.html#stl">The STL</a> shows you how to use some of the most important data structures and algorithms from the standard template library, or STL, built-in to C++.</p></li>
+<li><p><a href="rcpp.html#rcpp-case-studies">Case studies</a> shows two real case studies where Rcpp was used to get considerable performance improvements.</p></li>
+<li><p><a href="rcpp.html#rcpp-package">Putting Rcpp in a package</a> teaches you how to add C++ code to a package.</p></li>
+<li><p><a href="rcpp.html#rcpp-more">Learning more</a> concludes the chapter with pointers to more resources to help you learn Rcpp and C++.</p></li>
+</ul>
+</div>
+<div id="prerequistes" class="section level5">
+<h5><span class="header-section-number">24.0.0.0.2</span> Prerequistes</h5>
+<p>All examples in this chapter need version 0.10.1 or above of the <code>Rcpp</code> package. This version includes <code>cppFunction()</code> and <code>sourceCpp()</code>, which makes it very easy to connect C++ to R. Install the latest version of Rcpp from CRAN with <code>install.packages(&quot;Rcpp&quot;)</code>.</p>
+<p>You’ll also need a working C++ compiler. To get it:</p>
+<ul>
+<li>On Windows, install <a href="http://cran.r-project.org/bin/windows/Rtools/">Rtools</a>.</li>
+<li>On Mac, install Xcode from the app store.</li>
+<li>On Linux, <code>sudo apt-get install r-base-dev</code> or similar.</li>
+</ul>
+</div>
+<div id="rcpp-intro" class="section level2">
+<h2><span class="header-section-number">24.1</span> Getting started with C++</h2>
+<p><code>cppFunction()</code> allows you to write C++ functions in R: </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rcpp)
+<span class="kw">cppFunction</span>(<span class="st">&#39;int add(int x, int y, int z) {</span>
+<span class="st">  int sum = x + y + z;</span>
+<span class="st">  return sum;</span>
+<span class="st">}&#39;</span>)
+<span class="co"># add works like a regular R function</span>
+add
+<span class="co">#&gt; function (x, y, z) </span>
+<span class="co">#&gt; .Call(&lt;pointer: 0x10f3e7220&gt;, x, y, z)</span>
+<span class="kw">add</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+<span class="co">#&gt; [1] 6</span></code></pre></div>
+<p>When you run this code, Rcpp will compile the C++ code and construct an R function that connects to the compiled C++ function. We’re going to use this simple interface to learn how to write C++. C++ is a large language, and there’s no way to cover it all in just one chapter. Instead, you’ll get the basics so that you can start writing useful functions to address bottlenecks in your R code.</p>
+<p>The following sections will teach you the basics by translating simple R functions to their C++ equivalents. We’ll start simple with a function that has no inputs and a scalar output, and then get progressively more complicated:</p>
+<ul>
+<li>Scalar input and scalar output</li>
+<li>Vector input and scalar output</li>
+<li>Vector input and vector output</li>
+<li>Matrix input and vector output</li>
+</ul>
+<div id="no-inputs-scalar-output" class="section level3">
+<h3><span class="header-section-number">24.1.1</span> No inputs, scalar output</h3>
+<p>Let’s start with a very simple function. It has no arguments and always returns the integer 1:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one &lt;-<span class="st"> </span><span class="cf">function</span>() 1L</code></pre></div>
+<p>The equivalent C++ function is:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> one() {
+  <span class="cf">return</span> <span class="dv">1</span>;
+}</code></pre></div>
+<p>We can compile and use this from R with <code>cppFunction</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cppFunction</span>(<span class="st">&#39;int one() {</span>
+<span class="st">  return 1;</span>
+<span class="st">}&#39;</span>)</code></pre></div>
+<p>This small function illustrates a number of important differences between R and C++:</p>
+<ul>
+<li><p>The syntax to create a function looks like the syntax to call a function; you don’t use assignment to create functions as you do in R.</p></li>
+<li><p>You must declare the type of output the function returns. This function returns an <code>int</code> (a scalar integer). The classes for the most common types of R vectors are: <code>NumericVector</code>, <code>IntegerVector</code>, <code>CharacterVector</code>, and <code>LogicalVector</code>.</p></li>
+<li><p>Scalars and vectors are different. The scalar equivalents of numeric, integer, character, and logical vectors are: <code>double</code>, <code>int</code>, <code>String</code>, and <code>bool</code>.</p></li>
+<li><p>You must use an explicit <code>return</code> statement to return a value from a function.</p></li>
+<li><p>Every statement is terminated by a <code>;</code>.</p></li>
+</ul>
+</div>
+<div id="scalar-input-scalar-output" class="section level3">
+<h3><span class="header-section-number">24.1.2</span> Scalar input, scalar output</h3>
+<p>The next example function implements a scalar version of the <code>sign()</code> function which returns 1 if the input is positive, and -1 if it’s negative:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">signR &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
+    <span class="dv">1</span>
+  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
+    <span class="dv">0</span>
+  } <span class="cf">else</span> {
+    <span class="op">-</span><span class="dv">1</span>
+  }
+}
+
+<span class="kw">cppFunction</span>(<span class="st">&#39;int signC(int x) {</span>
+<span class="st">  if (x &gt; 0) {</span>
+<span class="st">    return 1;</span>
+<span class="st">  } else if (x == 0) {</span>
+<span class="st">    return 0;</span>
+<span class="st">  } else {</span>
+<span class="st">    return -1;</span>
+<span class="st">  }</span>
+<span class="st">}&#39;</span>)</code></pre></div>
+<p>In the C++ version:</p>
+<ul>
+<li><p>We declare the type of each input in the same way we declare the type of the output. While this makes the code a little more verbose, it also makes it very obvious what type of input the function needs.</p></li>
+<li><p>The <code>if</code> syntax is identical — while there are some big differences between R and C++, there are also lots of similarities! C++ also has a <code>while</code> statement that works the same way as R’s. As in R you can use <code>break</code> to exit the loop, but to skip one iteration you need to use <code>continue</code> instead of <code>next</code>.</p></li>
+</ul>
+</div>
+<div id="vector-input-scalar-output" class="section level3">
+<h3><span class="header-section-number">24.1.3</span> Vector input, scalar output</h3>
+<p>One big difference between R and C++ is that the cost of loops is much lower in C++. For example, we could implement the <code>sum</code> function in R using a loop. If you’ve been programming in R a while, you’ll probably have a visceral reaction to this function!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sumR &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  total &lt;-<span class="st"> </span><span class="dv">0</span>
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) {
+    total &lt;-<span class="st"> </span>total <span class="op">+</span><span class="st"> </span>x[i]
+  }
+  total
+}</code></pre></div>
+<p>In C++, loops have very little overhead, so it’s fine to use them. In <a href="rcpp.html#stl">STL</a>, you’ll see alternatives to <code>for</code> loops that more clearly express your intent; they’re not faster, but they can make your code easier to understand.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cppFunction</span>(<span class="st">&#39;double sumC(NumericVector x) {</span>
+<span class="st">  int n = x.size();</span>
+<span class="st">  double total = 0;</span>
+<span class="st">  for(int i = 0; i &lt; n; ++i) {</span>
+<span class="st">    total += x[i];</span>
+<span class="st">  }</span>
+<span class="st">  return total;</span>
+<span class="st">}&#39;</span>)</code></pre></div>
+<p>The C++ version is similar, but:</p>
+<ul>
+<li><p>To find the length of the vector, we use the <code>.size()</code> method, which returns an integer. C++ methods are called with <code>.</code> (i.e., a full stop).</p></li>
+<li><p>The <code>for</code> statement has a different syntax: <code>for(init; check; increment)</code>. This loop is initialised by creating a new variable called <code>i</code> with value 0. Before each iteration we check that <code>i &lt; n</code>, and terminate the loop if it’s not. After each iteration, we increment the value of <code>i</code> by one, using the special prefix operator <code>++</code> which increases the value of <code>i</code> by 1.</p></li>
+<li><p>In C++, vector indices start at 0. I’ll say this again because it’s so important: <strong>IN C++, VECTOR INDICES START AT 0</strong>! This is a very common source of bugs when converting R functions to C++.</p></li>
+<li><p>Use <code>=</code> for assignment, not <code>&lt;-</code>.</p></li>
+<li><p>C++ provides operators that modify in-place: <code>total += x[i]</code> is equivalent to <code>total = total + x[i]</code>. Similar in-place operators are <code>-=</code>, <code>*=</code>, and <code>/=</code>.</p></li>
+</ul>
+<p>This is a good example of where C++ is much more efficient than R. As shown by the following microbenchmark, <code>sumC()</code> is competitive with the built-in (and highly optimised) <code>sum()</code>, while <code>sumR()</code> is several orders of magnitude slower.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e3</span>)
+<span class="kw">microbenchmark</span>(
+  <span class="kw">sum</span>(x),
+  <span class="kw">sumC</span>(x),
+  <span class="kw">sumR</span>(x)
+)
+<span class="co">#&gt; Unit: microseconds</span>
+<span class="co">#&gt;     expr    min    lq  mean median    uq     max neval cld</span>
+<span class="co">#&gt;   sum(x)  0.924  1.06  1.65   1.27  1.62    17.4   100  a </span>
+<span class="co">#&gt;  sumC(x)  1.780  2.34 15.35   2.96  3.99 1,170.0   100  ab</span>
+<span class="co">#&gt;  sumR(x) 38.700 40.00 88.93  41.50 49.30 4,230.0   100   b</span></code></pre></div>
+</div>
+<div id="vector-input-vector-output" class="section level3">
+<h3><span class="header-section-number">24.1.4</span> Vector input, vector output</h3>
+<!-- FIXME: come up with better example. Also fix in two other places it occurs -->
+<p>Next we’ll create a function that computes the Euclidean distance between a value and a vector of values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pdistR &lt;-<span class="st"> </span><span class="cf">function</span>(x, ys) {
+  <span class="kw">sqrt</span>((x <span class="op">-</span><span class="st"> </span>ys) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)
+}</code></pre></div>
+<p>It’s not obvious that we want <code>x</code> to be a scalar from the function definition. We’d need to make that clear in the documentation. That’s not a problem in the C++ version because we have to be explicit about types:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cppFunction</span>(<span class="st">&#39;NumericVector pdistC(double x, NumericVector ys) {</span>
+<span class="st">  int n = ys.size();</span>
+<span class="st">  NumericVector out(n);</span>
+
+<span class="st">  for(int i = 0; i &lt; n; ++i) {</span>
+<span class="st">    out[i] = sqrt(pow(ys[i] - x, 2.0));</span>
+<span class="st">  }</span>
+<span class="st">  return out;</span>
+<span class="st">}&#39;</span>)</code></pre></div>
+<p>This function introduces only a few new concepts:</p>
+<ul>
+<li><p>We create a new numeric vector of length <code>n</code> with a constructor: <code>NumericVector out(n)</code>. Another useful way of making a vector is to copy an existing one: <code>NumericVector zs = clone(ys)</code>.</p></li>
+<li><p>C++ uses <code>pow()</code>, not <code>^</code>, for exponentiation.</p></li>
+</ul>
+<p>Note that because the R version is fully vectorised, it’s already going to be fast. On my computer, it takes around 8 ms with a 1 million element <code>y</code> vector. The C++ function is twice as fast, ~4 ms, but assuming it took you 10 minutes to write the C++ function, you’d need to run it ~150,000 times to make rewriting worthwhile. The reason why the C++ function is faster is subtle, and relates to memory management. The R version needs to create an intermediate vector the same length as y (<code>x - ys</code>), and allocating memory is an expensive operation. The C++ function avoids this overhead because it uses an intermediate scalar.</p>
+<p>In the sugar section, you’ll see how to rewrite this function to take advantage of Rcpp’s vectorised operations so that the C++ code is almost as concise as R code.</p>
+</div>
+<div id="matrix-input-vector-output" class="section level3">
+<h3><span class="header-section-number">24.1.5</span> Matrix input, vector output</h3>
+<p>Each vector type has a matrix equivalent: <code>NumericMatrix</code>, <code>IntegerMatrix</code>, <code>CharacterMatrix</code>, and <code>LogicalMatrix</code>. Using them is straightforward. For example, we could create a function that reproduces <code>rowSums()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cppFunction</span>(<span class="st">&#39;NumericVector rowSumsC(NumericMatrix x) {</span>
+<span class="st">  int nrow = x.nrow(), ncol = x.ncol();</span>
+<span class="st">  NumericVector out(nrow);</span>
+
+<span class="st">  for (int i = 0; i &lt; nrow; i++) {</span>
+<span class="st">    double total = 0;</span>
+<span class="st">    for (int j = 0; j &lt; ncol; j++) {</span>
+<span class="st">      total += x(i, j);</span>
+<span class="st">    }</span>
+<span class="st">    out[i] = total;</span>
+<span class="st">  }</span>
+<span class="st">  return out;</span>
+<span class="st">}&#39;</span>)
+<span class="kw">set.seed</span>(<span class="dv">1014</span>)
+x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">100</span>), <span class="dv">10</span>)
+<span class="kw">rowSums</span>(x)
+<span class="co">#&gt;  [1] 458 558 488 458 536 537 488 491 508 528</span>
+<span class="kw">rowSumsC</span>(x)
+<span class="co">#&gt;  [1] 458 558 488 458 536 537 488 491 508 528</span></code></pre></div>
+<p>The main differences:</p>
+<ul>
+<li><p>In C++, you subset a matrix with <code>()</code>, not <code>[]</code>.</p></li>
+<li><p>Use <code>.nrow()</code> and <code>.ncol()</code> <em>methods</em> to get the dimensions of a matrix.</p></li>
+</ul>
+</div>
+<div id="sourceCpp" class="section level3">
+<h3><span class="header-section-number">24.1.6</span> Using sourceCpp</h3>
+<p>So far, we’ve used inline C++ with <code>cppFunction()</code>. This makes presentation simpler, but for real problems, it’s usually easier to use stand-alone C++ files and then source them into R using <code>sourceCpp()</code>. This lets you take advantage of text editor support for C++ files (e.g., syntax highlighting) as well as making it easier to identify the line numbers in compilation errors. </p>
+<p>Your stand-alone C++ file should have extension <code>.cpp</code>, and needs to start with:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;</code></pre></div>
+<p>And for each function that you want available within R, you need to prefix it with:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// [[Rcpp::export]]</span></code></pre></div>
+<p>Note that the space is mandatory.</p>
+<p>If you’re familiar with roxygen2, you might wonder how this relates to <code>@export</code>. <code>Rcpp::export</code> controls whether a function is exported from C++ to R; <code>@export</code> controls whether a function is exported from a package and made available to the user.</p>
+<p>You can embed R code in special C++ comment blocks. This is really convenient if you want to run some test code:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/*** R</span>
+<span class="co"># This is R code</span>
+<span class="co">*/</span></code></pre></div>
+<p>The R code is run with <code>source(echo = TRUE)</code> so you don’t need to explicitly print output.</p>
+<p>To compile the C++ code, use <code>sourceCpp(&quot;path/to/file.cpp&quot;)</code>. This will create the matching R functions and add them to your current session. Note that these functions can not be saved in a <code>.Rdata</code> file and reloaded in a later session; they must be recreated each time you restart R. For example, running <code>sourceCpp()</code> on the following file implements mean in C++ and then compares it to the built-in <code>mean()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+<span class="dt">double</span> meanC(NumericVector x) {
+  <span class="dt">int</span> n = x.size();
+  <span class="dt">double</span> total = <span class="dv">0</span>;
+
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    total += x[i];
+  }
+  <span class="cf">return</span> total / n;
+}
+
+<span class="co">/*** R</span>
+<span class="co">library(microbenchmark)</span>
+<span class="co">x &lt;- runif(1e5)</span>
+<span class="co">microbenchmark(</span>
+<span class="co">  mean(x),</span>
+<span class="co">  meanC(x)</span>
+<span class="co">)</span>
+<span class="co">*/</span></code></pre></div>
+<p>NB: if you run this code yourself, you’ll notice that <code>meanC()</code> is much faster than the built-in <code>mean()</code>. This is because it trades numerical accuracy for speed.</p>
+<p>For the remainder of this chapter C++ code will be presented stand-alone rather than wrapped in a call to <code>cppFunction</code>. If you want to try compiling and/or modifying the examples you should paste them into a C++ source file that includes the elements described above.</p>
+</div>
+<div id="exercises-69" class="section level3">
+<h3><span class="header-section-number">24.1.7</span> Exercises</h3>
+<p>With the basics of C++ in hand, it’s now a great time to practice by reading and writing some simple C++ functions. For each of the following functions, read the code and figure out what the corresponding base R function is. You might not understand every part of the code yet, but you should be able to figure out the basics of what the function does.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> f1(NumericVector x) {
+  <span class="dt">int</span> n = x.size();
+  <span class="dt">double</span> y = <span class="dv">0</span>;
+
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    y += x[i] / n;
+  }
+  <span class="cf">return</span> y;
+}
+
+NumericVector f2(NumericVector x) {
+  <span class="dt">int</span> n = x.size();
+  NumericVector out(n);
+
+  out[<span class="dv">0</span>] = x[<span class="dv">0</span>];
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; n; ++i) {
+    out[i] = out[i - <span class="dv">1</span>] + x[i];
+  }
+  <span class="cf">return</span> out;
+}
+
+<span class="dt">bool</span> f3(LogicalVector x) {
+  <span class="dt">int</span> n = x.size();
+
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    <span class="cf">if</span> (x[i]) <span class="cf">return</span> <span class="kw">true</span>;
+  }
+  <span class="cf">return</span> <span class="kw">false</span>;
+}
+
+<span class="dt">int</span> f4(Function pred, List x) {
+  <span class="dt">int</span> n = x.size();
+
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    LogicalVector res = pred(x[i]);
+    <span class="cf">if</span> (res[<span class="dv">0</span>]) <span class="cf">return</span> i + <span class="dv">1</span>;
+  }
+  <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+NumericVector f5(NumericVector x, NumericVector y) {
+  <span class="dt">int</span> n = <span class="bu">std::</span>max(x.size(), y.size());
+  NumericVector x1 = rep_len(x, n);
+  NumericVector y1 = rep_len(y, n);
+
+  NumericVector out(n);
+
+  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    out[i] = <span class="bu">std::</span>min(x1[i], y1[i]);
+  }
+
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<p>To practice your function writing skills, convert the following functions into C++. For now, assume the inputs have no missing values.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>all()</code></p></li>
+<li><p><code>cumprod()</code>, <code>cummin()</code>, <code>cummax()</code>.</p></li>
+<li><p><code>diff()</code>. Start by assuming lag 1, and then generalise for lag <code>n</code>.</p></li>
+<li><p><code>range</code>.</p></li>
+<li><p><code>var</code>. Read about the approaches you can take on <a href="http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance">wikipedia</a>. Whenever implementing a numerical algorithm, it’s always good to check what is already known about the problem.</p></li>
+</ol>
+</div>
+</div>
+<div id="rcpp-classes" class="section level2">
+<h2><span class="header-section-number">24.2</span> Attributes and other classes</h2>
+<p>You’ve already seen the basic vector classes (<code>IntegerVector</code>, <code>NumericVector</code>, <code>LogicalVector</code>, <code>CharacterVector</code>) and their scalar (<code>int</code>, <code>double</code>, <code>bool</code>, <code>String</code>) and matrix (<code>IntegerMatrix</code>, <code>NumericMatrix</code>, <code>LogicalMatrix</code>, <code>CharacterMatrix</code>) equivalents.</p>
+<p>All R objects have attributes, which can be queried and modified with <code>.attr()</code>. Rcpp also provides <code>.names()</code> as an alias for the name attribute. The following code snippet illustrates these methods. Note the use of <code>::create()</code>, a <em>class</em> method. This allows you to create an R vector from C++ scalar values:  </p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+NumericVector attribs() {
+  NumericVector out = NumericVector::create(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>);
+
+  out.names() = CharacterVector::create(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>);
+  out.attr(<span class="st">&quot;my-attr&quot;</span>) = <span class="st">&quot;my-value&quot;</span>;
+  out.attr(<span class="st">&quot;class&quot;</span>) = <span class="st">&quot;my-class&quot;</span>;
+
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<p>For S4 objects, <code>.slot()</code> plays a similar role to <code>.attr()</code>.</p>
+<div id="lists-and-data-frames" class="section level3">
+<h3><span class="header-section-number">24.2.1</span> Lists and data frames</h3>
+<p>Rcpp also provides classes <code>List</code> and <code>DataFrame</code>, but they are more useful for output than input. This is because lists and data frames can contain arbitrary classes but C++ needs to know their classes in advance. If the list has known structure (e.g., it’s an S3 object), you can extract the components and manually convert them to their C++ equivalents with <code>as()</code>. For example, the object created by <code>lm()</code>, the function that fits a linear model, is a list whose components are always of the same type. The following code illustrates how you might extract the mean percentage error (<code>mpe()</code>) of a linear model. This isn’t a good example of when to use C++, because it’s so easily implemented in R, but it shows how to work with an important S3 class. Note the use of <code>.inherits()</code> and the <code>stop()</code> to check that the object really is a linear model.  </p>
+<!-- FIXME: needs better motivation -->
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+<span class="dt">double</span> mpe(List mod) {
+  <span class="cf">if</span> (!mod.inherits(<span class="st">&quot;lm&quot;</span>)) stop(<span class="st">&quot;Input must be a linear model&quot;</span>);
+
+  NumericVector resid = as&lt;NumericVector&gt;(mod[<span class="st">&quot;residuals&quot;</span>]);
+  NumericVector fitted = as&lt;NumericVector&gt;(mod[<span class="st">&quot;fitted.values&quot;</span>]);
+
+  <span class="dt">int</span> n = resid.size();
+  <span class="dt">double</span> err = <span class="dv">0</span>;
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    err += resid[i] / (fitted[i] + resid[i]);
+  }
+  <span class="cf">return</span> err / n;
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)
+<span class="kw">mpe</span>(mod)
+<span class="co">#&gt; [1] -0.0154</span></code></pre></div>
+</div>
+<div id="functions-rcpp" class="section level3">
+<h3><span class="header-section-number">24.2.2</span> Functions</h3>
+<p>You can put R functions in an object of type <code>Function</code>. This makes calling an R function from C++ straightforward. We first define our C++ function: </p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+RObject callWithOne(Function f) {
+  <span class="cf">return</span> f(<span class="dv">1</span>);
+}</code></pre></div>
+<p>Then call it from R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">callWithOne</span>(<span class="cf">function</span>(x) x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
+<span class="co">#&gt; [1] 2</span>
+<span class="kw">callWithOne</span>(paste)
+<span class="co">#&gt; [1] &quot;1&quot;</span></code></pre></div>
+<p>What type of object does an R function return? We don’t know, so we use the catchall type <code>RObject</code>. An alternative is to return a <code>List</code>. For example, the following code is a basic implementation of <code>lapply</code> in C++:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+List lapply1(List input, Function f) {
+  <span class="dt">int</span> n = input.size();
+  List out(n);
+
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) {
+    out[i] = f(input[i]);
+  }
+
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<p>Calling R functions with positional arguments is obvious:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">f(<span class="st">&quot;y&quot;</span>, <span class="dv">1</span>);</code></pre></div>
+<p>But to use named arguments, you need a special syntax:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">f(_[<span class="st">&quot;x&quot;</span>] = <span class="st">&quot;y&quot;</span>, _[<span class="st">&quot;value&quot;</span>] = <span class="dv">1</span>);</code></pre></div>
+</div>
+<div id="other-types" class="section level3">
+<h3><span class="header-section-number">24.2.3</span> Other types</h3>
+<p>There are also classes for many more specialised language objects: <code>Environment</code>, <code>ComplexVector</code>, <code>RawVector</code>, <code>DottedPair</code>, <code>Language</code>, <code>Promise</code>, <code>Symbol</code>, <code>WeakReference</code>, and so on. These are beyond the scope of this chapter and won’t be discussed further.</p>
+</div>
+</div>
+<div id="rcpp-na" class="section level2">
+<h2><span class="header-section-number">24.3</span> Missing values</h2>
+<p>If you’re working with missing values, you need to know two things: </p>
+<ul>
+<li>how R’s missing values behave in C++’s scalars (e.g., <code>double</code>).</li>
+<li>how to get and set missing values in vectors (e.g., <code>NumericVector</code>).</li>
+</ul>
+<div id="scalars" class="section level3">
+<h3><span class="header-section-number">24.3.1</span> Scalars</h3>
+<p>The following code explores what happens when you take one of R’s missing values, coerce it into a scalar, and then coerce back to an R vector. Note that this kind of experimentation is a useful way to figure out what any operation does.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+List scalar_missings() {
+  <span class="dt">int</span> int_s = NA_INTEGER;
+  String chr_s = NA_STRING;
+  <span class="dt">bool</span> lgl_s = NA_LOGICAL;
+  <span class="dt">double</span> num_s = NA_REAL;
+
+  <span class="cf">return</span> List::create(int_s, chr_s, lgl_s, num_s);
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">scalar_missings</span>())
+<span class="co">#&gt; List of 4</span>
+<span class="co">#&gt;  $ : int NA</span>
+<span class="co">#&gt;  $ : chr NA</span>
+<span class="co">#&gt;  $ : logi TRUE</span>
+<span class="co">#&gt;  $ : num NA</span></code></pre></div>
+<p>With the exception of <code>bool</code>, things look pretty good here: all of the missing values have been preserved. However, as we’ll see in the following sections, things are not quite as straightforward as they seem.</p>
+<div id="integers" class="section level4">
+<h4><span class="header-section-number">24.3.1.1</span> Integers</h4>
+<p>With integers, missing values are stored as the smallest integer. If you don’t do anything to them, they’ll be preserved. But, since C++ doesn’t know that the smallest integer has this special behaviour, if you do anything to it you’re likely to get an incorrect value: for example, <code>evalCpp('NA_INTEGER + 1')</code> gives -2147483647.</p>
+<p>So if you want to work with missing values in integers, either use a length one <code>IntegerVector</code> or be very careful with your code.</p>
+</div>
+<div id="doubles" class="section level4">
+<h4><span class="header-section-number">24.3.1.2</span> Doubles</h4>
+<p>With doubles, you may be able to get away with ignoring missing values and working with NaNs (not a number). This is because R’s NA is a special type of IEEE 754 floating point number NaN. So any logical expression that involves a NaN (or in C++, NAN) always evaluates as FALSE:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">evalCpp</span>(<span class="st">&quot;NAN == 1&quot;</span>)
+<span class="co">#&gt; [1] FALSE</span>
+<span class="kw">evalCpp</span>(<span class="st">&quot;NAN &lt; 1&quot;</span>)
+<span class="co">#&gt; [1] FALSE</span>
+<span class="kw">evalCpp</span>(<span class="st">&quot;NAN &gt; 1&quot;</span>)
+<span class="co">#&gt; [1] FALSE</span>
+<span class="kw">evalCpp</span>(<span class="st">&quot;NAN == NAN&quot;</span>)
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<p>But be careful when combining them with boolean values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">evalCpp</span>(<span class="st">&quot;NAN &amp;&amp; TRUE&quot;</span>)
+<span class="co">#&gt; [1] TRUE</span>
+<span class="kw">evalCpp</span>(<span class="st">&quot;NAN || FALSE&quot;</span>)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>However, in numeric contexts NaNs will propagate NAs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">evalCpp</span>(<span class="st">&quot;NAN + 1&quot;</span>)
+<span class="co">#&gt; [1] NaN</span>
+<span class="kw">evalCpp</span>(<span class="st">&quot;NAN - 1&quot;</span>)
+<span class="co">#&gt; [1] NaN</span>
+<span class="kw">evalCpp</span>(<span class="st">&quot;NAN / 1&quot;</span>)
+<span class="co">#&gt; [1] NaN</span>
+<span class="kw">evalCpp</span>(<span class="st">&quot;NAN * 1&quot;</span>)
+<span class="co">#&gt; [1] NaN</span></code></pre></div>
+</div>
+</div>
+<div id="strings" class="section level3">
+<h3><span class="header-section-number">24.3.2</span> Strings</h3>
+<p><code>String</code> is a scalar string class introduced by Rcpp, so it knows how to deal with missing values.</p>
+</div>
+<div id="boolean" class="section level3">
+<h3><span class="header-section-number">24.3.3</span> Boolean</h3>
+<p>While C++’s <code>bool</code> has two possible values (<code>true</code> or <code>false</code>), a logical vector in R has three (<code>TRUE</code>, <code>FALSE</code>, and <code>NA</code>). If you coerce a length 1 logical vector, make sure it doesn’t contain any missing values otherwise they will be converted to TRUE.</p>
+</div>
+<div id="vectors-rcpp" class="section level3">
+<h3><span class="header-section-number">24.3.4</span> Vectors</h3>
+<p>With vectors, you need to use a missing value specific to the type of vector, <code>NA_REAL</code>, <code>NA_INTEGER</code>, <code>NA_LOGICAL</code>, <code>NA_STRING</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+List missing_sampler() {
+  <span class="cf">return</span> List::create(
+    NumericVector::create(NA_REAL),
+    IntegerVector::create(NA_INTEGER),
+    LogicalVector::create(NA_LOGICAL),
+    CharacterVector::create(NA_STRING));
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">missing_sampler</span>())
+<span class="co">#&gt; List of 4</span>
+<span class="co">#&gt;  $ : num NA</span>
+<span class="co">#&gt;  $ : int NA</span>
+<span class="co">#&gt;  $ : logi NA</span>
+<span class="co">#&gt;  $ : chr NA</span></code></pre></div>
+<p>To check if a value in a vector is missing, use the class method <code>::is_na()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+LogicalVector is_naC(NumericVector x) {
+  <span class="dt">int</span> n = x.size();
+  LogicalVector out(n);
+
+  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    out[i] = NumericVector::is_na(x[i]);
+  }
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_naC</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="fl">5.4</span>, <span class="fl">3.2</span>, <span class="ot">NA</span>))
+<span class="co">#&gt; [1]  TRUE FALSE FALSE  TRUE</span></code></pre></div>
+<p>Another alternative is the sugar function <code>is_na()</code>, which takes a vector and returns a logical vector.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+LogicalVector is_naC2(NumericVector x) {
+  <span class="cf">return</span> is_na(x);
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_naC2</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="fl">5.4</span>, <span class="fl">3.2</span>, <span class="ot">NA</span>))
+<span class="co">#&gt; [1]  TRUE FALSE FALSE  TRUE</span></code></pre></div>
+</div>
+<div id="exercises-70" class="section level3">
+<h3><span class="header-section-number">24.3.5</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Rewrite any of the functions from the first exercise to deal with missing values. If <code>na.rm</code> is true, ignore the missing values. If <code>na.rm</code> is false, return a missing value if the input contains any missing values. Some good functions to practice with are <code>min()</code>, <code>max()</code>, <code>range()</code>, <code>mean()</code>, and <code>var()</code>.</p></li>
+<li><p>Rewrite <code>cumsum()</code> and <code>diff()</code> so they can handle missing values. Note that these functions have slightly more complicated behaviour.</p></li>
+</ol>
+</div>
+</div>
+<div id="rcpp-sugar" class="section level2">
+<h2><span class="header-section-number">24.4</span> Rcpp sugar</h2>
+<p>Rcpp provides a lot of syntactic “sugar” to ensure that C++ functions work very similarly to their R equivalents. In fact, Rcpp sugar makes it possible to write efficient C++ code that looks almost identical to its R equivalent. If there’s a sugar version of the function you’re interested in, you should use it: it’ll be both expressive and well tested. Sugar functions aren’t always faster than a handwritten equivalent, but they will get faster in the future as more time is spent on optimising Rcpp.</p>
+<p>Sugar functions can be roughly broken down into</p>
+<ul>
+<li>arithmetic and logical operators</li>
+<li>logical summary functions</li>
+<li>vector views</li>
+<li>other useful functions</li>
+</ul>
+<div id="arithmetic-and-logical-operators" class="section level3">
+<h3><span class="header-section-number">24.4.1</span> Arithmetic and logical operators</h3>
+<p>All the basic arithmetic and logical operators are vectorised: <code>+</code>, <code>*</code>, <code>-</code>, <code>/</code>, <code>pow</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>, <code>!</code>. For example, we could use sugar to considerably simplify the implementation of <code>pdistC()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pdistR &lt;-<span class="st"> </span><span class="cf">function</span>(x, ys) {
+  <span class="kw">sqrt</span>((x <span class="op">-</span><span class="st"> </span>ys) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+NumericVector pdistC2(<span class="dt">double</span> x, NumericVector ys) {
+  <span class="cf">return</span> sqrt(pow((x - ys), <span class="dv">2</span>));
+}</code></pre></div>
+</div>
+<div id="logical-summary-functions" class="section level3">
+<h3><span class="header-section-number">24.4.2</span> Logical summary functions</h3>
+<p>The sugar function <code>any()</code> and <code>all()</code> are fully lazy so that <code>any(x == 0)</code>, for example, might only need to evaluate one element of a vector, and return a special type that can be converted into a <code>bool</code> using <code>.is_true()</code>, <code>.is_false()</code>, or <code>.is_na()</code>. We could also use this sugar to write an efficient function to determine whether or not a numeric vector contains any missing values. To do this in R, we could use <code>any(is.na(x))</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">any_naR &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">any</span>(<span class="kw">is.na</span>(x))</code></pre></div>
+<p>However, this will do the same amount of work regardless of the location of the missing value. Here’s the C++ implementation:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+<span class="dt">bool</span> any_naC(NumericVector x) {
+  <span class="cf">return</span> is_true(any(is_na(x)));
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x0 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e5</span>)
+x1 &lt;-<span class="st"> </span><span class="kw">c</span>(x0, <span class="ot">NA</span>)
+x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>, x0)
+
+<span class="kw">microbenchmark</span>(
+  <span class="kw">any_naR</span>(x0), <span class="kw">any_naC</span>(x0),
+  <span class="kw">any_naR</span>(x1), <span class="kw">any_naC</span>(x1),
+  <span class="kw">any_naR</span>(x2), <span class="kw">any_naC</span>(x2)
+)
+<span class="co">#&gt; Unit: microseconds</span>
+<span class="co">#&gt;         expr    min     lq   mean median     uq     max neval cld</span>
+<span class="co">#&gt;  any_naR(x0) 143.00 283.00 275.03 290.00 299.00   398.0   100  bc</span>
+<span class="co">#&gt;  any_naC(x0) 161.00 161.00 165.70 162.00 163.00   242.0   100  b </span>
+<span class="co">#&gt;  any_naR(x1) 143.00 286.00 335.34 291.00 300.00 5,330.0   100   c</span>
+<span class="co">#&gt;  any_naC(x1) 161.00 162.00 172.27 162.00 163.00   930.0   100  b </span>
+<span class="co">#&gt;  any_naR(x2)  64.00 201.00 247.71 212.00 225.00 4,330.0   100  bc</span>
+<span class="co">#&gt;  any_naC(x2)   1.05   1.38   1.82   1.81   2.21     3.5   100 a</span></code></pre></div>
+</div>
+<div id="vector-views" class="section level3">
+<h3><span class="header-section-number">24.4.3</span> Vector views</h3>
+<p>A number of helpful functions provide a “view” of a vector: <code>head()</code>, <code>tail()</code>, <code>rep_each()</code>, <code>rep_len()</code>, <code>rev()</code>, <code>seq_along()</code>, and <code>seq_len()</code>. In R these would all produce copies of the vector, but in Rcpp they simply point to the existing vector and override the subsetting operator (<code>[</code>) to implement special behaviour. This makes them very efficient: for instance, <code>rep_len(x, 1e6)</code> does not have to make a million copies of x.</p>
+</div>
+<div id="other-useful-functions" class="section level3">
+<h3><span class="header-section-number">24.4.4</span> Other useful functions</h3>
+<p>Finally, there’s a grab bag of sugar functions that mimic frequently used R functions:</p>
+<ul>
+<li><p>Math functions: <code>abs()</code>, <code>acos()</code>, <code>asin()</code>, <code>atan()</code>, <code>beta()</code>, <code>ceil()</code>, <code>ceiling()</code>, <code>choose()</code>, <code>cos()</code>, <code>cosh()</code>, <code>digamma()</code>, <code>exp()</code>, <code>expm1()</code>, <code>factorial()</code>, <code>floor()</code>, <code>gamma()</code>, <code>lbeta()</code>, <code>lchoose()</code>, <code>lfactorial()</code>, <code>lgamma()</code>, <code>log()</code>, <code>log10()</code>, <code>log1p()</code>, <code>pentagamma()</code>, <code>psigamma()</code>, <code>round()</code>, <code>signif()</code>, <code>sin()</code>, <code>sinh()</code>, <code>sqrt()</code>, <code>tan()</code>, <code>tanh()</code>, <code>tetragamma()</code>, <code>trigamma()</code>, <code>trunc()</code>.</p></li>
+<li><p>Scalar summaries: <code>mean()</code>, <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>sd()</code>, and (for vectors) <code>var()</code>.</p></li>
+<li><p>Vector summaries: <code>cumsum()</code>, <code>diff()</code>, <code>pmin()</code>, and <code>pmax()</code>.</p></li>
+<li><p>Finding values: <code>match()</code>, <code>self_match()</code>, <code>which_max()</code>, <code>which_min()</code>.</p></li>
+<li><p>Dealing with duplicates: <code>duplicated()</code>, <code>unique()</code>.</p></li>
+<li><p><code>d/q/p/r</code> for all standard distributions.</p></li>
+</ul>
+<p>Finally, <code>noNA(x)</code> asserts that the vector <code>x</code> does not contain any missing values, and allows optimisation of some mathematical operations. For example, when computing the mean of a vector with no missing values, Rcpp doesn’t need to check each value is not missing when computing the sum and the length.</p>
+</div>
+</div>
+<div id="stl" class="section level2">
+<h2><span class="header-section-number">24.5</span> The STL</h2>
+<p>The real strength of C++ shows itself when you need to implement more complex algorithms. The standard template library (STL) provides a set of extremely useful data structures and algorithms. This section will explain some of the most important algorithms and data structures and point you in the right direction to learn more. I can’t teach you everything you need to know about the STL, but hopefully the examples will show you the power of the STL, and persuade you that it’s useful to learn more. </p>
+<p>If you need an algorithm or data structure that isn’t implemented in STL, a good place to look is <a href="http://www.boost.org/doc/">boost</a>. Installing boost on your computer is beyond the scope of this chapter, but once you have it installed, you can use boost data structures and algorithms by including the appropriate header file with (e.g.) <code>#include &lt;boost/array.hpp&gt;</code>.</p>
+<div id="using-iterators" class="section level3">
+<h3><span class="header-section-number">24.5.1</span> Using iterators</h3>
+<p>Iterators are used extensively in the STL: many functions either accept or return iterators. They are the next step up from basic loops, abstracting away the details of the underlying data structure. Iterators have three main operators: </p>
+<ol style="list-style-type: decimal">
+<li>Advance with <code>++</code>.</li>
+<li>Get the value they refer to, or <strong>dereference</strong>, with <code>*</code>.</li>
+<li>Compare with <code>==</code>.</li>
+</ol>
+<p>For example we could re-write our sum function using iterators:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+<span class="dt">double</span> sum3(NumericVector x) {
+  <span class="dt">double</span> total = <span class="dv">0</span>;
+  
+  NumericVector::iterator it;
+  <span class="cf">for</span>(it = x.begin(); it != x.end(); ++it) {
+    total += *it;
+  }
+  <span class="cf">return</span> total;
+}</code></pre></div>
+<p>The main changes are in the for loop:</p>
+<ul>
+<li><p>We start at <code>x.begin()</code> and loop until we get to <code>x.end()</code>. A small optimization is to store the value of the end iterator so we don’t need to look it up each time. This only saves about 2 ns per iteration, so it’s only important when the calculations in the loop are very simple.</p></li>
+<li><p>Instead of indexing into x, we use the dereference operator to get its current value: <code>*it</code>.</p></li>
+<li><p>Notice the type of the iterator: <code>NumericVector::iterator</code>. Each vector type has its own iterator type: <code>LogicalVector::iterator</code>, <code>CharacterVector::iterator</code>, etc.</p></li>
+</ul>
+<p>Iterators also allow us to use the C++ equivalents of the apply family of functions. For example, we could again rewrite <code>sum()</code> to use the <code>accumulate()</code> function, which takes a starting and an ending iterator, and adds up all the values in the vector. The third argument to accumulate gives the initial value: it’s particularly important because this also determines the data type that accumulate uses (so we use <code>0.0</code> and not <code>0</code> so that accumulate uses a <code>double</code>, not an <code>int</code>.). To use <code>accumulate()</code> we need to include the <code>&lt;numeric&gt;</code> header.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;numeric&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+<span class="dt">double</span> sum4(NumericVector x) {
+  <span class="cf">return</span> <span class="bu">std::</span>accumulate(x.begin(), x.end(), <span class="fl">0.0</span>);
+}</code></pre></div>
+<p><code>accumulate()</code> (along with the other functions in <code>&lt;numeric&gt;</code>, like <code>adjacent_difference()</code>, <code>inner_product()</code>, and <code>partial_sum()</code>) is not that important in Rcpp because Rcpp sugar provides equivalents.</p>
+</div>
+<div id="algorithms" class="section level3">
+<h3><span class="header-section-number">24.5.2</span> Algorithms</h3>
+<p>The <code>&lt;algorithm&gt;</code> header provides a large number of algorithms that work with iterators. A good reference is available at <a href="http://www.cplusplus.com/reference/algorithm/" class="uri">http://www.cplusplus.com/reference/algorithm/</a>. For example, we could write a basic Rcpp version of <code>findInterval()</code> that takes two arguments a vector of values and a vector of breaks, and locates the bin that each x falls into. This shows off a few more advanced iterator features. Read the code below and see if you can figure out how it works. </p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;algorithm&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+IntegerVector findInterval2(NumericVector x, NumericVector breaks) {
+  IntegerVector out(x.size());
+
+  NumericVector::iterator it, pos;
+  IntegerVector::iterator out_it;
+
+  <span class="cf">for</span>(it = x.begin(), out_it = out.begin(); it != x.end(); 
+      ++it, ++out_it) {
+    pos = <span class="bu">std::</span>upper_bound(breaks.begin(), breaks.end(), *it);
+    *out_it = <span class="bu">std::</span>distance(breaks.begin(), pos);
+  }
+
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<p>The key points are:</p>
+<ul>
+<li><p>We step through two iterators (input and output) simultaneously.</p></li>
+<li><p>We can assign into an dereferenced iterator (<code>out_it</code>) to change the values in <code>out</code>.</p></li>
+<li><p><code>upper_bound()</code> returns an iterator. If we wanted the value of the <code>upper_bound()</code> we could dereference it; to figure out its location, we use the <code>distance()</code> function.</p></li>
+<li><p>Small note: if we want this function to be as fast as <code>findInterval()</code> in R (which uses handwritten C code), we need to compute the calls to <code>.begin()</code> and <code>.end()</code> once and save the results. This is easy, but it distracts from this example so it has been omitted. Making this change yields a function that’s slightly faster than R’s <code>findInterval()</code> function, but is about 1/10 of the code.</p></li>
+</ul>
+<p>It’s generally better to use algorithms from the STL than hand rolled loops. In <em>Effective STL</em>, Scott Meyers gives three reasons: efficiency, correctness, and maintainability. Algorithms from the STL are written by C++ experts to be extremely efficient, and they have been around for a long time so they are well tested. Using standard algorithms also makes the intent of your code more clear, helping to make it more readable and more maintainable.</p>
+</div>
+<div id="data-structures-rcpp" class="section level3">
+<h3><span class="header-section-number">24.5.3</span> Data structures</h3>
+<p>The STL provides a large set of data structures: <code>array</code>, <code>bitset</code>, <code>list</code>, <code>forward_list</code>, <code>map</code>, <code>multimap</code>, <code>multiset</code>, <code>priority_queue</code>, <code>queue</code>, <code>deque</code>, <code>set</code>, <code>stack</code>, <code>unordered_map</code>, <code>unordered_set</code>, <code>unordered_multimap</code>, <code>unordered_multiset</code>, and <code>vector</code>. The most important of these data structures are the <code>vector</code>, the <code>unordered_set</code>, and the <code>unordered_map</code>. We’ll focus on these three in this section, but using the others is similar: they just have different performance trade-offs. For example, the <code>deque</code> (pronounced “deck”) has a very similar interface to vectors but a different underlying implementation that has different performance trade-offs. You may want to try them for your problem. A good reference for STL data structures is <a href="http://www.cplusplus.com/reference/stl/" class="uri">http://www.cplusplus.com/reference/stl/</a> — I recommend you keep it open while working with the STL.</p>
+<p>Rcpp knows how to convert from many STL data structures to their R equivalents, so you can return them from your functions without explicitly converting to R data structures.</p>
+</div>
+<div id="vectors-stl" class="section level3">
+<h3><span class="header-section-number">24.5.4</span> Vectors</h3>
+<p>An STL vector is very similar to an R vector, except that it grows efficiently. This makes vectors appropriate to use when you don’t know in advance how big the output will be. Vectors are templated, which means that you need to specify the type of object the vector will contain when you create it: <code>vector&lt;int&gt;</code>, <code>vector&lt;bool&gt;</code>, <code>vector&lt;double&gt;</code>, <code>vector&lt;String&gt;</code>. You can access individual elements of a vector using the standard <code>[]</code> notation, and you can add a new element to the end of the vector using <code>.push_back()</code>. If you have some idea in advance how big the vector will be, you can use <code>.reserve()</code> to allocate sufficient storage. </p>
+<p>The following code implements run length encoding (<code>rle()</code>). It produces two vectors of output: a vector of values, and a vector <code>lengths</code> giving how many times each element is repeated. It works by looping through the input vector <code>x</code> comparing each value to the previous: if it’s the same, then it increments the last value in <code>lengths</code>; if it’s different, it adds the value to the end of <code>values</code>, and sets the corresponding length to 1.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+List rleC(NumericVector x) {
+  <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; lengths;
+  <span class="bu">std::</span>vector&lt;<span class="dt">double</span>&gt; values;
+
+  <span class="co">// Initialise first value</span>
+  <span class="dt">int</span> i = <span class="dv">0</span>;
+  <span class="dt">double</span> prev = x[<span class="dv">0</span>];
+  values.push_back(prev);
+  lengths.push_back(<span class="dv">1</span>);
+
+  NumericVector::iterator it;
+  <span class="cf">for</span>(it = x.begin() + <span class="dv">1</span>; it != x.end(); ++it) {
+    <span class="cf">if</span> (prev == *it) {
+      lengths[i]++;
+    } <span class="cf">else</span> {
+      values.push_back(*it);
+      lengths.push_back(<span class="dv">1</span>);
+
+      i++;
+      prev = *it;
+    }
+  }
+
+  <span class="cf">return</span> List::create(
+    _[<span class="st">&quot;lengths&quot;</span>] = lengths, 
+    _[<span class="st">&quot;values&quot;</span>] = values
+  );
+}</code></pre></div>
+<p>(An alternative implementation would be to replace <code>i</code> with the iterator <code>lengths.rbegin()</code> which always points to the last element of the vector. You might want to try implementing that yourself.)</p>
+<p>Other methods of a vector are described at <a href="http://www.cplusplus.com/reference/vector/vector/" class="uri">http://www.cplusplus.com/reference/vector/vector/</a>.</p>
+</div>
+<div id="sets" class="section level3">
+<h3><span class="header-section-number">24.5.5</span> Sets</h3>
+<p>Sets maintain a unique set of values, and can efficiently tell if you’ve seen a value before. They are useful for problems that involve duplicates or unique values (like <code>unique</code>, <code>duplicated</code>, or <code>in</code>). C++ provides both ordered (<code>std::set</code>) and unordered sets (<code>std::unordered_set</code>), depending on whether or not order matters for you. Unordered sets tend to be much faster (because they use a hash table internally rather than a tree), so even if you need an ordered set, you should consider using an unordered set and then sorting the output. Like vectors, sets are templated, so you need to request the appropriate type of set for your purpose: <code>unordered_set&lt;int&gt;</code>, <code>unordered_set&lt;bool&gt;</code>, etc. More details are available at <a href="http://www.cplusplus.com/reference/set/set/" class="uri">http://www.cplusplus.com/reference/set/set/</a> and <a href="http://www.cplusplus.com/reference/unordered_set/unordered_set/" class="uri">http://www.cplusplus.com/reference/unordered_set/unordered_set/</a>. </p>
+<p>The following function uses an unordered set to implement an equivalent to <code>duplicated()</code> for integer vectors. Note the use of <code>seen.insert(x[i]).second</code>. <code>insert()</code> returns a pair, the <code>.first</code> value is an iterator that points to element and the <code>.second</code> value is a boolean that’s true if the value was a new addition to the set.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// [[Rcpp::plugins(cpp11)]]</span>
+<span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;unordered_set&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+LogicalVector duplicatedC(IntegerVector x) {
+  <span class="bu">std::</span>unordered_set&lt;<span class="dt">int</span>&gt; seen;
+  <span class="dt">int</span> n = x.size();
+  LogicalVector out(n);
+
+  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    out[i] = !seen.insert(x[i]).second;
+  }
+
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<p>Note that unordered sets are only available in C++ 11, which means we need to use the <code>cpp11</code> plugin, <code>[[Rcpp::plugins(cpp11)]]</code>.</p>
+</div>
+<div id="map" class="section level3">
+<h3><span class="header-section-number">24.5.6</span> Map</h3>
+<p>A map is similar to a set, but instead of storing presence or absence, it can store additional data. It’s useful for functions like <code>table()</code> or <code>match()</code> that need to look up a value. As with sets, there are ordered (<code>std::map</code>) and unordered (<code>std::unordered_map</code>) versions. Since maps have a value and a key, you need to specify both types when initialising a map: <code>map&lt;double, int&gt;</code>, <code>unordered_map&lt;int, double&gt;</code>, and so on. The following example shows how you could use a <code>map</code> to implement <code>table()</code> for numeric vectors: </p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+<span class="bu">std::</span>map&lt;<span class="dt">double</span>, <span class="dt">int</span>&gt; tableC(NumericVector x) {
+  <span class="bu">std::</span>map&lt;<span class="dt">double</span>, <span class="dt">int</span>&gt; counts;
+
+  <span class="dt">int</span> n = x.size();
+  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++) {
+    counts[x[i]]++;
+  }
+
+  <span class="cf">return</span> counts;
+}</code></pre></div>
+<p>Note that unordered maps are only available in C++ 11, so to use them, you’ll again need <code>[[Rcpp::plugins(cpp11)]]</code>.</p>
+</div>
+<div id="exercises-71" class="section level3">
+<h3><span class="header-section-number">24.5.7</span> Exercises</h3>
+<p>To practice using the STL algorithms and data structures, implement the following using R functions in C++, using the hints provided:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>median.default()</code> using <code>partial_sort</code>.</p></li>
+<li><p><code>%in%</code> using <code>unordered_set</code> and the <code>find()</code> or <code>count()</code> methods.</p></li>
+<li><p><code>unique()</code> using an <code>unordered_set</code> (challenge: do it in one line!).</p></li>
+<li><p><code>min()</code> using <code>std::min()</code>, or <code>max()</code> using <code>std::max()</code>.</p></li>
+<li><p><code>which.min()</code> using <code>min_element</code>, or <code>which.max()</code> using <code>max_element</code>.</p></li>
+<li><p><code>setdiff()</code>, <code>union()</code>, and <code>intersect()</code> for integers using sorted ranges and <code>set_union</code>, <code>set_intersection</code> and <code>set_difference</code>.</p></li>
+</ol>
+</div>
+</div>
+<div id="rcpp-case-studies" class="section level2">
+<h2><span class="header-section-number">24.6</span> Case studies</h2>
+<p>The following case studies illustrate some real life uses of C++ to replace slow R code.</p>
+<div id="gibbs-sampler" class="section level3">
+<h3><span class="header-section-number">24.6.1</span> Gibbs sampler</h3>
+<!-- FIXME: needs more context? -->
+<p>The following case study updates an example <a href="http://dirk.eddelbuettel.com/blog/2011/07/14/">blogged about</a> by Dirk Eddelbuettel, illustrating the conversion of a Gibbs sampler in R to C++. The R and C++ code shown below is very similar (it only took a few minutes to convert the R version to the C++ version), but runs about 20 times faster on my computer. Dirk’s blog post also shows another way to make it even faster: using the faster random number generator functions in GSL (easily accessible from R through the RcppGSL package) can make it another 2–3x faster. </p>
+<p>The R code is as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gibbs_r &lt;-<span class="st"> </span><span class="cf">function</span>(N, thin) {
+  mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> N, <span class="dt">ncol =</span> <span class="dv">2</span>)
+  x &lt;-<span class="st"> </span>y &lt;-<span class="st"> </span><span class="dv">0</span>
+
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {
+    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>thin) {
+      x &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dv">1</span>, <span class="dv">3</span>, y <span class="op">*</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">4</span>)
+      y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)))
+    }
+    mat[i, ] &lt;-<span class="st"> </span><span class="kw">c</span>(x, y)
+  }
+  mat
+}</code></pre></div>
+<p>This is straightforward to convert to C++. We:</p>
+<ul>
+<li><p>add type declarations to all variables</p></li>
+<li><p>use <code>(</code> instead of <code>[</code> to index into the matrix</p></li>
+<li><p>subscript the results of <code>rgamma</code> and <code>rnorm</code> to convert from a vector into a scalar</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="co">// [[Rcpp::export]]</span>
+NumericMatrix gibbs_cpp(<span class="dt">int</span> N, <span class="dt">int</span> thin) {
+  NumericMatrix mat(N, <span class="dv">2</span>);
+  <span class="dt">double</span> x = <span class="dv">0</span>, y = <span class="dv">0</span>;
+
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; i++) {
+    <span class="cf">for</span>(<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; thin; j++) {
+      x = rgamma(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span> / (y * y + <span class="dv">4</span>))[<span class="dv">0</span>];
+      y = rnorm(<span class="dv">1</span>, <span class="dv">1</span> / (x + <span class="dv">1</span>), <span class="dv">1</span> / sqrt(<span class="dv">2</span> * (x + <span class="dv">1</span>)))[<span class="dv">0</span>];
+    }
+    mat(i, <span class="dv">0</span>) = x;
+    mat(i, <span class="dv">1</span>) = y;
+  }
+
+  <span class="cf">return</span>(mat);
+}</code></pre></div>
+<p>Benchmarking the two implementations yields:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">microbenchmark</span>(
+  <span class="kw">gibbs_r</span>(<span class="dv">100</span>, <span class="dv">10</span>),
+  <span class="kw">gibbs_cpp</span>(<span class="dv">100</span>, <span class="dv">10</span>)
+)
+<span class="co">#&gt; Unit: microseconds</span>
+<span class="co">#&gt;                expr   min    lq mean median    uq    max neval cld</span>
+<span class="co">#&gt;    gibbs_r(100, 10) 3,130 3,360 5086  3,790 4,070 18,400   100   b</span>
+<span class="co">#&gt;  gibbs_cpp(100, 10)   205   217  231    221   226  1,190   100  a</span></code></pre></div>
+</div>
+<div id="r-vectorisation-vs.c-vectorisation" class="section level3">
+<h3><span class="header-section-number">24.6.2</span> R vectorisation vs. C++ vectorisation</h3>
+<!-- FIXME: needs more context? -->
+<p>This example is adapted from <a href="http://www.babelgraph.org/wp/?p=358">“Rcpp is smoking fast for agent-based models in data frames”</a>. The challenge is to predict a model response from three inputs. The basic R version of the predictor looks like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vacc1a &lt;-<span class="st"> </span><span class="cf">function</span>(age, female, ily) {
+  p &lt;-<span class="st"> </span><span class="fl">0.25</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.3</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="fl">0.04</span> <span class="op">*</span><span class="st"> </span>age)) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span>ily
+  p &lt;-<span class="st"> </span>p <span class="op">*</span><span class="st"> </span><span class="cf">if</span> (female) <span class="fl">1.25</span> <span class="cf">else</span> <span class="fl">0.75</span>
+  p &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="dv">0</span>, p)
+  p &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">1</span>, p)
+  p
+}</code></pre></div>
+<p>We want to be able to apply this function to many inputs, so we might write a vector-input version using a for loop.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vacc1 &lt;-<span class="st"> </span><span class="cf">function</span>(age, female, ily) {
+  n &lt;-<span class="st"> </span><span class="kw">length</span>(age)
+  out &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_len</span>(n)) {
+    out[i] &lt;-<span class="st"> </span><span class="kw">vacc1a</span>(age[i], female[i], ily[i])
+  }
+  out
+}</code></pre></div>
+<p>If you’re familiar with R, you’ll have a gut feeling that this will be slow, and indeed it is. There are two ways we could attack this problem. If you have a good R vocabulary, you might immediately see how to vectorise the function (using <code>ifelse()</code>, <code>pmin()</code>, and <code>pmax()</code>). Alternatively, we could rewrite <code>vacc1a()</code> and <code>vacc1()</code> in C++, using our knowledge that loops and function calls have much lower overhead in C++.</p>
+<p>Either approach is fairly straightforward. In R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vacc2 &lt;-<span class="st"> </span><span class="cf">function</span>(age, female, ily) {
+  p &lt;-<span class="st"> </span><span class="fl">0.25</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.3</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="fl">0.04</span> <span class="op">*</span><span class="st"> </span>age)) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span>ily
+  p &lt;-<span class="st"> </span>p <span class="op">*</span><span class="st"> </span><span class="kw">ifelse</span>(female, <span class="fl">1.25</span>, <span class="fl">0.75</span>)
+  p &lt;-<span class="st"> </span><span class="kw">pmax</span>(<span class="dv">0</span>, p)
+  p &lt;-<span class="st"> </span><span class="kw">pmin</span>(<span class="dv">1</span>, p)
+  p
+}</code></pre></div>
+<p>(If you’ve worked R a lot you might recognise some potential bottlenecks in this code: <code>ifelse</code>, <code>pmin</code>, and <code>pmax</code> are known to be slow, and could be replaced with <code>p * 0.75 + p * 0.5 * female</code>, <code>p[p &lt; 0] &lt;- 0</code>, <code>p[p &gt; 1] &lt;- 1</code>. You might want to try timing those variations yourself.)</p>
+<p>Or in C++:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> Rcpp;
+
+<span class="dt">double</span> vacc3a(<span class="dt">double</span> age, <span class="dt">bool</span> female, <span class="dt">bool</span> ily){
+  <span class="dt">double</span> p = <span class="fl">0.25</span> + <span class="fl">0.3</span> * <span class="dv">1</span> / (<span class="dv">1</span> - exp(<span class="fl">0.04</span> * age)) + <span class="fl">0.1</span> * ily;
+  p = p * (female ? <span class="fl">1.25</span> : <span class="fl">0.75</span>);
+  p = <span class="bu">std::</span>max(p, <span class="fl">0.0</span>);
+  p = <span class="bu">std::</span>min(p, <span class="fl">1.0</span>);
+  <span class="cf">return</span> p;
+}
+
+<span class="co">// [[Rcpp::export]]</span>
+NumericVector vacc3(NumericVector age, LogicalVector female, 
+                    LogicalVector ily) {
+  <span class="dt">int</span> n = age.size();
+  NumericVector out(n);
+
+  <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {
+    out[i] = vacc3a(age[i], female[i], ily[i]);
+  }
+
+  <span class="cf">return</span> out;
+}</code></pre></div>
+<p>We next generate some sample data, and check that all three versions return the same values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">1000</span>
+age &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)
+female &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(T, F), n, <span class="dt">rep =</span> <span class="ot">TRUE</span>)
+ily &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(T, F), n, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">rep =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">stopifnot</span>(
+  <span class="kw">all.equal</span>(<span class="kw">vacc1</span>(age, female, ily), <span class="kw">vacc2</span>(age, female, ily)),
+  <span class="kw">all.equal</span>(<span class="kw">vacc1</span>(age, female, ily), <span class="kw">vacc3</span>(age, female, ily))
+)</code></pre></div>
+<p>The original blog post forgot to do this, and introduced a bug in the C++ version: it used <code>0.004</code> instead of <code>0.04</code>. Finally, we can benchmark our three approaches:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">microbenchmark</span>(
+  <span class="dt">vacc1 =</span> <span class="kw">vacc1</span>(age, female, ily),
+  <span class="dt">vacc2 =</span> <span class="kw">vacc2</span>(age, female, ily),
+  <span class="dt">vacc3 =</span> <span class="kw">vacc3</span>(age, female, ily)
+)
+<span class="co">#&gt; Unit: microseconds</span>
+<span class="co">#&gt;   expr     min      lq   mean  median      uq   max neval cld</span>
+<span class="co">#&gt;  vacc1 1,180.0 1,220.0 1351.9 1,250.0 1,350.0 4,810   100   b</span>
+<span class="co">#&gt;  vacc2    70.2    74.4  134.8    77.6    83.1 5,420   100  a </span>
+<span class="co">#&gt;  vacc3    10.9    11.9   22.5    12.9    13.4   963   100  a</span></code></pre></div>
+<p>Not surprisingly, our original approach with loops is very slow. Vectorising in R gives a huge speedup, and we can eke out even more performance (~10x) with the C++ loop. I was a little surprised that the C++ was so much faster, but it is because the R version has to create 11 vectors to store intermediate results, where the C++ code only needs to create 1.</p>
+</div>
+</div>
+<div id="rcpp-package" class="section level2">
+<h2><span class="header-section-number">24.7</span> Using Rcpp in a package</h2>
+<p>The same C++ code that is used with <code>sourceCpp()</code> can also be bundled into a package. There are several benefits of moving code from a stand-alone C++ source file to a package: </p>
+<ol style="list-style-type: decimal">
+<li><p>Your code can be made available to users without C++ development tools.</p></li>
+<li><p>Multiple source files and their dependencies are handled automatically by the R package build system.</p></li>
+<li><p>Packages provide additional infrastructure for testing, documentation, and consistency.</p></li>
+</ol>
+<p>To add <code>Rcpp</code> to an existing package, you put your C++ files in the <code>src/</code> directory and modify/create the following configuration files:</p>
+<ul>
+<li><p>In <code>DESCRIPTION</code> add</p>
+<pre><code>LinkingTo: Rcpp
+Imports: Rcpp</code></pre></li>
+<li><p>Make sure your <code>NAMESPACE</code> includes:</p>
+<pre><code>useDynLib(mypackage)
+importFrom(Rcpp, sourceCpp)</code></pre>
+<p>We need to import something (anything) from Rcpp so that internal Rcpp code is properly loaded. This is a bug in R and hopefully will be fixed in the future.</p></li>
+</ul>
+<p>To generate a new Rcpp package that includes a simple “hello world” function you can use <code>Rcpp.package.skeleton()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Rcpp.package.skeleton</span>(<span class="st">&quot;NewPackage&quot;</span>, <span class="dt">attributes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>To generate a package based on C++ files that you’ve been using with <code>sourceCpp()</code>, use the <code>cpp_files</code> parameter:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Rcpp.package.skeleton</span>(<span class="st">&quot;NewPackage&quot;</span>, <span class="dt">example_code =</span> <span class="ot">FALSE</span>,
+                      <span class="dt">cpp_files =</span> <span class="kw">c</span>(<span class="st">&quot;convolve.cpp&quot;</span>))</code></pre></div>
+<p>Before building the package, you’ll need to run <code>Rcpp::compileAttributes()</code>. This function scans the C++ files for <code>Rcpp::export</code> attributes and generates the code required to make the functions available in R. Re-run <code>compileAttributes()</code> whenever functions are added, removed, or have their signatures changed. This is done automatically by the devtools package and by Rstudio.</p>
+<p>For more details see the Rcpp package vignette, <code>vignette(&quot;Rcpp-package&quot;)</code>.</p>
+</div>
+<div id="rcpp-more" class="section level2">
+<h2><span class="header-section-number">24.8</span> Learning more</h2>
+<p>This chapter has only touched on a small part of Rcpp, giving you the basic tools to rewrite poorly performing R code in C++. The <a href="http://www.rcpp.org/book">Rcpp book</a> is the best reference to learn more about Rcpp. As noted, Rcpp has many other capabilities that make it easy to interface R to existing C++ code, including:</p>
+<ul>
+<li><p>Additional features of attributes including specifying default arguments, linking in external C++ dependencies, and exporting C++ interfaces from packages. These features and more are covered in the Rcpp attributes vignette, <code>vignette(&quot;Rcpp-attributes&quot;)</code>.</p></li>
+<li><p>Automatically creating wrappers between C++ data structures and R data structures, including mapping C++ classes to reference classes. A good introduction to this topic is Rcpp modules vignette, <code>vignette(&quot;Rcpp-modules&quot;)</code></p></li>
+<li><p>The Rcpp quick reference guide, <code>vignette(&quot;Rcpp-quickref&quot;)</code>, contains a useful summary of Rcpp classes and common programming idioms.</p></li>
+</ul>
+<p>I strongly recommend keeping an eye on the <a href="http://www.rcpp.org">Rcpp homepage</a> and <a href="http://dirk.eddelbuettel.com/code/rcpp.html">Dirk’s Rcpp page</a> as well as signing up for the <a href="http://lists.r-forge.r-project.org/cgi-bin/mailman/listinfo/rcpp-devel">Rcpp mailing list</a>. Rcpp is still under active development, and is getting better with every release.</p>
+<p>Other resources I’ve found helpful in learning C++ are:</p>
+<ul>
+<li><p><a href="http://amzn.com/0321334876?tag=devtools-20"><em>Effective C++</em></a> and <a href="http://amzn.com/0201749629?tag=devtools-20"><em>Effective STL</em></a> by Scott Meyers.</p></li>
+<li><p><a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus.html"><em>C++ Annotations</em></a>, aimed at “knowledgeable users of C (or any other language using a C-like grammar, like Perl or Java) who would like to know more about, or make the transition to, C++”.</p></li>
+<li><p><a href="http://www.cs.helsinki.fi/u/tpkarkka/alglib/k06/"><em>Algorithm Libraries</em></a>, which provides a more technical, but still concise, description of important STL concepts. (Follow the links under notes).</p></li>
+</ul>
+<p>Writing performance code may also require you to rethink your basic approach: a solid understanding of basic data structures and algorithms is very helpful here. That’s beyond the scope of this book, but I’d suggest the <a href="http://amzn.com/0387948600?tag=devtools-20"><em>Algorithm Design Manual</em></a>, MIT’s <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/"><em>Introduction to Algorithms</em></a>, <em>Algorithms</em> by Robert Sedgewick and Kevin Wayne which has a free <a href="http://algs4.cs.princeton.edu/home/">online textbook</a> and a matching <a href="https://www.coursera.org/course/algs4partI">coursera course</a>.</p>
+</div>
+<div id="acknowledgments" class="section level2">
+<h2><span class="header-section-number">24.9</span> Acknowledgments</h2>
+<p>I’d like to thank the Rcpp-mailing list for many helpful conversations, particularly Romain Francois and Dirk Eddelbuettel who have not only provided detailed answers to many of my questions, but have been incredibly responsive at improving Rcpp. This chapter would not have been possible without JJ Allaire; he encouraged me to learn C++ and then answered many of my dumb questions along the way.</p>
+
+<div id="refs" class="references">
+<div>
+<p>Bawden, Alan. 1999. “Quasiquotation in Lisp.” In <em>PEPM ’99</em>, 4–12. <a href="http://repository.readscheme.org/ftp/papers/pepm99/bawden.pdf" class="uri">http://repository.readscheme.org/ftp/papers/pepm99/bawden.pdf</a>.</p>
+</div>
+<div>
+<p>Chambers, John M, and others. 2014. “Object-Oriented Programming, Functional Programming and R.” <em>Statistical Science</em> 29 (2). Institute of Mathematical Statistics: 167–80.</p>
+</div>
+<div>
+<p>Lumley, Thomas. 2001. “Programmer’s Niche: Macros in R.” <em>R News</em> 1 (3): 11–13. <a href="https://www.r-project.org/doc/Rnews/Rnews_2001-3.pdf" class="uri">https://www.r-project.org/doc/Rnews/Rnews_2001-3.pdf</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="profiling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/adv-r/edit/master/Rcpp.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

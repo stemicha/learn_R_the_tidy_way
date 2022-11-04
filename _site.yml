@@ -1,0 +1,33 @@
+name: "R course - learn R the tidy way"
+output_dir: "."
+navbar:
+  title: "R course - learn R the tidy way"
+  right: 
+    - text: "R general"
+      href: index.html
+    - text: "Examples"
+      menu:
+        - text: "Example 1: growth curves"
+          href: example1_growth_curves.html
+        - text: "Example 2: DIA-MS data analysis (part 1)"
+          href: example2_DIA_MS_data_analysis.html
+        - text: "Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data"
+          href: example3_DIA_MS_data_analysis_with_PECA.html
+        - text: "Example 4: protein concentration determination (BCA assay)"
+          href: example4_protein_concentration_determination.html
+        - text: "Example 5: plot temperature data to map"
+          href: example5_Germany_temperature_over_years.html
+    - text: "useful packages"
+      href: useful_packages.html
+    - text: "coding hints/examples"
+      href: code_suggestions.html
+    - text: "code snippets"
+      href: code_snippets.html
+    - text: "Materials"
+      href: materials.html
+    - text: "Books"
+      href: books.html
+    - text: "cheat sheets"
+      href: R_cheat_sheets.html
+    - icon: fa-envelope
+      href: mailto:stephan.michalik@uni-greifswald.de

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>useful_packages___ggpubr.knit</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="ggpubr-package" class="section level2">
+<h2><code>ggpubr</code> package</h2>
+<p>Text here is from github page of <a
+href="https://github.com/kassambara/ggpubr">ggpubr</a>.</p>
+<p><a href="https://ggplot2.tidyverse.org/">ggplot2, by Hadley
+Wickham,</a> is an excellent and flexible package for elegant data
+visualization in R. However the default generated plots requires some
+formatting before we can send them for publication. Furthermore, to
+customize a ggplot, the syntax is opaque and this raises the level of
+difficulty for researchers with no advanced R programming skills.</p>
+<p>The ‘ggpubr’ package provides some easy-to-use functions for creating
+and customizing ‘ggplot2’- based publication ready plots.</p>
+<p>Find out more at <a href="https://rpkgs.datanovia.com/ggpubr"
+class="uri">https://rpkgs.datanovia.com/ggpubr</a>.</p>
+<div id="installation-and-loading" class="section level3">
+<h3>Installation and loading</h3>
+<ul>
+<li>Install from <a
+href="https://cran.r-project.org/package=ggpubr">CRAN</a> as
+follow:</li>
+</ul>
+<pre class="r"><code>install.packages(&quot;ggpubr&quot;)</code></pre>
+<ul>
+<li>Or, install the latest version from <a
+href="https://github.com/kassambara/ggpubr">GitHub</a> as follow:</li>
+</ul>
+<pre class="r"><code># Install
+if(!require(devtools)) install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;kassambara/ggpubr&quot;)</code></pre>
+</div>
+<div id="distribution" class="section level3">
+<h3>Distribution</h3>
+<pre class="r"><code>library(ggpubr)
+# Create some data format
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+set.seed(1234)
+wdata = data.frame(
+   sex = factor(rep(c(&quot;F&quot;, &quot;M&quot;), each=200)),
+   weight = c(rnorm(200, 55), rnorm(200, 58)))
+head(wdata, 4)</code></pre>
+<pre><code>##   sex weight
+## 1   F   53.8
+## 2   F   55.3
+## 3   F   56.1
+## 4   F   52.7</code></pre>
+<pre class="r"><code># Density plot with mean lines and marginal rug
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+# Change outline and fill colors by groups (&quot;sex&quot;)
+# Use custom palette
+ggdensity(wdata, x = &quot;weight&quot;,
+   add = &quot;mean&quot;, rug = TRUE,
+   color = &quot;sex&quot;, fill = &quot;sex&quot;,
+   palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;))</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/ggpubr-1.png" width="508.8" /></p>
+<pre class="r"><code># Histogram plot with mean lines and marginal rug
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+# Change outline and fill colors by groups (&quot;sex&quot;)
+# Use custom color palette
+gghistogram(wdata, x = &quot;weight&quot;,
+   add = &quot;mean&quot;, rug = TRUE,
+   color = &quot;sex&quot;, fill = &quot;sex&quot;,
+   palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;))</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/ggpubr-2.png" width="508.8" /></p>
+</div>
+<div id="box-plots-and-violin-plots" class="section level3">
+<h3>Box plots and violin plots</h3>
+<pre class="r"><code># Load data
+data(&quot;ToothGrowth&quot;)
+df &lt;- ToothGrowth
+head(df, 4)</code></pre>
+<pre><code>##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5</code></pre>
+<pre class="r"><code># Box plots with jittered points
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+# Change outline colors by groups: dose
+# Use custom color palette
+# Add jitter points and change the shape by groups
+ p &lt;- ggboxplot(df, x = &quot;dose&quot;, y = &quot;len&quot;,
+                color = &quot;dose&quot;, palette =c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
+                add = &quot;jitter&quot;, shape = &quot;dose&quot;)
+ p</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/ggpubr-box-plot-dot-plots-strip-charts-1.png" width="508.8" /></p>
+<pre class="r"><code> # Add p-values comparing groups
+ # Specify the comparisons you want
+my_comparisons &lt;- list( c(&quot;0.5&quot;, &quot;1&quot;), c(&quot;1&quot;, &quot;2&quot;), c(&quot;0.5&quot;, &quot;2&quot;) )
+p + stat_compare_means(comparisons = my_comparisons)+ # Add pairwise comparisons p-value
+  stat_compare_means(label.y = 50)                   # Add global p-value</code></pre>
+<pre><code>## Warning in wilcox.test.default(c(4.2, 11.5, 7.3, 5.8, 6.4, 10, 11.2, 11.2, :
+## cannot compute exact p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(c(4.2, 11.5, 7.3, 5.8, 6.4, 10, 11.2, 11.2, :
+## cannot compute exact p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(c(16.5, 16.5, 15.2, 17.3, 22.5, 17.3, 13.6, :
+## cannot compute exact p-value with ties</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/ggpubr-box-plot-dot-plots-strip-charts-2.png" width="508.8" /></p>
+<pre class="r"><code># Violin plots with box plots inside
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+# Change fill color by groups: dose
+# add boxplot with white fill color
+ggviolin(df, x = &quot;dose&quot;, y = &quot;len&quot;, fill = &quot;dose&quot;,
+         palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
+         add = &quot;boxplot&quot;, add.params = list(fill = &quot;white&quot;))+
+  stat_compare_means(comparisons = my_comparisons, label = &quot;p.signif&quot;)+ # Add significance levels
+  stat_compare_means(label.y = 50)                                      # Add global the p-value </code></pre>
+<pre><code>## Warning in wilcox.test.default(c(4.2, 11.5, 7.3, 5.8, 6.4, 10, 11.2, 11.2, :
+## cannot compute exact p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(c(4.2, 11.5, 7.3, 5.8, 6.4, 10, 11.2, 11.2, :
+## cannot compute exact p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(c(16.5, 16.5, 15.2, 17.3, 22.5, 17.3, 13.6, :
+## cannot compute exact p-value with ties</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/ggpubr-box-plot-dot-plots-strip-charts-3.png" width="508.8" /></p>
+</div>
+<div id="bar-plots" class="section level3">
+<h3>Bar plots</h3>
+<div id="demo-data-set" class="section level4">
+<h4>Demo data set</h4>
+<p>Load and prepare data:</p>
+<pre class="r"><code># Load data
+data(&quot;mtcars&quot;)
+dfm &lt;- mtcars
+# Convert the cyl variable to a factor
+dfm$cyl &lt;- as.factor(dfm$cyl)
+# Add the name colums
+dfm$name &lt;- rownames(dfm)
+# Inspect the data
+head(dfm[, c(&quot;name&quot;, &quot;wt&quot;, &quot;mpg&quot;, &quot;cyl&quot;)])</code></pre>
+<pre><code>##                                name   wt  mpg cyl
+## Mazda RX4                 Mazda RX4 2.62 21.0   6
+## Mazda RX4 Wag         Mazda RX4 Wag 2.88 21.0   6
+## Datsun 710               Datsun 710 2.32 22.8   4
+## Hornet 4 Drive       Hornet 4 Drive 3.21 21.4   6
+## Hornet Sportabout Hornet Sportabout 3.44 18.7   8
+## Valiant                     Valiant 3.46 18.1   6</code></pre>
+</div>
+<div id="ordered-bar-plots" class="section level4">
+<h4>Ordered bar plots</h4>
+<p>Change the fill color by the grouping variable “cyl”. Sorting will be
+done globally, but not by groups.</p>
+<pre class="r"><code>ggbarplot(dfm, x = &quot;name&quot;, y = &quot;mpg&quot;,
+          fill = &quot;cyl&quot;,               # change fill color by cyl
+          color = &quot;white&quot;,            # Set bar border colors to white
+          palette = &quot;jco&quot;,            # jco journal color palett. see ?ggpar
+          sort.val = &quot;desc&quot;,          # Sort the value in dscending order
+          sort.by.groups = FALSE,     # Don&#39;t sort inside each group
+          x.text.angle = 90           # Rotate vertically x axis texts
+          )</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/ordered-bar-plots-1.png" width="576" /></p>
+<p>Sort bars inside each group. Use the argument <strong>sort.by.groups
+= TRUE</strong>.</p>
+<pre class="r"><code>ggbarplot(dfm, x = &quot;name&quot;, y = &quot;mpg&quot;,
+          fill = &quot;cyl&quot;,               # change fill color by cyl
+          color = &quot;white&quot;,            # Set bar border colors to white
+          palette = &quot;jco&quot;,            # jco journal color palett. see ?ggpar
+          sort.val = &quot;asc&quot;,           # Sort the value in dscending order
+          sort.by.groups = TRUE,      # Sort inside each group
+          x.text.angle = 90           # Rotate vertically x axis texts
+          )</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/ordered-bar-plots-by-groups-1.png" width="576" /></p>
+</div>
+<div id="deviation-graphs" class="section level4">
+<h4>Deviation graphs</h4>
+<p>The deviation graph shows the deviation of quantitatives values to a
+reference value. In the R code below, we’ll plot the mpg z-score from
+the mtcars dataset.</p>
+<p>Calculate the z-score of the mpg data:</p>
+<pre class="r"><code># Calculate the z-score of the mpg data
+dfm$mpg_z &lt;- (dfm$mpg -mean(dfm$mpg))/sd(dfm$mpg)
+dfm$mpg_grp &lt;- factor(ifelse(dfm$mpg_z &lt; 0, &quot;low&quot;, &quot;high&quot;), 
+                     levels = c(&quot;low&quot;, &quot;high&quot;))
+# Inspect the data
+head(dfm[, c(&quot;name&quot;, &quot;wt&quot;, &quot;mpg&quot;, &quot;mpg_z&quot;, &quot;mpg_grp&quot;, &quot;cyl&quot;)])</code></pre>
+<pre><code>##                                name   wt  mpg  mpg_z mpg_grp cyl
+## Mazda RX4                 Mazda RX4 2.62 21.0  0.151    high   6
+## Mazda RX4 Wag         Mazda RX4 Wag 2.88 21.0  0.151    high   6
+## Datsun 710               Datsun 710 2.32 22.8  0.450    high   4
+## Hornet 4 Drive       Hornet 4 Drive 3.21 21.4  0.217    high   6
+## Hornet Sportabout Hornet Sportabout 3.44 18.7 -0.231     low   8
+## Valiant                     Valiant 3.46 18.1 -0.330     low   6</code></pre>
+<p>Create an ordered barplot, colored according to the level of mpg:</p>
+<pre class="r"><code>ggbarplot(dfm, x = &quot;name&quot;, y = &quot;mpg_z&quot;,
+          fill = &quot;mpg_grp&quot;,           # change fill color by mpg_level
+          color = &quot;white&quot;,            # Set bar border colors to white
+          palette = &quot;jco&quot;,            # jco journal color palett. see ?ggpar
+          sort.val = &quot;asc&quot;,           # Sort the value in ascending order
+          sort.by.groups = FALSE,     # Don&#39;t sort inside each group
+          x.text.angle = 90,          # Rotate vertically x axis texts
+          ylab = &quot;MPG z-score&quot;,
+          xlab = FALSE,
+          legend.title = &quot;MPG Group&quot;
+          )</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/deviation-graphs-1.png" width="576" /></p>
+<p>Rotate the plot: use rotate = TRUE and sort.val = “desc”</p>
+<pre class="r"><code>ggbarplot(dfm, x = &quot;name&quot;, y = &quot;mpg_z&quot;,
+          fill = &quot;mpg_grp&quot;,           # change fill color by mpg_level
+          color = &quot;white&quot;,            # Set bar border colors to white
+          palette = &quot;jco&quot;,            # jco journal color palett. see ?ggpar
+          sort.val = &quot;desc&quot;,          # Sort the value in descending order
+          sort.by.groups = FALSE,     # Don&#39;t sort inside each group
+          x.text.angle = 90,          # Rotate vertically x axis texts
+          ylab = &quot;MPG z-score&quot;,
+          legend.title = &quot;MPG Group&quot;,
+          rotate = TRUE,
+          ggtheme = theme_minimal()
+          )</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/deviation-graphs-horizontal-1.png" width="624" /></p>
+</div>
+</div>
+<div id="dot-charts" class="section level3">
+<h3>Dot charts</h3>
+<div id="lollipop-chart" class="section level4">
+<h4>Lollipop chart</h4>
+<p>Lollipop chart is an alternative to bar plots, when you have a large
+set of values to visualize.</p>
+<p>Lollipop chart colored by the grouping variable “cyl”:</p>
+<pre class="r"><code>ggdotchart(dfm, x = &quot;name&quot;, y = &quot;mpg&quot;,
+           color = &quot;cyl&quot;,                                # Color by groups
+           palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;), # Custom color palette
+           sorting = &quot;ascending&quot;,                        # Sort value in descending order
+           add = &quot;segments&quot;,                             # Add segments from y = 0 to dots
+           ggtheme = theme_pubr()                        # ggplot2 theme
+           )</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/lollipop-chart-1.png" width="720" /></p>
+<ul>
+<li>Sort in decending order. <strong>sorting =
+“descending”</strong>.</li>
+<li>Rotate the plot vertically, using <strong>rotate =
+TRUE</strong>.</li>
+<li>Sort the mpg value inside each group by using <strong>group =
+“cyl”</strong>.</li>
+<li>Set <strong>dot.size</strong> to 6.</li>
+<li>Add mpg values as label. <strong>label = “mpg”</strong> or
+<strong>label = round(dfm$mpg)</strong>.</li>
+</ul>
+<pre class="r"><code>ggdotchart(dfm, x = &quot;name&quot;, y = &quot;mpg&quot;,
+           color = &quot;cyl&quot;,                                # Color by groups
+           palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;), # Custom color palette
+           sorting = &quot;descending&quot;,                       # Sort value in descending order
+           add = &quot;segments&quot;,                             # Add segments from y = 0 to dots
+           rotate = TRUE,                                # Rotate vertically
+           group = &quot;cyl&quot;,                                # Order by groups
+           dot.size = 6,                                 # Large dot size
+           label = round(dfm$mpg),                        # Add mpg values as dot labels
+           font.label = list(color = &quot;white&quot;, size = 9, 
+                             vjust = 0.5),               # Adjust label parameters
+           ggtheme = theme_pubr()                        # ggplot2 theme
+           )</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/lollipop-chart-rotate-1.png" width="480" /></p>
+<p>Deviation graph:</p>
+<ul>
+<li>Use y = “mpg_z”</li>
+<li>Change segment color and size: add.params = list(color =
+“lightgray”, size = 2)</li>
+</ul>
+<pre class="r"><code>ggdotchart(dfm, x = &quot;name&quot;, y = &quot;mpg_z&quot;,
+           color = &quot;cyl&quot;,                                # Color by groups
+           palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;), # Custom color palette
+           sorting = &quot;descending&quot;,                       # Sort value in descending order
+           add = &quot;segments&quot;,                             # Add segments from y = 0 to dots
+           add.params = list(color = &quot;lightgray&quot;, size = 2), # Change segment color and size
+           group = &quot;cyl&quot;,                                # Order by groups
+           dot.size = 6,                                 # Large dot size
+           label = round(dfm$mpg_z,1),                        # Add mpg values as dot labels
+           font.label = list(color = &quot;white&quot;, size = 9, 
+                             vjust = 0.5),               # Adjust label parameters
+           ggtheme = theme_pubr()                        # ggplot2 theme
+           )+
+  geom_hline(yintercept = 0, linetype = 2, color = &quot;lightgray&quot;)</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/lollipop-chart-deviation-1.png" width="720" /></p>
+</div>
+<div id="clevelands-dot-plot" class="section level4">
+<h4>Cleveland’s dot plot</h4>
+<p>Color y text by groups. Use y.text.col = TRUE.</p>
+<pre class="r"><code>ggdotchart(dfm, x = &quot;name&quot;, y = &quot;mpg&quot;,
+           color = &quot;cyl&quot;,                                # Color by groups
+           palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;), # Custom color palette
+           sorting = &quot;descending&quot;,                       # Sort value in descending order
+           rotate = TRUE,                                # Rotate vertically
+           dot.size = 2,                                 # Large dot size
+           y.text.col = TRUE,                            # Color y text by groups
+           ggtheme = theme_pubr()                        # ggplot2 theme
+           )+
+  theme_cleveland()                                      # Add dashed grids</code></pre>
+<pre><code>## Warning: Vectorized input to `element_text()` is not officially supported.
+## Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<p><img src="useful_packages___ggpubr_files/figure-html/cleveland-dot-plots-1.png" width="480" /></p>
+</div>
+</div>
+<div id="more" class="section level3">
+<h3>More</h3>
+<p>Find out more at <a href="https://rpkgs.datanovia.com/ggpubr"
+class="uri">https://rpkgs.datanovia.com/ggpubr</a>.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

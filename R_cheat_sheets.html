@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>cheat sheets</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">cheat sheets</h1>
+
+</div>
+
+
+<style>
+a:link {
+    color: #BC0203;
+}
+a:visited {
+    color: #007127;
+}
+ a:hover {
+    color: #E70203;
+}
+</style>
+<div id="r-cheat-sheets" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> R cheat sheets</h2>
+<p>A collection of useful sheets for programming in R.</p>
+<p><a href="https://www.rstudio.com/resources/cheatsheets/"
+target="_blank"><em>Cheatsheets online at RStudio site</em></a></p>
+<p>In RStudio you can directly access the cheat sheets using
+<code>Help &gt;&gt; Cheat Sheets</code></p>
+<div id="offline-version-of-relevant-cheat-sheets-august-2018"
+class="section level3" number="0.1.1">
+<h3><span class="header-section-number">0.1.1</span> offline version of
+relevant cheat sheets (August 2018)</h3>
+<p><img src="cheat_sheets/rstudio-ide.png" width="550" style="display: block; margin: auto;" /></p>
+<p>The <strong>RStudio IDE</strong> (<a
+href="cheat_sheets/rstudio-ide.pdf" target="_blank">download RStudio IDE
+cheat sheet</a>)is the most popular integrated development environment
+for R. Do you want to write, run, and debug your own R code? Work
+collaboratively on R projects with version control? Build packages or
+create documents and apps? No matter what you do with R, the RStudio IDE
+can help you do it faster. This cheat sheet will guide you through the
+most useful features of the IDE, as well as the long list of keyboard
+shortcuts built into the RStudio IDE.</p>
+<p><img src="cheat_sheets/base-r-1.png" width="304" style="display: block; margin: auto;" /></p>
+<p><strong>base R</strong> (<a href="cheat_sheets/base-r-cheetsheat.pdf"
+target="_blank">download base R cheat sheet</a>) overview of Vectors,
+Matrices, Lists, Data Frames, Functions and more in base R.</p>
+<p><img src="cheat_sheets/data-import.png" width="550" style="display: block; margin: auto;" /></p>
+<p>The <strong>Data Import</strong> cheat sheet (<a
+href="cheat_sheets/data-import.pdf" target="_blank">download Data Import
+cheat sheet</a>) reminds you how to read in flat files with <a
+href="http://readr.tidyverse.org/"
+class="uri">http://readr.tidyverse.org/</a>, work with the results as
+tibbles, and reshape messy data with tidyr. Use tidyr to reshape your
+tables into tidy data, the data format that works the most seamlessly
+with R and the tidyverse.</p>
+<p><img src="cheat_sheets/tidyr.png" width="550" style="display: block; margin: auto;" /></p>
+<p>The <strong>tidyr package</strong> (<a href="cheat_sheets/tidyr.pdf"
+target="_blank">download tidyr cheat sheet</a>) provides a framework for
+creating and shaping tidy data, the data format that works the most
+seamlessly with R and the tidyverse. The front page of this cheatsheet
+provides an overview of tibbles and reshaping tidy data. The back page
+provides an overview of creating, reshaping, and transforming nested
+data and list-columns with tidyr, tibble, and dplyr. With list-columns,
+you can use a simple data frame to organize any collection of objects in
+R.</p>
+<p><img src="cheat_sheets/data-transformation.png" width="550" style="display: block; margin: auto;" /></p>
+<p><strong>dplyr</strong> (<a
+href="cheat_sheets/data-transformation.pdf" target="_blank">download
+Data transformation cheat sheet</a>) provides a grammar for manipulating
+tables in R. This cheat sheet will guide you through the grammar,
+reminding you how to select, filter, arrange, mutate, summarise, group,
+and join data frames and tibbles.</p>
+<p>Also very informative is the older <strong>data wrangling</strong>
+cheat sheet (<a href="cheat_sheets/data-wrangling-cheatsheet.pdf"
+target="_blank">download data wrangling cheat sheet</a>)</p>
+<p><img src="cheat_sheets/data-visualization.png" width="550" style="display: block; margin: auto;" /></p>
+<p>The <strong>ggplot2</strong> package (<a
+href="cheat_sheets/data-visualization.pdf" target="_blank">download Data
+visualization cheat sheet</a>) lets you make beautiful and customizable
+plots of your data. It implements the grammar of graphics, an easy to
+use system for building plots. See docs.ggplot2.org for detailed
+examples.</p>
+<p><img src="cheat_sheets/purrr.png" width="550" style="display: block; margin: auto;" /></p>
+<p>The <strong>purrr</strong> package (<a href="cheat_sheets/purrr.pdf"
+target="_blank">download purrr cheat sheet</a>) makes it easy to work
+with lists and functions. This cheatsheet will remind you how to
+manipulate lists with purrr as well as how to apply functions
+iteratively to each element of a list or vector. The back of the
+cheatsheet explains how to work with list-columns. With list columns,
+you can use a simple data frame to organize any collection of objects in
+R.</p>
+<p><img src="cheat_sheets/strings.png" width="550" style="display: block; margin: auto;" /></p>
+<p>The <strong>stringr</strong> package (<a
+href="cheat_sheets/strings.pdf" target="_blank">download stringr cheat
+sheet</a>) provides an easy to use toolkit for working with strings,
+i.e. character data, in R. This cheatsheet guides you through stringr’s
+functions for manipulating strings. The back page provides a concise
+reference to regular expresssions, a mini-language for describing,
+finding, and matching patterns in strings.</p>
+<p><img src="cheat_sheets/factors.png" width="550" style="display: block; margin: auto;" /></p>
+<p>The <strong>forcats</strong> package (<a
+href="cheat_sheets/factors.pdf" target="_blank">download stringr cheat
+sheet</a>) Factors are R’s data structure for categorical data. The
+forcats package makes it easy to work with factors. This cheatsheet
+reminds you how to make factors, reorder their levels, recode their
+values, and more. Updated July 2021.</p>
+<p><img src="cheat_sheets/lubridate.png" width="550" style="display: block; margin: auto;" /></p>
+<p><strong>Lubridate</strong> (<a href="cheat_sheets/lubridate.pdf"
+target="_blank">download Lubridate cheat sheet</a>) makes it easier to
+work with dates and times in R. This lubridate cheatsheet covers how to
+round dates, work with time zones, extract elements of a date or time,
+parse dates into R and more. The back of the cheatsheet describes
+lubridate’s three timespan classes: periods, durations, and intervals;
+and explains how to do math with date-times.</p>
+<p><img src="cheat_sheets/survminer-1.png" width="304" style="display: block; margin: auto;" /></p>
+<p><strong>survminer</strong> (<a href="cheat_sheets/survminer.pdf"
+target="_blank">download Lubridate cheat sheet</a>) - elegant survival
+plots</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

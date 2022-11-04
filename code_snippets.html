@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>code suggestions</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #232629;
+    color: #7a7c7d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+div.sourceCode
+  { color: #cfcfc2; background-color: #232629; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; text-decoration: underline; } /* Error */
+code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">code suggestions</h1>
+
+</div>
+
+
+<style>
+a:link {
+    color: #BC0203;
+}
+a:visited {
+    color: #007127;
+}
+ a:hover {
+    color: #E70203;
+}
+</style>
+<div id="helpful-code-snippets" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> helpful code
+snippets</h1>
+<div id="coloringshape-pca" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> coloring/shape
+PCA</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA object handeling and coloring etc.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># load libraries ----------------------------------------------------------</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># load PCA object from e.g. DIA-MS pipeline -------------------------------</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;materials/PCA_analysis__protein_level.RDS&quot;</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>pca</span></code></pre></div>
+<pre><code>## **Results for the Principal Component Analysis (PCA)**
+## The analysis was performed on 9 individuals, described by 1696 variables
+## *The results are available in the following objects:
+## 
+##    name               description                          
+## 1  &quot;$eig&quot;             &quot;eigenvalues&quot;                        
+## 2  &quot;$var&quot;             &quot;results for the variables&quot;          
+## 3  &quot;$var$coord&quot;       &quot;coord. for the variables&quot;           
+## 4  &quot;$var$cor&quot;         &quot;correlations variables - dimensions&quot;
+## 5  &quot;$var$cos2&quot;        &quot;cos2 for the variables&quot;             
+## 6  &quot;$var$contrib&quot;     &quot;contributions of the variables&quot;     
+## 7  &quot;$ind&quot;             &quot;results for the individuals&quot;        
+## 8  &quot;$ind$coord&quot;       &quot;coord. for the individuals&quot;         
+## 9  &quot;$ind$cos2&quot;        &quot;cos2 for the individuals&quot;           
+## 10 &quot;$ind$contrib&quot;     &quot;contributions of the individuals&quot;   
+## 11 &quot;$call&quot;            &quot;summary statistics&quot;                 
+## 12 &quot;$call$centre&quot;     &quot;mean of the variables&quot;              
+## 13 &quot;$call$ecart.type&quot; &quot;standard error of the variables&quot;    
+## 14 &quot;$call$row.w&quot;      &quot;weights for the individuals&quot;        
+## 15 &quot;$call$col.w&quot;      &quot;weights for the variables&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table of individuals coordinates (this is plotted in a PCA)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>ind<span class="sc">$</span>coord</span></code></pre></div>
+<pre><code>##                                       Dim.1  Dim.2     Dim.3   Dim.4   Dim.5
+## 180619_HFx_ARe_Rafts_Delta6_a1_180509 -42.9  -4.77  -5.05476  -1.391  -5.661
+## 180619_HFx_ARe_Rafts_Delta6_a2_180514 -36.2  -3.37  11.00205   1.572   7.599
+## 180619_HFx_ARe_Rafts_Delta6_a4_180516 -39.2  -3.50   0.87592   2.011  -1.356
+## 180619_HFx_ARe_Rafts_PG10_a1_180509    15.1  24.64  -4.13318   9.118   0.498
+## 180619_HFx_ARe_Rafts_PG10_a3_180515    17.1  24.24  -1.90509  16.510   3.895
+## 180619_HFx_ARe_Rafts_PG10_a4_180516    12.7  26.90   4.37772 -24.324  -5.972
+## 180619_HFx_ARe_Rafts_PG38_a1_180509    17.6 -21.30 -29.28555  -0.039  -5.995
+## 180619_HFx_ARe_Rafts_PG38_a2_180514    31.9 -23.94  24.11404   6.157 -10.414
+## 180619_HFx_ARe_Rafts_PG38_a3_180515    24.0 -18.91   0.00886  -9.614  17.406
+##                                         Dim.6   Dim.7  Dim.8
+## 180619_HFx_ARe_Rafts_Delta6_a1_180509  -9.089 -10.928 -6.931
+## 180619_HFx_ARe_Rafts_Delta6_a2_180514   4.566  11.720 -8.481
+## 180619_HFx_ARe_Rafts_Delta6_a4_180516   4.741  -0.337 15.618
+## 180619_HFx_ARe_Rafts_PG10_a1_180509    13.832  -8.387 -3.989
+## 180619_HFx_ARe_Rafts_PG10_a3_180515   -12.670   4.489  2.833
+## 180619_HFx_ARe_Rafts_PG10_a4_180516    -1.449   3.536  0.785
+## 180619_HFx_ARe_Rafts_PG38_a1_180509     2.053   7.030 -1.291
+## 180619_HFx_ARe_Rafts_PG38_a2_180514    -0.033  -0.810 -0.322
+## 180619_HFx_ARe_Rafts_PG38_a3_180515    -1.950  -6.312  1.777</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load conditions ---------------------------------------------------------</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>habil <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;materials/sample_to_condition_file.txt&quot;</span>,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">col_names =</span> T)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># define colors -----------------------------------------------------------</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>condition_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Delta6&quot;</span> <span class="ot">=</span> <span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;PG10&quot;</span> <span class="ot">=</span> <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;PG38&quot;</span> <span class="ot">=</span> <span class="st">&quot;firebrick3&quot;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>replicate_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;3&quot;</span> <span class="ot">=</span> <span class="st">&quot;gold4&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># check if samples are arranged in the same way ---------------------------</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(habil<span class="sc">$</span>R.FileName <span class="sc">==</span> <span class="fu">rownames</span>(pca<span class="sc">$</span>ind<span class="sc">$</span>coord)) <span class="sc">==</span> <span class="fu">nrow</span>(habil)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with factoxtra package ---------------------------------------------</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pca_plot_protein<span class="ot">&lt;-</span> <span class="fu">fviz_pca_ind</span>(pca,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">mean.point=</span>F,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pointshape=</span><span class="dv">19</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pointsize=</span><span class="dv">3</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">label=</span><span class="st">&quot;none&quot;</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ellipse.type =</span> <span class="st">&quot;convex&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ellipse.alpha=</span><span class="fl">0.2</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">addEllipses =</span> T,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ellipse.level=</span><span class="fl">0.95</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                                <span class="at">habillage =</span> <span class="fu">as.factor</span>(habil<span class="sc">$</span>R.Condition))<span class="sc">+</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;PCA (protein level)&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;individuals coordinates&quot;</span>,<span class="at">color=</span><span class="st">&quot;condition&quot;</span>)<span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>pca_plot_protein</span></code></pre></div>
+<p><img src="code_snippets_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#by replicate</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pca_plot_protein<span class="ot">&lt;-</span> <span class="fu">fviz_pca_ind</span>(pca,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">mean.point=</span>F,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                <span class="co">#pointshape=19,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pointsize=</span><span class="dv">3</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">label=</span><span class="st">&quot;none&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ellipse.type =</span> <span class="st">&quot;convex&quot;</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ellipse.alpha=</span><span class="fl">0.2</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">addEllipses =</span> F,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ellipse.level=</span><span class="fl">0.95</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">habillage =</span> <span class="fu">as.factor</span>(habil<span class="sc">$</span>R.Replicate))<span class="sc">+</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> replicate_colors)<span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> replicate_colors)<span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;PCA (protein level)&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;individuals coordinates&quot;</span>,<span class="at">color=</span><span class="st">&quot;condition&quot;</span>)<span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>pca_plot_protein</span></code></pre></div>
+<p><img src="code_snippets_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same plot with tidyverse ------------------------------------------------</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get individuals data</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ind_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pca<span class="sc">$</span>ind<span class="sc">$</span>coord)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ind_data<span class="sc">$</span>R.FileName <span class="ot">&lt;-</span> <span class="fu">rownames</span>(ind_data)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ind_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ind_data)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add condition file info</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>ind_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ind_data,habil,<span class="at">by =</span> <span class="st">&quot;R.FileName&quot;</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the convex hull</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>hull_group <span class="ot">&lt;-</span> ind_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(R.Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">chull</span>(Dim<span class="fl">.1</span>, Dim<span class="fl">.2</span>))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># slice --&gt; dplyr function</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># chull --&gt; grDevice function</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Computes the subset of points which lie on the convex hull of the set of points specified.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the scatterplot</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>ggPCA <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ind_data, <span class="fu">aes</span>(Dim<span class="fl">.1</span>, Dim<span class="fl">.2</span>, <span class="at">fill =</span> R.Condition)) <span class="sc">+</span> </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay the convex hull</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>ggPCA <span class="sc">+</span> <span class="fu">geom_polygon</span>(<span class="at">data =</span> hull_group, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="code_snippets_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># refine ggPCA plot -------------------------------------------------------</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot PCA with ggplot2</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ggPCA <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ind_data, <span class="fu">aes</span>(<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> Dim<span class="fl">.2</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color =</span> R.Condition,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fill =</span> R.Condition)) <span class="sc">+</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> <span class="fu">as.factor</span>(R.Replicate)),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span> <span class="co"># add point shape R.Replicate</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> hull_group, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span> <span class="co"># add convex shape</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;PCA plot&quot;</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Hi3 protein intensities&quot;</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;analysis with Spectronaut 13 (Sparse)&quot;</span>,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.1 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),<span class="co"># labeling of axis</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.2 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">2</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>       <span class="co"># get expl. variance  Dim.xxx data by pca$eig[xxx,2]</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Replicates&quot;</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Conditions&quot;</span>, </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Conditions&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> R.Replicate),</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min.segment.length =</span> <span class="fl">0.01</span>,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>                  <span class="at">box.padding =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>ggPCA</span></code></pre></div>
+<p><img src="code_snippets_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot PCA color according to replicate (e.g. same for measurement order)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ind_data, <span class="fu">aes</span>(<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> Dim<span class="fl">.2</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> R.Replicate)) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span> <span class="co"># add point shape R.Replicate</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;PCA plot&quot;</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Hi3 protein intensities&quot;</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;analysis with Spectronaut 13 (Sparse)&quot;</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.1 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),<span class="co"># labeling of axis</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.2 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">2</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>       <span class="co"># get expl. variance  Dim.xxx data by pca$eig[xxx,2]</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Replicates&quot;</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Conditions&quot;</span>, </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Conditions&quot;</span>)<span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="code_snippets_files/figure-html/unnamed-chunk-1-5.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot till function 3rd dimmension ------------------------------------------------</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plot_function_PCA <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">data_to_plot =</span> pca, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">habil =</span> habil,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">condition_colors =</span> condition_colors){</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(patchwork)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get individuals data</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  ind_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pca<span class="sc">$</span>ind<span class="sc">$</span>coord)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ind_data<span class="sc">$</span>R.FileName <span class="ot">&lt;-</span> <span class="fu">rownames</span>(ind_data)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  ind_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ind_data)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add condition file info</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  ind_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ind_data,habil,<span class="at">by =</span> <span class="st">&quot;R.FileName&quot;</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate the convex hull</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  hull_group_1_2 <span class="ot">&lt;-</span> ind_data <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(R.Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="fu">chull</span>(Dim<span class="fl">.1</span>, Dim<span class="fl">.2</span>))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  hull_group_1_3 <span class="ot">&lt;-</span> ind_data <span class="sc">%&gt;%</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(R.Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="fu">chull</span>(Dim<span class="fl">.1</span>, Dim<span class="fl">.3</span>))</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  hull_group_2_3 <span class="ot">&lt;-</span> ind_data <span class="sc">%&gt;%</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(R.Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="fu">chull</span>(Dim<span class="fl">.2</span>, Dim<span class="fl">.3</span>))</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  ggPCA_1_2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ind_data, <span class="fu">aes</span>(<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> Dim<span class="fl">.2</span>,</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>                                <span class="at">color =</span> R.Condition,</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fill =</span> R.Condition)) <span class="sc">+</span> </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> <span class="fu">as.factor</span>(R.Replicate)),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span> <span class="co"># add point shape R.Replicate</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> hull_group_1_2, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span> <span class="co"># add convex shape</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Dim. 1 vs 2&quot;</span>,</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">&quot;Hi3 protein intensities&quot;</span>,</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.1 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),<span class="co"># labeling of axis</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.2 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">2</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>         <span class="co"># get expl. variance  Dim.xxx data by pca$eig[xxx,2]</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>         <span class="at">shape =</span> <span class="st">&quot;Replicates&quot;</span>,</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">&quot;Conditions&quot;</span>, </span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">&quot;Conditions&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text_repel</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> R.Replicate),</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.segment.length =</span> <span class="fl">0.01</span>,</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>                    <span class="at">box.padding =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;none&quot;</span>, <span class="at">fill=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>  ggPCA_1_3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ind_data, <span class="fu">aes</span>(<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> Dim<span class="fl">.3</span>,</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color =</span> R.Condition,</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">fill =</span> R.Condition)) <span class="sc">+</span> </span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> <span class="fu">as.factor</span>(R.Replicate)),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span> <span class="co"># add point shape R.Replicate</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> hull_group_1_3, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span> <span class="co"># add convex shape</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Dim. 1 vs 3&quot;</span>,</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">&quot;Hi3 protein intensities&quot;</span>,</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.1 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),<span class="co"># labeling of axis</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.3 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">3</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>         <span class="co"># get expl. variance  Dim.xxx data by pca$eig[xxx,2]</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>         <span class="at">shape =</span> <span class="st">&quot;Replicates&quot;</span>,</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">&quot;Conditions&quot;</span>, </span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">&quot;Conditions&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text_repel</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> R.Replicate),</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.segment.length =</span> <span class="fl">0.01</span>,</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>                    <span class="at">box.padding =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;none&quot;</span>, <span class="at">fill=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>  ggPCA_2_3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ind_data, <span class="fu">aes</span>(<span class="at">x =</span> Dim<span class="fl">.2</span>, <span class="at">y =</span> Dim<span class="fl">.3</span>,</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color =</span> R.Condition,</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">fill =</span> R.Condition)) <span class="sc">+</span> </span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> <span class="fu">as.factor</span>(R.Replicate)),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span> <span class="co"># add point shape R.Replicate</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> hull_group_2_3, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span> <span class="co"># add convex shape</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> condition_colors)<span class="sc">+</span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Dim. 2 vs 3&quot;</span>,</span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">&quot;Hi3 protein intensities&quot;</span>,</span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">&quot;analysis with SN 13 (Sparse)&quot;</span>,</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.2 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">2</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),<span class="co"># labeling of axis</span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="fu">paste</span>(<span class="st">&quot;Dim.3 (&quot;</span>,<span class="fu">round</span>(pca<span class="sc">$</span>eig[<span class="dv">3</span>,<span class="dv">2</span>],<span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot; %)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>         <span class="co"># get expl. variance  Dim.xxx data by pca$eig[xxx,2]</span></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a>         <span class="at">shape =</span> <span class="st">&quot;Replicates&quot;</span>,</span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">&quot;Conditions&quot;</span>, </span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">&quot;Conditions&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text_repel</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> R.Replicate),</span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.segment.length =</span> <span class="fl">0.01</span>,</span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>                    <span class="at">box.padding =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  ggPCA_1_2<span class="sc">+</span>ggPCA_1_3<span class="sc">+</span>ggPCA_2_3</span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use plot function</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !!!! set condition colors!!!! for function</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>condition_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Delta6&quot;</span> <span class="ot">=</span> <span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;PG10&quot;</span> <span class="ot">=</span> <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;PG38&quot;</span> <span class="ot">=</span> <span class="st">&quot;firebrick3&quot;</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_function_PCA</span>(<span class="at">data_to_plot =</span> pca,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">habil =</span> habil,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">condition_colors =</span> condition_colors)</span></code></pre></div>
+<p><img src="code_snippets_files/figure-html/unnamed-chunk-2-1.png" width="1344" /></p>
+</div>
+<div id="fasta-file-wrangling" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> FASTA file
+wrangling</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load libraries ----------------------------------------------------------</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seqinr)<span class="co">#CRAN</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Biostrings)<span class="co"># BioConductor</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Peptides)<span class="co">#CRAN</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(OrgMassSpecR)<span class="co">#CRAN</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr) <span class="co">#CRAN</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># load fasta files --------------------------------------------------------</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="at">file =</span> <span class="st">&quot;materials/2015_Bsubtilis_168_uniprot-proteome_for_iRT_cRAP.fasta&quot;</span>,<span class="at">seqtype =</span> <span class="st">&quot;AA&quot;</span>,<span class="at">as.string =</span> T,<span class="at">strip.desc =</span> F,<span class="at">seqonly =</span> F)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># extract full annotation -------------------------------------------------</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>full_header<span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(d,<span class="cf">function</span>(x) <span class="fu">attr</span>(x,<span class="st">&quot;Annot&quot;</span>)))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># split just names --------------------------------------------------------</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>names_split_list<span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">names</span>(d),<span class="cf">function</span>(x){ <span class="fu">str_split</span>(<span class="at">string =</span> x,<span class="at">pattern =</span>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">|&quot;</span>)})</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>fullnames_split_list<span class="ot">&lt;-</span> <span class="fu">sapply</span>(full_header,<span class="cf">function</span>(x){ <span class="fu">as.character</span>(<span class="fu">c</span>(<span class="fu">unlist</span>(</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>                                                        <span class="fu">str_split</span>(<span class="at">string =</span> <span class="fu">unlist</span>(<span class="fu">str_split</span>(<span class="at">string =</span> x,<span class="at">pattern =</span> <span class="st">&quot; &quot;</span>,<span class="at">n =</span> <span class="dv">2</span>))[<span class="dv">1</span>],</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                                                    <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">|&quot;</span>)),</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>                                                    <span class="fu">unlist</span>(<span class="fu">str_split</span>(<span class="at">string =</span> x,<span class="at">pattern =</span> <span class="st">&quot; &quot;</span>,<span class="at">n =</span> <span class="dv">2</span>))[<span class="dv">2</span>]))})</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># split full fasta header -----------------------------------------------</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co">#reformat to tibble</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>names_split_df<span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="at">what =</span> rbind.data.frame,<span class="at">args =</span>  names_split_list)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>full_names_split_tibble <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="at">what =</span> rbind.data.frame,<span class="at">args =</span>  fullnames_split_list)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(full_names_split_tibble) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;db&quot;</span>,<span class="st">&quot;entry&quot;</span>,<span class="st">&quot;name&quot;</span>,<span class="st">&quot;desc&quot;</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co"># write fasta file --------------------------------------------------------</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="fu">write.fasta</span>(<span class="at">sequences =</span> d,<span class="at">names =</span> full_names_split_tibble<span class="sc">$</span>entry,<span class="at">file.out =</span> <span class="st">&quot;test.fasta&quot;</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="co"># other useful functions --------------------------------------------------</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co">#theoretical digest with OrgMassSpecR</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>digest_of_protein<span class="ot">&lt;-</span> OrgMassSpecR<span class="sc">::</span><span class="fu">Digest</span>(<span class="at">sequence =</span> <span class="fu">unlist</span>(d[<span class="dv">1</span>]),<span class="at">enzyme =</span> <span class="st">&quot;trypsin&quot;</span>,<span class="at">missed =</span> <span class="dv">2</span>,<span class="at">IAA =</span> F)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>digest_of_protein</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["peptide"],"name":[1],"type":["chr"],"align":["left"]},{"label":["start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["stop"],"name":[3],"type":["int"],"align":["right"]},{"label":["mc"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mz1"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mz2"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mz3"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"MNEFMK","2":"1","3":"6","4":"0","5":"799","6":"400.2","7":"267.1"},{"1":"K","2":"7","3":"7","4":"0","5":"147","6":"74.1","7":"49.7"},{"1":"FSLTKPIIQAPMAGGITKPR","2":"8","3":"27","4":"0","5":"2126","6":"1063.6","7":"709.4"},{"1":"LASAVSNQGALGSLASGYLTPDLLEQQIK","2":"28","3":"56","4":"0","5":"2945","6":"1472.8","7":"982.2"},{"1":"EIFELTDAPFQINVFVPLGLEMPPK","2":"57","3":"81","4":"0","5":"2844","6":"1422.7","7":"948.8"},{"1":"DQIK","2":"82","3":"85","4":"0","5":"503","6":"252.1","7":"168.4"},{"1":"K","2":"86","3":"86","4":"0","5":"147","6":"74.1","7":"49.7"},{"1":"WK","2":"87","3":"88","4":"0","5":"333","6":"167.1","7":"111.7"},{"1":"ENIPLANQVNQFTSVQEEWDDFYQK","2":"89","3":"113","4":"0","5":"3042","6":"1521.7","7":"1014.8"},{"1":"IDLILK","2":"114","3":"119","4":"0","5":"714","6":"357.7","7":"238.8"},{"1":"YK","2":"120","3":"121","4":"0","5":"310","6":"155.6","7":"104.1"},{"1":"VK","2":"122","3":"123","4":"0","5":"246","6":"123.6","7":"82.7"},{"1":"ACSFTFDLPPEDAVK","2":"124","3":"138","4":"0","5":"1640","6":"820.4","7":"547.3"},{"1":"ELK","2":"139","3":"141","4":"0","5":"389","6":"195.1","7":"130.4"},{"1":"TAGCCLIGTASTVEEALLMEER","2":"142","3":"163","4":"0","5":"2297","6":"1149.0","7":"766.4"},{"1":"GMDIVVLQGSEAGGHR","2":"164","3":"179","4":"0","5":"1626","6":"813.4","7":"542.6"},{"1":"GAFLPSK","2":"180","3":"186","4":"0","5":"719","6":"360.2","7":"240.5"},{"1":"GESAVGLMALIPQAADALSVPVIAAGGMIDHR","2":"187","3":"218","4":"0","5":"3131","6":"1565.8","7":"1044.2"},{"1":"GVK","2":"219","3":"221","4":"0","5":"303","6":"152.1","7":"101.7"},{"1":"AALTLGAQGVQIGSAFLICHESNAHPVHK","2":"222","3":"250","4":"0","5":"2970","6":"1485.3","7":"990.5"},{"1":"QK","2":"251","3":"252","4":"0","5":"275","6":"138.1","7":"92.4"},{"1":"ILEANEADTK","2":"253","3":"262","4":"0","5":"1104","6":"552.3","7":"368.5"},{"1":"LTTLFSGK","2":"263","3":"270","4":"0","5":"866","6":"433.8","7":"289.5"},{"1":"EAR","2":"271","3":"273","4":"0","5":"375","6":"188.1","7":"125.7"},{"1":"GIVNK","2":"274","3":"278","4":"0","5":"530","6":"265.7","7":"177.4"},{"1":"WMEENEQFETQTLPYPYQNTLTK","2":"279","3":"301","4":"0","5":"2890","6":"1445.7","7":"964.1"},{"1":"AMR","2":"302","3":"304","4":"0","5":"377","6":"189.1","7":"126.4"},{"1":"QK","2":"305","3":"306","4":"0","5":"275","6":"138.1","7":"92.4"},{"1":"ASLQNNHDQMSLWAGQGIR","2":"307","3":"325","4":"0","5":"2126","6":"1063.5","7":"709.3"},{"1":"SLTEEISVK","2":"326","3":"334","4":"0","5":"1006","6":"503.3","7":"335.9"},{"1":"QLLNQLCQEDIK","2":"335","3":"346","4":"0","5":"1445","6":"722.9","7":"482.3"},{"1":"I","2":"347","3":"347","4":"0","5":"132","6":"66.6","7":"44.7"},{"1":"MNEFMKK","2":"1","3":"7","4":"1","5":"927","6":"464.2","7":"309.8"},{"1":"KFSLTKPIIQAPMAGGITKPR","2":"7","3":"27","4":"1","5":"2254","6":"1127.7","7":"752.1"},{"1":"FSLTKPIIQAPMAGGITKPRLASAVSNQGALGSLASGYLTPDLLEQQIK","2":"8","3":"56","4":"1","5":"5052","6":"2526.4","7":"1684.6"},{"1":"LASAVSNQGALGSLASGYLTPDLLEQQIKEIFELTDAPFQINVFVPLGLEMPPK","2":"28","3":"81","4":"1","5":"5770","6":"2885.5","7":"1924.0"},{"1":"EIFELTDAPFQINVFVPLGLEMPPKDQIK","2":"57","3":"85","4":"1","5":"3329","6":"1664.9","7":"1110.3"},{"1":"DQIKK","2":"82","3":"86","4":"1","5":"631","6":"316.2","7":"211.1"},{"1":"KWK","2":"86","3":"88","4":"1","5":"461","6":"231.1","7":"154.4"},{"1":"WKENIPLANQVNQFTSVQEEWDDFYQK","2":"87","3":"113","4":"1","5":"3357","6":"1678.8","7":"1119.5"},{"1":"ENIPLANQVNQFTSVQEEWDDFYQKIDLILK","2":"89","3":"119","4":"1","5":"3738","6":"1869.4","7":"1246.6"},{"1":"IDLILKYK","2":"114","3":"121","4":"1","5":"1006","6":"503.3","7":"335.9"},{"1":"YKVK","2":"120","3":"123","4":"1","5":"537","6":"269.2","7":"179.8"},{"1":"VKACSFTFDLPPEDAVK","2":"122","3":"138","4":"1","5":"1867","6":"934.0","7":"623.0"},{"1":"ACSFTFDLPPEDAVKELK","2":"124","3":"141","4":"1","5":"2010","6":"1005.5","7":"670.7"},{"1":"ELKTAGCCLIGTASTVEEALLMEER","2":"139","3":"163","4":"1","5":"2667","6":"1334.2","7":"889.8"},{"1":"TAGCCLIGTASTVEEALLMEERGMDIVVLQGSEAGGHR","2":"142","3":"179","4":"1","5":"3904","6":"1952.4","7":"1302.0"},{"1":"GMDIVVLQGSEAGGHRGAFLPSK","2":"164","3":"186","4":"1","5":"2326","6":"1163.6","7":"776.1"},{"1":"GAFLPSKGESAVGLMALIPQAADALSVPVIAAGGMIDHR","2":"180","3":"218","4":"1","5":"3831","6":"1916.0","7":"1277.7"},{"1":"GESAVGLMALIPQAADALSVPVIAAGGMIDHRGVK","2":"187","3":"221","4":"1","5":"3415","6":"1707.9","7":"1138.9"},{"1":"GVKAALTLGAQGVQIGSAFLICHESNAHPVHK","2":"219","3":"250","4":"1","5":"3254","6":"1627.4","7":"1085.2"},{"1":"AALTLGAQGVQIGSAFLICHESNAHPVHKQK","2":"222","3":"252","4":"1","5":"3226","6":"1613.4","7":"1075.9"},{"1":"QKILEANEADTK","2":"251","3":"262","4":"1","5":"1360","6":"680.4","7":"453.9"},{"1":"ILEANEADTKLTTLFSGK","2":"253","3":"270","4":"1","5":"1951","6":"976.0","7":"651.0"},{"1":"LTTLFSGKEAR","2":"263","3":"273","4":"1","5":"1223","6":"611.8","7":"408.2"},{"1":"EARGIVNK","2":"271","3":"278","4":"1","5":"887","6":"443.8","7":"296.2"},{"1":"GIVNKWMEENEQFETQTLPYPYQNTLTK","2":"274","3":"301","4":"1","5":"3402","6":"1701.3","7":"1134.5"},{"1":"WMEENEQFETQTLPYPYQNTLTKAMR","2":"279","3":"304","4":"1","5":"3249","6":"1624.8","7":"1083.5"},{"1":"AMRQK","2":"302","3":"306","4":"1","5":"633","6":"317.2","7":"211.8"},{"1":"QKASLQNNHDQMSLWAGQGIR","2":"305","3":"325","4":"1","5":"2382","6":"1191.6","7":"794.7"},{"1":"ASLQNNHDQMSLWAGQGIRSLTEEISVK","2":"307","3":"334","4":"1","5":"3113","6":"1556.8","7":"1038.2"},{"1":"SLTEEISVKQLLNQLCQEDIK","2":"326","3":"346","4":"1","5":"2431","6":"1216.1","7":"811.1"},{"1":"QLLNQLCQEDIKI","2":"335","3":"347","4":"1","5":"1558","6":"779.4","7":"519.9"},{"1":"MNEFMKKFSLTKPIIQAPMAGGITKPR","2":"1","3":"27","4":"2","5":"3035","6":"1517.8","7":"1012.2"},{"1":"KFSLTKPIIQAPMAGGITKPRLASAVSNQGALGSLASGYLTPDLLEQQIK","2":"7","3":"56","4":"2","5":"5180","6":"2590.4","7":"1727.3"},{"1":"FSLTKPIIQAPMAGGITKPRLASAVSNQGALGSLASGYLTPDLLEQQIKEIFELTDAPFQINVFVPLGLEMPPK","2":"8","3":"81","4":"2","5":"7877","6":"3939.1","7":"2626.4"},{"1":"LASAVSNQGALGSLASGYLTPDLLEQQIKEIFELTDAPFQINVFVPLGLEMPPKDQIK","2":"28","3":"85","4":"2","5":"6254","6":"3127.7","7":"2085.4"},{"1":"EIFELTDAPFQINVFVPLGLEMPPKDQIKK","2":"57","3":"86","4":"2","5":"3457","6":"1728.9","7":"1153.0"},{"1":"DQIKKWK","2":"82","3":"88","4":"2","5":"946","6":"473.3","7":"315.9"},{"1":"KWKENIPLANQVNQFTSVQEEWDDFYQK","2":"86","3":"113","4":"2","5":"3485","6":"1742.8","7":"1162.2"},{"1":"WKENIPLANQVNQFTSVQEEWDDFYQKIDLILK","2":"87","3":"119","4":"2","5":"4052","6":"2026.5","7":"1351.4"},{"1":"ENIPLANQVNQFTSVQEEWDDFYQKIDLILKYK","2":"89","3":"121","4":"2","5":"4029","6":"2015.0","7":"1343.7"},{"1":"IDLILKYKVK","2":"114","3":"123","4":"2","5":"1233","6":"616.9","7":"411.6"},{"1":"YKVKACSFTFDLPPEDAVK","2":"120","3":"138","4":"2","5":"2158","6":"1079.5","7":"720.0"},{"1":"VKACSFTFDLPPEDAVKELK","2":"122","3":"141","4":"2","5":"2237","6":"1119.1","7":"746.4"},{"1":"ACSFTFDLPPEDAVKELKTAGCCLIGTASTVEEALLMEER","2":"124","3":"163","4":"2","5":"4288","6":"2144.5","7":"1430.0"},{"1":"ELKTAGCCLIGTASTVEEALLMEERGMDIVVLQGSEAGGHR","2":"139","3":"179","4":"2","5":"4274","6":"2137.6","7":"1425.4"},{"1":"TAGCCLIGTASTVEEALLMEERGMDIVVLQGSEAGGHRGAFLPSK","2":"142","3":"186","4":"2","5":"4604","6":"2302.6","7":"1535.4"},{"1":"GMDIVVLQGSEAGGHRGAFLPSKGESAVGLMALIPQAADALSVPVIAAGGMIDHR","2":"164","3":"218","4":"2","5":"5438","6":"2719.4","7":"1813.3"},{"1":"GAFLPSKGESAVGLMALIPQAADALSVPVIAAGGMIDHRGVK","2":"180","3":"221","4":"2","5":"4115","6":"2058.1","7":"1372.4"},{"1":"GESAVGLMALIPQAADALSVPVIAAGGMIDHRGVKAALTLGAQGVQIGSAFLICHESNAHPVHK","2":"187","3":"250","4":"2","5":"6365","6":"3183.2","7":"2122.5"},{"1":"GVKAALTLGAQGVQIGSAFLICHESNAHPVHKQK","2":"219","3":"252","4":"2","5":"3510","6":"1755.4","7":"1170.6"},{"1":"AALTLGAQGVQIGSAFLICHESNAHPVHKQKILEANEADTK","2":"222","3":"262","4":"2","5":"4310","6":"2155.6","7":"1437.4"},{"1":"QKILEANEADTKLTTLFSGK","2":"251","3":"270","4":"2","5":"2207","6":"1104.1","7":"736.4"},{"1":"ILEANEADTKLTTLFSGKEAR","2":"253","3":"273","4":"2","5":"2307","6":"1154.1","7":"769.7"},{"1":"LTTLFSGKEARGIVNK","2":"263","3":"278","4":"2","5":"1734","6":"867.5","7":"578.7"},{"1":"EARGIVNKWMEENEQFETQTLPYPYQNTLTK","2":"271","3":"301","4":"2","5":"3758","6":"1879.4","7":"1253.3"},{"1":"GIVNKWMEENEQFETQTLPYPYQNTLTKAMR","2":"274","3":"304","4":"2","5":"3760","6":"1880.4","7":"1253.9"},{"1":"WMEENEQFETQTLPYPYQNTLTKAMRQK","2":"279","3":"306","4":"2","5":"3505","6":"1752.8","7":"1168.9"},{"1":"AMRQKASLQNNHDQMSLWAGQGIR","2":"302","3":"325","4":"2","5":"2740","6":"1370.7","7":"914.1"},{"1":"QKASLQNNHDQMSLWAGQGIRSLTEEISVK","2":"305","3":"334","4":"2","5":"3369","6":"1684.9","7":"1123.6"},{"1":"ASLQNNHDQMSLWAGQGIRSLTEEISVKQLLNQLCQEDIK","2":"307","3":"346","4":"2","5":"4538","6":"2269.6","7":"1513.4"},{"1":"SLTEEISVKQLLNQLCQEDIKI","2":"326","3":"347","4":"2","5":"2544","6":"1272.7","7":"848.8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#aa compisition</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Peptides<span class="sc">::</span><span class="fu">aaComp</span>(<span class="at">seq =</span> <span class="fu">unlist</span>(d[<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>## $`sp|O05413|2NPD_BACSU`
+##           Number Mole%
+## Tiny         100 28.82
+## Small        163 46.97
+## Aliphatic    111 31.99
+## Aromatic      28  8.07
+## NonPolar     191 55.04
+## Polar        156 44.96
+## Charged       80 23.05
+## Basic         39 11.24
+## Acidic        41 11.82</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pI</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Peptides<span class="sc">::</span><span class="fu">pI</span>(<span class="at">seq =</span> <span class="fu">unlist</span>(d[<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>## sp|O05413|2NPD_BACSU 
+##                 5.26</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#MW</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Peptides<span class="sc">::</span><span class="fu">mw</span>(<span class="at">seq =</span> <span class="fu">unlist</span>(d[<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>## sp|O05413|2NPD_BACSU 
+##                38069</code></pre>
+</div>
+<div id="anova-example" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> ANOVA example</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load libraries</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(helfRlein)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#set working directory</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/Desktop/R_pipeline_analysis_scripts/DIA-MS__Spectronaut_analysis__working/05_processed_data/257_sample_analysis&quot;</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;Hi3_protein_intensity_data.txt&quot;</span>,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">col_names =</span> T)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># split to get condition</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>dat_Bcond <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span> </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="at">pattern =</span> <span class="st">&quot;B_&quot;</span>,<span class="at">x =</span> R.Condition)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>              <span class="fu">separate</span>(<span class="at">col =</span> R.Condition,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Condition&quot;</span>,<span class="st">&quot;Time&quot;</span>),</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>,<span class="at">remove =</span> F)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#anova test using ggpubr</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>anova_test<span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">compare_means</span>(<span class="at">formula =</span> protein_Hi3_Intensity<span class="sc">~</span>Time,</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group.by =</span> <span class="st">&quot;PG.ProteinGroups&quot;</span>,</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>                      <span class="at">paired =</span> F,</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">&quot;anova&quot;</span>,</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> dat_Bcond)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co"># kruskal test </span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>kruskal_test<span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">compare_means</span>(<span class="at">formula =</span> protein_Hi3_Intensity<span class="sc">~</span>Time,</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">group.by =</span> <span class="st">&quot;PG.ProteinGroups&quot;</span>,</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">paired =</span> F,</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;kruskal.test&quot;</span>,</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">data =</span> dat_Bcond)</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="co"># wilcox test</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>wilcox_test<span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">compare_means</span>(<span class="at">formula =</span> protein_Hi3_Intensity<span class="sc">~</span>Time,</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">group.by =</span> <span class="st">&quot;PG.ProteinGroups&quot;</span>,</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">paired =</span> F,</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">p.adjust.method =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>,</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">data =</span> dat_Bcond)</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="co">#levels of time factor</span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>lev<span class="ot">&lt;-</span><span class="fu">unique</span>(<span class="fu">unlist</span>(dat_Bcond<span class="sc">$</span>Time))</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>lev.comb<span class="ot">&lt;-</span><span class="fu">combn</span>(lev,<span class="at">m =</span> <span class="dv">2</span>)</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>lev.out<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(lev.comb)){</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>  lev.out[[i]]<span class="ot">&lt;-</span><span class="fu">c</span>(lev.comb[<span class="dv">1</span>,i],lev.comb[<span class="dv">2</span>,i])</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>stats_out<span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>proteins<span class="ot">&lt;-</span><span class="fu">unique</span>(<span class="fu">unlist</span>(dat_Bcond<span class="sc">$</span>PG.ProteinGroups))</span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(lev.out)){</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>                <span class="co">#helfRlein statusbar</span></span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>                <span class="fu">statusbar</span>(<span class="at">run =</span> g,<span class="at">max.run =</span> <span class="fu">length</span>(proteins),<span class="at">percent.max =</span> 60L,<span class="at">info =</span> <span class="st">&quot;testing...&quot;</span>)</span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>                 </span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>                stats_tmp<span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">for</span>(g <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(proteins)){</span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a>                     </span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a>                   <span class="co">#filter data</span></span>
+<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a>                   tmp_dat <span class="ot">&lt;-</span> dat_Bcond <span class="sc">%&gt;%</span> <span class="fu">filter</span>(proteins[g]<span class="sc">==</span>PG.ProteinGroups)</span>
+<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a>                   t1<span class="ot">&lt;-</span><span class="fu">c</span>();t1<span class="ot">&lt;-</span>tmp_dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Time<span class="sc">==</span>lev.out[[i]][<span class="dv">1</span>])</span>
+<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a>                   t2<span class="ot">&lt;-</span><span class="fu">c</span>();t2<span class="ot">&lt;-</span>tmp_dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Time<span class="sc">==</span>lev.out[[i]][<span class="dv">2</span>])</span>
+<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a>                   </span>
+<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a>                     <span class="co">#Wilcoxon rank sum test with continuity correction</span></span>
+<span id="cb21-69"><a href="#cb21-69" aria-hidden="true" tabindex="-1"></a>                     tmp_test <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(<span class="at">x =</span> t1<span class="sc">$</span>protein_Hi3_Intensity,</span>
+<span id="cb21-70"><a href="#cb21-70" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">y =</span> t2<span class="sc">$</span>protein_Hi3_Intensity,</span>
+<span id="cb21-71"><a href="#cb21-71" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">alt=</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb21-72"><a href="#cb21-72" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">conf.int=</span> T, </span>
+<span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">conf.level=</span> <span class="fl">0.95</span>,</span>
+<span id="cb21-74"><a href="#cb21-74" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">paired=</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-75"><a href="#cb21-75" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">mu=</span><span class="dv">0</span>)</span>
+<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a>                     </span>
+<span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a>                     stats_tmp<span class="ot">&lt;-</span><span class="fu">bind_rows</span>(stats_tmp,</span>
+<span id="cb21-78"><a href="#cb21-78" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">tibble</span>(<span class="at">proteinID =</span> proteins[g],</span>
+<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">median.ratio =</span> <span class="fu">median</span>(t1<span class="sc">$</span>protein_Hi3_Intensity,<span class="at">na.rm=</span>T)<span class="sc">/</span><span class="fu">median</span>(t2<span class="sc">$</span>protein_Hi3_Intensity,<span class="at">na.rm =</span> T),</span>
+<span id="cb21-80"><a href="#cb21-80" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">mean.ratio =</span> <span class="fu">mean</span>(t1<span class="sc">$</span>protein_Hi3_Intensity,<span class="at">na.rm=</span>T)<span class="sc">/</span><span class="fu">mean</span>(t2<span class="sc">$</span>protein_Hi3_Intensity,<span class="at">na.rm =</span> T),</span>
+<span id="cb21-81"><a href="#cb21-81" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">p.value =</span> <span class="fu">as.numeric</span>(tmp_test<span class="sc">$</span>p.value),</span>
+<span id="cb21-82"><a href="#cb21-82" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">lower.confidence.level =</span> <span class="fu">as.numeric</span>(tmp_test<span class="sc">$</span>conf.int)[<span class="dv">1</span>],</span>
+<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">upper.confidence.level =</span> <span class="fu">as.numeric</span>(tmp_test<span class="sc">$</span>conf.int)[<span class="dv">2</span>],</span>
+<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">differnce.in.location =</span> <span class="fu">as.numeric</span>(tmp_test<span class="sc">$</span>estimate),</span>
+<span id="cb21-85"><a href="#cb21-85" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">comparison =</span> <span class="fu">paste</span>(<span class="fu">unlist</span>(lev.out[[i]]),<span class="at">collapse =</span> <span class="st">&quot; vs. &quot;</span>)</span>
+<span id="cb21-86"><a href="#cb21-86" aria-hidden="true" tabindex="-1"></a>                                           )</span>
+<span id="cb21-87"><a href="#cb21-87" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb21-88"><a href="#cb21-88" aria-hidden="true" tabindex="-1"></a>                     </span>
+<span id="cb21-89"><a href="#cb21-89" aria-hidden="true" tabindex="-1"></a>                   </span>
+<span id="cb21-90"><a href="#cb21-90" aria-hidden="true" tabindex="-1"></a>                     </span>
+<span id="cb21-91"><a href="#cb21-91" aria-hidden="true" tabindex="-1"></a>                   }</span>
+<span id="cb21-92"><a href="#cb21-92" aria-hidden="true" tabindex="-1"></a>                <span class="co">#global p-value adjusting over proteins</span></span>
+<span id="cb21-93"><a href="#cb21-93" aria-hidden="true" tabindex="-1"></a>                stats_tmp<span class="sc">$</span>p_value_adjusted_BH<span class="ot">&lt;-</span><span class="fu">p.adjust</span>(<span class="at">p =</span> stats_tmp<span class="sc">$</span>p.value,<span class="at">method =</span> <span class="st">&quot;BH&quot;</span>)</span>
+<span id="cb21-94"><a href="#cb21-94" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a>                 <span class="co">#combine resp stats</span></span>
+<span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a>                 stats_out<span class="ot">&lt;-</span><span class="fu">rbind</span>(stats_out,stats_tmp) </span>
+<span id="cb21-97"><a href="#cb21-97" aria-hidden="true" tabindex="-1"></a>               }</span>
+<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-99"><a href="#cb21-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-100"><a href="#cb21-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-101"><a href="#cb21-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-102"><a href="#cb21-102" aria-hidden="true" tabindex="-1"></a>dat_Bcond <span class="sc">%&gt;%</span> </span>
+<span id="cb21-103"><a href="#cb21-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PG.ProteinGroups<span class="sc">==</span><span class="st">&quot;Q9WVL7&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-104"><a href="#cb21-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">list</span>(<span class="fu">wilcox.test</span>(protein_Hi3_Intensity[Time<span class="sc">==</span><span class="st">&quot;24h&quot;</span>]<span class="sc">~</span>protein_Hi3_Intensity[Time<span class="sc">==</span><span class="st">&quot;2h&quot;</span>])))</span>
+<span id="cb21-105"><a href="#cb21-105" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-106"><a href="#cb21-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-107"><a href="#cb21-107" aria-hidden="true" tabindex="-1"></a><span class="co"># get results for Q6A0A9</span></span>
+<span id="cb21-108"><a href="#cb21-108" aria-hidden="true" tabindex="-1"></a>anova_test <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PG.ProteinGroups<span class="sc">==</span><span class="st">&quot;Q6A0A9&quot;</span>)</span>
+<span id="cb21-109"><a href="#cb21-109" aria-hidden="true" tabindex="-1"></a>kruskal_test <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PG.ProteinGroups<span class="sc">==</span><span class="st">&quot;Q6A0A9&quot;</span>)</span>
+<span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a>wilcox_test<span class="sc">%&gt;%</span> <span class="fu">filter</span>(PG.ProteinGroups<span class="sc">==</span><span class="st">&quot;Q6A0A9&quot;</span>)</span>
+<span id="cb21-111"><a href="#cb21-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-112"><a href="#cb21-112" aria-hidden="true" tabindex="-1"></a><span class="co"># filter wilcox test examples</span></span>
+<span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a>filter_prot<span class="ot">&lt;-</span> wilcox_test <span class="sc">%&gt;%</span> </span>
+<span id="cb21-114"><a href="#cb21-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PG.ProteinGroups) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-115"><a href="#cb21-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">significant =</span> <span class="fu">ifelse</span>(<span class="at">test =</span> p<span class="sc">&lt;</span><span class="fl">0.05</span>,<span class="at">yes =</span> <span class="dv">1</span>,<span class="at">no =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-116"><a href="#cb21-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">significant_count =</span> <span class="fu">sum</span>(significant))</span>
+<span id="cb21-117"><a href="#cb21-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-118"><a href="#cb21-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-119"><a href="#cb21-119" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(wilcox_test<span class="sc">%&gt;%</span> <span class="fu">filter</span>(PG.ProteinGroups<span class="sc">==</span><span class="st">&quot;Q6A0A9&quot;</span>))</span>
+<span id="cb21-120"><a href="#cb21-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-121"><a href="#cb21-121" aria-hidden="true" tabindex="-1"></a>dat_Bcond <span class="sc">%&gt;%</span> </span>
+<span id="cb21-122"><a href="#cb21-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PG.ProteinGroups<span class="sc">==</span><span class="st">&quot;B2RUR8&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-123"><a href="#cb21-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Time,protein_Hi3_Intensity))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code></pre></div>
+</div>
+<div id="parallel-computing-with-foreach" class="section level2"
+number="1.4">
+<h2><span class="header-section-number">1.4</span> Parallel computing
+with <code>foreach</code></h2>
+<p><code>Foreach</code> is very easy to use when you can write a simple
+<code>for loop</code>. Also <code>foreach</code> needs a given sequence
+to iterate over.</p>
+<p>BUT; the <code>.combine</code> parameter is very important. Since
+your data will be split for the parallization process and your result
+will be combined as output. There you should know if your output is a
+vector or a dataframe which sould be combined row-wise or
+column-wise.</p>
+<p><code>.combine</code> can be specified as either a function or a
+non-empty character string naming the function. Specifying
+<code>c</code> is useful for concatenating the results into a vector,
+for example. The values <code>cbind</code> and <code>rbind</code> can
+combine vectors into a matrix. The values <code>+</code> and
+<code>*</code> can be used to process numeric data. By default, the
+results are returned in a <code>list</code>.</p>
+<p><strong>switching between single and multicore mode:</strong> When
+using <code>%do%</code> the loop will be iterated on 1 core, when using
+<code>%dopar%</code> multiple cores are used.</p>
+<p>The number of cores can be setup in generating a cluster. See full
+example below.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;foreach&quot;)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;doParallel&quot;)</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Start a cluster with 4 cores</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">makeCluster</span>(<span class="dv">4</span>, <span class="at">outfile =</span> <span class="st">&quot;&quot;</span>) <span class="co"># number of cores can be changed depending on your system</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl) <span class="co">#register cores</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#setup the progressbar </span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="do">## i_end should be the length of your iteration vector</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">&lt;-</span> <span class="fu">txtProgressBar</span>(<span class="at">min =</span> <span class="dv">0</span>,<span class="at">max =</span> i_end, <span class="at">style =</span> <span class="dv">3</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#do calculation in parallel</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>results_foreach_loop <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i=</span><span class="dv">1</span><span class="sc">:</span>i_end, <span class="at">.combine=</span>rbind.data.frame) <span class="sc">%dopar%</span> { </span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#use the foreach function in parallel processing mode (dopar)</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setTxtProgressBar</span>(pb, i)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  <span class="do">## here your code inside the loop which will be executed in parallel</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(pb)<span class="co">#closing progressbar</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)<span class="co">#closing cluster for parallel computing</span></span></code></pre></div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

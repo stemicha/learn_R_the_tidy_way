@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>useful_packages___factoextra.knit</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="factoextra-package" class="section level2">
+<h2>factoextra package</h2>
+<p>Text here is from github page of <a
+href="https://github.com/kassambara/factoextra">factoextra</a>.</p>
+<p>factoextra : Extract and Visualize the Results of Multivariate Data
+Analyses</p>
+<p><a
+href="http://www.sthda.com/english/rpkgs/factoextra"><strong>factoextra</strong></a>
+is an R package making easy to <em>extract</em> and <em>visualize</em>
+the output of exploratory <strong>multivariate data analyses</strong>,
+including:</p>
+<ol style="list-style-type: decimal">
+<li><p><a
+href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/">Principal
+Component Analysis (PCA)</a>, which is used to summarize the information
+contained in a continuous (i.e, quantitative) multivariate data by
+reducing the dimensionality of the data without loosing important
+information.</p></li>
+<li><p><a
+href="http://www.sthda.com/english/wiki/correspondence-analysis-in-r-the-ultimate-guide-for-the-analysis-the-visualization-and-the-interpretation-r-software-and-data-mining">Correspondence
+Analysis (CA)</a>, which is an extension of the principal component
+analysis suited to analyse a large contingency table formed by two
+<em>qualitative variables</em> (or categorical data).</p></li>
+<li><p><a
+href="http://www.sthda.com/english/wiki/multiple-correspondence-analysis-essentials-interpretation-and-application-to-investigate-the-associations-between-categories-of-multiple-qualitative-variables-r-software-and-data-mining">Multiple
+Correspondence Analysis (MCA)</a>, which is an adaptation of CA to a
+data table containing more than two categorical variables.</p></li>
+<li><p><a
+href="http://www.sthda.com/english/rpkgs/factoextra/reference/fviz_mfa.html">Multiple
+Factor Analysis (MFA)</a> dedicated to datasets where variables are
+organized into groups (qualitative and/or quantitative
+variables).</p></li>
+<li><p><a
+href="http://www.sthda.com/english/rpkgs/factoextra/reference/fviz_hmfa.html">Hierarchical
+Multiple Factor Analysis (HMFA)</a>: An extension of MFA in a situation
+where the data are organized into a hierarchical structure.</p></li>
+<li><p><a
+href="http://www.sthda.com/english/rpkgs/factoextra/reference/fviz_famd.html">Factor
+Analysis of Mixed Data (FAMD)</a>, a particular case of the MFA,
+dedicated to analyze a data set containing both quantitative and
+qualitative variables.</p></li>
+</ol>
+<p>There are a number of R packages implementing principal component
+methods. These packages include: <em>FactoMineR</em>, <em>ade4</em>,
+<em>stats</em>, <em>ca</em>, <em>MASS</em> and <em>ExPosition</em>.</p>
+<p>However, the result is presented differently according to the used
+packages. To help in the interpretation and in the visualization of
+multivariate analysis - such as cluster analysis and dimensionality
+reduction analysis - we developed an easy-to-use R package named <a
+href="http://www.sthda.com/english/rpkgs/factoextra">factoextra</a>.</p>
+<ul>
+<li>The R package <strong>factoextra</strong> has flexible and
+easy-to-use methods to extract quickly, in a human readable standard
+data format, the analysis results from the different packages mentioned
+above.<br />
+</li>
+<li>It produces a <strong>ggplot2</strong>-based <strong>elegant data
+visualization</strong> with less typing.</li>
+<li>It contains also many functions facilitating clustering analysis and
+visualization.</li>
+</ul>
+<blockquote>
+<p>We’ll use i) the FactoMineR package (Sebastien Le, et al., 2008) to
+compute PCA, (M)CA, FAMD, MFA and HCPC; ii) and the factoextra package
+for extracting and visualizing the results.</p>
+</blockquote>
+<p>The figure below shows methods, which outputs can be visualized using
+the factoextra package. The official online documentation is available
+at: <a href="http://www.sthda.com/english/rpkgs/factoextra"
+class="uri">http://www.sthda.com/english/rpkgs/factoextra</a>.</p>
+<div class="figure">
+<img src="figures/factoextra-r-package.png" alt="" />
+<p class="caption">factoextra R package</p>
+</div>
+<div id="why-using-factoextra" class="section level3">
+<h3>Why using factoextra?</h3>
+<ol style="list-style-type: decimal">
+<li><p>The <em>factoextra</em> R package can handle the results of PCA,
+CA, MCA, MFA, FAMD and HMFA from several packages, for extracting and
+visualizing the most important information contained in your
+data.</p></li>
+<li><p><em>After PCA, CA, MCA, MFA, FAMD and HMFA, the most important
+row/column elements</em> can be highlighted using :<br />
+</p></li>
+</ol>
+<ul>
+<li>their cos2 values corresponding to their quality of representation
+on the factor map</li>
+<li>their contributions to the definition of the principal
+dimensions.</li>
+</ul>
+<p><span class="success">If you want to do this, the factoextra package
+provides a convenient solution.</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li><em>PCA and (M)CA are used sometimes for prediction problems</em> :
+one can predict the coordinates of new supplementary variables
+(quantitative and qualitative) and supplementary individuals using the
+information provided by the previously performed PCA or (M)CA. This can
+be done easily using the <a
+href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/">FactoMineR</a>
+package.</li>
+</ol>
+<p><span class="success">If you want to make predictions with PCA/MCA
+and to visualize the position of the supplementary variables/individuals
+on the factor map using ggplot2: then factoextra can help you. It’s
+quick, write less and do more…</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li><em>Several functions from different packages - FactoMineR, ade4,
+ExPosition, stats - are available in R for performing PCA, CA or
+MCA</em>. However, The components of the output vary from package to
+package.</li>
+</ol>
+<p><span class="success">No matter the package you decided to use,
+factoextra can give you a human understandable output.</span></p>
+</div>
+<div id="installing-factominer" class="section level3">
+<h3>Installing FactoMineR</h3>
+<p>The FactoMineR package can be installed and loaded as follow:</p>
+<pre class="r"><code># Install
+install.packages(&quot;FactoMineR&quot;)
+# Load
+library(&quot;FactoMineR&quot;)</code></pre>
+</div>
+<div id="installing-and-loading-factoextra" class="section level3">
+<h3>Installing and loading factoextra</h3>
+<ul>
+<li>factoextra can be installed from <a
+href="https://cran.r-project.org/package=factoextra">CRAN</a> as
+follow:</li>
+</ul>
+<pre class="r"><code>install.packages(&quot;factoextra&quot;)</code></pre>
+<ul>
+<li>Or, install the latest version from <a
+href="https://github.com/kassambara/factoextra">Github</a></li>
+</ul>
+<pre class="r"><code>if(!require(devtools)) install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;kassambara/factoextra&quot;)</code></pre>
+<ul>
+<li>Load factoextra as follow :</li>
+</ul>
+<pre class="r"><code>library(&quot;factoextra&quot;)</code></pre>
+</div>
+<div id="main-functions-in-the-factoextra-package"
+class="section level3">
+<h3>Main functions in the factoextra package</h3>
+<p><span class="warning">See the online documentation (<a
+href="http://www.sthda.com/english/rpkgs/factoextra"
+class="uri">http://www.sthda.com/english/rpkgs/factoextra</a>) for a
+complete list.</span></p>
+<div id="visualizing-dimension-reduction-analysis-outputs"
+class="section level4">
+<h4>Visualizing dimension reduction analysis outputs</h4>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Functions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>fviz_eig (or fviz_eigenvalue)</em></td>
+<td>Extract and visualize the eigenvalues/variances of dimensions.</td>
+</tr>
+<tr class="even">
+<td><em>fviz_pca</em></td>
+<td>Graph of individuals/variables from the output of <em>Principal
+Component Analysis</em> (PCA).</td>
+</tr>
+<tr class="odd">
+<td><em>fviz_ca</em></td>
+<td>Graph of column/row variables from the output of <em>Correspondence
+Analysis</em> (CA).</td>
+</tr>
+<tr class="even">
+<td><em>fviz_mca</em></td>
+<td>Graph of individuals/variables from the output of <em>Multiple
+Correspondence Analysis</em> (MCA).</td>
+</tr>
+<tr class="odd">
+<td><em>fviz_mfa</em></td>
+<td>Graph of individuals/variables from the output of <em>Multiple
+Factor Analysis</em> (MFA).</td>
+</tr>
+<tr class="even">
+<td><em>fviz_famd</em></td>
+<td>Graph of individuals/variables from the output of <em>Factor
+Analysis of Mixed Data</em> (FAMD).</td>
+</tr>
+<tr class="odd">
+<td><em>fviz_hmfa</em></td>
+<td>Graph of individuals/variables from the output of <em>Hierarchical
+Multiple Factor Analysis</em> (HMFA).</td>
+</tr>
+<tr class="even">
+<td><em>fviz_ellipses</em></td>
+<td>Draw confidence ellipses around the categories.</td>
+</tr>
+<tr class="odd">
+<td><em>fviz_cos2</em></td>
+<td>Visualize the quality of representation of the row/column variable
+from the results of PCA, CA, MCA functions.</td>
+</tr>
+<tr class="even">
+<td><em>fviz_contrib</em></td>
+<td>Visualize the contributions of row/column elements from the results
+of PCA, CA, MCA functions.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="extracting-data-from-dimension-reduction-analysis-outputs"
+class="section level4">
+<h4>Extracting data from dimension reduction analysis outputs</h4>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Functions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>get_eigenvalue</em></td>
+<td>Extract and visualize the eigenvalues/variances of dimensions.</td>
+</tr>
+<tr class="even">
+<td><em>get_pca</em></td>
+<td>Extract all the results (coordinates, squared cosine, contributions)
+for the active individuals/variables from <em>Principal Component
+Analysis</em> (PCA) outputs.</td>
+</tr>
+<tr class="odd">
+<td><em>get_ca</em></td>
+<td>Extract all the results (coordinates, squared cosine, contributions)
+for the active column/row variables from <em>Correspondence
+Analysis</em> outputs.</td>
+</tr>
+<tr class="even">
+<td><em>get_mca</em></td>
+<td>Extract results from <em>Multiple Correspondence Analysis</em>
+outputs.</td>
+</tr>
+<tr class="odd">
+<td><em>get_mfa</em></td>
+<td>Extract results from <em>Multiple Factor Analysis</em> outputs.</td>
+</tr>
+<tr class="even">
+<td><em>get_famd</em></td>
+<td>Extract results from <em>Factor Analysis of Mixed Data</em>
+outputs.</td>
+</tr>
+<tr class="odd">
+<td><em>get_hmfa</em></td>
+<td>Extract results from <em>Hierarchical Multiple Factor Analysis</em>
+outputs.</td>
+</tr>
+<tr class="even">
+<td><em>facto_summarize</em></td>
+<td>Subset and summarize the output of factor analyses.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="clustering-analysis-and-visualization" class="section level4">
+<h4>Clustering analysis and visualization</h4>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Functions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>dist</em>(fviz_dist, get_dist)</td>
+<td>Enhanced Distance Matrix Computation and Visualization.</td>
+</tr>
+<tr class="even">
+<td><em>get_clust_tendency</em></td>
+<td>Assessing Clustering Tendency.</td>
+</tr>
+<tr class="odd">
+<td><em>fviz_nbclust</em>(fviz_gap_stat)</td>
+<td>Determining and Visualizing the Optimal Number of Clusters.</td>
+</tr>
+<tr class="even">
+<td><em>fviz_dend</em></td>
+<td>Enhanced Visualization of Dendrogram</td>
+</tr>
+<tr class="odd">
+<td><em>fviz_cluster</em></td>
+<td>Visualize Clustering Results</td>
+</tr>
+<tr class="even">
+<td><em>fviz_mclust</em></td>
+<td>Visualize Model-based Clustering Results</td>
+</tr>
+<tr class="odd">
+<td><em>fviz_silhouette</em></td>
+<td>Visualize Silhouette Information from Clustering.</td>
+</tr>
+<tr class="even">
+<td><em>hcut</em></td>
+<td>Computes Hierarchical Clustering and Cut the Tree</td>
+</tr>
+<tr class="odd">
+<td><em>hkmeans</em> (hkmeans_tree, print.hkmeans)</td>
+<td>Hierarchical k-means clustering.</td>
+</tr>
+<tr class="even">
+<td><em>eclust</em></td>
+<td>Visual enhancement of clustering analysis</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="dimension-reduction-and-factoextra" class="section level3">
+<h3>Dimension reduction and factoextra</h3>
+<p>As depicted in the figure below, the type of analysis to be performed
+depends on the data set formats and structures.</p>
+<div class="figure">
+<img src="figures/multivariate-analysis-factoextra.png" alt="" />
+<p class="caption">dimension reduction and factoextra</p>
+</div>
+<p>In this section we start by illustrating classical methods - such as
+PCA, CA and MCA - for analyzing a data set containing continuous
+variables, contingency table and qualitative variables,
+respectively.</p>
+<p>We continue by discussing advanced methods - such as FAMD, MFA and
+HMFA - for analyzing a data set containing a mix of variables
+(qualitatives &amp; quantitatives) organized or not into groups.</p>
+<p>Finally, we show how to perform hierarchical clustering on principal
+components (HCPC), which useful for performing clustering with a data
+set containing only qualitative variables or with a mixed data of
+qualitative and quantitative variables.</p>
+<div id="principal-component-analysis" class="section level4">
+<h4>Principal component analysis</h4>
+<ul>
+<li>Data: <em>decathlon2</em> [in <em>factoextra</em> package]</li>
+<li>PCA function: <em>FactoMineR::PCA</em>()</li>
+<li>Visualization <em>factoextra::fviz_pca</em>()</li>
+</ul>
+<p><span class="success">Read more about computing and interpreting
+principal component analysis at: <a
+href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/"><strong>Principal
+Component Analysis</strong> (PCA)</a>.</span></p>
+<ol style="list-style-type: decimal">
+<li><strong>Loading data</strong></li>
+</ol>
+<pre class="r"><code>library(&quot;factoextra&quot;)
+data(&quot;decathlon2&quot;)
+df &lt;- decathlon2[1:23, 1:10]</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Principal component analysis</strong></li>
+</ol>
+<pre class="r"><code>library(&quot;FactoMineR&quot;)
+res.pca &lt;- PCA(df,  graph = FALSE)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Extract and visualize eigenvalues/variances</strong>:</li>
+</ol>
+<pre class="r"><code># Extract eigenvalues/variances
+get_eig(res.pca)</code></pre>
+<pre><code>##        eigenvalue variance.percent cumulative.variance.percent
+## Dim.1       4.124            41.24                        41.2
+## Dim.2       1.839            18.39                        59.6
+## Dim.3       1.239            12.39                        72.0
+## Dim.4       0.819             8.19                        80.2
+## Dim.5       0.702             7.02                        87.2
+## Dim.6       0.423             4.23                        91.5
+## Dim.7       0.303             3.03                        94.5
+## Dim.8       0.274             2.74                        97.2
+## Dim.9       0.155             1.55                        98.8
+## Dim.10      0.122             1.22                       100.0</code></pre>
+<pre class="r"><code># Visualize eigenvalues/variances
+fviz_screeplot(res.pca, addlabels = TRUE, ylim = c(0, 50))</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/pca-eigenvalue-1.png" width="432" /></p>
+<p>4.<strong>Extract and visualize results for variables</strong>:</p>
+<pre class="r"><code># Extract the results for variables
+var &lt;- get_pca_var(res.pca)
+var</code></pre>
+<pre><code>## Principal Component Analysis Results for variables
+##  ===================================================
+##   Name       Description                                    
+## 1 &quot;$coord&quot;   &quot;Coordinates for the variables&quot;                
+## 2 &quot;$cor&quot;     &quot;Correlations between variables and dimensions&quot;
+## 3 &quot;$cos2&quot;    &quot;Cos2 for the variables&quot;                       
+## 4 &quot;$contrib&quot; &quot;contributions of the variables&quot;</code></pre>
+<pre class="r"><code># Coordinates of variables
+head(var$coord)</code></pre>
+<pre><code>##               Dim.1   Dim.2  Dim.3   Dim.4  Dim.5
+## X100m        -0.851 -0.1794  0.302  0.0336 -0.194
+## Long.jump     0.794  0.2809 -0.191 -0.1154  0.233
+## Shot.put      0.734  0.0854  0.518  0.1285 -0.249
+## High.jump     0.610 -0.4652  0.330  0.1446  0.403
+## X400m        -0.702  0.2902  0.284  0.4308  0.104
+## X110m.hurdle -0.764 -0.0247  0.449 -0.0169  0.224</code></pre>
+<pre class="r"><code># Contribution of variables
+head(var$contrib)</code></pre>
+<pre><code>##              Dim.1   Dim.2 Dim.3   Dim.4 Dim.5
+## X100m        17.54  1.7505  7.34  0.1376  5.39
+## Long.jump    15.29  4.2904  2.93  1.6249  7.75
+## Shot.put     13.06  0.3967 21.62  2.0141  8.82
+## High.jump     9.02 11.7716  8.79  2.5499 23.12
+## X400m        11.94  4.5799  6.49 22.6509  1.54
+## X110m.hurdle 14.16  0.0333 16.26  0.0348  7.17</code></pre>
+<pre class="r"><code># Graph of variables: default plot
+fviz_pca_var(res.pca, col.var = &quot;black&quot;)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/pca-variables-1.png" width="432" /></p>
+<p>It’s possible to control variable colors using their contributions
+(“contrib”) to the principal axes:</p>
+<pre class="r"><code># Control variable colors using their contributions
+fviz_pca_var(res.pca, col.var=&quot;contrib&quot;,
+             gradient.cols = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
+             repel = TRUE # Avoid text overlapping
+             )</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/pca-variable-colors-by-contributions-1.png" width="480" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Variable contributions to the principal axes</strong>:</li>
+</ol>
+<pre class="r"><code># Contributions of variables to PC1
+fviz_contrib(res.pca, choice = &quot;var&quot;, axes = 1, top = 10)
+# Contributions of variables to PC2
+fviz_contrib(res.pca, choice = &quot;var&quot;, axes = 2, top = 10)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/pca-variable-contributions-1.png" width="336" /><img src="useful_packages___factoextra_files/figure-html/pca-variable-contributions-2.png" width="336" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>Extract and visualize results for individuals</strong>:</li>
+</ol>
+<pre class="r"><code># Extract the results for individuals
+ind &lt;- get_pca_ind(res.pca)
+ind</code></pre>
+<pre><code>## Principal Component Analysis Results for individuals
+##  ===================================================
+##   Name       Description                       
+## 1 &quot;$coord&quot;   &quot;Coordinates for the individuals&quot; 
+## 2 &quot;$cos2&quot;    &quot;Cos2 for the individuals&quot;        
+## 3 &quot;$contrib&quot; &quot;contributions of the individuals&quot;</code></pre>
+<pre class="r"><code># Coordinates of individuals
+head(ind$coord)</code></pre>
+<pre><code>##            Dim.1  Dim.2  Dim.3   Dim.4   Dim.5
+## SEBRLE     0.196  1.589  0.642  0.0839  1.1683
+## CLAY       0.808  2.475 -1.387  1.2984 -0.8250
+## BERNARD   -1.359  1.648  0.201 -1.9641  0.0842
+## YURKOV    -0.889 -0.443  2.530  0.7129  0.4078
+## ZSIVOCZKY -0.108 -2.069 -1.334 -0.1015 -0.2015
+## McMULLEN   0.121 -1.014 -0.863  1.3416  1.6215</code></pre>
+<pre class="r"><code># Graph of individuals
+# 1. Use repel = TRUE to avoid overplotting
+# 2. Control automatically the color of individuals using the cos2
+    # cos2 = the quality of the individuals on the factor map
+    # Use points only
+# 3. Use gradient color
+fviz_pca_ind(res.pca, col.ind = &quot;cos2&quot;, 
+             gradient.cols = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
+             repel = TRUE # Avoid text overlapping (slow if many points)
+             )</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/principal-component-analysis-data-mining-1.png" width="518.4" /></p>
+<pre class="r"><code># Biplot of individuals and variables
+fviz_pca_biplot(res.pca, repel = TRUE)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/principal-component-analysis-data-mining-2.png" width="518.4" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li><strong>Color individuals by groups</strong>:</li>
+</ol>
+<pre class="r"><code># Compute PCA on the iris data set
+# The variable Species (index = 5) is removed
+# before PCA analysis
+iris_data &lt;- datasets::iris
+iris.pca &lt;- PCA(iris_data[,-5], graph = FALSE)
+# Visualize
+# Use habillage to specify groups for coloring
+fviz_pca_ind(iris.pca,
+             label = &quot;none&quot;, # hide individual labels
+             habillage = iris_data$Species, # color by groups
+             palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
+             addEllipses = TRUE # Concentration ellipses
+             )</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/individuals-factor-map-color-by-groups-1.png" width="576" /></p>
+</div>
+<div id="correspondence-analysis" class="section level4">
+<h4>Correspondence analysis</h4>
+<ul>
+<li>Data: <em>housetasks</em> [in factoextra]</li>
+<li>CA function <em>FactoMineR::CA</em>()</li>
+<li>Visualize with <em>factoextra::fviz_ca</em>()</li>
+</ul>
+<p><span class="success">Read more about computing and interpreting
+correspondence analysis at: <a
+href="http://www.sthda.com/english/wiki/correspondence-analysis-in-r-the-ultimate-guide-for-the-analysis-the-visualization-and-the-interpretation-r-software-and-data-mining"><strong>Correspondence
+Analysis</strong> (CA)</a>.</span></p>
+<ul>
+<li><strong>Compute CA</strong>:</li>
+</ul>
+<pre class="r"><code> # Loading data
+data(&quot;housetasks&quot;)
+ # Computing CA
+library(&quot;FactoMineR&quot;)
+res.ca &lt;- CA(housetasks, graph = FALSE)</code></pre>
+<ul>
+<li><strong>Extract results for row/column variables</strong>:</li>
+</ul>
+<pre class="r"><code># Result for row variables
+get_ca_row(res.ca)
+  
+# Result for column variables
+get_ca_col(res.ca)</code></pre>
+<ul>
+<li><strong>Biplot of rows and columns</strong></li>
+</ul>
+<pre class="r"><code>fviz_ca_biplot(res.ca, repel = TRUE)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/correspondence-analysis-biplot-1.png" width="480" /></p>
+<p>To visualize only row points or column points, type this:</p>
+<pre class="r"><code># Graph of row points
+fviz_ca_row(res.ca, repel = TRUE)
+# Graph of column points
+fviz_ca_col(res.ca)
+# Visualize row contributions on axes 1
+fviz_contrib(res.ca, choice =&quot;row&quot;, axes = 1)
+     
+# Visualize column contributions on axes 1
+fviz_contrib(res.ca, choice =&quot;col&quot;, axes = 1)</code></pre>
+</div>
+<div id="multiple-correspondence-analysis" class="section level4">
+<h4>Multiple correspondence analysis</h4>
+<ul>
+<li>Data: <strong>poison</strong> [in factoextra]</li>
+<li>MCA function <strong>FactoMineR::MCA</strong>()</li>
+<li>Visualization <strong>factoextra::fviz_mca</strong>()</li>
+</ul>
+<p><span class="success">Read more about computing and interpreting
+multiple correspondence analysis at: <a
+href="http://www.sthda.com/english/wiki/multiple-correspondence-analysis-essentials-interpretation-and-application-to-investigate-the-associations-between-categories-of-multiple-qualitative-variables-r-software-and-data-mining"><strong>Multiple
+Correspondence Analysis</strong> (MCA)</a>.</span></p>
+<ol style="list-style-type: decimal">
+<li><strong>Computing MCA</strong>:</li>
+</ol>
+<pre class="r"><code>library(FactoMineR)
+data(poison)
+res.mca &lt;- MCA(poison, quanti.sup = 1:2,
+              quali.sup = 3:4, graph=FALSE)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Extract results for variables and individuals</strong>:</li>
+</ol>
+<pre class="r"><code># Extract the results for variable categories
+get_mca_var(res.mca)
+# Extract the results for individuals
+get_mca_ind(res.mca)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Contribution of variables and individuals to the principal
+axes</strong>:</li>
+</ol>
+<pre class="r"><code># Visualize variable categorie contributions on axes 1
+fviz_contrib(res.mca, choice =&quot;var&quot;, axes = 1)
+# Visualize individual contributions on axes 1
+# select the top 20
+fviz_contrib(res.mca, choice =&quot;ind&quot;, axes = 1, top = 20)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Graph of individuals</strong></li>
+</ol>
+<pre class="r"><code># Color by groups
+# Add concentration ellipses
+# Use repel = TRUE to avoid overplotting
+grp &lt;- as.factor(poison[, &quot;Vomiting&quot;])
+fviz_mca_ind(res.mca,  habillage = grp,
+             addEllipses = TRUE, repel = TRUE)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/mca-graph-of-individuals-1.png" width="518.4" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Graph of variable categories</strong>:</li>
+</ol>
+<pre class="r"><code>fviz_mca_var(res.mca, repel = TRUE)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/mca-graph-variables-1.png" width="518.4" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>Biplot of individuals and variables</strong>:</li>
+</ol>
+<pre class="r"><code>fviz_mca_biplot(res.mca, repel = TRUE)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/mca-biplot-1.png" width="518.4" /></p>
+</div>
+<div id="advanced-methods" class="section level4">
+<h4>Advanced methods</h4>
+<p>The factoextra R package has also functions that support the
+visualization of advanced methods such:</p>
+<ul>
+<li>Factor Analysis of Mixed Data (FAMD): : <a
+href="http://www.sthda.com/english/rpkgs/factoextra/reference/fviz_famd.html">FAMD
+Examples</a></li>
+<li>Multiple Factor Analysis (MFA): <a
+href="http://www.sthda.com/english/rpkgs/factoextra/reference/fviz_mfa.html">MFA
+Examples</a></li>
+<li>Hierarchical Multiple Factor Analysis (HMFA): <a
+href="http://www.sthda.com/english/rpkgs/factoextra/reference/fviz_hmfa.html">HMFA
+Examples</a></li>
+<li><a
+href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/117-hcpc-hierarchical-clustering-on-principal-components-essentials/">Hierachical
+Clustering on Principal Components (HCPC)</a></li>
+</ul>
+</div>
+</div>
+<div id="cluster-analysis-and-factoextra" class="section level3">
+<h3>Cluster analysis and factoextra</h3>
+<p>To learn more about cluster analysis, you can refer to the book
+available at: <a
+href="http://www.sthda.com/english/wiki/practical-guide-to-cluster-analysis-in-r-book">Practical
+Guide to Cluster Analysis in R</a></p>
+<p><a href = "http://www.sthda.com/english/wiki/practical-guide-to-cluster-analysis-in-r-book"><img src = "figures/clustering-e1-cover.png" alt = "clustering book cover"/></a></p>
+<p>The main parts of the book include:</p>
+<ul>
+<li><em>distance measures</em>,</li>
+<li><em>partitioning clustering</em>,</li>
+<li><em>hierarchical clustering</em>,</li>
+<li><em>cluster validation methods</em>, as well as,</li>
+<li><em>advanced clustering methods</em> such as fuzzy clustering,
+density-based clustering and model-based clustering.</li>
+</ul>
+<p>The book presents the basic principles of these tasks and provide
+many examples in R. It offers solid guidance in data mining for students
+and researchers.</p>
+<div id="partitioning-clustering" class="section level4">
+<h4>Partitioning clustering</h4>
+<div class="figure">
+<img src="figures/partitioning-clustering.png" alt="" />
+<p class="caption">Partitioning cluster analysis</p>
+</div>
+<pre class="r"><code># 1. Loading and preparing data
+data(&quot;USArrests&quot;)
+df &lt;- scale(USArrests)
+# 2. Compute k-means
+set.seed(123)
+km.res &lt;- kmeans(scale(USArrests), 4, nstart = 25)
+# 3. Visualize
+library(&quot;factoextra&quot;)
+fviz_cluster(km.res, data = df,
+             palette = c(&quot;#00AFBB&quot;,&quot;#2E9FDF&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
+             ggtheme = theme_minimal(),
+             main = &quot;Partitioning Clustering Plot&quot;
+             )</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/partitioning-clustering-1.png" width="518.4" /></p>
+<br/><br />
+
+<div class="success">
+<p>Read more:</p>
+<ol style="list-style-type: decimal">
+<li><p><a
+href="http://www.sthda.com/english/wiki/cluster-analysis-in-r-unsupervised-machine-learning">Cluster
+analysis in R: All what you should know</a>.</p></li>
+<li><p><a
+href="http://www.sthda.com/english/wiki/partitioning-cluster-analysis-quick-start-guide-unsupervised-machine-learning">Partitioning
+cluster analysis</a>.</p></li>
+</ol>
+</div>
+<p><br/></p>
+</div>
+<div id="hierarchical-clustering" class="section level4">
+<h4>Hierarchical clustering</h4>
+<pre class="r"><code>library(&quot;factoextra&quot;)
+# Compute hierarchical clustering and cut into 4 clusters
+res &lt;- hcut(USArrests, k = 4, stand = TRUE)
+# Visualize
+fviz_dend(res, rect = TRUE, cex = 0.5,
+          k_colors = c(&quot;#00AFBB&quot;,&quot;#2E9FDF&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;))</code></pre>
+<pre><code>## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## &quot;none&quot;)` instead.</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/hierarchical-clustering-1.png" width="518.4" /></p>
+<br/><br />
+
+<div class="success">
+<p>Read more:</p>
+<ol style="list-style-type: decimal">
+<li><p><a
+href="http://www.sthda.com/english/wiki/cluster-analysis-in-r-unsupervised-machine-learning">Cluster
+analysis in R: All what you should know</a></p></li>
+<li><p><a
+href="http://www.sthda.com/english/wiki/hierarchical-clustering-essentials-unsupervised-machine-learning">Hierarchical
+clustering essentials</a></p></li>
+</ol>
+</div>
+<p><br/></p>
+</div>
+<div id="determine-the-optimal-number-of-clusters"
+class="section level4">
+<h4>Determine the optimal number of clusters</h4>
+<pre class="r"><code># Optimal number of clusters for k-means
+library(&quot;factoextra&quot;)
+my_data &lt;- scale(USArrests)
+fviz_nbclust(my_data, kmeans, method = &quot;gap_stat&quot;)</code></pre>
+<p><img src="useful_packages___factoextra_files/figure-html/determine-the-number-of-clusters-gap-statistics-1.png" width="384" /></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

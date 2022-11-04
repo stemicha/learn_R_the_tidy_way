@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>introduction_to_R.knit</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="intro" class="section level1">
+<h1>Introduction</h1>
+<div id="why-r" class="section level2">
+<h2>Why R?</h2>
+<ul>
+<li>It’s <em>free!</em></li>
+<li>easy to install / maintain</li>
+<li>R runs on all the platforms. Just name it and you got it!! Windows
+PC, Mac, Linux to name a few</li>
+<li>thousands of free libraries to use in areas of finance, natural
+language processing, cluster analysis, optimization, prediction, high
+performance computing etc.</li>
+<li>R is the most comprehensive statistical analysis package as new
+technology and ideas often appear first in R.</li>
+<li>easy to process big files and analyse huge amounts of data</li>
+<li>integrated data visualization tools, <em>even dynamic</em></li>
+<li>integrates with many programming languages like Java, Ruby, C++,
+Python</li>
+<li>fast, and even faster with <em>C++</em> integration via <a
+href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-attributes.pdf"
+target="_blank">Rcpp</a>.</li>
+<li>generation of interactive applications (shiny apps)</li>
+<li>easy to get help
+<ul>
+<li><a
+href="https://support.rstudio.com/hc/en-us/articles/200552336-Getting-Help-with-R"
+target="_blank">huge R community in the web</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/r"
+target="_blank">stackoverflow</a> with a lot of tags like
+<strong>tidyverse</strong>, <strong>dplyr</strong>,
+<strong>ggplot2</strong> etc.</li>
+<li><a href="http://www.r-bloggers.com"
+target="_blank">rbloggers</a></li>
+</ul></li>
+<li>writing books, blogs, html sites in R with ease</li>
+</ul>
+</div>
+<div id="what-is-r" class="section level2">
+<h2>What is R?</h2>
+<p><strong>R is a language and environment for statistical computing and
+graphics</strong>. It is a GNU project which is similar to the S
+language and environment which was developed at Bell Laboratories
+(formerly AT&amp;T, now Lucent Technologies) by John Chambers and
+colleagues. R can be considered as a different implementation of S.
+There are some important differences, but much code written for S runs
+unaltered under R.</p>
+<ul>
+<li>an effective data handling and storage facility,</li>
+<li>a suite of operators for calculations on arrays, in particular
+matrices,</li>
+<li>a large, coherent, integrated collection of intermediate tools for
+data analysis,</li>
+<li>graphical facilities for data analysis and display either on-screen
+or on hardcopy, and</li>
+<li>a well-developed, simple and effective programming language which
+includes conditionals, loops, user-defined<br />
+recursive functions and input and output facilities.</li>
+</ul>
+</div>
+</div>
+<div id="rstudio-ide-httpsrstudio.com" class="section level1">
+<h1>RStudio IDE (<a href="https://rstudio.com"
+class="uri">https://rstudio.com</a>)</h1>
+<p>RStudio is an <strong>integrated development environment
+(IDE)</strong>. It is critical tool for writing and exucuting
+R-code.</p>
+<p>RStudio was build for R but it supports also:</p>
+<ul>
+<li>RMarkdown (HTML, PDF, Word Documents, and slide shows)</li>
+<li>C++</li>
+<li>Python</li>
+<li>SQL</li>
+<li>Stan</li>
+<li>HTML</li>
+</ul>
+<div class="figure">
+<img src="figures/RStudio_cheat_sheet_screenshot.png" alt="" />
+<p class="caption">screenshot from RStudio cheat sheet</p>
+</div>
+<ul>
+<li><em>Console</em> to run <strong>R</strong>, with syntax
+highlighter</li>
+<li><em>Editor</em> to work with scripts</li>
+<li><em>Viewer</em> for data / plots / website</li>
+<li><em>Package management</em> (including building)</li>
+<li><em>Autocompletion</em> using <kbd>TAB</kbd></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/"
+target="_blank"><em>Cheatsheets</em></a></li>
+<li><em>Git</em> integration for versioning</li>
+<li><em>Inline</em> outputs (&gt;= v1.03)</li>
+<li><em>Keyboard shortcuts</em></li>
+<li><a
+href="https://rviews.rstudio.com/2017/03/15/why-i-love-r-notebooks/"
+target="_blank"><em>Notebooks</em></a></li>
+</ul>
+<p>Don’t mix up <strong>R</strong> and <strong>RStudio</strong>.<br />
+<strong>R</strong> needs to be installed first.</p>
+<p>And for windows PC install <a
+href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> as well
+since it contains several additional system tools like compiler and zip
+executables.</p>
+<div id="useful-rstudio-shortcuts" class="section level2">
+<h2>Useful Rstudio shortcuts</h2>
+<p>replace <kbd>Cmd</kbd> by <kbd>Ctrl</kbd> for PC</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>shortcut</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><kbd>Cmd</kbd> + <kbd>Enter</kbd></td>
+<td><em>run code</em></td>
+</tr>
+<tr class="even">
+<td><kbd>tab</kbd></td>
+<td><em>auto-complete code</em></td>
+</tr>
+<tr class="odd">
+<td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></td>
+<td><em>multi-line edition</em></td>
+</tr>
+<tr class="even">
+<td><kbd>Cmd</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></td>
+<td><em>copy line up / down</em></td>
+</tr>
+<tr class="odd">
+<td><kbd>Alt</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></td>
+<td><em>move line up / down</em></td>
+</tr>
+<tr class="even">
+<td><kbd>Alt</kbd>+<kbd>-</kbd></td>
+<td><em>&lt;-</em> (assign e.g. a value to a variable)</td>
+</tr>
+<tr class="odd">
+<td><kbd>Alt</kbd> + <kbd>↑</kbd> + <kbd>K</kbd></td>
+<td><em>quick view of keyboard shortcuts</em></td>
+</tr>
+<tr class="even">
+<td><kbd>Cmd</kbd> + <kbd>↑</kbd> + <kbd>P</kbd></td>
+<td><em>shortcut for command palette</em></td>
+</tr>
+</tbody>
+</table>
+<center>
+<div class="figure">
+<img src="figures/tips_keyboard_shortcuts.gif" align="center" alt="" />
+<p class="caption">edit shortcuts in RStudio</p>
+</div>
+</center>
+</div>
+<div id="r---help" class="section level2">
+<h2>R - Help</h2>
+<p>Getting help is easy.</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="26%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>help</th>
+<th>what it does</th>
+<th>output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>?mean</code></td>
+<td>get the help for mean() function (you can also mark the function and
+press <code>F1</code></td>
+<td>Generic function for the (trimmed) arithmetic mean. Usage: mean(x,
+…)</td>
+</tr>
+<tr class="even">
+<td><code>help.search("mean")</code></td>
+<td>search all help files accross all installed packages for a word or
+phrase</td>
+<td>output is list of several packages containing the word or phrase
+…</td>
+</tr>
+<tr class="odd">
+<td><code>help(package="dplyr")</code></td>
+<td>redirection to the help page of the package</td>
+<td>will show the help of all functions in the package</td>
+</tr>
+</tbody>
+</table>
+<p><strong>At some point you will stuck. Please use google and try to
+explain your problem in the simplest way and tag it with
+<code>R</code>.</strong></p>
+</div>
+</div>
+<div id="r---packages" class="section level1">
+<h1>R - Packages</h1>
+<p>R packages are a collection of R functions, complied code and sample
+data. They are stored under a directory called “library” in the R
+environment. By default, R installs a set of packages during
+installation other packages must be installed after R installation.</p>
+<div id="where-do-i-get-r---packages" class="section level2">
+<h2>Where do I get R - Packages</h2>
+<div id="cran" class="section level3">
+<h3>CRAN</h3>
+<p><a
+href="https://cran.r-project.org/web/packages/available_packages_by_date.html"
+target="_blank">CRAN</a></p>
+<p>In RStudio you can use the Packages register card and hit the
+<em>Install</em> button.</p>
+<p><strong>reliable</strong>: package is checked during submission
+process</p>
+<p><a href="https://mran.microsoft.com/packages/"
+target="_blank">MRAN</a> for Windows users</p>
+</div>
+<div id="bioconductor" class="section level3">
+<h3>Bioconductor</h3>
+<p><a href="https://www.bioconductor.org/"
+target="_blank">bioconductor</a></p>
+<p>dedicated to biology. <a
+href="https://www.bioconductor.org/packages/release/bioc/html/limma.html"
+target="_blank">status of famous limma package</a></p>
+<p>typical install:</p>
+<pre class="r"><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;limma&quot;)</code></pre>
+<p><a
+href="https://www.bioconductor.org/packages/release/BiocViews.html#___Software"
+target="_blank">explore packages on Bioconductor</a></p>
+</div>
+<div id="github" class="section level3">
+<h3>Github</h3>
+<p><a href="https://github.com/" target="_blank">GitHub</a></p>
+<p>easy install thanks to <a href="https://github.com/hadley/devtools"
+target="_blank">devtools</a>. <a href="https://github.com/hadley/readr"
+target="_blank">status</a></p>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;tidyverse/readr&quot;)</code></pre>
+</div>
+<div id="metacran" class="section level3">
+<h3>MetaCRAN</h3>
+<p><a href="https://www.r-pkg.org" target="_blank">MetaCRAN</a></p>
+</div>
+</div>
+<div id="r---using-packages" class="section level2">
+<h2>R - Using Packages</h2>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>syntax</th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>install.packages("dplyr")</code></td>
+<td>download and install package <em>dplyr</em> from CRAN</td>
+</tr>
+<tr class="even">
+<td><code>library("dplyr")</code></td>
+<td>load the package into the session, making all its functions
+available to use</td>
+</tr>
+<tr class="odd">
+<td><code>dplyr::select</code></td>
+<td>use a particular function form the package</td>
+</tr>
+<tr class="even">
+<td><code>data(iris)</code></td>
+<td>loads a build in dataset into the environment</td>
+</tr>
+<tr class="odd">
+<td><code>citation("dplyr")</code></td>
+<td>print the reference for citation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The double colon (::) is very important</strong>, because
+there may be multiple functions with the same name in multiple packages.
+The double colon operator allows you to specify the specific function
+you want:</p>
+<p><code>package::functionname</code> e.g. dplyr::select()</p>
+</div>
+</div>
+<div id="r---working-directory" class="section level1">
+<h1>R - Working directory</h1>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>syntax</th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>getwd()</code></td>
+<td>print out the current working directory (where inputs are found and
+outputs are sent)</td>
+</tr>
+<tr class="even">
+<td><code>setwd("path")</code></td>
+<td>change the current working directory to <em>path</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>USE projects in RStudio to set the working directory to the
+folder you are working in.</strong></p>
+</div>
+<div id="projects" class="section level1">
+<h1>Projects</h1>
+<p><font size="12" color="#D50000"><strong>always use projects
+!!!</strong></font></p>
+<div id="using-projects" class="section level2">
+<h2>Using Projects</h2>
+<p>RStudio projects make it straightforward to divide your work into
+multiple contexts, each with their own working directory, workspace,
+history, and source documents.</p>
+<p>With projects file path are relative from your project and are not
+relying on your system.</p>
+<p><u>example:</u></p>
+<p>you generated a R-Script loading files &gt;&gt; doing some
+calculations &gt;&gt; writing some output.</p>
+<ul>
+<li><p><em>your R-project folder:</em> R_analysis</p></li>
+<li><p><em>your working directory absolute:</em>
+<u>c:/user/admin/documents/2020_projects/03_subproject/measurements/</u>R_analysis</p></li>
+<li><p><em>your working directory relative (project directory):</em>
+R_analysis</p></li>
+</ul>
+<p>When you open a project the working directory is always the proejct
+directory.</p>
+<p><strong>If you did your scripting in a project you can give someone
+else the project folder and he or she doesn’t have to worry about the
+paths that are used because they are relative.</strong></p>
+</div>
+<div id="creating-projects" class="section level2">
+<h2>Creating projects</h2>
+<p>RStudio projects are associated with R working directories. You can
+create an RStudio project:</p>
+<ul>
+<li>In a brand new directory</li>
+<li>In an existing directory where you already have R code and data</li>
+<li>By cloning a version control (Git or Subversion) repository</li>
+</ul>
+<p>To create a new project use the Create Project command (available on
+the Projects menu and on the global toolbar): <img
+src="figures/create_new_projects.png" alt="create new project" /></p>
+<p>When a new project is created RStudio:</p>
+<ol style="list-style-type: decimal">
+<li>Creates a project file (with an .Rproj extension) within the project
+directory. This file contains various project options (discussed below)
+and can also be used as a shortcut for opening the project directly from
+the filesystem.</li>
+<li>Creates a hidden directory (named .Rproj.user) where
+project-specific temporary files (e.g. auto-saved source documents,
+window-state, etc.) are stored. This directory is also automatically
+added to .Rbuildignore, .gitignore, etc. if required.</li>
+<li>Loads the project into RStudio and display its name in the Projects
+toolbar (which is located on the far right side of the main
+toolbar)</li>
+</ol>
+<div id="suggest-project-folder-structure" class="section level3">
+<h3>suggest project folder structure</h3>
+<pre class="r"><code># my_project
+#    ├── data &lt;folder&gt;
+#    │   ├── raw_data &lt;subfolder&gt;
+#    │   └── processed_data &lt;subfolder&gt;
+#    │   └── source_data &lt;subfolder&gt;
+#    ├── figures &lt;folder&gt;
+#    ├── R_scritps &lt;folder&gt;
+#    ├── README.md
+#    ├── run_analyses.R</code></pre>
+</div>
+</div>
+<div id="working-with-projects" class="section level2">
+<h2>Working with projects</h2>
+<div id="opening-projects" class="section level3">
+<h3>Opening Projects</h3>
+<p>There are several ways to open a project:</p>
+<ol style="list-style-type: decimal">
+<li>Using the Open Project command (available from both the Projects
+menu and the Projects toolbar) to browse for and select an existing
+project file (e.g. MyProject.Rproj).</li>
+<li>Selecting a project from the list of most recently opened projects
+(also available from both the Projects menu and toolbar).</li>
+<li>Double-clicking on the project file within the system shell
+(e.g. Windows Explorer, OSX Finder, etc.).</li>
+</ol>
+<div
+id="when-a-project-is-opened-within-rstudio-the-following-actions-are-taken"
+class="section level4">
+<h4>When a project is opened within RStudio the following actions are
+taken:</h4>
+<ul>
+<li>A new R session (process) is started</li>
+<li>The .Rprofile file in the project’s main directory (if any) is
+sourced by R</li>
+<li>The .RData file in the project’s main directory is loaded (if
+project options indicate that it should be loaded).</li>
+<li>The .Rhistory file in the project’s main directory is loaded into
+the RStudio History pane (and used for Console Up/Down arrow command
+history).</li>
+<li>The current working directory is set to the project directory.</li>
+<li>Previously edited source documents are restored into editor
+tabs</li>
+<li>Other RStudio settings (e.g. active tabs, splitter positions, etc.)
+are restored to where they were the last time the project was
+closed.</li>
+</ul>
+</div>
+</div>
+<div id="quitting-a-project" class="section level3">
+<h3>Quitting a Project</h3>
+<p>When you are within a project and choose to either Quit, close the
+project, or open another project the following actions are taken:</p>
+<ol style="list-style-type: decimal">
+<li>.RData and/or .Rhistory are written to the project directory (if
+current options indicate they should be)</li>
+<li>The list of open source documents is saved (so it can be restored
+next time the project is opened)</li>
+<li>Other RStudio settings (as described above) are saved.</li>
+<li>The R session is terminated.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="r-script-header" class="section level1">
+<h1>R-script header</h1>
+<p>Use a intuitive Script header. This is important especially if the
+script needs be shared with colleagues.</p>
+<p>Default script header (suggestion):</p>
+<pre class="r"><code>################################################ 
+## Project:
+## Script purpose: 
+## Date: 
+## Author: 
+## Version:
+## Version Release notes:
+##################################################</code></pre>
+<p>Example:</p>
+<pre class="r"><code>################################################ 
+## Project: Rho DIA-MS proteome data analysis
+## Script purpose: analysis of Rho-mutant and HG001 proteome data and reveal differential proteome levels
+## Date: 12.09.2018
+## Author: Stephan Michalik
+## Version: 1.00
+## Version Release notes:
+##################################################</code></pre>
+</div>
+<div id="r-basics" class="section level1">
+<h1>R basics</h1>
+<p>The base R cheat sheet ( <a href="cheat_sheets/base-r-cheetsheat.pdf"
+target="_blank">base R cheat sheet</a> ) covers a broad range of the
+points of the chapter and is worth looking at.</p>
+<div id="writing-code" class="section level2">
+<h2>writing code</h2>
+<p><strong>The # sign is used to out-comment code. (code will NOT
+run)</strong></p>
+<p><strong>use</strong> <kbd>Cmd</kbd> + <kbd>Shift</kbd>+ <kbd>R</kbd>
+for comment a new code section</p>
+<p>This will appear in the drop down level menu in the scripting window
+for navigation.</p>
+<p><font size="10" color="#D50000">DO NOT use ” ” (spaces) in variables
+etc., use always “_” or “.” instead of spaces !!!</font></p>
+<p>The best is to use “_” since “.” is used in other programming
+languages. In python the “.” means look inside the space that is before
+the dot for code to execute.</p>
+<p>So if intermixing codes becomes more feasable this might be very
+disturbing.</p>
+</div>
+<div id="how-to-use-help" class="section level2">
+<h2>how to use help</h2>
+<pre class="r"><code>#help for mean
+?mean</code></pre>
+<p>or mark the function (mean) and press F1</p>
+</div>
+<div id="arithmetic-with-r" class="section level2">
+<h2>Arithmetic with R</h2>
+<p>In its most basic form, R can be used as a simple calculator.
+Consider the following arithmetic operators:</p>
+<ul>
+<li><code>+</code>: addition<br />
+</li>
+<li><code>-</code>: subtraction<br />
+</li>
+<li><code>*</code>: multiplication<br />
+</li>
+<li><code>/</code>: division<br />
+</li>
+<li><code>^</code> or <code>**</code>: exponentiation</li>
+<li><code>%/%</code>: integer division</li>
+<li><code>%%</code>: remainder of integer division</li>
+</ul>
+<p><strong>R</strong> will:</p>
+<ul>
+<li>first perform <strong>exponentiation</strong></li>
+<li>then multiplications and/or divisions</li>
+<li>and finally additions and/or subtractions.</li>
+</ul>
+<p>If you need to change the priority during the evaluation, use
+parentheses – <em>i.e.</em> <code>(</code> and <code>)</code> – to group
+calculations.</p>
+<pre class="r"><code># An addition
+5 + 5 </code></pre>
+<pre><code>## [1] 10</code></pre>
+<pre class="r"><code># A subtraction
+5 - 5 </code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># A multiplication
+3 * 5</code></pre>
+<pre><code>## [1] 15</code></pre>
+<pre class="r"><code> # A division
+(5 + 5) / 2 </code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code># Exponentiation
+2^5</code></pre>
+<pre><code>## [1] 32</code></pre>
+<pre class="r"><code># integer division
+10%/%3</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code># remainder of integer division
+10%%3</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code># sequence
+1:10</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>seq(2, 3, by=0.5)</code></pre>
+<pre><code>## [1] 2.0 2.5 3.0</code></pre>
+<pre class="r"><code># repeats
+rep(1:2, times=3)</code></pre>
+<pre><code>## [1] 1 2 1 2 1 2</code></pre>
+<pre class="r"><code>rep(1:2, each=3)</code></pre>
+<pre><code>## [1] 1 1 1 2 2 2</code></pre>
+<p><strong>other function:</strong></p>
+<ul>
+<li><code>mean()</code> = average</li>
+<li><code>median()</code> = median</li>
+<li><code>sum()</code> = sum</li>
+<li><code>sqrt()</code> = square root</li>
+<li><code>IQR()</code> = interquartile range</li>
+<li><code>var()</code> = variance</li>
+<li><code>cov()</code> = covariance</li>
+<li><code>cor()</code> = correlation</li>
+<li><code>quantile()</code> = produces sample quantiles corresponding to
+the given probabilities</li>
+<li>… (please see e.g. R stats packages for available basic
+function)</li>
+</ul>
+</div>
+<div id="variable-assignment" class="section level2">
+<h2>Variable assignment</h2>
+<p>A basic concept in (statistical) programming is called a
+variable.</p>
+<p>A variable allows you to store a value (e.g. 4) or an object (e.g. a
+function description) in R. You can then later use this variable’s name
+to easily access the value or the object that is stored within this
+variable.</p>
+<p>You can assign a value <code>4</code> to a variable
+<code>my_var</code> with the command</p>
+<pre class="r"><code># An addition
+my_var &lt;- 4 # my_var = 4 can alos be used but &quot;&lt;-&quot; is the more universal correct assignment operator
+# Print out the value of the variable my_var
+my_var</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code># Assign a value to the variables my_apples and my_oranges
+my_apples &lt;- 5
+my_oranges &lt;- 1
+
+# Add these two variables together
+my_apples + my_oranges</code></pre>
+<pre><code>## [1] 6</code></pre>
+<pre class="r"><code># Create the variable my_fruit
+my_fruit &lt;- my_apples + my_oranges
+my_fruit # return result again</code></pre>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="functions" class="section level2">
+<h2>functions</h2>
+<p>R is about functions, when you write <code>mean(x = ...)</code> you
+use the mean function to calculate an arithmetic mean over given
+numbers.</p>
+<p>A function is always devided into 3 sections:</p>
+<ol style="list-style-type: decimal">
+<li>function parameter</li>
+<li>function body</li>
+<li>return statement</li>
+</ol>
+<p><img src="html_files/function_skeleton.png" /></p>
+<p>Lets say we would like to have a function converting
+temperatures.</p>
+<p>Here an example from (<a
+href="https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html"
+class="uri">https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html</a>)</p>
+<pre class="r"><code># function for converting Celsius to Kelvin
+celsius_to_kelvin &lt;- function(temp_C) {
+  temp_K &lt;- temp_C + 273.15
+  return(temp_K)
+}</code></pre>
+<blockquote>
+<p><strong>NOTE:</strong> It is not necessary to include the return
+statement. R automatically returns the last variable of the body of the
+function. But it is good practice the return statement.</p>
+</blockquote>
+<pre class="r"><code># freezing point of water in Kelvin
+celsius_to_kelvin(0)</code></pre>
+<pre><code>## [1] 273</code></pre>
+<p>Now lets write a more complex function. Here we write a function
+calculating Fahrenheit to Celsius and using that function we wrote a
+more complex function calculating Fahrenheit to Kelvin.</p>
+<pre class="r"><code># function calculate Celsius from Fahrenheit
+fahrenheit_to_celsius &lt;- function(temp_F) {
+  temp_C &lt;- (temp_F - 32) * 5 / 9
+  return(temp_C)
+}
+
+# nested function: calculate Kelvin from Fahrenheit
+fahrenheit_to_kelvin &lt;- function(temp_F) {
+  temp_C &lt;- fahrenheit_to_celsius(temp_F)
+  temp_K &lt;- celsius_to_kelvin(temp_C)
+  return(temp_K)
+}
+
+# freezing point of water in Kelvin
+fahrenheit_to_kelvin(32.0)</code></pre>
+<pre><code>## [1] 273</code></pre>
+<div id="nested-function" class="section level3">
+<h3>nested function</h3>
+<p>The above example showed a function inside a function. You can also
+achieve the same in your code when you <em>nest</em> the functions:</p>
+<pre class="r"><code># freezing point of water in Kelvin
+# Fahrenheit &gt; Celsius --&gt; Celsius &gt; Kelvin
+celsius_to_kelvin(fahrenheit_to_celsius(32.0))</code></pre>
+<pre><code>## [1] 273</code></pre>
+</div>
+</div>
+<div id="basic-data-types-in-r" class="section level2">
+<h2>Basic data types in R</h2>
+<p>R works with numerous data types. Some of the most basic types to get
+started are:</p>
+<ul>
+<li><p><strong>Decimal values</strong> like 4.5 are called
+numerics.</p></li>
+<li><p><strong>Natural numbers</strong> like 4 are called integers.
+Integers are also numerics.</p></li>
+<li><p><strong>Boolean values</strong> (TRUE or FALSE) are called
+logical.</p></li>
+<li><p><strong>Text</strong> (or string) values are called
+characters.</p></li>
+</ul>
+<p>Note how the quotation marks on the right indicate that “some text”
+is a character.</p>
+<pre class="r"><code># Declare variables of different types
+my_numeric &lt;- 42
+my_character &lt;- &quot;universe&quot;
+my_logical &lt;- FALSE </code></pre>
+<div id="special-cases" class="section level3">
+<h3>Special cases</h3>
+<pre class="r"><code>NA   # not available, missing data
+NA_real_
+NA_integer_
+NA_character_
+NA_complex_
+NULL # empty
+-Inf/Inf # infinite values</code></pre>
+</div>
+<div id="missing-and-infinite" class="section level3">
+<h3>missing and infinite</h3>
+<pre class="r"><code>c(NA_real_, 2.45, 45.67)</code></pre>
+<pre><code>## [1]    NA  2.45 45.67</code></pre>
+<pre class="r"><code>c(Inf, 2.45, 45.67)</code></pre>
+<pre><code>## [1]   Inf  2.45 45.67</code></pre>
+</div>
+<div id="whats-that-data-type" class="section level3">
+<h3>What’s that data type?</h3>
+<p>when you added <code>5 + "six"</code>, you got an error due to a
+mismatch in data types? You can avoid such embarrassing situations by
+checking the data type of a variable beforehand. You can do this with
+the <code>class()</code> function, as the code on the right shows.</p>
+<pre class="r"><code># Declare variables of different types
+my_numeric &lt;- 42
+my_character &lt;- &quot;universe&quot;
+my_logical &lt;- FALSE 
+# Check class of my_numeric
+class(my_numeric)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># Check class of my_character
+class(my_character)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code># Check class of my_logical
+class(my_logical)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+</div>
+<div id="creating-a-vector" class="section level2">
+<h2>creating a vector</h2>
+<p>In R, you create a vector with the combine function <code>c()</code>.
+You place the vector elements separated by a comma between the
+parentheses. For example:</p>
+<pre class="r"><code>numeric_vector &lt;- c(1, 2, 3)
+character_vector &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+boolean_vector &lt;- c(TRUE,FALSE,TRUE)</code></pre>
+<div id="naming-a-vector" class="section level3">
+<h3>Naming a vector</h3>
+<p>As a data analyst, it is important to have a clear view on the data
+that you are using. Understanding what each element refers to is
+therefore essential.</p>
+<p>In the previous exercise, we created a vector with your winnings over
+the week. Each vector element refers to a day of the week but it is hard
+to tell which element belongs to which day. It would be nice if you
+could show that in the vector itself.</p>
+<p>You can give a name to the elements of a vector with the names()
+function. Have a look at this example:</p>
+<pre class="r"><code>some_vector &lt;- c(&quot;John Doe&quot;, &quot;poker player&quot;)
+#output before naming
+some_vector</code></pre>
+<pre><code>## [1] &quot;John Doe&quot;     &quot;poker player&quot;</code></pre>
+<pre class="r"><code>names(some_vector) &lt;- c(&quot;Name&quot;, &quot;Profession&quot;)
+#output after naming
+some_vector</code></pre>
+<pre><code>##           Name     Profession 
+##     &quot;John Doe&quot; &quot;poker player&quot;</code></pre>
+<pre class="r"><code>#same result can be directly achieved by naming inside c()
+some_vector1 &lt;- c(Name = &quot;John Doe&quot;, Profession= &quot;poker player&quot;)
+some_vector1</code></pre>
+<pre><code>##           Name     Profession 
+##     &quot;John Doe&quot; &quot;poker player&quot;</code></pre>
+</div>
+<div id="vector-functions" class="section level3">
+<h3>vector functions</h3>
+<pre class="r"><code>#generate vector x
+x &lt;- c(3,2,5,6,10,9,7,8,1,4,4,5,1,2,4,6)
+# Return x sorted. table(x)
+sort(x)</code></pre>
+<pre><code>##  [1]  1  1  2  2  3  4  4  4  5  5  6  6  7  8  9 10</code></pre>
+<pre class="r"><code># See counts of values
+table(x)</code></pre>
+<pre><code>## x
+##  1  2  3  4  5  6  7  8  9 10 
+##  2  2  1  3  2  2  1  1  1  1</code></pre>
+<pre class="r"><code># Return x reversed
+rev(x)</code></pre>
+<pre><code>##  [1]  6  4  2  1  5  4  4  1  8  7  9 10  6  5  2  3</code></pre>
+<pre class="r"><code>#See unique values
+unique(x)</code></pre>
+<pre><code>##  [1]  3  2  5  6 10  9  7  8  1  4</code></pre>
+</div>
+</div>
+<div id="matrix" class="section level2">
+<h2>Matrix</h2>
+<div id="what-is-a-matrix" class="section level3">
+<h3>What is a matrix?</h3>
+<p>In R, a matrix is a collection of elements of the same data type
+(numeric, character, or logical) arranged into a fixed number of rows
+and columns. Since you are only working with rows and columns, a matrix
+is called two-dimensional.</p>
+<p>You can construct a matrix in R with the <code>matrix()</code>
+function. Consider the following example:</p>
+<pre class="r"><code>matrix(1:9, byrow = TRUE, nrow = 3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<p>In the <strong>matrix()</strong> function:</p>
+<p>The first argument is the collection of elements that R will arrange
+into the rows and columns of the matrix. Here, we use <code>1:9</code>
+which is a shortcut for <code>c(1, 2, 3, 4, 5, 6, 7, 8, 9)</code>. The
+argument byrow indicates that the matrix is filled by the rows. If we
+want the matrix to be filled by the columns, we just place
+<code>byrow = FALSE</code>. The third argument nrow indicates that the
+matrix should have three rows.</p>
+</div>
+<div id="naming-a-matrix" class="section level3">
+<h3>Naming a matrix</h3>
+<p>To help you remember what is stored in a matrix, you would like to
+add the names for the rows. Not only does this help you to read the
+data, but it is also useful to select certain elements from the
+matrix.</p>
+<p>Similar to vectors, you can add names for the rows and the columns of
+a matrix</p>
+<pre class="r"><code>rownames(my_matrix) &lt;- row_names_vector
+colnames(my_matrix) &lt;- col_names_vector</code></pre>
+</div>
+</div>
+<div id="data-frame" class="section level2">
+<h2>Data frame</h2>
+<p>A data frame is used for storing data tables. It is a list of vectors
+of equal length. For example, the following variable df is a data frame
+containing three vectors n, s, b.</p>
+<p><strong>what´s the difference between a matrix and a
+data.frame?</strong></p>
+<p>Both matrix and data frame are 2 dimensional data structure. While
+matrix is homogeneous, data frame is not.</p>
+<p>R won’t automatically treat dataframe rows as vectors, because a
+dataframe’s columns can be of different types. But if e.g. all columns
+are numeric (no characters, factors, etc), you can convert it to a
+numeric matrix yourself, using the as.matrix() function, and then treat
+its rows as vectors.</p>
+<div id="extract-specific-information-from-a-data.frame"
+class="section level3">
+<h3>Extract specific information from a data.frame</h3>
+<p>We will use the build in data.frame <strong>mtcars</strong> for the
+example.</p>
+<p><strong>select some rows or columns:</strong></p>
+<pre class="r"><code># the data.frame mtcars
+mtcars</code></pre>
+<pre><code>##                      mpg cyl  disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.32 18.6  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.21 19.4  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.44 17.0  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.46 20.2  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.57 15.8  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.44 18.3  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.44 18.9  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.07 17.4  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.73 17.6  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.78 18.0  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.25 18.0  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.42 17.8  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.34 17.4  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.20 19.5  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.61 18.5  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.83 19.9  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.46 20.0  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.52 16.9  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.44 17.3  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.84 15.4  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.85 17.1  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.94 18.9  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.14 16.7  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.51 16.9  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.17 14.5  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.77 15.5  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.57 14.6  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.78 18.6  1  1    4    2</code></pre>
+<pre class="r"><code># get just the first row of the data.frame
+    # [x,y] --&gt; x==rows / y==columns
+mtcars[1,]</code></pre>
+<pre><code>##           mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.5  0  1    4    4</code></pre>
+<pre class="r"><code># get just the first column of the data.frame
+mtcars[,1]</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<pre class="r"><code>      # or use the &quot;$&quot; sign for return e.g. &quot;mpg&quot; column
+      mtcars$mpg</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<pre class="r"><code># get just the first three rows of the data.frame
+mtcars[1:3,]</code></pre>
+<pre><code>##                mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4     21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag 21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710    22.8   4  108  93 3.85 2.32 18.6  1  1    4    1</code></pre>
+<pre class="r"><code># get just the first three columns of the data.frame
+mtcars[,1:3]</code></pre>
+<pre><code>##                      mpg cyl  disp
+## Mazda RX4           21.0   6 160.0
+## Mazda RX4 Wag       21.0   6 160.0
+## Datsun 710          22.8   4 108.0
+## Hornet 4 Drive      21.4   6 258.0
+## Hornet Sportabout   18.7   8 360.0
+## Valiant             18.1   6 225.0
+## Duster 360          14.3   8 360.0
+## Merc 240D           24.4   4 146.7
+## Merc 230            22.8   4 140.8
+## Merc 280            19.2   6 167.6
+## Merc 280C           17.8   6 167.6
+## Merc 450SE          16.4   8 275.8
+## Merc 450SL          17.3   8 275.8
+## Merc 450SLC         15.2   8 275.8
+## Cadillac Fleetwood  10.4   8 472.0
+## Lincoln Continental 10.4   8 460.0
+## Chrysler Imperial   14.7   8 440.0
+## Fiat 128            32.4   4  78.7
+## Honda Civic         30.4   4  75.7
+## Toyota Corolla      33.9   4  71.1
+## Toyota Corona       21.5   4 120.1
+## Dodge Challenger    15.5   8 318.0
+## AMC Javelin         15.2   8 304.0
+## Camaro Z28          13.3   8 350.0
+## Pontiac Firebird    19.2   8 400.0
+## Fiat X1-9           27.3   4  79.0
+## Porsche 914-2       26.0   4 120.3
+## Lotus Europa        30.4   4  95.1
+## Ford Pantera L      15.8   8 351.0
+## Ferrari Dino        19.7   6 145.0
+## Maserati Bora       15.0   8 301.0
+## Volvo 142E          21.4   4 121.0</code></pre>
+</div>
+</div>
+<div id="perform-comparisons" class="section level2">
+<h2>Perform comparisons</h2>
+<p><strong>Perform comparisons and use them for subsetting:</strong></p>
+<ul>
+<li><code>==</code> equal to</li>
+<li><code>!=</code> not equal to</li>
+<li><code>&lt;</code> smaller</li>
+<li><code>&lt;=</code> smaller <strong>or</strong> equal</li>
+<li><code>&gt;</code> greater</li>
+<li><code>&gt;=</code> greater <strong>or</strong> equal</li>
+<li><code>!</code> is not</li>
+<li><code>&amp;</code>, <code>&amp;&amp;</code> and</li>
+<li><code>|</code>, <code>||</code> or</li>
+<li><code>!</code> negation</li>
+</ul>
+<p><em>comment:</em></p>
+<p><code>&amp;&amp;</code> and <code>||</code> are what is called
+<em>“short circuiting”</em>. That means that they will not evaluate the
+second operand if the first operand is enough to determine the value of
+the expression.</p>
+<p>For example if the first operand to &amp;&amp; is false then there is
+no point in evaluating the second operand, since it can’t change the
+value of the expression (false <code>&amp;&amp;</code> true and false
+<code>&amp;&amp;</code> false are both false). The same goes for
+<code>||</code> when the first operand is true.</p>
+<pre class="r"><code>#generate a vector from 1 to 6
+z = 1:6
+z</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<pre class="r"><code># z bigger than 2 and smaller than 5
+(z &gt; 2) &amp; (z &lt; 5)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
+<pre class="r"><code>z[(z&gt;2) &amp; (z&lt;5)]</code></pre>
+<pre><code>## [1] 3 4</code></pre>
+<pre class="r"><code>#now the same with &amp;&amp;
+(z &gt; 2) &amp;&amp; (z &lt; 5)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>#this is equivalent to:
+(z[1] &gt; 2) &amp; (z[1] &lt; 5)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>#it will just check the first value</code></pre>
+</div>
+<div id="subsetting" class="section level2">
+<h2>subsetting</h2>
+<pre class="r"><code>#subset / filter the table with base R
+
+# choose from mtcars data.frame the cars with 4 gears
+mtcars[which(mtcars$gear==4),]</code></pre>
+<pre><code>##                 mpg cyl  disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4      21.0   6 160.0 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710     22.8   4 108.0  93 3.85 2.32 18.6  1  1    4    1
+## Merc 240D      24.4   4 146.7  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230       22.8   4 140.8  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280       19.2   6 167.6 123 3.92 3.44 18.3  1  0    4    4
+## Merc 280C      17.8   6 167.6 123 3.92 3.44 18.9  1  0    4    4
+## Fiat 128       32.4   4  78.7  66 4.08 2.20 19.5  1  1    4    1
+## Honda Civic    30.4   4  75.7  52 4.93 1.61 18.5  1  1    4    2
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.83 19.9  1  1    4    1
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.94 18.9  1  1    4    1
+## Volvo 142E     21.4   4 121.0 109 4.11 2.78 18.6  1  1    4    2</code></pre>
+<pre class="r"><code># choose from mtcars data.frame the cars with 4 gears and min 100 hp
+mtcars[which(mtcars$gear==4 &amp; mtcars$hp&gt;=100),]</code></pre>
+<pre><code>##                mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4     21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag 21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Merc 280      19.2   6  168 123 3.92 3.44 18.3  1  0    4    4
+## Merc 280C     17.8   6  168 123 3.92 3.44 18.9  1  0    4    4
+## Volvo 142E    21.4   4  121 109 4.11 2.78 18.6  1  1    4    2</code></pre>
+<p>same can be achieved with <em>subset()</em> function</p>
+<pre class="r"><code>#subset / filter the table with base R
+# choose from mtcars data.frame the cars with 4 gears
+subset(x = mtcars,mtcars$gear==4)</code></pre>
+<pre><code>##                 mpg cyl  disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4      21.0   6 160.0 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710     22.8   4 108.0  93 3.85 2.32 18.6  1  1    4    1
+## Merc 240D      24.4   4 146.7  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230       22.8   4 140.8  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280       19.2   6 167.6 123 3.92 3.44 18.3  1  0    4    4
+## Merc 280C      17.8   6 167.6 123 3.92 3.44 18.9  1  0    4    4
+## Fiat 128       32.4   4  78.7  66 4.08 2.20 19.5  1  1    4    1
+## Honda Civic    30.4   4  75.7  52 4.93 1.61 18.5  1  1    4    2
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.83 19.9  1  1    4    1
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.94 18.9  1  1    4    1
+## Volvo 142E     21.4   4 121.0 109 4.11 2.78 18.6  1  1    4    2</code></pre>
+<pre class="r"><code># choose from mtcars data.frame the cars with 4 gears and min 100 hp
+subset(x = mtcars,mtcars$gear==4 &amp; mtcars$hp&gt;=100)</code></pre>
+<pre><code>##                mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4     21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag 21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Merc 280      19.2   6  168 123 3.92 3.44 18.3  1  0    4    4
+## Merc 280C     17.8   6  168 123 3.92 3.44 18.9  1  0    4    4
+## Volvo 142E    21.4   4  121 109 4.11 2.78 18.6  1  1    4    2</code></pre>
+</div>
+<div id="recap-vectors-matrices-data-frames" class="section level2">
+<h2>Recap: Vectors, Matrices, Data frames</h2>
+<ul>
+<li><strong>Vectors</strong> (one dimensional array): can hold numeric,
+character or logical values. The elements in a vector all have the same
+data type.</li>
+<li><strong>Matrices</strong> (two dimensional array): can hold numeric,
+character or logical values. The elements in a matrix all have the same
+data type.</li>
+<li><strong>Data frames</strong> (two-dimensional objects): can hold
+numeric, character or logical values. Within a column all elements have
+the same data type, but different columns can be of different data
+type.</li>
+</ul>
+</div>
+<div id="lists" class="section level2">
+<h2>Lists</h2>
+<p>A list in R is similar to your to-do list at work or school: the
+different items on that list most likely differ in length,
+characteristic, and type of activity that has to do be done.</p>
+<p>A list in R allows you to gather a variety of objects under one name
+(that is, the name of the list) in an ordered way. These objects can be
+matrices, vectors, data frames, even other lists, etc. It is not even
+required that these objects are related to each other in any way.</p>
+<p>You could say that a list is some kind super data type: you can store
+practically any piece of information in it!</p>
+<p><strong>create a list:</strong></p>
+<p>Let us create our first list! To construct a list you use the
+function <code>list()</code>:</p>
+<p><code>my_list &lt;- list(comp1, comp2 ...)</code></p>
+<pre class="r"><code># Vector with numerics from 1 up to 10
+my_vector &lt;- 1:10 
+
+# Matrix with numerics from 1 up to 9
+my_matrix &lt;- matrix(1:9, ncol = 3)
+
+# First 10 elements of the built-in data frame mtcars
+my_df &lt;- mtcars[1:10,]
+
+# Construct list with these different elements:
+my_list &lt;- list(vector = my_vector,
+                matrix = my_matrix,
+                data.frame = my_df)
+my_list</code></pre>
+<pre><code>## $vector
+##  [1]  1  2  3  4  5  6  7  8  9 10
+## 
+## $matrix
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+## 
+## $data.frame
+##                    mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.32 18.6  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.21 19.4  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.0  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.46 20.2  1  0    3    1
+## Duster 360        14.3   8  360 245 3.21 3.57 15.8  0  0    3    4
+## Merc 240D         24.4   4  147  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230          22.8   4  141  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280          19.2   6  168 123 3.92 3.44 18.3  1  0    4    4</code></pre>
+<pre class="r"><code>#get data out of the list
+# Vector with numerics from 1 up to 10
+my_vector &lt;- 1:10 
+
+# Matrix with numerics from 1 up to 9
+my_matrix &lt;- matrix(1:9, ncol = 3)
+
+# First 10 elements of the built-in data frame mtcars
+my_df &lt;- mtcars[1:10,]
+
+# Construct list with these different elements and naming of the list:
+my_list &lt;- list(vector = my_vector,
+                matrix = my_matrix,
+                data.frame = my_df)
+    # naming can be done also after creating a list using &quot;names(my_list) &lt;- c(&quot;name1&quot;, &quot;name2&quot;)&quot;
+#get the data.frame
+my_list$data.frame</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.32 18.6  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.21 19.4  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.0  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.46 20.2  1  0    3    1
+## Duster 360        14.3   8  360 245 3.21 3.57 15.8  0  0    3    4
+## Merc 240D         24.4   4  147  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230          22.8   4  141  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280          19.2   6  168 123 3.92 3.44 18.3  1  0    4    4</code></pre>
+<pre class="r"><code>    #or
+    my_list[[3]]</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.32 18.6  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.21 19.4  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.0  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.46 20.2  1  0    3    1
+## Duster 360        14.3   8  360 245 3.21 3.57 15.8  0  0    3    4
+## Merc 240D         24.4   4  147  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230          22.8   4  141  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280          19.2   6  168 123 3.92 3.44 18.3  1  0    4    4</code></pre>
+<pre class="r"><code>    #or
+    my_list[[&quot;data.frame&quot;]]</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.62 16.5  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.88 17.0  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.32 18.6  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.21 19.4  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.0  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.46 20.2  1  0    3    1
+## Duster 360        14.3   8  360 245 3.21 3.57 15.8  0  0    3    4
+## Merc 240D         24.4   4  147  62 3.69 3.19 20.0  1  0    4    2
+## Merc 230          22.8   4  141  95 3.92 3.15 22.9  1  0    4    2
+## Merc 280          19.2   6  168 123 3.92 3.44 18.3  1  0    4    4</code></pre>
+<pre class="r"><code>#get data.frame and just the first row
+my_list[[&quot;data.frame&quot;]][1,]</code></pre>
+<pre><code>##           mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.5  0  1    4    4</code></pre>
+<pre class="r"><code>#get data.frame and just the first column
+my_list[[&quot;data.frame&quot;]]$mpg</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2</code></pre>
+<pre class="r"><code>    #or
+    #get data.frame and just the first column
+    my_list[[&quot;data.frame&quot;]][,1]</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2</code></pre>
+<pre class="r"><code>    #or
+    my_list[[&quot;data.frame&quot;]][,&quot;mpg&quot;]</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2</code></pre>
+<p><strong>add more data to a list:</strong></p>
+<p>To conveniently add elements to lists you can use the
+<code>c()</code> function, that you also used to build vectors:</p>
+<p><code>ext_list &lt;- c(my_list , my_val)</code> This will simply
+extend the original list, <em>my_list</em>, with the component
+<em>my_val</em>. This component gets appended to the end of the list. If
+you want to give the new list item a name, you just add the name as you
+did before:</p>
+<p><code>ext_list &lt;- c(my_list, my_name = my_val)</code></p>
+</div>
+<div id="factor" class="section level2">
+<h2>Factor</h2>
+<div id="whats-a-factor-and-why-would-you-use-it"
+class="section level3">
+<h3>What’s a factor and why would you use it?</h3>
+<p>In this chapter you dive into the wonderful world of factors.</p>
+<p>The term factor refers to a statistical data type used to store
+categorical variables. The difference between a categorical variable and
+a continuous variable is that a categorical variable can belong to a
+limited number of categories. A continuous variable, on the other hand,
+can correspond to an infinite number of values.</p>
+<p>It is important that R knows whether it is dealing with a continuous
+or a categorical variable, as the statistical models you will develop in
+the future treat both types differently. (You will see later why this is
+the case.)</p>
+<p>A good example of a categorical variable is sex. In many
+circumstances you can limit the sex categories to “Male” or “Female”.
+(Sometimes you may need different categories. For example, you may need
+to consider chromosomal variation, hermaphroditic animals, or different
+cultural norms, but you will always have a finite number of
+categories.)</p>
+<p>To create factors in R, you make use of the function
+<code>factor()</code>. First thing that you have to do is create a
+vector that contains all the observations that belong to a limited
+number of categories. For example, sex_vector contains the sex of 5
+different individuals:</p>
+<pre class="r"><code>sex_vector &lt;- c(&quot;Male&quot;,&quot;Female&quot;,&quot;Female&quot;,&quot;Male&quot;,&quot;Male&quot;)</code></pre>
+<p>It is clear that there are two categories, or in R-terms
+<strong>‘factor levels’</strong>, at work here: <em>“Male” and
+“Female”</em>.</p>
+<p>The function <code>factor()</code> will encode the vector as a
+factor:</p>
+<pre class="r"><code>sex_vector &lt;- c(&quot;Male&quot;,&quot;Female&quot;,&quot;Female&quot;,&quot;Male&quot;,&quot;Male&quot;)
+sex_vector</code></pre>
+<pre><code>## [1] &quot;Male&quot;   &quot;Female&quot; &quot;Female&quot; &quot;Male&quot;   &quot;Male&quot;</code></pre>
+<pre class="r"><code>factor_sex_vector &lt;- factor(sex_vector)
+factor_sex_vector</code></pre>
+<pre><code>## [1] Male   Female Female Male   Male  
+## Levels: Female Male</code></pre>
+<p>There are two types of categorical variables: a nominal categorical
+variable and an ordinal categorical variable.</p>
+<p>A nominal variable is a categorical variable without an implied
+order. This means that it is impossible to say that ‘one is worth more
+than the other’.</p>
+<p>For example, think of the categorical variable
+<strong>animals_vector</strong> with the categories <em>“Elephant”,
+“Giraffe”, “Donkey” and “Horse”</em>. Here, it is impossible to say that
+one stands above or below the other. (Note that some of you might
+disagree ;-) ).</p>
+<p>In contrast, ordinal variables do have a natural ordering. Consider
+for example the categorical variable <strong>temperature_vector</strong>
+with the categories: <em>“Low”, “Medium” and “High”</em>. Here it is
+obvious that “Medium” stands above “Low”, and “High” stands above
+“Medium”.</p>
+</div>
+<div id="factor-levels" class="section level3">
+<h3>Factor levels</h3>
+<p>When you first get a data set, you will often notice that it contains
+factors with specific factor levels. However, sometimes you will want to
+change the names of these levels for clarity or other reasons. R allows
+you to do this with the function <code>levels()</code>:</p>
+<pre class="r"><code>levels(factor_vector) &lt;- c(&quot;name1&quot;, &quot;name2&quot;,...)</code></pre>
+<p>A good illustration is the raw data that is provided to you by a
+survey. A common question for every questionnaire is the sex of the
+respondent. Here, for simplicity, just two categories were recorded,
+<strong>“M”</strong> and <strong>“F”</strong>. (You usually need more
+categories for survey data; either way, you use a factor to store the
+categorical data.)</p>
+<pre class="r"><code>survey_vector &lt;- c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)</code></pre>
+<p>Recording the sex with the abbreviations <strong>“M”</strong> and
+<strong>“F”</strong> can be convenient if you are collecting data with
+pen and paper, but it can introduce confusion when analyzing the data.
+At that point, you will often want to change the factor levels to
+<strong>“Male”</strong> and <strong>“Female”</strong> instead of
+<strong>“M”</strong> and <strong>“F”</strong> for clarity.</p>
+<p><em>Watch out:</em> the order with which you assign the levels is
+important !!!</p>
+<p>If you type <code>levels(factor_survey_vector)</code>, you’ll see
+that it outputs <em>[1] “F” “M”</em>. If you don’t specify the levels of
+the factor when creating the vector, R will automatically assign them
+alphabetically. To correctly map “F” to “Female” and “M” to “Male”, the
+levels should be set to <code>c("Female", "Male")</code>, in this
+order.</p>
+</div>
+<div id="summarizing-a-factor" class="section level3">
+<h3>Summarizing a factor</h3>
+<p>After finishing this course, one of your favorite functions in R will
+be <code>summary()</code>. This will give you a quick overview of the
+contents of a variable:</p>
+<pre class="r"><code>summary(my_var)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       4       4       4       4       4       4</code></pre>
+<p>Going back to our survey, you would like to know how many
+<em>“Male”</em> responses you have in your study, and how many
+<em>“Female”</em> responses. The <code>summary()</code> function gives
+you the answer to this question.</p>
+</div>
+</div>
+<div id="loops" class="section level2">
+<h2>loops</h2>
+<p>R is very useful in performing repitive tasks, e.g. if we want to
+save barplots over conditions for each protein in a protein
+quantification table we would to that with a loop. In a loop R will
+execute the instructions inside the loop a given number of times or
+until a specified condition is met.</p>
+<p>There are 3 main types of loops in R:</p>
+<ul>
+<li><strong>for</strong> loop</li>
+<li><strong>while</strong> loop</li>
+<li><strong>repeat</strong> loop</li>
+</ul>
+<div id="for-loop" class="section level3">
+<h3><strong>for</strong> loop</h3>
+<p>Most common loop is the for loop.</p>
+<p>for loop basic skeleton:</p>
+<p><code>for(var in seq) {expr}</code></p>
+<pre class="r"><code>for (i in 1:5) {
+  print(i)
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+</div>
+<div id="while-loop" class="section level3">
+<h3><strong>while</strong> loop</h3>
+<p>Use the while loop when you want to keep looping until a specific
+logical condition is satisfied.</p>
+<p>You can use these kind of loops when e.g. optimizing parameters for a
+regression.</p>
+<p>while loop basic skeleton:</p>
+<p><code>while(cond){expr}</code></p>
+<pre class="r"><code>i &lt;- 0
+while (i &lt;= 4) {
+  i &lt;- i + 1
+  print(i)
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+</div>
+<div id="repeat-loop" class="section level3">
+<h3>repeat loop</h3>
+<p>The repeat loop is used to iterate over your code multiple number of
+times until a break is achieved.</p>
+<p>This loop is not often used. Instead the while loop is used more
+frequently.</p>
+<pre class="r"><code>x &lt;- 1
+repeat {
+print(x)
+x = x+1
+if (x == 6){
+break
+}
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

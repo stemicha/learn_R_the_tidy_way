@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advanced R</title>
+  <meta name="description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side.">
+  <meta name="generator" content="bookdown 0.7.12 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Advanced R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://adv-r.hadley.nz/" />
+  <meta property="og:image" content="http://adv-r.hadley.nz/cover.png" />
+  <meta property="og:description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side." />
+  <meta name="github-repo" content="hadley/adv-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Advanced R" />
+  <meta name="twitter:site" content="@hadley" />
+  <meta name="twitter:description" content="The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it explains some of R’s quirks and shows how some parts that seem horrible do have a positive side." />
+  <meta name="twitter:image" content="http://adv-r.hadley.nz/cover.png" />
+
+<meta name="author" content="Hadley Wickham">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="base-types.html">
+<link rel="next" href="s4.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="adv-r.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Advanced R</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-books"><i class="fa fa-check"></i>Other books</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#who-should-read"><i class="fa fa-check"></i><b>1.1</b> Who should read this book</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-will-get"><i class="fa fa-check"></i><b>1.2</b> What you will get out of this book</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#meta-techniques"><i class="fa fa-check"></i><b>1.3</b> Meta-techniques</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#recommended-reading"><i class="fa fa-check"></i><b>1.4</b> Recommended reading</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting help</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#intro-ack"><i class="fa fa-check"></i><b>1.6</b> Acknowledgments</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#conventions"><i class="fa fa-check"></i><b>1.7</b> Conventions</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#colophon"><i class="fa fa-check"></i><b>1.8</b> Colophon</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundations</b></span></li>
+<li class="chapter" data-level="2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>2.1.2</b> Lists</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data-structures.html"><a href="data-structures.html#exercises"><i class="fa fa-check"></i><b>2.1.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-structures.html"><a href="data-structures.html#attributes"><i class="fa fa-check"></i><b>2.2</b> Attributes</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-structures.html"><a href="data-structures.html#factors"><i class="fa fa-check"></i><b>2.2.1</b> Factors</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-structures.html"><a href="data-structures.html#exercises-1"><i class="fa fa-check"></i><b>2.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-structures.html"><a href="data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>2.3</b> Matrices and arrays</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-structures.html"><a href="data-structures.html#exercises-2"><i class="fa fa-check"></i><b>2.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>2.4</b> Data frames</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data-structures.html"><a href="data-structures.html#creation"><i class="fa fa-check"></i><b>2.4.1</b> Creation</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-structures.html"><a href="data-structures.html#testing-and-coercion"><i class="fa fa-check"></i><b>2.4.2</b> Testing and coercion</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data-structures.html"><a href="data-structures.html#combining-data-frames"><i class="fa fa-check"></i><b>2.4.3</b> Combining data frames</a></li>
+<li class="chapter" data-level="2.4.4" data-path="data-structures.html"><a href="data-structures.html#special-columns"><i class="fa fa-check"></i><b>2.4.4</b> Special columns</a></li>
+<li class="chapter" data-level="2.4.5" data-path="data-structures.html"><a href="data-structures.html#exercises-3"><i class="fa fa-check"></i><b>2.4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-structures.html"><a href="data-structures.html#data-structure-answers"><i class="fa fa-check"></i><b>2.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>3</b> Subsetting</a><ul>
+<li class="chapter" data-level="3.1" data-path="subsetting.html"><a href="subsetting.html#data-types"><i class="fa fa-check"></i><b>3.1</b> Data types</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>3.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="3.1.2" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>3.1.2</b> Lists</a></li>
+<li class="chapter" data-level="3.1.3" data-path="subsetting.html"><a href="subsetting.html#matrix-subsetting"><i class="fa fa-check"></i><b>3.1.3</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="3.1.4" data-path="subsetting.html"><a href="subsetting.html#df-subsetting"><i class="fa fa-check"></i><b>3.1.4</b> Data frames</a></li>
+<li class="chapter" data-level="3.1.5" data-path="subsetting.html"><a href="subsetting.html#s3-objects"><i class="fa fa-check"></i><b>3.1.5</b> S3 objects</a></li>
+<li class="chapter" data-level="3.1.6" data-path="subsetting.html"><a href="subsetting.html#s4-objects"><i class="fa fa-check"></i><b>3.1.6</b> S4 objects</a></li>
+<li class="chapter" data-level="3.1.7" data-path="subsetting.html"><a href="subsetting.html#exercises-4"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="subsetting.html"><a href="subsetting.html#subsetting-operators"><i class="fa fa-check"></i><b>3.2</b> Subsetting operators</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="subsetting.html"><a href="subsetting.html#simplify-preserve"><i class="fa fa-check"></i><b>3.2.1</b> Simplifying vs. preserving subsetting</a></li>
+<li class="chapter" data-level="3.2.2" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>3.2.2</b> <code>$</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>3.2.3</b> Missing/out of bounds indices</a></li>
+<li class="chapter" data-level="3.2.4" data-path="subsetting.html"><a href="subsetting.html#exercises-5"><i class="fa fa-check"></i><b>3.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>3.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="3.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>3.4</b> Applications</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables"><i class="fa fa-check"></i><b>3.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="subsetting.html"><a href="subsetting.html#matching-merging"><i class="fa fa-check"></i><b>3.4.2</b> Matching and merging by hand (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>3.4.3</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>3.4.4</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="subsetting.html"><a href="subsetting.html#expanding-aggregated-counts-integer-subsetting"><i class="fa fa-check"></i><b>3.4.5</b> Expanding aggregated counts (integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.6" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>3.4.6</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="3.4.7" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>3.4.7</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="3.4.8" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>3.4.8</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+<li class="chapter" data-level="3.4.9" data-path="subsetting.html"><a href="subsetting.html#exercises-6"><i class="fa fa-check"></i><b>3.4.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="subsetting.html"><a href="subsetting.html#subsetting-answers"><i class="fa fa-check"></i><b>3.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a><ul>
+<li class="chapter" data-level="4.1" data-path="functions.html"><a href="functions.html#function-components"><i class="fa fa-check"></i><b>4.1</b> Function components</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="functions.html"><a href="functions.html#primitive-functions"><i class="fa fa-check"></i><b>4.1.1</b> Primitive functions</a></li>
+<li class="chapter" data-level="4.1.2" data-path="functions.html"><a href="functions.html#exercises-7"><i class="fa fa-check"></i><b>4.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>4.2</b> Lexical scoping</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="functions.html"><a href="functions.html#name-masking"><i class="fa fa-check"></i><b>4.2.1</b> Name masking</a></li>
+<li class="chapter" data-level="4.2.2" data-path="functions.html"><a href="functions.html#functions-vs.variables"><i class="fa fa-check"></i><b>4.2.2</b> Functions vs. variables</a></li>
+<li class="chapter" data-level="4.2.3" data-path="functions.html"><a href="functions.html#fresh-start"><i class="fa fa-check"></i><b>4.2.3</b> A fresh start</a></li>
+<li class="chapter" data-level="4.2.4" data-path="functions.html"><a href="functions.html#dynamic-lookup"><i class="fa fa-check"></i><b>4.2.4</b> Dynamic lookup</a></li>
+<li class="chapter" data-level="4.2.5" data-path="functions.html"><a href="functions.html#exercises-8"><i class="fa fa-check"></i><b>4.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="functions.html"><a href="functions.html#all-calls"><i class="fa fa-check"></i><b>4.3</b> Every operation is a function call</a></li>
+<li class="chapter" data-level="4.4" data-path="functions.html"><a href="functions.html#function-arguments"><i class="fa fa-check"></i><b>4.4</b> Function arguments</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="functions.html"><a href="functions.html#calling-functions"><i class="fa fa-check"></i><b>4.4.1</b> Calling functions</a></li>
+<li class="chapter" data-level="4.4.2" data-path="functions.html"><a href="functions.html#calling-a-function-given-a-list-of-arguments"><i class="fa fa-check"></i><b>4.4.2</b> Calling a function given a list of arguments</a></li>
+<li class="chapter" data-level="4.4.3" data-path="functions.html"><a href="functions.html#default-and-missing-arguments"><i class="fa fa-check"></i><b>4.4.3</b> Default and missing arguments</a></li>
+<li class="chapter" data-level="4.4.4" data-path="functions.html"><a href="functions.html#lazy-evaluation"><i class="fa fa-check"></i><b>4.4.4</b> Lazy evaluation</a></li>
+<li class="chapter" data-level="4.4.5" data-path="functions.html"><a href="functions.html#fun-dot-dot-dot"><i class="fa fa-check"></i><b>4.4.5</b> <code>...</code></a></li>
+<li class="chapter" data-level="4.4.6" data-path="functions.html"><a href="functions.html#exercises-9"><i class="fa fa-check"></i><b>4.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="functions.html"><a href="functions.html#special-calls"><i class="fa fa-check"></i><b>4.5</b> Special calls</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="functions.html"><a href="functions.html#infix-functions"><i class="fa fa-check"></i><b>4.5.1</b> Infix functions</a></li>
+<li class="chapter" data-level="4.5.2" data-path="functions.html"><a href="functions.html#replacement-functions"><i class="fa fa-check"></i><b>4.5.2</b> Replacement functions</a></li>
+<li class="chapter" data-level="4.5.3" data-path="functions.html"><a href="functions.html#exercises-10"><i class="fa fa-check"></i><b>4.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="functions.html"><a href="functions.html#return-values"><i class="fa fa-check"></i><b>4.6</b> Return values</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="functions.html"><a href="functions.html#on-exit"><i class="fa fa-check"></i><b>4.6.1</b> On exit</a></li>
+<li class="chapter" data-level="4.6.2" data-path="functions.html"><a href="functions.html#exercises-11"><i class="fa fa-check"></i><b>4.6.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="functions.html"><a href="functions.html#function-answers"><i class="fa fa-check"></i><b>4.7</b> Quiz answers</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="memory.html"><a href="memory.html"><i class="fa fa-check"></i><b>5</b> Memory</a><ul>
+<li class="chapter" data-level="5.1" data-path="memory.html"><a href="memory.html#object-size"><i class="fa fa-check"></i><b>5.1</b> Object size</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="memory.html"><a href="memory.html#exercises-12"><i class="fa fa-check"></i><b>5.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="memory.html"><a href="memory.html#gc"><i class="fa fa-check"></i><b>5.2</b> Memory usage and garbage collection</a></li>
+<li class="chapter" data-level="5.3" data-path="memory.html"><a href="memory.html#memory-profiling"><i class="fa fa-check"></i><b>5.3</b> Memory profiling with lineprof</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="memory.html"><a href="memory.html#exercises-13"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="memory.html"><a href="memory.html#modification"><i class="fa fa-check"></i><b>5.4</b> Modification in place</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="memory.html"><a href="memory.html#loops"><i class="fa fa-check"></i><b>5.4.1</b> Loops</a></li>
+<li class="chapter" data-level="5.4.2" data-path="memory.html"><a href="memory.html#exercises-14"><i class="fa fa-check"></i><b>5.4.2</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="environments.html"><a href="environments.html"><i class="fa fa-check"></i><b>6</b> Environments</a><ul>
+<li class="chapter" data-level="6.1" data-path="environments.html"><a href="environments.html#env-basics"><i class="fa fa-check"></i><b>6.1</b> Environment basics</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="environments.html"><a href="environments.html#exercises-15"><i class="fa fa-check"></i><b>6.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="environments.html"><a href="environments.html#env-recursion"><i class="fa fa-check"></i><b>6.2</b> Recursing over environments</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="environments.html"><a href="environments.html#exercises-16"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="environments.html"><a href="environments.html#function-envs"><i class="fa fa-check"></i><b>6.3</b> Function environments</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="environments.html"><a href="environments.html#the-enclosing-environment"><i class="fa fa-check"></i><b>6.3.1</b> The enclosing environment</a></li>
+<li class="chapter" data-level="6.3.2" data-path="environments.html"><a href="environments.html#binding-environments"><i class="fa fa-check"></i><b>6.3.2</b> Binding environments</a></li>
+<li class="chapter" data-level="6.3.3" data-path="environments.html"><a href="environments.html#execution-environments"><i class="fa fa-check"></i><b>6.3.3</b> Execution environments</a></li>
+<li class="chapter" data-level="6.3.4" data-path="environments.html"><a href="environments.html#calling-environments"><i class="fa fa-check"></i><b>6.3.4</b> Calling environments</a></li>
+<li class="chapter" data-level="6.3.5" data-path="environments.html"><a href="environments.html#exercises-17"><i class="fa fa-check"></i><b>6.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="environments.html"><a href="environments.html#binding"><i class="fa fa-check"></i><b>6.4</b> Binding names to values</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="environments.html"><a href="environments.html#exercises-18"><i class="fa fa-check"></i><b>6.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="environments.html"><a href="environments.html#explicit-envs"><i class="fa fa-check"></i><b>6.5</b> Explicit environments</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="environments.html"><a href="environments.html#avoiding-copies"><i class="fa fa-check"></i><b>6.5.1</b> Avoiding copies</a></li>
+<li class="chapter" data-level="6.5.2" data-path="environments.html"><a href="environments.html#package-state"><i class="fa fa-check"></i><b>6.5.2</b> Package state</a></li>
+<li class="chapter" data-level="6.5.3" data-path="environments.html"><a href="environments.html#as-a-hashmap"><i class="fa fa-check"></i><b>6.5.3</b> As a hashmap</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="environments.html"><a href="environments.html#env-answers"><i class="fa fa-check"></i><b>6.6</b> Quiz answers</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="debugging.html"><a href="debugging.html"><i class="fa fa-check"></i><b>7</b> Debugging, condition handling, and defensive programming</a><ul>
+<li class="chapter" data-level="7.1" data-path="debugging.html"><a href="debugging.html#debugging-techniques"><i class="fa fa-check"></i><b>7.1</b> Debugging techniques</a></li>
+<li class="chapter" data-level="7.2" data-path="debugging.html"><a href="debugging.html#debugging-tools"><i class="fa fa-check"></i><b>7.2</b> Debugging tools</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="debugging.html"><a href="debugging.html#determining-the-sequence-of-calls"><i class="fa fa-check"></i><b>7.2.1</b> Determining the sequence of calls</a></li>
+<li class="chapter" data-level="7.2.2" data-path="debugging.html"><a href="debugging.html#browsing-on-error"><i class="fa fa-check"></i><b>7.2.2</b> Browsing on error</a></li>
+<li class="chapter" data-level="7.2.3" data-path="debugging.html"><a href="debugging.html#browsing-arbitrary-code"><i class="fa fa-check"></i><b>7.2.3</b> Browsing arbitrary code</a></li>
+<li class="chapter" data-level="7.2.4" data-path="debugging.html"><a href="debugging.html#the-call-stack-traceback-where-and-recover"><i class="fa fa-check"></i><b>7.2.4</b> The call stack: <code>traceback()</code>, <code>where</code>, and <code>recover()</code></a></li>
+<li class="chapter" data-level="7.2.5" data-path="debugging.html"><a href="debugging.html#other-types-of-failure"><i class="fa fa-check"></i><b>7.2.5</b> Other types of failure</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="debugging.html"><a href="debugging.html#condition-handling"><i class="fa fa-check"></i><b>7.3</b> Condition handling</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="debugging.html"><a href="debugging.html#try"><i class="fa fa-check"></i><b>7.3.1</b> Ignore errors with try</a></li>
+<li class="chapter" data-level="7.3.2" data-path="debugging.html"><a href="debugging.html#handle-conditions-with-trycatch"><i class="fa fa-check"></i><b>7.3.2</b> Handle conditions with <code>tryCatch()</code></a></li>
+<li class="chapter" data-level="7.3.3" data-path="debugging.html"><a href="debugging.html#withcallinghandlers"><i class="fa fa-check"></i><b>7.3.3</b> <code>withCallingHandlers()</code></a></li>
+<li class="chapter" data-level="7.3.4" data-path="debugging.html"><a href="debugging.html#custom-signal-classes"><i class="fa fa-check"></i><b>7.3.4</b> Custom signal classes</a></li>
+<li class="chapter" data-level="7.3.5" data-path="debugging.html"><a href="debugging.html#exercises-19"><i class="fa fa-check"></i><b>7.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="debugging.html"><a href="debugging.html#defensive-programming"><i class="fa fa-check"></i><b>7.4</b> Defensive programming</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="debugging.html"><a href="debugging.html#exercises-20"><i class="fa fa-check"></i><b>7.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="debugging.html"><a href="debugging.html#debugging-answers"><i class="fa fa-check"></i><b>7.5</b> Quiz answers</a></li>
+</ul></li>
+<li class="part"><span><b>II Functional programming</b></span></li>
+<li class="chapter" data-level="8" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>8</b> Functional programming</a><ul>
+<li class="chapter" data-level="8.1" data-path="functional-programming.html"><a href="functional-programming.html#fp-motivation"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i><b>8.2</b> Anonymous functions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="functional-programming.html"><a href="functional-programming.html#exercises-21"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i><b>8.3</b> Closures</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="functional-programming.html"><a href="functional-programming.html#function-factories"><i class="fa fa-check"></i><b>8.3.1</b> Function factories</a></li>
+<li class="chapter" data-level="8.3.2" data-path="functional-programming.html"><a href="functional-programming.html#mutable-state"><i class="fa fa-check"></i><b>8.3.2</b> Mutable state</a></li>
+<li class="chapter" data-level="8.3.3" data-path="functional-programming.html"><a href="functional-programming.html#exercises-22"><i class="fa fa-check"></i><b>8.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="functional-programming.html"><a href="functional-programming.html#lists-of-functions"><i class="fa fa-check"></i><b>8.4</b> Lists of functions</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="functional-programming.html"><a href="functional-programming.html#moving-lists-of-functions-to-the-global-environment"><i class="fa fa-check"></i><b>8.4.1</b> Moving lists of functions to the global environment</a></li>
+<li class="chapter" data-level="8.4.2" data-path="functional-programming.html"><a href="functional-programming.html#exercises-23"><i class="fa fa-check"></i><b>8.4.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="functional-programming.html"><a href="functional-programming.html#numerical-integration"><i class="fa fa-check"></i><b>8.5</b> Case study: numerical integration</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="functional-programming.html"><a href="functional-programming.html#exercises-24"><i class="fa fa-check"></i><b>8.5.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="functionals.html"><a href="functionals.html"><i class="fa fa-check"></i><b>9</b> Functionals</a><ul>
+<li class="chapter" data-level="9.1" data-path="functionals.html"><a href="functionals.html#lapply"><i class="fa fa-check"></i><b>9.1</b> My first functional: lapply()</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="functionals.html"><a href="functionals.html#looping-patterns"><i class="fa fa-check"></i><b>9.1.1</b> Looping patterns</a></li>
+<li class="chapter" data-level="9.1.2" data-path="functionals.html"><a href="functionals.html#exercises-25"><i class="fa fa-check"></i><b>9.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="functionals.html"><a href="functionals.html#functionals-loop"><i class="fa fa-check"></i><b>9.2</b> For loop functionals: friends of lapply()</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="functionals.html"><a href="functionals.html#vector-output-sapply-and-vapply"><i class="fa fa-check"></i><b>9.2.1</b> Vector output: <code>sapply</code> and <code>vapply</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="functionals.html"><a href="functionals.html#map"><i class="fa fa-check"></i><b>9.2.2</b> Multiple inputs: <code>Map</code> (and <code>mapply</code>)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="functionals.html"><a href="functionals.html#rolling-computations"><i class="fa fa-check"></i><b>9.2.3</b> Rolling computations</a></li>
+<li class="chapter" data-level="9.2.4" data-path="functionals.html"><a href="functionals.html#parallelisation"><i class="fa fa-check"></i><b>9.2.4</b> Parallelisation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="functionals.html"><a href="functionals.html#exercises-26"><i class="fa fa-check"></i><b>9.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="functionals.html"><a href="functionals.html#functionals-ds"><i class="fa fa-check"></i><b>9.3</b> Manipulating matrices and data frames</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="functionals.html"><a href="functionals.html#matrix-and-array-operations"><i class="fa fa-check"></i><b>9.3.1</b> Matrix and array operations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="functionals.html"><a href="functionals.html#group-apply"><i class="fa fa-check"></i><b>9.3.2</b> Group apply</a></li>
+<li class="chapter" data-level="9.3.3" data-path="functionals.html"><a href="functionals.html#the-plyr-package"><i class="fa fa-check"></i><b>9.3.3</b> The plyr package</a></li>
+<li class="chapter" data-level="9.3.4" data-path="functionals.html"><a href="functionals.html#exercises-27"><i class="fa fa-check"></i><b>9.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="functionals.html"><a href="functionals.html#functionals-fp"><i class="fa fa-check"></i><b>9.4</b> Manipulating lists</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="functionals.html"><a href="functionals.html#reduce"><i class="fa fa-check"></i><b>9.4.1</b> <code>Reduce()</code></a></li>
+<li class="chapter" data-level="9.4.2" data-path="functionals.html"><a href="functionals.html#predicate-functionals"><i class="fa fa-check"></i><b>9.4.2</b> Predicate functionals</a></li>
+<li class="chapter" data-level="9.4.3" data-path="functionals.html"><a href="functionals.html#exercises-28"><i class="fa fa-check"></i><b>9.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="functionals.html"><a href="functionals.html#functionals-math"><i class="fa fa-check"></i><b>9.5</b> Mathematical functionals</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="functionals.html"><a href="functionals.html#exercises-29"><i class="fa fa-check"></i><b>9.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="functionals.html"><a href="functionals.html#functionals-not"><i class="fa fa-check"></i><b>9.6</b> Loops that should be left as is</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="functionals.html"><a href="functionals.html#modifying-in-place"><i class="fa fa-check"></i><b>9.6.1</b> Modifying in place</a></li>
+<li class="chapter" data-level="9.6.2" data-path="functionals.html"><a href="functionals.html#recursive-relationships"><i class="fa fa-check"></i><b>9.6.2</b> Recursive relationships</a></li>
+<li class="chapter" data-level="9.6.3" data-path="functionals.html"><a href="functionals.html#while-loops"><i class="fa fa-check"></i><b>9.6.3</b> While loops</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="functionals.html"><a href="functionals.html#function-family"><i class="fa fa-check"></i><b>9.7</b> A family of functions</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="functionals.html"><a href="functionals.html#exercises-30"><i class="fa fa-check"></i><b>9.7.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="function-operators.html"><a href="function-operators.html"><i class="fa fa-check"></i><b>10</b> Function operators</a><ul>
+<li class="chapter" data-level="10.1" data-path="function-operators.html"><a href="function-operators.html#behavioural-fos"><i class="fa fa-check"></i><b>10.1</b> Behavioural FOs</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="function-operators.html"><a href="function-operators.html#memoisation"><i class="fa fa-check"></i><b>10.1.1</b> Memoisation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="function-operators.html"><a href="function-operators.html#tee"><i class="fa fa-check"></i><b>10.1.2</b> Capturing function invocations</a></li>
+<li class="chapter" data-level="10.1.3" data-path="function-operators.html"><a href="function-operators.html#laziness"><i class="fa fa-check"></i><b>10.1.3</b> Laziness</a></li>
+<li class="chapter" data-level="10.1.4" data-path="function-operators.html"><a href="function-operators.html#exercises-31"><i class="fa fa-check"></i><b>10.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="function-operators.html"><a href="function-operators.html#output-fos"><i class="fa fa-check"></i><b>10.2</b> Output FOs</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="function-operators.html"><a href="function-operators.html#minor-modifications"><i class="fa fa-check"></i><b>10.2.1</b> Minor modifications</a></li>
+<li class="chapter" data-level="10.2.2" data-path="function-operators.html"><a href="function-operators.html#changing-what-a-function-does"><i class="fa fa-check"></i><b>10.2.2</b> Changing what a function does</a></li>
+<li class="chapter" data-level="10.2.3" data-path="function-operators.html"><a href="function-operators.html#exercises-32"><i class="fa fa-check"></i><b>10.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="function-operators.html"><a href="function-operators.html#input-fos"><i class="fa fa-check"></i><b>10.3</b> Input FOs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="function-operators.html"><a href="function-operators.html#prefilling-function-arguments-partial-function-application"><i class="fa fa-check"></i><b>10.3.1</b> Prefilling function arguments: partial function application</a></li>
+<li class="chapter" data-level="10.3.2" data-path="function-operators.html"><a href="function-operators.html#changing-input-types"><i class="fa fa-check"></i><b>10.3.2</b> Changing input types</a></li>
+<li class="chapter" data-level="10.3.3" data-path="function-operators.html"><a href="function-operators.html#exercises-33"><i class="fa fa-check"></i><b>10.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="function-operators.html"><a href="function-operators.html#combining-fos"><i class="fa fa-check"></i><b>10.4</b> Combining FOs</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="function-operators.html"><a href="function-operators.html#function-composition"><i class="fa fa-check"></i><b>10.4.1</b> Function composition</a></li>
+<li class="chapter" data-level="10.4.2" data-path="function-operators.html"><a href="function-operators.html#logical-predicates-and-boolean-algebra"><i class="fa fa-check"></i><b>10.4.2</b> Logical predicates and boolean algebra</a></li>
+<li class="chapter" data-level="10.4.3" data-path="function-operators.html"><a href="function-operators.html#exercises-34"><i class="fa fa-check"></i><b>10.4.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Object oriented programming</b></span></li>
+<li class="chapter" data-level="11" data-path="oo.html"><a href="oo.html"><i class="fa fa-check"></i><b>11</b> Introduction</a><ul>
+<li class="chapter" data-level="11.1" data-path="oo.html"><a href="oo.html#oop-systems"><i class="fa fa-check"></i><b>11.1</b> OOP Systems</a></li>
+<li class="chapter" data-level="11.2" data-path="oo.html"><a href="oo.html#oop-in-r"><i class="fa fa-check"></i><b>11.2</b> OOP in R</a></li>
+<li class="chapter" data-level="11.3" data-path="oo.html"><a href="oo.html#field-guide"><i class="fa fa-check"></i><b>11.3</b> Field guide</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="base-types.html"><a href="base-types.html"><i class="fa fa-check"></i><b>12</b> Base types</a><ul>
+<li class="chapter" data-level="12.1" data-path="base-types.html"><a href="base-types.html#base-objects-vs-oo-objects"><i class="fa fa-check"></i><b>12.1</b> Base objects vs OO objects</a></li>
+<li class="chapter" data-level="12.2" data-path="base-types.html"><a href="base-types.html#base-types-2"><i class="fa fa-check"></i><b>12.2</b> Base types</a></li>
+<li class="chapter" data-level="12.3" data-path="base-types.html"><a href="base-types.html#the-is-functions"><i class="fa fa-check"></i><b>12.3</b> The is functions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="s3.html"><a href="s3.html"><i class="fa fa-check"></i><b>13</b> S3</a><ul>
+<li class="chapter" data-level="13.1" data-path="s3.html"><a href="s3.html#s3-basics"><i class="fa fa-check"></i><b>13.1</b> Basics</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="s3.html"><a href="s3.html#exercises-35"><i class="fa fa-check"></i><b>13.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="s3.html"><a href="s3.html#classes"><i class="fa fa-check"></i><b>13.2</b> Classes</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="s3.html"><a href="s3.html#constructors"><i class="fa fa-check"></i><b>13.2.1</b> Constructors</a></li>
+<li class="chapter" data-level="13.2.2" data-path="s3.html"><a href="s3.html#validators"><i class="fa fa-check"></i><b>13.2.2</b> Validators</a></li>
+<li class="chapter" data-level="13.2.3" data-path="s3.html"><a href="s3.html#helpers"><i class="fa fa-check"></i><b>13.2.3</b> Helpers</a></li>
+<li class="chapter" data-level="13.2.4" data-path="s3.html"><a href="s3.html#object-styles"><i class="fa fa-check"></i><b>13.2.4</b> Object styles</a></li>
+<li class="chapter" data-level="13.2.5" data-path="s3.html"><a href="s3.html#exercises-36"><i class="fa fa-check"></i><b>13.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="s3.html"><a href="s3.html#generics-and-methods"><i class="fa fa-check"></i><b>13.3</b> Generics and methods</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="s3.html"><a href="s3.html#coercion-1"><i class="fa fa-check"></i><b>13.3.1</b> Coercion</a></li>
+<li class="chapter" data-level="13.3.2" data-path="s3.html"><a href="s3.html#s3-arguments"><i class="fa fa-check"></i><b>13.3.2</b> Arguments</a></li>
+<li class="chapter" data-level="13.3.3" data-path="s3.html"><a href="s3.html#exercises-37"><i class="fa fa-check"></i><b>13.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="s3.html"><a href="s3.html#method-dispatch"><i class="fa fa-check"></i><b>13.4</b> Method dispatch</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="s3.html"><a href="s3.html#usemethod"><i class="fa fa-check"></i><b>13.4.1</b> <code>UseMethod()</code></a></li>
+<li class="chapter" data-level="13.4.2" data-path="s3.html"><a href="s3.html#nextmethod"><i class="fa fa-check"></i><b>13.4.2</b> <code>NextMethod()</code></a></li>
+<li class="chapter" data-level="13.4.3" data-path="s3.html"><a href="s3.html#exercises-38"><i class="fa fa-check"></i><b>13.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="s3.html"><a href="s3.html#inheritance"><i class="fa fa-check"></i><b>13.5</b> Inheritance</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="s3.html"><a href="s3.html#constructors-1"><i class="fa fa-check"></i><b>13.5.1</b> Constructors</a></li>
+<li class="chapter" data-level="13.5.2" data-path="s3.html"><a href="s3.html#coercion-2"><i class="fa fa-check"></i><b>13.5.2</b> Coercion</a></li>
+<li class="chapter" data-level="13.5.3" data-path="s3.html"><a href="s3.html#methods"><i class="fa fa-check"></i><b>13.5.3</b> Methods</a></li>
+<li class="chapter" data-level="13.5.4" data-path="s3.html"><a href="s3.html#exercises-39"><i class="fa fa-check"></i><b>13.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="s3.html"><a href="s3.html#dispatch-details"><i class="fa fa-check"></i><b>13.6</b> Dispatch details</a><ul>
+<li class="chapter" data-level="13.6.1" data-path="s3.html"><a href="s3.html#environments-and-namespaces"><i class="fa fa-check"></i><b>13.6.1</b> Environments and namespaces</a></li>
+<li class="chapter" data-level="13.6.2" data-path="s3.html"><a href="s3.html#s3-and-base-types"><i class="fa fa-check"></i><b>13.6.2</b> S3 and base types</a></li>
+<li class="chapter" data-level="13.6.3" data-path="s3.html"><a href="s3.html#internal-generics"><i class="fa fa-check"></i><b>13.6.3</b> Internal generics</a></li>
+<li class="chapter" data-level="13.6.4" data-path="s3.html"><a href="s3.html#group-generics"><i class="fa fa-check"></i><b>13.6.4</b> Group generics</a></li>
+<li class="chapter" data-level="13.6.5" data-path="s3.html"><a href="s3.html#double-dispatch"><i class="fa fa-check"></i><b>13.6.5</b> Double dispatch</a></li>
+<li class="chapter" data-level="13.6.6" data-path="s3.html"><a href="s3.html#exercises-40"><i class="fa fa-check"></i><b>13.6.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="s4.html"><a href="s4.html"><i class="fa fa-check"></i><b>14</b> S4</a><ul>
+<li class="chapter" data-level="14.1" data-path="s4.html"><a href="s4.html#classes-1"><i class="fa fa-check"></i><b>14.1</b> Classes</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="s4.html"><a href="s4.html#slots"><i class="fa fa-check"></i><b>14.1.1</b> Slots</a></li>
+<li class="chapter" data-level="14.1.2" data-path="s4.html"><a href="s4.html#helper"><i class="fa fa-check"></i><b>14.1.2</b> Helper</a></li>
+<li class="chapter" data-level="14.1.3" data-path="s4.html"><a href="s4.html#introspection"><i class="fa fa-check"></i><b>14.1.3</b> Introspection</a></li>
+<li class="chapter" data-level="14.1.4" data-path="s4.html"><a href="s4.html#exercises-41"><i class="fa fa-check"></i><b>14.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="s4.html"><a href="s4.html#generics-and-methods-1"><i class="fa fa-check"></i><b>14.2</b> Generics and methods</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="s4.html"><a href="s4.html#show-method"><i class="fa fa-check"></i><b>14.2.1</b> Show method</a></li>
+<li class="chapter" data-level="14.2.2" data-path="s4.html"><a href="s4.html#accessor-methods"><i class="fa fa-check"></i><b>14.2.2</b> Accessor methods</a></li>
+<li class="chapter" data-level="14.2.3" data-path="s4.html"><a href="s4.html#coercion-methods"><i class="fa fa-check"></i><b>14.2.3</b> Coercion methods</a></li>
+<li class="chapter" data-level="14.2.4" data-path="s4.html"><a href="s4.html#introspection-1"><i class="fa fa-check"></i><b>14.2.4</b> Introspection</a></li>
+<li class="chapter" data-level="14.2.5" data-path="s4.html"><a href="s4.html#exercises-42"><i class="fa fa-check"></i><b>14.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="s4.html"><a href="s4.html#method-dispatch-1"><i class="fa fa-check"></i><b>14.3</b> Method dispatch</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="s4.html"><a href="s4.html#single-dispatch"><i class="fa fa-check"></i><b>14.3.1</b> Single dispatch</a></li>
+<li class="chapter" data-level="14.3.2" data-path="s4.html"><a href="s4.html#multiple-inheritance"><i class="fa fa-check"></i><b>14.3.2</b> Multiple inheritance</a></li>
+<li class="chapter" data-level="14.3.3" data-path="s4.html"><a href="s4.html#multiple-dispatch"><i class="fa fa-check"></i><b>14.3.3</b> Multiple dispatch</a></li>
+<li class="chapter" data-level="14.3.4" data-path="s4.html"><a href="s4.html#multiple-dispatch-and-multiple-inheritance"><i class="fa fa-check"></i><b>14.3.4</b> Multiple dispatch and multiple inheritance</a></li>
+<li class="chapter" data-level="14.3.5" data-path="s4.html"><a href="s4.html#exercises-43"><i class="fa fa-check"></i><b>14.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="s4.html"><a href="s4.html#s4-and-existing-code"><i class="fa fa-check"></i><b>14.4</b> S4 and existing code</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="s4.html"><a href="s4.html#classes-2"><i class="fa fa-check"></i><b>14.4.1</b> Classes</a></li>
+<li class="chapter" data-level="14.4.2" data-path="s4.html"><a href="s4.html#generics"><i class="fa fa-check"></i><b>14.4.2</b> Generics</a></li>
+<li class="chapter" data-level="14.4.3" data-path="s4.html"><a href="s4.html#exercises-44"><i class="fa fa-check"></i><b>14.4.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="r6.html"><a href="r6.html"><i class="fa fa-check"></i><b>15</b> R6</a><ul>
+<li class="chapter" data-level="15.1" data-path="r6.html"><a href="r6.html#classes-and-methods"><i class="fa fa-check"></i><b>15.1</b> Classes and methods</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="r6.html"><a href="r6.html#method-chaining"><i class="fa fa-check"></i><b>15.1.1</b> Method chaining</a></li>
+<li class="chapter" data-level="15.1.2" data-path="r6.html"><a href="r6.html#important-methods"><i class="fa fa-check"></i><b>15.1.2</b> Important methods</a></li>
+<li class="chapter" data-level="15.1.3" data-path="r6.html"><a href="r6.html#adding-methods-after-creation"><i class="fa fa-check"></i><b>15.1.3</b> Adding methods after creation</a></li>
+<li class="chapter" data-level="15.1.4" data-path="r6.html"><a href="r6.html#inheritance-1"><i class="fa fa-check"></i><b>15.1.4</b> Inheritance</a></li>
+<li class="chapter" data-level="15.1.5" data-path="r6.html"><a href="r6.html#introspection-2"><i class="fa fa-check"></i><b>15.1.5</b> Introspection</a></li>
+<li class="chapter" data-level="15.1.6" data-path="r6.html"><a href="r6.html#exercises-45"><i class="fa fa-check"></i><b>15.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="r6.html"><a href="r6.html#controlling-access"><i class="fa fa-check"></i><b>15.2</b> Controlling access</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="r6.html"><a href="r6.html#privacy"><i class="fa fa-check"></i><b>15.2.1</b> Privacy</a></li>
+<li class="chapter" data-level="15.2.2" data-path="r6.html"><a href="r6.html#active-fields"><i class="fa fa-check"></i><b>15.2.2</b> Active fields</a></li>
+<li class="chapter" data-level="15.2.3" data-path="r6.html"><a href="r6.html#exercises-46"><i class="fa fa-check"></i><b>15.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="r6.html"><a href="r6.html#reference-semantics"><i class="fa fa-check"></i><b>15.3</b> Reference semantics</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="r6.html"><a href="r6.html#reasoning"><i class="fa fa-check"></i><b>15.3.1</b> Reasoning</a></li>
+<li class="chapter" data-level="15.3.2" data-path="r6.html"><a href="r6.html#finalizer"><i class="fa fa-check"></i><b>15.3.2</b> Finalizer</a></li>
+<li class="chapter" data-level="15.3.3" data-path="r6.html"><a href="r6.html#r6-fields"><i class="fa fa-check"></i><b>15.3.3</b> R6 fields</a></li>
+<li class="chapter" data-level="15.3.4" data-path="r6.html"><a href="r6.html#exercises-47"><i class="fa fa-check"></i><b>15.3.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html"><i class="fa fa-check"></i><b>16</b> Trade-offs</a><ul>
+<li class="chapter" data-level="16.1" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#s3-s4"><i class="fa fa-check"></i><b>16.1</b> S4 vs S3</a></li>
+<li class="chapter" data-level="16.2" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#s3-r6"><i class="fa fa-check"></i><b>16.2</b> R6 vs S3</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#namespacing"><i class="fa fa-check"></i><b>16.2.1</b> Namespacing</a></li>
+<li class="chapter" data-level="16.2.2" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#threading-state"><i class="fa fa-check"></i><b>16.2.2</b> Threading state</a></li>
+<li class="chapter" data-level="16.2.3" data-path="oo-tradeoffs.html"><a href="oo-tradeoffs.html#tradeoffs-pipe"><i class="fa fa-check"></i><b>16.2.3</b> Method chaining</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Metaprogramming</b></span></li>
+<li class="chapter" data-level="17" data-path="meta.html"><a href="meta.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="18" data-path="expressions.html"><a href="expressions.html"><i class="fa fa-check"></i><b>18</b> Expressions</a><ul>
+<li class="chapter" data-level="18.1" data-path="expressions.html"><a href="expressions.html#abstract-syntax-trees"><i class="fa fa-check"></i><b>18.1</b> Abstract syntax trees</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="expressions.html"><a href="expressions.html#infix-vs.prefix-calls"><i class="fa fa-check"></i><b>18.1.1</b> Infix vs. prefix calls</a></li>
+<li class="chapter" data-level="18.1.2" data-path="expressions.html"><a href="expressions.html#special-forms"><i class="fa fa-check"></i><b>18.1.2</b> Special forms</a></li>
+<li class="chapter" data-level="18.1.3" data-path="expressions.html"><a href="expressions.html#function-factories-1"><i class="fa fa-check"></i><b>18.1.3</b> Function factories</a></li>
+<li class="chapter" data-level="18.1.4" data-path="expressions.html"><a href="expressions.html#argument-names"><i class="fa fa-check"></i><b>18.1.4</b> Argument names</a></li>
+<li class="chapter" data-level="18.1.5" data-path="expressions.html"><a href="expressions.html#exercises-48"><i class="fa fa-check"></i><b>18.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="expressions.html"><a href="expressions.html#rs-grammar"><i class="fa fa-check"></i><b>18.2</b> R’s grammar</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="expressions.html"><a href="expressions.html#operator-precedence-and-associativity"><i class="fa fa-check"></i><b>18.2.1</b> Operator precedence and associativity</a></li>
+<li class="chapter" data-level="18.2.2" data-path="expressions.html"><a href="expressions.html#whitespace"><i class="fa fa-check"></i><b>18.2.2</b> Whitespace</a></li>
+<li class="chapter" data-level="18.2.3" data-path="expressions.html"><a href="expressions.html#parsing-a-string"><i class="fa fa-check"></i><b>18.2.3</b> Parsing a string</a></li>
+<li class="chapter" data-level="18.2.4" data-path="expressions.html"><a href="expressions.html#deparsing"><i class="fa fa-check"></i><b>18.2.4</b> Deparsing</a></li>
+<li class="chapter" data-level="18.2.5" data-path="expressions.html"><a href="expressions.html#exercises-49"><i class="fa fa-check"></i><b>18.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="data-structures.html"><a href="data-structures.html#data-structures"><i class="fa fa-check"></i><b>18.3</b> Data structures</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="expressions.html"><a href="expressions.html#constants-and-symbols"><i class="fa fa-check"></i><b>18.3.1</b> Constants and symbols</a></li>
+<li class="chapter" data-level="18.3.2" data-path="expressions.html"><a href="expressions.html#calls"><i class="fa fa-check"></i><b>18.3.2</b> Calls</a></li>
+<li class="chapter" data-level="18.3.3" data-path="expressions.html"><a href="expressions.html#pairlists"><i class="fa fa-check"></i><b>18.3.3</b> Pairlists</a></li>
+<li class="chapter" data-level="18.3.4" data-path="expressions.html"><a href="expressions.html#expression-objects"><i class="fa fa-check"></i><b>18.3.4</b> Expression objects</a></li>
+<li class="chapter" data-level="18.3.5" data-path="expressions.html"><a href="expressions.html#exercises-50"><i class="fa fa-check"></i><b>18.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="expressions.html"><a href="expressions.html#case-study-anaphoric-functions"><i class="fa fa-check"></i><b>18.4</b> Case study: anaphoric functions</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="expressions.html"><a href="expressions.html#exercises-51"><i class="fa fa-check"></i><b>18.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="expressions.html"><a href="expressions.html#ast-funs"><i class="fa fa-check"></i><b>18.5</b> Case study: Walking the AST with recursive functions</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="expressions.html"><a href="expressions.html#finding-f-and-t"><i class="fa fa-check"></i><b>18.5.1</b> Finding F and T</a></li>
+<li class="chapter" data-level="18.5.2" data-path="expressions.html"><a href="expressions.html#finding-all-variables-created-by-assignment"><i class="fa fa-check"></i><b>18.5.2</b> Finding all variables created by assignment</a></li>
+<li class="chapter" data-level="18.5.3" data-path="expressions.html"><a href="expressions.html#exercises-52"><i class="fa fa-check"></i><b>18.5.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="quasiquotation.html"><a href="quasiquotation.html"><i class="fa fa-check"></i><b>19</b> Quasiquotation</a><ul>
+<li class="chapter" data-level="19.1" data-path="quasiquotation.html"><a href="quasiquotation.html#introduction-1"><i class="fa fa-check"></i><b>19.1</b> Introduction</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="quasiquotation.html"><a href="quasiquotation.html#motivation"><i class="fa fa-check"></i><b>19.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="19.1.2" data-path="quasiquotation.html"><a href="quasiquotation.html#theory"><i class="fa fa-check"></i><b>19.1.2</b> Theory</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="quasiquotation.html"><a href="quasiquotation.html#quotation"><i class="fa fa-check"></i><b>19.2</b> Quotation</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="quasiquotation.html"><a href="quasiquotation.html#with-rlang"><i class="fa fa-check"></i><b>19.2.1</b> With rlang</a></li>
+<li class="chapter" data-level="19.2.2" data-path="quasiquotation.html"><a href="quasiquotation.html#with-base-r"><i class="fa fa-check"></i><b>19.2.2</b> With base R</a></li>
+<li class="chapter" data-level="19.2.3" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-53"><i class="fa fa-check"></i><b>19.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="quasiquotation.html"><a href="quasiquotation.html#eval-basics"><i class="fa fa-check"></i><b>19.3</b> Evaluation</a></li>
+<li class="chapter" data-level="19.4" data-path="quasiquotation.html"><a href="quasiquotation.html#unquotation"><i class="fa fa-check"></i><b>19.4</b> Unquotation</a><ul>
+<li class="chapter" data-level="19.4.1" data-path="quasiquotation.html"><a href="quasiquotation.html#with-rlang-1"><i class="fa fa-check"></i><b>19.4.1</b> With rlang</a></li>
+<li class="chapter" data-level="19.4.2" data-path="quasiquotation.html"><a href="quasiquotation.html#the-polite-fiction-of"><i class="fa fa-check"></i><b>19.4.2</b> The polite fiction of <code>!!</code></a></li>
+<li class="chapter" data-level="19.4.3" data-path="quasiquotation.html"><a href="quasiquotation.html#unquote-base"><i class="fa fa-check"></i><b>19.4.3</b> With base R</a></li>
+<li class="chapter" data-level="19.4.4" data-path="quasiquotation.html"><a href="quasiquotation.html#non-standard-asts"><i class="fa fa-check"></i><b>19.4.4</b> Non-standard ASTs</a></li>
+<li class="chapter" data-level="19.4.5" data-path="quasiquotation.html"><a href="quasiquotation.html#missing-arguments"><i class="fa fa-check"></i><b>19.4.5</b> Missing arguments</a></li>
+<li class="chapter" data-level="19.4.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-54"><i class="fa fa-check"></i><b>19.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="quasiquotation.html"><a href="quasiquotation.html#quasi-case-studies"><i class="fa fa-check"></i><b>19.5</b> Case studies</a><ul>
+<li class="chapter" data-level="19.5.1" data-path="quasiquotation.html"><a href="quasiquotation.html#map-reduce-to-generate-code"><i class="fa fa-check"></i><b>19.5.1</b> Map-reduce to generate code</a></li>
+<li class="chapter" data-level="19.5.2" data-path="quasiquotation.html"><a href="quasiquotation.html#calling-quoting-functions"><i class="fa fa-check"></i><b>19.5.2</b> Calling quoting functions</a></li>
+<li class="chapter" data-level="19.5.3" data-path="quasiquotation.html"><a href="quasiquotation.html#partition"><i class="fa fa-check"></i><b>19.5.3</b> Partition</a></li>
+<li class="chapter" data-level="19.5.4" data-path="quasiquotation.html"><a href="quasiquotation.html#tangling-with-dots"><i class="fa fa-check"></i><b>19.5.4</b> Tangling with dots</a></li>
+<li class="chapter" data-level="19.5.5" data-path="quasiquotation.html"><a href="quasiquotation.html#slicing-an-array"><i class="fa fa-check"></i><b>19.5.5</b> Slicing an array</a></li>
+<li class="chapter" data-level="19.5.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-55"><i class="fa fa-check"></i><b>19.5.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="quasiquotation.html"><a href="quasiquotation.html#dot-dot-dot-..."><i class="fa fa-check"></i><b>19.6</b> Dot-dot-dot (<code>...</code>)</a><ul>
+<li class="chapter" data-level="19.6.1" data-path="quasiquotation.html"><a href="quasiquotation.html#do.call"><i class="fa fa-check"></i><b>19.6.1</b> <code>do.call()</code></a></li>
+<li class="chapter" data-level="19.6.2" data-path="quasiquotation.html"><a href="quasiquotation.html#the-tidyverse-approach"><i class="fa fa-check"></i><b>19.6.2</b> The tidyverse approach</a></li>
+<li class="chapter" data-level="19.6.3" data-path="quasiquotation.html"><a href="quasiquotation.html#dots_list"><i class="fa fa-check"></i><b>19.6.3</b> <code>dots_list()</code></a></li>
+<li class="chapter" data-level="19.6.4" data-path="quasiquotation.html"><a href="quasiquotation.html#application-invoke-and-lang"><i class="fa fa-check"></i><b>19.6.4</b> Application: <code>invoke()</code> and <code>lang()</code></a></li>
+<li class="chapter" data-level="19.6.5" data-path="quasiquotation.html"><a href="quasiquotation.html#other-approaches"><i class="fa fa-check"></i><b>19.6.5</b> Other approaches</a></li>
+<li class="chapter" data-level="19.6.6" data-path="quasiquotation.html"><a href="quasiquotation.html#exercises-56"><i class="fa fa-check"></i><b>19.6.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>20</b> Evaluation</a><ul>
+<li class="chapter" data-level="20.1" data-path="evaluation.html"><a href="evaluation.html#introduction-2"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="evaluation.html"><a href="evaluation.html#evaluation-basics"><i class="fa fa-check"></i><b>20.2</b> Evaluation basics</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="evaluation.html"><a href="evaluation.html#application-local"><i class="fa fa-check"></i><b>20.2.1</b> Application: <code>local()</code></a></li>
+<li class="chapter" data-level="20.2.2" data-path="evaluation.html"><a href="evaluation.html#application-source"><i class="fa fa-check"></i><b>20.2.2</b> Application: <code>source()</code></a></li>
+<li class="chapter" data-level="20.2.3" data-path="evaluation.html"><a href="evaluation.html#gotcha-function"><i class="fa fa-check"></i><b>20.2.3</b> Gotcha: <code>function()</code></a></li>
+<li class="chapter" data-level="20.2.4" data-path="evaluation.html"><a href="evaluation.html#base-r"><i class="fa fa-check"></i><b>20.2.4</b> Base R</a></li>
+<li class="chapter" data-level="20.2.5" data-path="evaluation.html"><a href="evaluation.html#exercises-57"><i class="fa fa-check"></i><b>20.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="evaluation.html"><a href="evaluation.html#quosures"><i class="fa fa-check"></i><b>20.3</b> Quosures</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="evaluation.html"><a href="evaluation.html#motivation-1"><i class="fa fa-check"></i><b>20.3.1</b> Motivation</a></li>
+<li class="chapter" data-level="20.3.2" data-path="evaluation.html"><a href="evaluation.html#creating-and-manipulating"><i class="fa fa-check"></i><b>20.3.2</b> Creating and manipulating</a></li>
+<li class="chapter" data-level="20.3.3" data-path="evaluation.html"><a href="evaluation.html#implementation"><i class="fa fa-check"></i><b>20.3.3</b> Implementation</a></li>
+<li class="chapter" data-level="20.3.4" data-path="evaluation.html"><a href="evaluation.html#multiple-environments"><i class="fa fa-check"></i><b>20.3.4</b> Multiple environments</a></li>
+<li class="chapter" data-level="20.3.5" data-path="evaluation.html"><a href="evaluation.html#embedded-quosures"><i class="fa fa-check"></i><b>20.3.5</b> Embedded quosures</a></li>
+<li class="chapter" data-level="20.3.6" data-path="evaluation.html"><a href="evaluation.html#when-not-to-use-quosures"><i class="fa fa-check"></i><b>20.3.6</b> When not to use quosures</a></li>
+<li class="chapter" data-level="20.3.7" data-path="evaluation.html"><a href="evaluation.html#exercises-58"><i class="fa fa-check"></i><b>20.3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="evaluation.html"><a href="evaluation.html#tidy-evaluation"><i class="fa fa-check"></i><b>20.4</b> Tidy evaluation</a><ul>
+<li class="chapter" data-level="20.4.1" data-path="evaluation.html"><a href="evaluation.html#eval_tidy"><i class="fa fa-check"></i><b>20.4.1</b> <code>eval_tidy()</code></a></li>
+<li class="chapter" data-level="20.4.2" data-path="evaluation.html"><a href="evaluation.html#data-masks"><i class="fa fa-check"></i><b>20.4.2</b> Data masks</a></li>
+<li class="chapter" data-level="20.4.3" data-path="evaluation.html"><a href="evaluation.html#application-subset"><i class="fa fa-check"></i><b>20.4.3</b> Application: <code>subset()</code></a></li>
+<li class="chapter" data-level="20.4.4" data-path="evaluation.html"><a href="evaluation.html#application-arrange"><i class="fa fa-check"></i><b>20.4.4</b> Application: <code>arrange()</code></a></li>
+<li class="chapter" data-level="20.4.5" data-path="evaluation.html"><a href="evaluation.html#ambiguity-and-pronouns"><i class="fa fa-check"></i><b>20.4.5</b> Ambiguity and pronouns</a></li>
+<li class="chapter" data-level="20.4.6" data-path="evaluation.html"><a href="evaluation.html#base-subset"><i class="fa fa-check"></i><b>20.4.6</b> Base <code>subset()</code></a></li>
+<li class="chapter" data-level="20.4.7" data-path="evaluation.html"><a href="evaluation.html#tidy-eval-performance"><i class="fa fa-check"></i><b>20.4.7</b> Performance</a></li>
+<li class="chapter" data-level="20.4.8" data-path="evaluation.html"><a href="evaluation.html#exercises-59"><i class="fa fa-check"></i><b>20.4.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="evaluation.html"><a href="evaluation.html#case-study-calling-base-nse-functions"><i class="fa fa-check"></i><b>20.5</b> Case study: calling base NSE functions</a><ul>
+<li class="chapter" data-level="20.5.1" data-path="evaluation.html"><a href="evaluation.html#basics"><i class="fa fa-check"></i><b>20.5.1</b> Basics</a></li>
+<li class="chapter" data-level="20.5.2" data-path="evaluation.html"><a href="evaluation.html#the-evaluation-environment"><i class="fa fa-check"></i><b>20.5.2</b> The evaluation environment</a></li>
+<li class="chapter" data-level="20.5.3" data-path="evaluation.html"><a href="evaluation.html#making-formulas"><i class="fa fa-check"></i><b>20.5.3</b> Making formulas</a></li>
+<li class="chapter" data-level="20.5.4" data-path="evaluation.html"><a href="evaluation.html#exercises-60"><i class="fa fa-check"></i><b>20.5.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="translation.html"><a href="translation.html"><i class="fa fa-check"></i><b>21</b> Translating R code</a><ul>
+<li class="chapter" data-level="21.1" data-path="translation.html"><a href="translation.html#html"><i class="fa fa-check"></i><b>21.1</b> HTML</a><ul>
+<li class="chapter" data-level="21.1.1" data-path="translation.html"><a href="translation.html#goal"><i class="fa fa-check"></i><b>21.1.1</b> Goal</a></li>
+<li class="chapter" data-level="21.1.2" data-path="translation.html"><a href="translation.html#escaping"><i class="fa fa-check"></i><b>21.1.2</b> Escaping</a></li>
+<li class="chapter" data-level="21.1.3" data-path="translation.html"><a href="translation.html#basic-tag-functions"><i class="fa fa-check"></i><b>21.1.3</b> Basic tag functions</a></li>
+<li class="chapter" data-level="21.1.4" data-path="translation.html"><a href="translation.html#tag-functions"><i class="fa fa-check"></i><b>21.1.4</b> Tag functions</a></li>
+<li class="chapter" data-level="21.1.5" data-path="translation.html"><a href="translation.html#processing-all-tags"><i class="fa fa-check"></i><b>21.1.5</b> Processing all tags</a></li>
+<li class="chapter" data-level="21.1.6" data-path="translation.html"><a href="translation.html#exercises-61"><i class="fa fa-check"></i><b>21.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="translation.html"><a href="translation.html#latex"><i class="fa fa-check"></i><b>21.2</b> LaTeX</a><ul>
+<li class="chapter" data-level="21.2.1" data-path="translation.html"><a href="translation.html#latex-mathematics"><i class="fa fa-check"></i><b>21.2.1</b> LaTeX mathematics</a></li>
+<li class="chapter" data-level="21.2.2" data-path="translation.html"><a href="translation.html#goal-1"><i class="fa fa-check"></i><b>21.2.2</b> Goal</a></li>
+<li class="chapter" data-level="21.2.3" data-path="translation.html"><a href="translation.html#to_math"><i class="fa fa-check"></i><b>21.2.3</b> <code>to_math</code></a></li>
+<li class="chapter" data-level="21.2.4" data-path="translation.html"><a href="translation.html#known-symbols"><i class="fa fa-check"></i><b>21.2.4</b> Known symbols</a></li>
+<li class="chapter" data-level="21.2.5" data-path="translation.html"><a href="translation.html#unknown-symbols"><i class="fa fa-check"></i><b>21.2.5</b> Unknown symbols</a></li>
+<li class="chapter" data-level="21.2.6" data-path="translation.html"><a href="translation.html#known-functions"><i class="fa fa-check"></i><b>21.2.6</b> Known functions</a></li>
+<li class="chapter" data-level="21.2.7" data-path="translation.html"><a href="translation.html#unknown-functions"><i class="fa fa-check"></i><b>21.2.7</b> Unknown functions</a></li>
+<li class="chapter" data-level="21.2.8" data-path="translation.html"><a href="translation.html#exercises-62"><i class="fa fa-check"></i><b>21.2.8</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Performance</b></span></li>
+<li class="chapter" data-level="22" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>22</b> Performance</a><ul>
+<li class="chapter" data-level="22.1" data-path="performance.html"><a href="performance.html#why-is-r-slow"><i class="fa fa-check"></i><b>22.1</b> Why is R slow?</a></li>
+<li class="chapter" data-level="22.2" data-path="performance.html"><a href="performance.html#microbenchmarking"><i class="fa fa-check"></i><b>22.2</b> Microbenchmarking</a><ul>
+<li class="chapter" data-level="22.2.1" data-path="performance.html"><a href="performance.html#exercises-63"><i class="fa fa-check"></i><b>22.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="performance.html"><a href="performance.html#language-performance"><i class="fa fa-check"></i><b>22.3</b> Language performance</a><ul>
+<li class="chapter" data-level="22.3.1" data-path="performance.html"><a href="performance.html#extreme-dynamism"><i class="fa fa-check"></i><b>22.3.1</b> Extreme dynamism</a></li>
+<li class="chapter" data-level="22.3.2" data-path="performance.html"><a href="performance.html#name-lookup-with-mutable-environments"><i class="fa fa-check"></i><b>22.3.2</b> Name lookup with mutable environments</a></li>
+<li class="chapter" data-level="22.3.3" data-path="performance.html"><a href="performance.html#lazy-evaluation-overhead"><i class="fa fa-check"></i><b>22.3.3</b> Lazy evaluation overhead</a></li>
+<li class="chapter" data-level="22.3.4" data-path="performance.html"><a href="performance.html#exercises-64"><i class="fa fa-check"></i><b>22.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="performance.html"><a href="performance.html#implementation-performance"><i class="fa fa-check"></i><b>22.4</b> Implementation performance</a><ul>
+<li class="chapter" data-level="22.4.1" data-path="performance.html"><a href="performance.html#extracting-a-single-value-from-a-data-frame"><i class="fa fa-check"></i><b>22.4.1</b> Extracting a single value from a data frame</a></li>
+<li class="chapter" data-level="22.4.2" data-path="performance.html"><a href="performance.html#ifelse-pmin-and-pmax"><i class="fa fa-check"></i><b>22.4.2</b> <code>ifelse()</code>, <code>pmin()</code>, and <code>pmax()</code></a></li>
+<li class="chapter" data-level="22.4.3" data-path="performance.html"><a href="performance.html#exercises-65"><i class="fa fa-check"></i><b>22.4.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="performance.html"><a href="performance.html#faster-r"><i class="fa fa-check"></i><b>22.5</b> Alternative R implementations</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="profiling.html"><a href="profiling.html"><i class="fa fa-check"></i><b>23</b> Optimising code</a><ul>
+<li class="chapter" data-level="23.1" data-path="profiling.html"><a href="profiling.html#measure-perf"><i class="fa fa-check"></i><b>23.1</b> Measuring performance</a><ul>
+<li class="chapter" data-level="23.1.1" data-path="profiling.html"><a href="profiling.html#limitations"><i class="fa fa-check"></i><b>23.1.1</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="23.2" data-path="profiling.html"><a href="profiling.html#improve-perf"><i class="fa fa-check"></i><b>23.2</b> Improving performance</a></li>
+<li class="chapter" data-level="23.3" data-path="profiling.html"><a href="profiling.html#code-organisation"><i class="fa fa-check"></i><b>23.3</b> Code organisation</a></li>
+<li class="chapter" data-level="23.4" data-path="profiling.html"><a href="profiling.html#already-solved"><i class="fa fa-check"></i><b>23.4</b> Has someone already solved the problem?</a><ul>
+<li class="chapter" data-level="23.4.1" data-path="profiling.html"><a href="profiling.html#exercises-66"><i class="fa fa-check"></i><b>23.4.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.5" data-path="profiling.html"><a href="profiling.html#be-lazy"><i class="fa fa-check"></i><b>23.5</b> Do as little as possible</a><ul>
+<li class="chapter" data-level="23.5.1" data-path="profiling.html"><a href="profiling.html#exercises-67"><i class="fa fa-check"></i><b>23.5.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.6" data-path="profiling.html"><a href="profiling.html#vectorise"><i class="fa fa-check"></i><b>23.6</b> Vectorise</a><ul>
+<li class="chapter" data-level="23.6.1" data-path="profiling.html"><a href="profiling.html#exercises-68"><i class="fa fa-check"></i><b>23.6.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23.7" data-path="profiling.html"><a href="profiling.html#avoid-copies"><i class="fa fa-check"></i><b>23.7</b> Avoid copies</a></li>
+<li class="chapter" data-level="23.8" data-path="profiling.html"><a href="profiling.html#byte-code"><i class="fa fa-check"></i><b>23.8</b> Byte code compilation</a></li>
+<li class="chapter" data-level="23.9" data-path="profiling.html"><a href="profiling.html#t-test"><i class="fa fa-check"></i><b>23.9</b> Case study: t-test</a></li>
+<li class="chapter" data-level="23.10" data-path="profiling.html"><a href="profiling.html#parallelise"><i class="fa fa-check"></i><b>23.10</b> Parallelise</a></li>
+<li class="chapter" data-level="23.11" data-path="profiling.html"><a href="profiling.html#more-techniques"><i class="fa fa-check"></i><b>23.11</b> Other techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>24</b> High performance functions with Rcpp</a><ul>
+<li class="chapter" data-level="24.1" data-path="rcpp.html"><a href="rcpp.html#rcpp-intro"><i class="fa fa-check"></i><b>24.1</b> Getting started with C++</a><ul>
+<li class="chapter" data-level="24.1.1" data-path="rcpp.html"><a href="rcpp.html#no-inputs-scalar-output"><i class="fa fa-check"></i><b>24.1.1</b> No inputs, scalar output</a></li>
+<li class="chapter" data-level="24.1.2" data-path="rcpp.html"><a href="rcpp.html#scalar-input-scalar-output"><i class="fa fa-check"></i><b>24.1.2</b> Scalar input, scalar output</a></li>
+<li class="chapter" data-level="24.1.3" data-path="rcpp.html"><a href="rcpp.html#vector-input-scalar-output"><i class="fa fa-check"></i><b>24.1.3</b> Vector input, scalar output</a></li>
+<li class="chapter" data-level="24.1.4" data-path="rcpp.html"><a href="rcpp.html#vector-input-vector-output"><i class="fa fa-check"></i><b>24.1.4</b> Vector input, vector output</a></li>
+<li class="chapter" data-level="24.1.5" data-path="rcpp.html"><a href="rcpp.html#matrix-input-vector-output"><i class="fa fa-check"></i><b>24.1.5</b> Matrix input, vector output</a></li>
+<li class="chapter" data-level="24.1.6" data-path="rcpp.html"><a href="rcpp.html#sourceCpp"><i class="fa fa-check"></i><b>24.1.6</b> Using sourceCpp</a></li>
+<li class="chapter" data-level="24.1.7" data-path="rcpp.html"><a href="rcpp.html#exercises-69"><i class="fa fa-check"></i><b>24.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="rcpp.html"><a href="rcpp.html#rcpp-classes"><i class="fa fa-check"></i><b>24.2</b> Attributes and other classes</a><ul>
+<li class="chapter" data-level="24.2.1" data-path="rcpp.html"><a href="rcpp.html#lists-and-data-frames"><i class="fa fa-check"></i><b>24.2.1</b> Lists and data frames</a></li>
+<li class="chapter" data-level="24.2.2" data-path="rcpp.html"><a href="rcpp.html#functions-rcpp"><i class="fa fa-check"></i><b>24.2.2</b> Functions</a></li>
+<li class="chapter" data-level="24.2.3" data-path="rcpp.html"><a href="rcpp.html#other-types"><i class="fa fa-check"></i><b>24.2.3</b> Other types</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="rcpp.html"><a href="rcpp.html#rcpp-na"><i class="fa fa-check"></i><b>24.3</b> Missing values</a><ul>
+<li class="chapter" data-level="24.3.1" data-path="rcpp.html"><a href="rcpp.html#scalars"><i class="fa fa-check"></i><b>24.3.1</b> Scalars</a></li>
+<li class="chapter" data-level="24.3.2" data-path="rcpp.html"><a href="rcpp.html#strings"><i class="fa fa-check"></i><b>24.3.2</b> Strings</a></li>
+<li class="chapter" data-level="24.3.3" data-path="rcpp.html"><a href="rcpp.html#boolean"><i class="fa fa-check"></i><b>24.3.3</b> Boolean</a></li>
+<li class="chapter" data-level="24.3.4" data-path="rcpp.html"><a href="rcpp.html#vectors-rcpp"><i class="fa fa-check"></i><b>24.3.4</b> Vectors</a></li>
+<li class="chapter" data-level="24.3.5" data-path="rcpp.html"><a href="rcpp.html#exercises-70"><i class="fa fa-check"></i><b>24.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.4" data-path="rcpp.html"><a href="rcpp.html#rcpp-sugar"><i class="fa fa-check"></i><b>24.4</b> Rcpp sugar</a><ul>
+<li class="chapter" data-level="24.4.1" data-path="rcpp.html"><a href="rcpp.html#arithmetic-and-logical-operators"><i class="fa fa-check"></i><b>24.4.1</b> Arithmetic and logical operators</a></li>
+<li class="chapter" data-level="24.4.2" data-path="rcpp.html"><a href="rcpp.html#logical-summary-functions"><i class="fa fa-check"></i><b>24.4.2</b> Logical summary functions</a></li>
+<li class="chapter" data-level="24.4.3" data-path="rcpp.html"><a href="rcpp.html#vector-views"><i class="fa fa-check"></i><b>24.4.3</b> Vector views</a></li>
+<li class="chapter" data-level="24.4.4" data-path="rcpp.html"><a href="rcpp.html#other-useful-functions"><i class="fa fa-check"></i><b>24.4.4</b> Other useful functions</a></li>
+</ul></li>
+<li class="chapter" data-level="24.5" data-path="rcpp.html"><a href="rcpp.html#stl"><i class="fa fa-check"></i><b>24.5</b> The STL</a><ul>
+<li class="chapter" data-level="24.5.1" data-path="rcpp.html"><a href="rcpp.html#using-iterators"><i class="fa fa-check"></i><b>24.5.1</b> Using iterators</a></li>
+<li class="chapter" data-level="24.5.2" data-path="rcpp.html"><a href="rcpp.html#algorithms"><i class="fa fa-check"></i><b>24.5.2</b> Algorithms</a></li>
+<li class="chapter" data-level="24.5.3" data-path="rcpp.html"><a href="rcpp.html#data-structures-rcpp"><i class="fa fa-check"></i><b>24.5.3</b> Data structures</a></li>
+<li class="chapter" data-level="24.5.4" data-path="rcpp.html"><a href="rcpp.html#vectors-stl"><i class="fa fa-check"></i><b>24.5.4</b> Vectors</a></li>
+<li class="chapter" data-level="24.5.5" data-path="rcpp.html"><a href="rcpp.html#sets"><i class="fa fa-check"></i><b>24.5.5</b> Sets</a></li>
+<li class="chapter" data-level="24.5.6" data-path="functionals.html"><a href="functionals.html#map"><i class="fa fa-check"></i><b>24.5.6</b> Map</a></li>
+<li class="chapter" data-level="24.5.7" data-path="rcpp.html"><a href="rcpp.html#exercises-71"><i class="fa fa-check"></i><b>24.5.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="24.6" data-path="rcpp.html"><a href="rcpp.html#rcpp-case-studies"><i class="fa fa-check"></i><b>24.6</b> Case studies</a><ul>
+<li class="chapter" data-level="24.6.1" data-path="rcpp.html"><a href="rcpp.html#gibbs-sampler"><i class="fa fa-check"></i><b>24.6.1</b> Gibbs sampler</a></li>
+<li class="chapter" data-level="24.6.2" data-path="rcpp.html"><a href="rcpp.html#r-vectorisation-vs.c-vectorisation"><i class="fa fa-check"></i><b>24.6.2</b> R vectorisation vs. C++ vectorisation</a></li>
+</ul></li>
+<li class="chapter" data-level="24.7" data-path="rcpp.html"><a href="rcpp.html#rcpp-package"><i class="fa fa-check"></i><b>24.7</b> Using Rcpp in a package</a></li>
+<li class="chapter" data-level="24.8" data-path="rcpp.html"><a href="rcpp.html#rcpp-more"><i class="fa fa-check"></i><b>24.8</b> Learning more</a></li>
+<li class="chapter" data-level="24.9" data-path="rcpp.html"><a href="rcpp.html#acknowledgments"><i class="fa fa-check"></i><b>24.9</b> Acknowledgments</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="s3" class="section level1">
+<h1><span class="header-section-number">13</span> S3</h1>
+<p>S3 is R’s first and simplest OO system. S3 is informal and ad hoc, but it has a certain elegance in its minimalism: you can’t take away any part of it and still have a useful OO system. Because of these reasons, S3 should be your default choice for OO programming: you should use it unless you have a compelling reason otherwise. S3 is the only OO system used in the base and stats packages, and it’s the most commonly used system in CRAN packages.  </p>
+<p>S3 is a very flexible system: it allows you to do a lot of things that are quite ill-advised. If you’re coming from a strict environment like Java, this will seem pretty frightening (and it is!) but it does give R programmers a tremendous amount of freedom. While it’s very difficult to prevent someone from doing something you don’t want them to do, your users will never be held back because there is something you haven’t implemented yet. Since S3 has few built-in constraints, the key to its successful use is applying the constraints yourself. This chapter will teach you the conventions you should (almost) always adhere to in order to use S3 safely.</p>
+<p>We’ll use the sloop package to fill in some missing pieces when it comes to S3.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install_github(&quot;hadley/sloop&quot;)</span>
+<span class="kw">library</span>(sloop)</code></pre></div>
+<div id="s3-basics" class="section level2">
+<h2><span class="header-section-number">13.1</span> Basics</h2>
+<p>An S3 object is built on top of a base type with the “class” attribute set. The base type is typically a vector, although we will see later that it’s possible to use other types of classes. For example, take the factor. It is built on top of an integer vector, and the value of the class attribute is “factor”. It stores information about the “levels” in another attribute.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="st">&quot;a&quot;</span>)
+
+<span class="kw">typeof</span>(f)
+<span class="co">#&gt; [1] &quot;integer&quot;</span>
+<span class="kw">attributes</span>(f)
+<span class="co">#&gt; $levels</span>
+<span class="co">#&gt; [1] &quot;a&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $class</span>
+<span class="co">#&gt; [1] &quot;factor&quot;</span></code></pre></div>
+<p>An S3 object behaves differently from its underlying base type because of <strong>generic functions</strong>, or generics for short. A generic executes different code depending on the class of one of its arguments, almost always the first. You can see this difference with the most important generic function: <code>print()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(f)
+<span class="co">#&gt; [1] a</span>
+<span class="co">#&gt; Levels: a</span>
+<span class="kw">print</span>(<span class="kw">unclass</span>(f))
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; attr(,&quot;levels&quot;)</span>
+<span class="co">#&gt; [1] &quot;a&quot;</span></code></pre></div>
+<p><code>unclass()</code> strips the class attribute from its input, so it is a useful tool for seeing what special behaviour an S3 class adds.</p>
+<p><code>str()</code> shows the internal structure of S3 objects. Be careful when using <code>str()</code>: some S3 classes provide a custom <code>str()</code> method which can hide the underlying details. For example, take the <code>POSIXlt</code> class, which is one of the two classes used to represent date-time data:</p>
+<!-- Jenny: When I really want to see what's going on, I use dput(). Is that a strategy worth mentioning? -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time &lt;-<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;2017-01-01&quot;</span>, <span class="st">&quot;%Y-%m-%d&quot;</span>)
+<span class="kw">str</span>(time)
+<span class="co">#&gt;  POSIXlt[1:1], format: &quot;2017-01-01&quot;</span>
+<span class="kw">str</span>(<span class="kw">unclass</span>(time), <span class="dt">list.len =</span> <span class="dv">5</span>)
+<span class="co">#&gt; List of 11</span>
+<span class="co">#&gt;  $ sec   : num 0</span>
+<span class="co">#&gt;  $ min   : int 0</span>
+<span class="co">#&gt;  $ hour  : int 0</span>
+<span class="co">#&gt;  $ mday  : int 1</span>
+<span class="co">#&gt;  $ mon   : int 0</span>
+<span class="co">#&gt;   [list output truncated]</span></code></pre></div>
+<p>A <strong>generic</strong> and its <strong>methods</strong> are functions that operate on classes. The role of a generic is to find the right method for the arguments that it is provided, the process of <strong>method dispatch</strong>. A method is a function that implements the generic behaviour for a specific class. In other words the job of the generic is to find the right method; the job of the method is to do the work.</p>
+<p>S3 methods are functions with a special naming scheme, <code>generic.class()</code>. For example, the Date method for the <code>mean()</code> generic is called <code>mean.Date()</code>, and the factor method for <code>print()</code> is called <code>print.factor()</code>. This is the reason that most modern style guides discourage the use of <code>.</code> in function names: it makes them look like S3 methods. For example, is <code>t.test()</code> the <code>t</code> method for <code>test</code> objects?</p>
+<p>You can find some S3 methods (those in the base package and those that you’ve created) by typing their names. However, this will not work with most packages because S3 methods are not exported: they live only inside the package, and are not available from the global environment. Instead, you can use <code>getS3method()</code>, which will work regardless of where the method lives:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Only works because the method is in the base package</span>
+mean.Date
+<span class="co">#&gt; function (x, ...) </span>
+<span class="co">#&gt; structure(mean(unclass(x), ...), class = &quot;Date&quot;)</span>
+<span class="co">#&gt; &lt;bytecode: 0x7fea95696e68&gt;</span>
+<span class="co">#&gt; &lt;environment: namespace:base&gt;</span>
+
+<span class="co"># Always works</span>
+<span class="kw">getS3method</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;Date&quot;</span>)
+<span class="co">#&gt; function (x, ...) </span>
+<span class="co">#&gt; structure(mean(unclass(x), ...), class = &quot;Date&quot;)</span>
+<span class="co">#&gt; &lt;bytecode: 0x7fea95696e68&gt;</span>
+<span class="co">#&gt; &lt;environment: namespace:base&gt;</span></code></pre></div>
+<!-- Jenny: What is the specific goal above? To find out whether an S3 method exists? Or to see its definition? -->
+<div id="exercises-35" class="section level3">
+<h3><span class="header-section-number">13.1.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>The most important S3 objects in base R are factors, data frames, and date/times (Dates, POSIXct, POSIXlt). You’ve already seen the attributes and base type that factors are built on. What base types and attributes are the others built on?</p></li>
+<li><p>Describe the difference in behaviour in these two calls.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1014</span>)
+some_days &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2017-01-31&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sample</span>(<span class="dv">10</span>, <span class="dv">5</span>)
+
+<span class="kw">mean</span>(some_days)
+<span class="co">#&gt; [1] &quot;2017-02-05&quot;</span>
+<span class="kw">mean</span>(<span class="kw">unclass</span>(some_days))
+<span class="co">#&gt; [1] 17202</span></code></pre></div></li>
+<li><p>Draw a Venn diagram illustrating the relationships between functions, generics, and methods.</p></li>
+<li><p>What does the <code>as.data.frame.data.frame()</code> method do? Why is it confusing? How should you avoid this confusion in your own code?</p></li>
+<li><p>What does the following code return? What base type is it built on? What attributes does it use?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">ecdf</span>(<span class="kw">rpois</span>(<span class="dv">100</span>, <span class="dv">10</span>))
+x
+<span class="co">#&gt; Empirical CDF </span>
+<span class="co">#&gt; Call: ecdf(rpois(100, 10))</span>
+<span class="co">#&gt;  x[1:18] =  2,  3,  4,  ..., 2e+01, 2e+01</span></code></pre></div></li>
+</ol>
+</div>
+</div>
+<div id="classes" class="section level2">
+<h2><span class="header-section-number">13.2</span> Classes</h2>
+<p>S3 is a simple and ad hoc system, and has no formal definition of a class. To make an object an instance of a class, you simply take an existing object and set the <strong>class attribute</strong>. You can do that during creation with <code>structure()</code>, or after the fact with <code>class&lt;-()</code>:  </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create and assign class in one step</span>
+foo &lt;-<span class="st"> </span><span class="kw">structure</span>(<span class="kw">list</span>(), <span class="dt">class =</span> <span class="st">&quot;foo&quot;</span>)
+
+<span class="co"># Create, then set class</span>
+foo &lt;-<span class="st"> </span><span class="kw">list</span>()
+<span class="kw">class</span>(foo) &lt;-<span class="st"> &quot;foo&quot;</span></code></pre></div>
+<p>You can determine the class of any object using <code>class(x)</code>, and see if an object inherits from a specific class using <code>inherits(x, &quot;classname&quot;)</code>. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(foo)
+<span class="co">#&gt; [1] &quot;foo&quot;</span>
+<span class="kw">inherits</span>(foo, <span class="st">&quot;foo&quot;</span>)
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>The class name can be any character vector, but I recommend using only letters and <code>_</code>. Avoid <code>.</code>. Opinion is mixed whether to use underscores (<code>my_class</code>) or CamelCase (<code>MyClass</code>) for multi-word class names. Pick one convention and stick with it.</p>
+<p>It’s possible to provide a vector of class names, which allows S3 to implement a basic style of inheritance. This allows you to reduce your workload by allowing classes to share code where possible. We’ll come back to this idea in <a href="r6.html#inheritance-1">inheritance</a>.</p>
+<p>S3 has no checks for correctness. This means you can change the class of existing objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a linear model</span>
+mod &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(mpg) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(disp), <span class="dt">data =</span> mtcars)
+<span class="kw">class</span>(mod)
+<span class="co">#&gt; [1] &quot;lm&quot;</span>
+<span class="kw">print</span>(mod)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = log(mpg) ~ log(disp), data = mtcars)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt; (Intercept)    log(disp)  </span>
+<span class="co">#&gt;       5.381       -0.459</span>
+
+<span class="co"># Turn it into a data frame (?!)</span>
+<span class="kw">class</span>(mod) &lt;-<span class="st"> &quot;data.frame&quot;</span>
+
+<span class="co"># Unsurprisingly this doesn&#39;t work very well</span>
+<span class="kw">print</span>(mod)
+<span class="co">#&gt;  [1] coefficients  residuals     effects       rank          fitted.values</span>
+<span class="co">#&gt;  [6] assign        qr            df.residual   xlevels       call         </span>
+<span class="co">#&gt; [11] terms         model        </span>
+<span class="co">#&gt; &lt;0 Zeilen&gt; (oder row.names mit Länge 0)</span></code></pre></div>
+<p>If you’ve used other OO languages, this might make you feel queasy. But surprisingly, this flexibility causes few problems: while you <em>can</em> change the type of an object, you never <em>should</em>. R doesn’t protect you from yourself: you can easily shoot yourself in the foot. As long as you don’t aim the gun at your foot and pull the trigger, you won’t have a problem.</p>
+<p>To avoid foot-bullet intersections when creating your own class, you should always provide:</p>
+<ul>
+<li>A <strong>constructor</strong>, <code>new_x()</code>, that efficiently creates new objects with the correct structure.</li>
+</ul>
+<p>For more complicated classes, you may also want to provide:</p>
+<ul>
+<li><p>A <strong>validator</strong>, <code>validate_x()</code>, that performs more expensive checks that the object has correct values.</p></li>
+<li><p>A <strong>helper</strong>, <code>x()</code>, that provides a convenient and neatly parameterised way for others to construct and validate (create) objects of this class.</p></li>
+</ul>
+<div id="constructors" class="section level3">
+<h3><span class="header-section-number">13.2.1</span> Constructors</h3>
+<p>S3 doesn’t provide a formal definition of a class, so it has no built-in way to ensure that all objects of a given class have the same structure (i.e. same attributes with the same types). Instead, you should enforce a consistent structure yourself by using a <strong>constructor</strong>. A constructor is a function whose job is to create objects of a given class, ensuring that they always have the same structure.</p>
+<p>There are three rules that a constructor should follow. It should:</p>
+<ol style="list-style-type: decimal">
+<li>Be called <code>new_class_name()</code>.</li>
+<li>Have one argument for the base object, and one for each attribute. (More if the class can be subclassed, see <a href="r6.html#inheritance-1">inheritance</a>.)</li>
+<li>Check the types of the base object and each attribute.</li>
+</ol>
+<p>Base R generally does not provide constructors (three exceptions are the internal <code>.difftime()</code>, <code>.POSIXct()</code>, and <code>.POSIXlt()</code>) so we’ll demonstrate constructors by filling in some missing pieces in base. (If you want to use these constructors in your own code, you can use the versions exported by the sloop package, which complete a few details that we skip here in order to focus on the core issues.)</p>
+<p>We’ll start with one of the simplest S3 classes in base R: Date, which is just a double with a class attribute. The constructor rules lead to the slightly awkward name <code>new_Date()</code>, because the existing base class uses a capital letter. I recommend using lower case class names to avoid this problem.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_Date &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.double</span>(x))
+  <span class="kw">structure</span>(x, <span class="dt">class =</span> <span class="st">&quot;Date&quot;</span>)
+}
+
+<span class="kw">new_Date</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))
+<span class="co">#&gt; [1] &quot;1969-12-31&quot; &quot;1970-01-01&quot; &quot;1970-01-02&quot;</span></code></pre></div>
+<p>You can use the <code>new_s3_*()</code> helpers provided by the sloop to make this even simpler. They are wrappers around structure that require a class argument, and check the base type of <code>x</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_Date &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  sloop<span class="op">::</span><span class="kw">new_s3_dbl</span>(x, <span class="dt">class =</span> <span class="st">&quot;Date&quot;</span>)
+}</code></pre></div>
+<p>The purpose of the constructor is to help the developer (you). That means you can keep them simple, and you don’t need to optimise the error messages for user friendliness. If you expect others to create your objects, you should also create a friendly helper function, called <code>class_name()</code>, that we’ll describe shortly.</p>
+<p>A slightly more complicated example is <code>POSIXct</code>, which is used to represent date-times. It is again built on a double, but has an attribute that specifies the time zone, a length 1 character vector. R defaults to using the local time zone, which is represented by the empty string. To create the constructor, we need to make sure each attribute of the class gets an argument to the constructor. This gives us:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_POSIXct &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">tzone =</span> <span class="st">&quot;&quot;</span>) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.double</span>(x))
+  <span class="kw">stopifnot</span>(<span class="kw">is.character</span>(tzone), <span class="kw">length</span>(tzone) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
+  
+  <span class="kw">structure</span>(x, 
+    <span class="dt">class =</span> <span class="kw">c</span>(<span class="st">&quot;POSIXct&quot;</span>, <span class="st">&quot;POSIXt&quot;</span>),
+    <span class="dt">tzone =</span> tzone
+  )
+}
+
+<span class="kw">new_POSIXct</span>(<span class="dv">1</span>)
+<span class="co">#&gt; [1] &quot;1969-12-31 16:00:01 PST&quot;</span>
+<span class="kw">new_POSIXct</span>(<span class="dv">1</span>, <span class="dt">tzone =</span> <span class="st">&quot;UTC&quot;</span>)
+<span class="co">#&gt; [1] &quot;1970-01-01 00:00:01 UTC&quot;</span></code></pre></div>
+<p>The constructor checks that <code>x</code> is a double, and that <code>tzone</code> is a length 1 character vector. We use <code>stopifnot()</code> here since the constructor is a developer focussed function so error messages don’t need to be that friendly. Note that POSIXct uses a class <em>vector</em>; we’ll come back to what that means in <a href="r6.html#inheritance-1">inheritance</a>.</p>
+<p>Generally, the constructor should not check that the values are valid because such checks are often expensive. For example, our <code>new_POSIXct()</code> constructor does not check that <code>tzone</code> is a valid value, and we get a warning when the object is printed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">new_POSIXct</span>(<span class="dv">1</span>, <span class="st">&quot;Auckland NZ&quot;</span>)
+x
+<span class="co">#&gt; Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Auckland NZ&#39;</span>
+<span class="co">#&gt; [1] &quot;1970-01-01 00:00:01 GMT&quot;</span></code></pre></div>
+</div>
+<div id="validators" class="section level3">
+<h3><span class="header-section-number">13.2.2</span> Validators</h3>
+<p>More complicated classes will require more complicated checks for validity. Take factors, for example. The constructor function only checks that the structure is correct:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_factor &lt;-<span class="st"> </span><span class="cf">function</span>(x, levels) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.integer</span>(x))
+  <span class="kw">stopifnot</span>(<span class="kw">is.character</span>(levels))
+  
+  <span class="kw">structure</span>(
+    x,
+    <span class="dt">levels =</span> levels,
+    <span class="dt">class =</span> <span class="st">&quot;factor&quot;</span>
+  )
+}</code></pre></div>
+<p>So it’s possible to use this to create invalid factors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">new_factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="st">&quot;a&quot;</span>)
+<span class="co">#&gt; Error in as.character.factor(x): malformed factor</span>
+<span class="kw">new_factor</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="st">&quot;a&quot;</span>)
+<span class="co">#&gt; Error in as.character.factor(x): malformed factor</span></code></pre></div>
+<p>Rather than encumbering the constructor with complicated checks, it’s better to put them in a separate function. This is a good idea because it allows you to cheaply create new objects when you know that the values are correct, and to re-use the checks in other places.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">validate_factor &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  values &lt;-<span class="st"> </span><span class="kw">unclass</span>(x)
+  levels &lt;-<span class="st"> </span><span class="kw">attr</span>(x, <span class="st">&quot;levels&quot;</span>)
+  
+  <span class="cf">if</span> (<span class="op">!</span><span class="kw">all</span>(<span class="op">!</span><span class="kw">is.na</span>(values) <span class="op">&amp;</span><span class="st"> </span>values <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)) {
+    <span class="kw">stop</span>(
+      <span class="st">&quot;All `x` values must be non-missing and greater than zero&quot;</span>,
+      <span class="dt">call. =</span> <span class="ot">FALSE</span>
+    )
+  }
+  
+  <span class="cf">if</span> (<span class="kw">length</span>(levels) <span class="op">&lt;</span><span class="st"> </span><span class="kw">max</span>(values)) {
+    <span class="kw">stop</span>(
+      <span class="st">&quot;There must at least as many `levels` as possible values in `x`&quot;</span>,
+      <span class="dt">call. =</span> <span class="ot">FALSE</span>
+    )
+  }
+  
+  x
+}
+
+<span class="kw">validate_factor</span>(<span class="kw">new_factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="st">&quot;a&quot;</span>))
+<span class="co">#&gt; Error: There must at least as many `levels` as possible values in `x`</span>
+<span class="kw">validate_factor</span>(<span class="kw">new_factor</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="st">&quot;a&quot;</span>))
+<span class="co">#&gt; Error: All `x` values must be non-missing and greater than zero</span></code></pre></div>
+<p>This function is called primarily for its side-effects (throwing an error if the object is invalid) so you’d expect it to invisibly return its primary input. However, unlike most functions called for their side effects, its useful for validation methods to return visibly, as we’ll see next.</p>
+</div>
+<div id="helpers" class="section level3">
+<h3><span class="header-section-number">13.2.3</span> Helpers</h3>
+<p>If you want others to construct objects from your class, you should also provide a helper method that makes their life as easy as possible. This should have the same name as the class, and should be parameterised in a convenient way. <code>factor()</code> is a good example of this as well: you want to automatically derive the internal representation from a vector. The simplest possible implementation looks something like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">factor &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">levels =</span> <span class="kw">unique</span>(x)) {
+  ind &lt;-<span class="st"> </span><span class="kw">match</span>(x, levels)
+  <span class="kw">validate_factor</span>(<span class="kw">new_factor</span>(ind, levels))
+}
+<span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))
+<span class="co">#&gt; [1] a a b</span>
+<span class="co">#&gt; Levels: a b</span></code></pre></div>
+<p>The validator prevents the construction of invalid objects, but for a real helper you’d spend more time creating user friendly error messages.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">levels =</span> <span class="st">&quot;a&quot;</span>)
+<span class="co">#&gt; Error: All `x` values must be non-missing and greater than zero</span></code></pre></div>
+<p>In base R, neither <code>Date</code> nor <code>POSIXct</code> has a helper function. Instead there are two ways to construct them:</p>
+<ul>
+<li><p>By coercing from another type with <code>as.Date()</code> and <code>as.POSIXct()</code>. These functions should be S3 generics, so we’ll come back to them in <a href="s3.html#coercion-2">coercion</a>.</p></li>
+<li><p>With a helper function that either parses a string (<code>strptime()</code>) or creates a date from individual components (<code>ISODatetime()</code>).</p></li>
+</ul>
+<p>These missing helpers mean that there’s no obvious default way to create a date or date-time in R. We can fill in those missing pieces with a couple of helpers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Date &lt;-<span class="st"> </span><span class="cf">function</span>(year, month, day) {
+  <span class="kw">as.Date</span>(<span class="kw">ISOdate</span>(year, month, day, <span class="dt">tz =</span> <span class="st">&quot;&quot;</span>))
+}
+
+POSIXct &lt;-<span class="st"> </span><span class="cf">function</span>(year, month, day, hour, minute, sec, <span class="dt">tzone =</span> <span class="st">&quot;&quot;</span>) {
+  <span class="kw">ISOdatetime</span>(year, month, day, hour, minute, sec, <span class="dt">tz =</span> tzone)
+}</code></pre></div>
+<p>These helpers fill a useful role, but are not computationally efficient: behind the scenes <code>ISODatetime()</code> works by pasting the components into a string and then using <code>strptime()</code>. More efficient equivalents are <code>lubridate::make_datetime()</code> and <code>lubridate::make_date()</code>.</p>
+</div>
+<div id="object-styles" class="section level3">
+<h3><span class="header-section-number">13.2.4</span> Object styles</h3>
+<p>S3 gives you the freedom to build a new class on top of any existing base type. So far, we’ve focussed on vector-style where you take an existing vector type and add some attributes. Importantly, a single vector-style object represents multiple values. There are two other important styles: scalar-style and data-frame-style.</p>
+<p>Each <strong>scalar</strong>-style object represents a single “value”, and are built on top of named lists. This is the style that you are most likely to use in practice. The constructor for the scalar type is slightly different because the arguments become named elements of the list, rather than attributes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_scalar_class &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {
+  <span class="kw">structure</span>(
+    <span class="kw">list</span>(
+      <span class="dt">x =</span> x,
+      <span class="dt">y =</span> y,
+      <span class="dt">z =</span> z
+    ),
+    <span class="dt">class =</span> <span class="st">&quot;scalar_class&quot;</span>
+  )
+}</code></pre></div>
+<p>(For a real constructor, you’d also check that the <code>x</code>, <code>y</code>, and <code>z</code> fields are the types that you expect.)</p>
+<p>In base R, the most important example of this style is <code>lm</code>, the class returned when you fit a linear model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)
+<span class="kw">typeof</span>(mod)
+<span class="co">#&gt; [1] &quot;list&quot;</span>
+<span class="kw">names</span>(mod)
+<span class="co">#&gt;  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         </span>
+<span class="co">#&gt;  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  </span>
+<span class="co">#&gt;  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</span></code></pre></div>
+<p>The <strong>data-frame-style</strong> builds on top of a data frame (a named list where each element is a vector of the same length), and adds additional attributes to store important metadata. A data-frame-style constructor looks like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_df_class &lt;-<span class="st"> </span><span class="cf">function</span>(df, attr1, attr2) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.data.frame</span>(df))
+  
+  <span class="kw">structure</span>(
+    df, 
+    <span class="dt">attr1 =</span> attr1,
+    <span class="dt">attr2 =</span> attr2,
+    <span class="dt">class =</span> <span class="kw">c</span>(<span class="st">&quot;df_class&quot;</span>, <span class="st">&quot;data.frame&quot;</span>)
+  )
+}</code></pre></div>
+<p>The most common data-frame-style class is the tibble, a modern reimagining of the data frame provided by the tibble package, and used extensively within the tidyverse.</p>
+<p>Collectively, we’ll call the attributes of a vector-style or data-frame-style class and the names of a list-style class the <strong>fields</strong> of an object.</p>
+<p>When creating your own classes, you should pick the vector style if your class closely resembles an existing vector type. Otherwise, use a scalar (list) style. The scalar type is generally easier to work with because implementing a full range of convenient vectorised methods is usually a lot of work. It’s typically obvious when you need to use a data-frame-style.</p>
+</div>
+<div id="exercises-36" class="section level3">
+<h3><span class="header-section-number">13.2.5</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Categorise the objects returned by <code>lm()</code>, <code>factor()</code>, <code>table()</code>, <code>as.Date()</code>, <code>ecdf()</code>, <code>ordered()</code>, <code>I()</code> into “vector”, “scalar”, and “other”.</p></li>
+<li><p>Write a constructor for <code>difftime</code> objects. What base type are they built on? What attributes do they use? You’ll need to consult the documentation, read some code, and perform some experiments.</p></li>
+<li><p>Write a constructor for <code>data.frame</code> objects. What base type is a data frame built on? What attributes does it use? What are the restrictions placed on the individual elements? What about the names?</p></li>
+<li><p>Enhance our <code>factor()</code> helper to have better behaviour when one or more <code>values</code> is not found in <code>levels</code>. What does <code>base::factor()</code> do in this situation?</p></li>
+<li><p>Carefully read the source code of <code>factor()</code>. What does it do that our constructor does not?</p></li>
+<li><p>What would a constructor function for <code>lm</code> objects, <code>new_lm()</code>, look like? Why is a constructor function less useful for linear models?</p></li>
+</ol>
+</div>
+</div>
+<div id="generics-and-methods" class="section level2">
+<h2><span class="header-section-number">13.3</span> Generics and methods</h2>
+<p>The job of an S3 generic is to perform method dispatch, i.e. find the function designed to work specifically for the given class. S3 generics have a simple structure: they call <code>UseMethod()</code>, which then calls the right method. <code>UseMethod()</code> takes two arguments: the name of the generic function (required), and the argument to use for method dispatch (optional). If you omit the second argument it will dispatch based on the first argument, which is what I generally advise.  </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Dispatches on x</span>
+generic &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {
+  <span class="kw">UseMethod</span>(<span class="st">&quot;generic&quot;</span>)
+}
+
+<span class="co"># Dispatches on y</span>
+generic2 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {
+  <span class="kw">UseMethod</span>(<span class="st">&quot;generic2&quot;</span>, y)
+}</code></pre></div>
+<p>Note that you don’t pass any of the arguments of the generic to <code>UseMethod()</code>; it uses black magic to pass them on automatically. Generally, you should avoid doing any computation in a generic, because the semantics are complicated and few people know the details. In general, any modifications to the arguments of the generic will be undone, leading to much confusion.</p>
+<p>A generic isn’t useful without some methods, which are just functions that follow a naming scheme (<code>generic.class</code>). Because a method is just a function with a special name, you <em>can</em> call methods directly, but you generally <em>shouldn’t</em>. The main reason to call the method directly is that it sometimes leads to considerable performance improvements. See <a href="profiling.html#be-lazy">performance</a> for an example.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">generic.foo &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {
+  <span class="kw">message</span>(<span class="st">&quot;foo method&quot;</span>)
+}
+
+<span class="kw">generic</span>(<span class="kw">new_s3_scalar</span>(<span class="dt">class =</span> <span class="st">&quot;foo&quot;</span>))
+<span class="co">#&gt; foo method</span></code></pre></div>
+<p>You can see all the methods defined for a generic with <code>s3_methods_generic()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">s3_methods_generic</span>(<span class="st">&quot;generic&quot;</span>)
+<span class="co">#&gt; # A tibble: 2 x 4</span>
+<span class="co">#&gt;   generic class    visible source    </span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;   &lt;chr&gt;     </span>
+<span class="co">#&gt; 1 generic foo      T       .GlobalEnv</span>
+<span class="co">#&gt; 2 generic skeleton T       methods</span></code></pre></div>
+<p>Note the false positive: <code>generic.skeleton()</code> is not a method for our generic but an existing function in the methods package. It’s picked up because method definition relies only on a naming convention. This is another reason that you should avoid using <code>.</code> in non-method function names.</p>
+<p>Remember that apart from methods that you’ve created, and those defined in the base package, most S3 methods will not be directly accessible. You’ll need to use <code>getS3method(&quot;generic&quot;, &quot;class&quot;)</code> to see their source code.</p>
+<div id="coercion-1" class="section level3">
+<h3><span class="header-section-number">13.3.1</span> Coercion</h3>
+<p>Many S3 objects can be naturally created from an existing object through <strong>coercion</strong>. If this is the case for your class, you should provide a coercion function, an S3 generic called <code>as_class_name</code>. Base R generally does not follow this convention, which can cause problems as illustrated by <code>as.factor()</code>:</p>
+<ul>
+<li><p>The name is confusing, since <code>as.factor()</code> is not the <code>factor</code> method of the <code>as()</code> generic.</p></li>
+<li><p><code>as.factor()</code> is not a generic, which means that if you create a new class that could be usefully converted to a factor, you can not extend <code>as.factor()</code>.</p></li>
+</ul>
+<p>We can fix these issues by creating a new generic coercion function and providing it with some methods:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">as_factor &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  <span class="kw">UseMethod</span>(<span class="st">&quot;as_factor&quot;</span>)
+}</code></pre></div>
+<p>Every <code>as_y()</code> generic should have a <code>y</code> method that returns its input unchanged:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">as_factor.factor &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) x</code></pre></div>
+<p>This ensures that <code>as_factor()</code> works if the input is already a factor.</p>
+<p>Two useful methods would be for character and integer vectors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">as_factor.character &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  <span class="kw">factor</span>(x, <span class="dt">levels =</span> <span class="kw">unique</span>(x))
+}
+as_factor.integer &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  <span class="kw">factor</span>(x, <span class="dt">levels =</span> <span class="kw">as.character</span>(<span class="kw">unique</span>(x)))
+}</code></pre></div>
+<p>Typically the coercion methods will either call the constructor or the helper; pick the function that makes the code simpler. Here the helper is simplest. If you use the constructor, remember to also call the validator function.</p>
+<p>If you think your coercion function will be frequently used, it’s worth providing a default method that gives a better error message. Default methods are called when no other method is appropriate, and are discussed in more detail in <a href="r6.html#inheritance-1">inheritance</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as_factor</span>(<span class="dv">1</span>)
+<span class="co">#&gt; Error in UseMethod(&quot;as_factor&quot;): nicht anwendbare Methode für &#39;as_factor&#39; auf Objekt der Klasse &quot;c(&#39;double&#39;, &#39;numeric&#39;)&quot; angewendet</span>
+
+as_factor.default &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  <span class="kw">stop</span>(
+    <span class="st">&quot;Don&#39;t know how to coerce object of class &quot;</span>, 
+    <span class="kw">paste</span>(<span class="kw">class</span>(x), <span class="dt">collapse =</span> <span class="st">&quot;/&quot;</span>), <span class="st">&quot; into a factor&quot;</span>, 
+    <span class="dt">call. =</span> <span class="ot">FALSE</span>
+  )
+}
+<span class="kw">as_factor</span>(<span class="dv">1</span>)
+<span class="co">#&gt; Error: Don&#39;t know how to coerce object of class numeric into a factor</span></code></pre></div>
+</div>
+<div id="s3-arguments" class="section level3">
+<h3><span class="header-section-number">13.3.2</span> Arguments</h3>
+<p>Methods should always have the same arguments as their generics. This is not usually enforced, but it is good practice because it will avoid confusing behaviour. If you do eventually turn your code into a package, R CMD check will enforce it, so it’s good to get into the habit now.</p>
+<p>There is one exception to this rule: if the generic has <code>...</code>, the method must still have all the same arguments (including <code>...</code>), but can also have its own additional arguments. This allows methods to take additional arguments, which is important because you don’t know what additional arguments that a method for someone else’s class might need. The downside of using <code>...</code>, however, is that any misspelled arguments will be silently swallowed.</p>
+</div>
+<div id="exercises-37" class="section level3">
+<h3><span class="header-section-number">13.3.3</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Read the source code for <code>t()</code> and <code>t.test()</code> and confirm that <code>t.test()</code> is an S3 generic and not an S3 method. What happens if you create an object with class <code>test</code> and call <code>t()</code> with it? Why?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">structure</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">class =</span> <span class="st">&quot;test&quot;</span>)
+<span class="kw">t</span>(x)
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  One Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  x</span>
+<span class="co">#&gt; t = 6, df = 9, p-value = 3e-04</span>
+<span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  3.33 7.67</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; mean of x </span>
+<span class="co">#&gt;       5.5</span></code></pre></div></li>
+<li><p>Carefully read the documentation for <code>UseMethod()</code> and explain why the following code returns the results that it does. What two usual rules of function evaluation does <code>UseMethod()</code> violate?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  x &lt;-<span class="st"> </span><span class="dv">10</span>
+  y &lt;-<span class="st"> </span><span class="dv">10</span>
+  <span class="kw">UseMethod</span>(<span class="st">&quot;g&quot;</span>)
+}
+g.default &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">c</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)
+
+x &lt;-<span class="st"> </span><span class="dv">1</span>
+y &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="kw">g</span>(x)
+<span class="co">#&gt;  x  y </span>
+<span class="co">#&gt;  1 10</span></code></pre></div></li>
+</ol>
+</div>
+</div>
+<div id="method-dispatch" class="section level2">
+<h2><span class="header-section-number">13.4</span> Method dispatch</h2>
+<p>At a high-level, S3 method dispatch is simple, and revolves around two functions, <code>UseMethod()</code> and <code>NextMethod()</code>. You’ll learn about these two functions below, and then we’ll come back to some of the additional wrinkles in <a href="s3.html#dispatch-details">dispatch details</a>.</p>
+<div id="usemethod" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> <code>UseMethod()</code></h3>
+<p>The purpose of <code>UseMethod()</code> is to find the appropriate method to call given a generic and a class. It does this by creating a vector of function names, <code>paste0(&quot;generic&quot;, &quot;.&quot;, c(class(x), &quot;default&quot;))</code>, and looking for each method in turn. As soon as it finds a matching method, it calls it. If no matching method is found, it throws an error. To explore dispatch, we’ll use <code>sloop::s3_dispatch()</code>. You give it a call to an S3 generic, and it lists all the possible methods, noting which ones exist. For example, what happens when you try and print a <code>POSIXct</code> object?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+<span class="kw">s3_dispatch</span>(<span class="kw">print</span>(x))
+<span class="co">#&gt; -&gt; print.POSIXct</span>
+<span class="co">#&gt;    print.POSIXt</span>
+<span class="co">#&gt;  * print.default</span></code></pre></div>
+<p><code>print()</code> will look for three possible methods, of which two exist, and one, <code>print.POSIXct()</code>, will be called. The last method is always the “default” method. This doesn’t correspond to a specific class, so is a useful catch all.</p>
+</div>
+<div id="nextmethod" class="section level3">
+<h3><span class="header-section-number">13.4.2</span> <code>NextMethod()</code></h3>
+<p>Method dispatch usually terminates as soon as a matching method is found. However, methods can explicitly choose to call the next available method using <code>NextMethod()</code>. This is useful because it allows you to rely on code that others have already written, which we’ll come back to in <a href="r6.html#inheritance-1">inheritance</a>. Let’s make <code>NextMethod()</code> concrete with an example. Here, I define a new generic (“showoff”) with three methods. Each method signals that it’s been called, and then calls the “next” method:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">showoff &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">UseMethod</span>(<span class="st">&quot;showoff&quot;</span>)
+}
+showoff.default &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">message</span>(<span class="st">&quot;showoff.default&quot;</span>)
+  <span class="ot">TRUE</span>
+}
+showoff.a &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">message</span>(<span class="st">&quot;showoff.a&quot;</span>)
+  <span class="kw">NextMethod</span>()
+}
+showoff.b &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">message</span>(<span class="st">&quot;showoff.b&quot;</span>)
+  <span class="kw">NextMethod</span>()
+}</code></pre></div>
+<p>Let’s create a dummy object with classes “b” and “a”. <code>s3_dispatch()</code> shows that all three potential methods are available:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">new_s3_scalar</span>(<span class="dt">class =</span> <span class="kw">c</span>(<span class="st">&quot;b&quot;</span>, <span class="st">&quot;a&quot;</span>))
+<span class="kw">s3_dispatch</span>(<span class="kw">showoff</span>(x))
+<span class="co">#&gt; -&gt; showoff.b</span>
+<span class="co">#&gt;  * showoff.a</span>
+<span class="co">#&gt;  * showoff.default</span></code></pre></div>
+<p>When you call <code>NextMethod()</code> it finds and calls the next available method in the dispatch list. When we call <code>showoff()</code>, the method for <code>b</code> forwards to the method for <code>a</code>, which forwards to the default method.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">showoff</span>(x)
+<span class="co">#&gt; showoff.b</span>
+<span class="co">#&gt; showoff.a</span>
+<span class="co">#&gt; showoff.default</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>Like <code>UseMethod()</code>, the precise semantics of <code>NextMethod()</code> are complex. It doesn’t actually work with the class attribute of the object, but instead uses a special global variable (<code>.Class</code>) to keep track of which method to call next. This means that modifying the argument that is dispatched upon has no impact, and you should avoid modifying the object that is being dispatched on.</p>
+<p>Generally, you call <code>NextMethod()</code> without any arguments. However, if you do give arguments, they are passed on to the next method, as if they’d been supplied to the generic.</p>
+</div>
+<div id="exercises-38" class="section level3">
+<h3><span class="header-section-number">13.4.3</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Which base generic has the greatest number of defined methods?</p></li>
+<li><p>Explain what is happening in the following code.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">generic2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">UseMethod</span>(<span class="st">&quot;generic2&quot;</span>)
+generic2.a1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="st">&quot;a1&quot;</span>
+generic2.a2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="st">&quot;a2&quot;</span>
+generic2.b &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">class</span>(x) &lt;-<span class="st"> &quot;a1&quot;</span>
+  <span class="kw">NextMethod</span>()
+}
+
+<span class="kw">generic2</span>(<span class="kw">new_s3_scalar</span>(<span class="dt">class =</span> <span class="kw">c</span>(<span class="st">&quot;b&quot;</span>, <span class="st">&quot;a2&quot;</span>)))
+<span class="co">#&gt; [1] &quot;a2&quot;</span></code></pre></div></li>
+</ol>
+</div>
+</div>
+<div id="inheritance" class="section level2">
+<h2><span class="header-section-number">13.5</span> Inheritance</h2>
+<p>The class attribute is not limited to a single string, but can be a character vector. This, along with S3 method dispatch and <code>NextMethod()</code>, gives a surprising amount of flexibility that can be used creatively to reduce code duplication. However, this flexibility can also lead to code that is hard to understand or reason about, so you are best constraining yourself to simple styles of inheritance. Here we will focus on defining subclasses that inherit their fields, and some behaviour, from a parent class.</p>
+<p>Subclasses use a character <strong>vector</strong> for the class attribute. There are two examples of subclasses that you might have come across in base R:</p>
+<ul>
+<li><p>Generalised linear models are a generalisation of linear models that allow the error term to belong to a richer set of distributions, not just the normal distribution like the linear model. This is a natural case for the use of inheritance and indeed, in R, <code>glm()</code> returns objects of class <code>c(&quot;glm&quot;, &quot;lm&quot;)</code>.</p></li>
+<li><p>Ordered factors are used when the levels of a factor have some intrinsic ordering, like <code>c(&quot;Good&quot;, &quot;Better&quot;, &quot;Best&quot;)</code>. Ordered factors are produced by <code>ordered()</code> which returns an object with class <code>c(&quot;ordered&quot;, &quot;factor&quot;)</code>.</p></li>
+</ul>
+<p>You can think of the glm class “inheriting” behaviour from the lm class, and the ordered class inheriting behaviour from the factor class because of the way method dispatch works. If there is a method available for the subclass, R will use it, otherwise it will fall back to the “parent” class. For example, if you “plot” a glm object, it falls back to the lm method, but if you compute the ANOVA, it uses a glm-specific method.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod1 &lt;-<span class="st"> </span><span class="kw">glm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)
+
+<span class="kw">s3_dispatch</span>(<span class="kw">plot</span>(mod1))
+<span class="co">#&gt;    plot.glm</span>
+<span class="co">#&gt; -&gt; plot.lm</span>
+<span class="co">#&gt;  * plot.default</span>
+<span class="kw">s3_dispatch</span>(<span class="kw">anova</span>(mod1))
+<span class="co">#&gt; -&gt; anova.glm</span>
+<span class="co">#&gt;  * anova.lm</span>
+<span class="co">#&gt;    anova.default</span></code></pre></div>
+<div id="constructors-1" class="section level3">
+<h3><span class="header-section-number">13.5.1</span> Constructors</h3>
+<p>There are three principles to adhere to when creating a subclass:</p>
+<ul>
+<li><p>A subclass should be built on the same base type as a parent.</p></li>
+<li><p>The <code>class()</code> of the subclass should be of the form <code>c(subclass, parent_class)</code></p></li>
+<li><p>The fields of the subclass should include the fields of the parent.</p></li>
+</ul>
+<p>And these properties should be enforced by the constructor.</p>
+<p>When you create a class, you need to decide if you want to allow subclasses, because it requires changes to the constructor and careful thought in your methods. To allow subclasses, the parent constructor needs to have <code>...</code> and <code>subclass</code> arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_my_class &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ..., <span class="dt">subclass =</span> <span class="ot">NULL</span>) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.numeric</span>(x))
+  <span class="kw">stopifnot</span>(<span class="kw">is.logical</span>(y))
+  
+  <span class="kw">structure</span>(
+    x,
+    <span class="dt">y =</span> y,
+    ...,
+    <span class="dt">class =</span> <span class="kw">c</span>(subclass, <span class="st">&quot;my_class&quot;</span>)
+  )
+}</code></pre></div>
+<p>Then the implementation of the subclass constructor is simple: it checks the types of the new fields, then calls the parent constructor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_subclass &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.character</span>(z))
+  <span class="kw">new_my_class</span>(x, y, z, <span class="dt">subclass =</span> <span class="st">&quot;subclass&quot;</span>)
+}</code></pre></div>
+<p>If you wanted to allow this subclass to be futher subclassed, you’d need to include <code>...</code> and <code>subclass</code> arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_subclass &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z, ..., <span class="dt">subclass =</span> <span class="ot">NULL</span>) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.character</span>(z))
+  
+  <span class="kw">new_my_class</span>(x, y, z, ..., <span class="dt">subclass =</span> <span class="kw">c</span>(subclass, <span class="st">&quot;subclass&quot;</span>))
+}</code></pre></div>
+<p>If your subclass is more complicated, you’d also provide validator and helper functions, as described previously.</p>
+</div>
+<div id="coercion-2" class="section level3">
+<h3><span class="header-section-number">13.5.2</span> Coercion</h3>
+<p>You also need to make sure that there’s some way to convert the subclass back to the parent class. The best way to do that is to add a method to the coercion generic. Generally, this method should call the parent constructor:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">as_my_class.sub_class &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">new_my_class</span>(<span class="kw">attr</span>(x, <span class="st">&quot;x&quot;</span>), <span class="kw">attr</span>(x, <span class="st">&quot;y&quot;</span>))
+}</code></pre></div>
+</div>
+<div id="methods" class="section level3">
+<h3><span class="header-section-number">13.5.3</span> Methods</h3>
+<p>The goal of creating a subclass is to reuse as much code as possible from the parent class. This means that you should not have to define every method that the parent class provides (if you do, reconsider if you actually need a subclass!). Generally, defining new methods is straightforward: you simply create a new method (<code>generic.subclass</code>) whenever the parent method doesn’t do quite the right thing. In many cases, the new method will be able to call <code>NextMethod()</code> in order to take advantage of the computation done in the parent.</p>
+<p>One wrinkle arises when you have methods that return the same type of object as the primary input. For example, dplyr has many functions (<code>arrange()</code>, <code>summarise()</code>, <code>mutate()</code>, …) that input a data frame (or data frame-like object) and output a modified version of that data frame. Imagine you want to store the provenance of each data frame, i.e. who created it and when. To do so, you might create a data frame subclass called <code>provenance</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_provenance &lt;-<span class="st"> </span><span class="cf">function</span>(data, author, <span class="dt">date =</span> <span class="kw">Sys.Date</span>()) {
+  <span class="kw">stopifnot</span>(<span class="kw">is.data.frame</span>(data))
+  <span class="kw">stopifnot</span>(<span class="kw">is.character</span>(author), <span class="kw">length</span>(author) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
+  <span class="kw">stopifnot</span>(<span class="kw">is.Date</span>(date), <span class="kw">length</span>(date) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
+  
+  <span class="kw">structure</span>(
+    data,
+    <span class="dt">author =</span> author, 
+    <span class="dt">date =</span> date,
+    <span class="dt">class =</span> <span class="kw">c</span>(<span class="st">&quot;provenance&quot;</span>, <span class="st">&quot;data.frame&quot;</span>)
+  )
+}</code></pre></div>
+<p>And now you want to make this class work with dplyr. The class doesn’t change any of the computation related to the data frame, it just needs to preserve the attributes, which dplyr doesn’t know anything about. That means you need to provide a method for each dplyr generic. The computation is unchanged, so you can use <code>NextMethod()</code> to do all the hard work, but you need to manually reconstruct the provenance object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arrange.provenance &lt;-<span class="st"> </span><span class="cf">function</span>(.data, ...) {
+  <span class="kw">new_provenance</span>(
+    <span class="kw">NextMethod</span>(), 
+    <span class="dt">author =</span> <span class="kw">attr</span>(.data, <span class="st">&quot;author&quot;</span>),
+    <span class="dt">date =</span> <span class="kw">attr</span>(.data, <span class="st">&quot;date&quot;</span>)
+  )
+}
+
+mutate.provenance &lt;-<span class="st"> </span><span class="cf">function</span>(.data, ...) {
+  <span class="kw">new_provenance</span>(
+    <span class="kw">NextMethod</span>(), 
+    <span class="dt">author =</span> <span class="kw">attr</span>(.data, <span class="st">&quot;author&quot;</span>),
+    <span class="dt">date =</span> <span class="kw">attr</span>(.data, <span class="st">&quot;date&quot;</span>)
+  )
+}</code></pre></div>
+<p>To do this for all the dplyr generics would require a lot of copying and pasting. Let’s reduce some of that duplication by taking advantage of <code>sloop::reconstruct()</code>. <code>reconstruct()</code> is a generic function designed to reconstruct a subclass from an instance of the parent class, typically created by <code>NextMethod()</code>, and the original subclass. In other words, the job of a reconstructor is to take an object from a parent class, and copy over attributes from the subclass. (Note that <code>reconstruct()</code> is unusual in that it dispatches on the second argument. This allows a more natural specification.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reconstruct.provenance  &lt;-<span class="st"> </span><span class="cf">function</span>(new, old) {
+  <span class="kw">new_provenance</span>(
+    new, 
+    <span class="dt">author =</span> <span class="kw">attr</span>(old, <span class="st">&quot;author&quot;</span>),
+    <span class="dt">date =</span> <span class="kw">attr</span>(old, <span class="st">&quot;date&quot;</span>)
+  )
+}</code></pre></div>
+<p>Now we can rewrite the methods to minimise the amount of duplicated code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arrange.provenance &lt;-<span class="st"> </span><span class="cf">function</span>(.data, ...) {
+  <span class="kw">reconstruct</span>(<span class="kw">NextMethod</span>(), .data)
+}
+
+mutate.provenance &lt;-<span class="st"> </span><span class="cf">function</span>(.data, ...) {
+  <span class="kw">reconstruct</span>(<span class="kw">NextMethod</span>(), .data)
+}</code></pre></div>
+<p>This duplicated code could be avoided completely if <code>arrange.data.frame()</code>, provided by dplyr, called <code>reconstruct()</code> for you. And indeed, a future version of that function will.</p>
+<p>When designing a class that can be subclassed, you need to carefully think through these issues. Generally, whenever you implement a method that returns the same type of object as the primary input, you should call <code>reconstruct()</code> to ensure that it also works for subclasses. That way implementors of a subclass will only need to provide methods when the computation is actually different.</p>
+</div>
+<div id="exercises-39" class="section level3">
+<h3><span class="header-section-number">13.5.4</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>The <code>ordered</code> class is a subclass of <code>factor</code>, but it’s implemented in a very ad hoc way in base R. Implement it in a principled way by building a constructor and an <code>as_ordered</code> generic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="st">&quot;a&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))
+<span class="kw">as.factor</span>(f1)  
+<span class="co">#&gt; [1] a</span>
+<span class="co">#&gt; Levels: a b</span>
+<span class="kw">as.ordered</span>(f1) <span class="co"># loses levels</span>
+<span class="co">#&gt; [1] a</span>
+<span class="co">#&gt; Levels: a</span></code></pre></div></li>
+<li><p>What classes have a method for the <code>Math</code> group generic in base R? Read the source code. How do the methods work?</p></li>
+<li><p>R has two classes for representing date time data, <code>POSIXct</code> and <code>POSIXlt</code>, which both inherit from <code>POSIXt</code>. Which generics have different behaviours for the two classes? Which generics share the same behaviour?</p></li>
+</ol>
+</div>
+</div>
+<div id="dispatch-details" class="section level2">
+<h2><span class="header-section-number">13.6</span> Dispatch details</h2>
+<p>This chapter concludes with a few additional details about method dispatch that is not well documented elsewhere. It is safe to skip these details if you’re new to S3.</p>
+<div id="environments-and-namespaces" class="section level3">
+<h3><span class="header-section-number">13.6.1</span> Environments and namespaces</h3>
+<p>The precise rules for where a generic looks for the methods are a little complicated because there are two paths for discovery:</p>
+<ol style="list-style-type: decimal">
+<li><p>In the calling environment of the function that called the generic.</p></li>
+<li><p>In the special <code>.__S3MethodsTable__.</code> object in the function environment of the generic. Every package has an <code>.__S3MethodsTable__</code> which lists all the S3 methods exported by the package.</p></li>
+</ol>
+<p>These details are not usually important, but are necessary in order for S3 generics to find the correct method when the generic and method are in different packages.</p>
+</div>
+<div id="s3-and-base-types" class="section level3">
+<h3><span class="header-section-number">13.6.2</span> S3 and base types</h3>
+<p>What happens when you call an S3 generic with a non-S3 object, i.e. an object that doesn’t have the class attribute set? You might think it would dispatch on what <code>class()</code> returns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))
+<span class="co">#&gt; [1] &quot;matrix&quot;</span></code></pre></div>
+<p>But unfortunately dispatch actually occurs on the <strong>implicit class</strong>, which has three components:</p>
+<ul>
+<li>“array” or “matrix” (if the object has dimensions).</li>
+<li><code>typeof()</code> (with a few minor tweaks).</li>
+<li>If it’s “integer” or “double”, “numeric”.</li>
+</ul>
+<p>There is no base function that will compute the implicit class, but you can use a helper from the sloop package:  </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">s3_class</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))
+<span class="co">#&gt; [1] &quot;matrix&quot;  &quot;integer&quot; &quot;numeric&quot;</span></code></pre></div>
+<p><code>s3_dispatch()</code> knows about the implicit class, so use it if you’re ever in doubt about method dispatch:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">s3_dispatch</span>(<span class="kw">print</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)))
+<span class="co">#&gt;    print.matrix</span>
+<span class="co">#&gt;    print.integer</span>
+<span class="co">#&gt;    print.numeric</span>
+<span class="co">#&gt; -&gt; print.default</span></code></pre></div>
+<p>Note that this can lead to different dispatch for objects that look similar:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
+<span class="kw">class</span>(x1)
+<span class="co">#&gt; [1] &quot;integer&quot;</span>
+<span class="kw">s3_dispatch</span>(<span class="kw">mean</span>(x1))
+<span class="co">#&gt;    mean.integer</span>
+<span class="co">#&gt;    mean.numeric</span>
+<span class="co">#&gt; -&gt; mean.default</span>
+
+x2 &lt;-<span class="st"> </span><span class="kw">structure</span>(x1, <span class="dt">class =</span> <span class="st">&quot;integer&quot;</span>)
+<span class="kw">class</span>(x2)
+<span class="co">#&gt; [1] &quot;integer&quot;</span>
+<span class="kw">s3_dispatch</span>(<span class="kw">mean</span>(x2))
+<span class="co">#&gt;    mean.integer</span>
+<span class="co">#&gt; -&gt; mean.default</span></code></pre></div>
+</div>
+<div id="internal-generics" class="section level3">
+<h3><span class="header-section-number">13.6.3</span> Internal generics</h3>
+<p>Some S3 generics, like <code>[</code>, <code>sum()</code>, and <code>cbind()</code>, don’t call <code>UseMethod()</code> because they are implemented in C. Instead, they call the C functions <code>DispatchGroup()</code> or <code>DispatchOrEval()</code>. These functions are called <strong>internal generics</strong>, because they do dispatch internally, in C code. Internal generics only exist in base R, so you can not create an internal generic in a package.</p>
+<p><code>s3_dispatch()</code> shows internal generics by including the name of the generic at the bottom of the method class. If this method is called, all the work happens in C code, typically using [switchpatch].</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">s3_dispatch</span>(<span class="kw">Sys.time</span>()[<span class="dv">1</span>])
+<span class="co">#&gt; -&gt; [.POSIXct</span>
+<span class="co">#&gt;    [.POSIXt</span>
+<span class="co">#&gt;    [.default</span>
+<span class="co">#&gt;  * [</span></code></pre></div>
+<p>For performance reasons, internal generics do not dispatch to methods unless the class attribute has been set (<code>is.object()</code> is true). This means that internal generics do not use the implicit class. Again, if you’re confused, rely on <code>s3_dispatch()</code> to show you the difference.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">10</span>)
+<span class="kw">class</span>(x)
+<span class="co">#&gt; [1] &quot;integer&quot;</span>
+<span class="kw">s3_dispatch</span>(x[<span class="dv">1</span>])
+<span class="co">#&gt;    [.integer</span>
+<span class="co">#&gt;    [.numeric</span>
+<span class="co">#&gt;    [.default</span>
+<span class="co">#&gt; -&gt; [</span>
+
+<span class="kw">class</span>(y) 
+<span class="co">#&gt; [1] &quot;numeric&quot;</span>
+<span class="kw">s3_dispatch</span>(mtcars[<span class="dv">1</span>])
+<span class="co">#&gt; -&gt; [.data.frame</span>
+<span class="co">#&gt;    [.default</span>
+<span class="co">#&gt;  * [</span></code></pre></div>
+</div>
+<div id="group-generics" class="section level3">
+<h3><span class="header-section-number">13.6.4</span> Group generics</h3>
+<p>Group generics are the most complicated part of S3 method dispatch because they involve both <code>NextMethod()</code> and internal generics. Group generics are worth learning about, however, because they allow you to implement a whole swath of methods with one function. Like internal generics, they only exist in base R, and you can not define your own group generic.</p>
+<p>Base R has four group generics, which are made up of the following generics:  </p>
+<ul>
+<li><p><strong>Math</strong>: <code>abs</code>, <code>sign</code>, <code>sqrt</code>, <code>floor</code>, <code>cos</code>, <code>sin</code>, <code>log</code>, <code>exp</code>, …</p></li>
+<li><p><strong>Ops</strong>: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>%%</code>, <code>%/%</code>, <code>&amp;</code>, <code>|</code>, <code>!</code>, <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>&gt;</code></p></li>
+<li><p><strong>Summary</strong>: <code>all</code>, <code>any</code>, <code>sum</code>, <code>prod</code>, <code>min</code>, <code>max</code>, <code>range</code></p></li>
+<li><p><strong>Complex</strong>: <code>Arg</code>, <code>Conj</code>, <code>Im</code>, <code>Mod</code>, <code>Re</code></p></li>
+</ul>
+<p>Defining a single group generic for your class overrides the default behaviour for all of the members of the group. Methods for group generics are looked for only if the methods for the specific generic do not exist:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">s3_dispatch</span>(<span class="kw">sum</span>(<span class="kw">Sys.time</span>()))
+<span class="co">#&gt;    sum.POSIXct</span>
+<span class="co">#&gt;    sum.POSIXt</span>
+<span class="co">#&gt;    sum.default</span>
+<span class="co">#&gt; -&gt; Summary.POSIXct</span>
+<span class="co">#&gt;    Summary.POSIXt</span>
+<span class="co">#&gt;    Summary.default</span>
+<span class="co">#&gt;  * sum</span></code></pre></div>
+<p>Most group generics involve a call to <code>NextMethod()</code>. For example, take <code>difftime()</code> objects. If you look at the method dispatch for <code>abs()</code>, you’ll see there’s a <code>Math</code> group generic defined.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">as.difftime</span>(<span class="dv">10</span>, <span class="dt">units =</span> <span class="st">&quot;mins&quot;</span>)
+<span class="kw">s3_dispatch</span>(<span class="kw">abs</span>(y))
+<span class="co">#&gt;    abs.difftime</span>
+<span class="co">#&gt;    abs.default</span>
+<span class="co">#&gt; -&gt; Math.difftime</span>
+<span class="co">#&gt;    Math.default</span>
+<span class="co">#&gt;  * abs</span></code></pre></div>
+<p><code>Math.difftime</code> basically looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Math.difftime &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  <span class="kw">new_difftime</span>(<span class="kw">NextMethod</span>(), <span class="dt">units =</span> <span class="kw">attr</span>(x, <span class="st">&quot;units&quot;</span>))
+}</code></pre></div>
+<p>It dispatches to the next method, here the internal default, to perform the actual computation, then copies back over the the class and attributes.</p>
+<p>Note that inside a group generic function a special variable <code>.Generic</code> provides the actual generic function called. This can be useful when producing error messages, and can sometimes be useful if you need to manually re-call the generic with different arguments.</p>
+</div>
+<div id="double-dispatch" class="section level3">
+<h3><span class="header-section-number">13.6.5</span> Double dispatch</h3>
+<p>Generics in the “Ops” group, which includes the two-argument mathematical and logical operators like <code>-</code> and <code>&amp;</code>, implement a special type of method dispatch. They dispatch on the type of <em>both</em> of the arguments, so called <strong>double dispatch</strong>. This is necessary to preserve the commutative property of many operators, i.e. <code>a + b</code> should equal <code>b + a</code>. Take the following simple example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2017-01-01&quot;</span>)
+integer &lt;-<span class="st"> </span>1L
+
+date <span class="op">+</span><span class="st"> </span>integer
+<span class="co">#&gt; [1] &quot;2017-01-02&quot;</span>
+integer <span class="op">+</span><span class="st"> </span>date
+<span class="co">#&gt; [1] &quot;2017-01-02&quot;</span></code></pre></div>
+<p>If <code>+</code> dispatched only on the first argument, it would return different values for the two cases. To overcome this problem, generics in the Ops group use a slightly different strategy from usual. Rather than doing a single method dispatch, they do two, one for each input. There are three possible outcomes of this lookup:</p>
+<ul>
+<li><p>The methods are the same, so it doesn’t matter which method is used.</p></li>
+<li><p>The methods are different, and R calls the first method with a warning.</p></li>
+<li><p>One method is internal, in which case R calls the other method.</p></li>
+</ul>
+<p>For the example above, we can look at the possible methods for each argument, taking advantage of the fact that we can call <code>+</code> with a single argument. In this case, the second argument would dispatch to the internal <code>+</code> function, so R will call <code>+.Date</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">s3_dispatch</span>(<span class="op">+</span>date)
+<span class="co">#&gt; -&gt; +.Date</span>
+<span class="co">#&gt;    +.default</span>
+<span class="co">#&gt;  * Ops.Date</span>
+<span class="co">#&gt;    Ops.default</span>
+<span class="co">#&gt;  * +</span>
+<span class="kw">s3_dispatch</span>(<span class="op">+</span>integer)
+<span class="co">#&gt;    +.integer</span>
+<span class="co">#&gt;    +.numeric</span>
+<span class="co">#&gt;    +.default</span>
+<span class="co">#&gt;    Ops.integer</span>
+<span class="co">#&gt;    Ops.numeric</span>
+<span class="co">#&gt;    Ops.default</span>
+<span class="co">#&gt; -&gt; +</span></code></pre></div>
+<p>Let’s take a look at another case. What happens if you try and add a date to a factor? There is no method in common, so R calls the internal <code>+</code> method (which preserves the attributes of the LHS), with a warning.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">factor &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="st">&quot;a&quot;</span>)
+<span class="kw">s3_dispatch</span>(<span class="op">+</span>factor)
+<span class="co">#&gt;    +.factor</span>
+<span class="co">#&gt;    +.default</span>
+<span class="co">#&gt; -&gt; Ops.factor</span>
+<span class="co">#&gt;    Ops.default</span>
+<span class="co">#&gt;  * +</span>
+
+date <span class="op">+</span><span class="st"> </span>factor
+<span class="co">#&gt; Warning: Inkompatible Methoden (&quot;+.Date&quot;, &quot;Ops.factor&quot;) für &quot;+&quot;</span>
+<span class="co">#&gt; [1] &quot;2017-01-02&quot;</span>
+factor <span class="op">+</span><span class="st"> </span>date
+<span class="co">#&gt; Warning: Inkompatible Methoden (&quot;Ops.factor&quot;, &quot;+.Date&quot;) für &quot;+&quot;</span>
+<span class="co">#&gt; Error in as.character.factor(x): malformed factor</span></code></pre></div>
+<p>Finally, what happens if we try to substract a POSIXct from a POSIXlt? A common <code>-.POSIXt</code> method is found and called.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt1 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(date)
+dt2 &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(date)
+
+<span class="kw">s3_dispatch</span>(<span class="op">-</span>dt1)
+<span class="co">#&gt;    -.POSIXct</span>
+<span class="co">#&gt; -&gt; -.POSIXt</span>
+<span class="co">#&gt;    -.default</span>
+<span class="co">#&gt;    Ops.POSIXct</span>
+<span class="co">#&gt;  * Ops.POSIXt</span>
+<span class="co">#&gt;    Ops.default</span>
+<span class="co">#&gt;  * -</span>
+<span class="kw">s3_dispatch</span>(<span class="op">-</span>dt2)
+<span class="co">#&gt;    -.POSIXlt</span>
+<span class="co">#&gt; -&gt; -.POSIXt</span>
+<span class="co">#&gt;    -.default</span>
+<span class="co">#&gt;    Ops.POSIXlt</span>
+<span class="co">#&gt;  * Ops.POSIXt</span>
+<span class="co">#&gt;    Ops.default</span>
+<span class="co">#&gt;  * -</span>
+
+dt1 <span class="op">-</span><span class="st"> </span>dt2
+<span class="co">#&gt; Time difference of 0 secs</span></code></pre></div>
+</div>
+<div id="exercises-40" class="section level3">
+<h3><span class="header-section-number">13.6.6</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><code>Math.difftime()</code> is more complicated than I described. Why?</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="base-types.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="s4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/adv-r/edit/master/S3.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
