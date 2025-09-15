@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>tidyverse__data_wrangling.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="data-wrangling-with-the-tidyverse" class="section level1">
+<h1>data wrangling with the tidyverse</h1>
+<div id="magrittr-packge-operator" class="section level2">
+<h2>magrittr packge <code>%&gt;%</code> operator</h2>
+<p>“Pipes are a powerful tool for clearly expressing a sequence of
+multiple operations. … The pipe, <code>%&gt;%</code>, comes from the
+magrittr package by Stefan Milton Bache. Packages in the tidyverse load
+<code>%&gt;%</code> for you automatically, so you don’t usually load
+magrittr explicitly.” <span class="citation">@Wickham2017</span></p>
+<p><strong>pipes (moves) what is written on the left-hand side (LHS) of
+the pipe into the first argument of the function on the right-hand side
+(RHS) of the pipe</strong></p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="26%" />
+<col width="65%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="figures/hex-magrittr.jpg" /></td>
+<td align="center"><strong>magrittr</strong> <br> <em>(pipeline mode of
+functions)</em></td>
+<td align="left"><em>The magrittr package offers a set of operators
+which make your code more readable by:</em><br> - structuring sequences
+of data operations left-to-right (as opposed to from the inside and
+out),<br> - avoiding nested function calls,<br>- minimizing the need for
+local variables and function definitions, and<br>- making it easy to add
+steps anywhere in the sequence of operations.</td>
+</tr>
+</tbody>
+</table>
+<div id="basic-piping" class="section level3">
+<h3>Basic piping (<code>%&gt;%</code>)</h3>
+<p>Many functions accept a data argument, e.g. lm and aggregate, which
+is very useful in a pipeline where data is first processed and then
+passed into such a function. There are also functions that do not have a
+data argument, for which it is useful to expose the variables in the
+data. This is done with the %$% operator:</p>
+<ul>
+<li><code>x %&gt;% f</code> is equivalent to <code>f(x)</code></li>
+<li><code>x %&gt;% f(y)</code> is equivalent to
+<code>f(x, y)</code></li>
+<li><code>x %&gt;% f %&gt;% g %&gt;% h</code> is equivalent to
+<code>h(g(f(x)))</code></li>
+</ul>
+<div id="when-not-to-use-the-pipe" class="section level4">
+<h4>When not to use the pipe</h4>
+<p>The pipe is a powerful tool, but it’s not the only tool at your
+disposal, and it doesn’t solve every problem! Pipes are most useful for
+rewriting a fairly short linear sequence of operations. I think you
+should reach for another tool when:</p>
+<ul>
+<li><p>Your pipes are longer than (say) ten steps. In that case, create
+intermediate objects with meaningful names. That will make debugging
+easier, because you can more easily check the intermediate results, and
+it makes it easier to understand your code, because the variable names
+can help communicate intent.</p></li>
+<li><p>You have multiple inputs or outputs. If there isn’t one primary
+object being transformed, but two or more objects being combined
+together, don’t use the pipe.</p></li>
+<li><p>You are starting to think about a directed graph with a complex
+dependency structure. Pipes are fundamentally linear and expressing
+complex relationships with them will typically yield confusing
+code.</p></li>
+</ul>
+</div>
+<div id="pipe-with-exposition-of-variables" class="section level4">
+<h4>Pipe with exposition of variables (<code>%$%</code>)</h4>
+<p>Many functions accept a data argument, e.g. lm and aggregate, which
+is very useful in a pipeline where data is first processed and then
+passed into such a function. There are also functions that do not have a
+data argument, for which it is useful to expose the variables in the
+data. This is done with the <code>%$%</code> operator:</p>
+<pre class="r"><code>#mtcars correlation of disp and mpg variable
+library(magrittr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:raster&#39;:
+## 
+##     extract</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<pre class="r"><code>iris %&gt;%
+  subset(Sepal.Length &gt; mean(Sepal.Length)) %$%
+  cor(Sepal.Length, Sepal.Width)</code></pre>
+<pre><code>## [1] 0.336</code></pre>
+<pre class="r"><code>mtcars %$% cor(disp,mpg)</code></pre>
+<pre><code>## [1] -0.848</code></pre>
+</div>
+</div>
+<div id="native-pipe-r" class="section level3">
+<h3>native pipe <strong>|&gt;</strong> R</h3>
+<p>Since R version 4.1 the <code>|&gt;</code>native pipe operator was
+introduced.</p>
+<p>Differences to <code>%&gt;%</code> magrittr pipe:</p>
+<ul>
+<li>First, unlike {margrittr}, the native R pipe requires round brackets
+in function calls in any case.</li>
+<li>Second, the native variant no longer allows the dot to be used as a
+placeholder for passing values, potentially requiring the definition of
+an additional function.</li>
+</ul>
+<p>The native pipe can be used as default.</p>
+<div class="float">
+<img src="figures/%20RStudio_native_R_pipe.png"
+alt="RStudio native R pipe shortcut usage" />
+<div class="figcaption">RStudio native R pipe shortcut usage</div>
+</div>
+</div>
+<div id="explanation-of-pipes-vs-from-r4ds---hadley-wickham"
+class="section level3">
+<h3>Explanation of pipes: <code>|&gt; vs %&gt;%</code> from R4DS -
+Hadley Wickham</h3>
+<p>“While <code>|&gt;</code> and <code>%&gt;%</code> behave identically
+for simple cases, there are a few important differences. These are most
+likely to affect you if you’re a long-term user of <code>%&gt;%</code>
+who has taken advantage of some of the more advanced features. But
+they’re still good to know about even if you’ve never used %&gt;%
+because you’re likely to encounter some of them when reading wild-caught
+code.”</p>
+<ul>
+<li><p>“By default, the pipe passes the object on its left hand side to
+the first argument of the function on the right-hand side.
+<code>%&gt;%</code> allows you change the placement with a
+<code>.</code> placeholder. For example, <code>x %&gt;% f(1)</code> is
+equivalent to <code>f(x, 1)</code> but <code>x %&gt;% f(1, .)</code> is
+equivalent to <code>f(1, x)</code>. R 4.2.0 added a <code>_</code>
+placeholder to the base pipe, with one additional restriction: the
+argument has to be named. For example, <code>x |&gt; f(1, y = _)</code>
+is equivalent to <code>f(1, y = x)</code>.”</p></li>
+<li><p>“The <code>|&gt;</code> placeholder is deliberately simple and
+can’t replicate many features of the <code>%&gt;%</code> placeholder:
+you can’t pass it to multiple arguments, and it doesn’t have any special
+behavior when the placeholder is used inside another function. For
+example, <code>df %&gt;% split(.$var)</code> is equivalent to
+<code>split(df, df$var)</code> and
+<code>df %&gt;% {split(.$x, .$y)}</code> is equivalent to
+<code>split(df$x, df$y)</code>.”</p></li>
+<li><p>“With <code>%&gt;%</code> you can use <code>.</code> on the
+left-hand side of operators like <code>$</code>, <code>[[</code>,
+<code>[</code>, so you can extract a single column from a data frame
+with (e.g.) <code>mtcars %&gt;% .$cyl</code>. A future version of R may
+add similar support for <code>|&gt;</code> and <code>_</code>. For the
+special case of extracting a column out of a data frame, you can also
+use <code>dplyr::pull()</code>:
+<code>mtcars |&gt; pull(cyl)</code>”</p></li>
+<li><p>“<code>%&gt;%</code> allows you to drop the parentheses when
+calling a function with no other arguments; <code>|&gt;</code> always
+requires the parentheses.”</p></li>
+<li><p>“<code>%&gt;%</code> allows you to start a pipe with
+<code>.</code> to create a function rather than immediately executing
+the pipe; this is not supported by the base pipe.”</p></li>
+</ul>
+<blockquote>
+<p>“Luckily there’s no need to commit entirely to one pipe or the other
+— you can use the base pipe for the majority of cases where it’s
+sufficient, and use the magrittr pipe when you really need its special
+features.”</p>
+</blockquote>
+</div>
+</div>
+<div id="reshaping-data---story-from-long-and-wide-tibbletables"
+class="section level2">
+<h2>reshaping data - story from long and wide tibble/tables</h2>
+<div class="float">
+<img src="figures/tidy_data_reshape.png"
+alt="data reshaping with tidyr" />
+<div class="figcaption">data reshaping with tidyr</div>
+</div>
+<p>Data reshaping with <strong>tidyr</strong> is very easy when
+understanding one principle.</p>
+<p>A “messy” data frame like this (2 dimensional data):</p>
+<pre class="r"><code>library(tidyverse)
+set.seed(666)
+normal_messy_data &lt;- tibble(protein = c(rep(&quot;protein_1&quot;,26),rep(&quot;protein_2&quot;,26),rep(&quot;protein_3&quot;,26)),
+                            peptide = c(paste(letters,&quot;_1&quot;,sep=&quot;&quot;),paste(letters,&quot;_2&quot;,sep=&quot;&quot;),paste(letters,&quot;_3&quot;,sep=&quot;&quot;)),
+                            Condition1_BR1 = rnorm(n = 78,mean = 100,sd =1),
+                            Condition1_BR2 = rnorm(n = 78,mean = 110,sd =1),
+                            Condition1_BR3 = rnorm(n = 78,mean = 105,sd =1),
+                            Condition1_BR4 = rnorm(n = 78,mean = 115,sd =1),
+                            Condition1_BR5 = rnorm(n = 78,mean = 115,sd =1),
+                            Condition2_BR1 = rnorm(n = 78,mean = 100*4,sd =1),
+                            Condition2_BR2 = rnorm(n = 78,mean = 110*4,sd =1),
+                            Condition2_BR3 = rnorm(n = 78,mean = 105*4,sd =1),
+                            Condition2_BR4 = rnorm(n = 78,mean = 115*4,sd =1),
+                            Condition2_BR5 = rnorm(n = 78,mean = 115*4,sd =1)
+)
+normal_messy_data</code></pre>
+<pre><code>## # A tibble: 78 × 12
+##    protein   peptide Condition1_BR1 Condition1_BR2 Condition1_BR3 Condition1_BR4
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1              101.            109.           106.           115.
+##  2 protein_1 b_1              102.            109.           106.           115.
+##  3 protein_1 c_1               99.6           111.           106.           113.
+##  4 protein_1 d_1              102.            111.           104.           115.
+##  5 protein_1 e_1               97.8           110.           105.           114.
+##  6 protein_1 f_1              101.            109.           106.           114.
+##  7 protein_1 g_1               98.7           110.           105.           116.
+##  8 protein_1 h_1               99.2           111.           107.           113.
+##  9 protein_1 i_1               98.2           110.           104.           114.
+## 10 protein_1 j_1              100.0           111.           106.           114.
+## # ℹ 68 more rows
+## # ℹ 6 more variables: Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;,
+## #   Condition2_BR2 &lt;dbl&gt;, Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;,
+## #   Condition2_BR5 &lt;dbl&gt;</code></pre>
+<p>can be easily transformed to a tidy tibble using the reshape function
+of tidyr:</p>
+<ul>
+<li><code>pivot_longer()</code> to make things tidy (long data format)
+(old: <code>gather()</code>)</li>
+</ul>
+<pre class="r"><code>normal_tidy_data &lt;- normal_messy_data %&gt;% 
+                  pivot_longer(colnames(normal_messy_data)[-c(1:2)],
+                               names_to = &quot;samples&quot;,
+                               values_to = &quot;intensity&quot;)
+normal_tidy_data</code></pre>
+<pre><code>## # A tibble: 780 × 4
+##    protein   peptide samples        intensity
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1_BR1      101.
+##  2 protein_1 a_1     Condition1_BR2      109.
+##  3 protein_1 a_1     Condition1_BR3      106.
+##  4 protein_1 a_1     Condition1_BR4      115.
+##  5 protein_1 a_1     Condition1_BR5      115.
+##  6 protein_1 a_1     Condition2_BR1      400.
+##  7 protein_1 a_1     Condition2_BR2      439.
+##  8 protein_1 a_1     Condition2_BR3      420.
+##  9 protein_1 a_1     Condition2_BR4      460.
+## 10 protein_1 a_1     Condition2_BR5      460.
+## # ℹ 770 more rows</code></pre>
+<p>Now we have some tidy data, which can be multidimensional. A back
+transformation is quiet easy but I would always recommend to include a
+column <code>select()</code> (less error prone)</p>
+<ul>
+<li><code>pivot_wider()</code> to make data wide again (old:
+<code>spread()</code>)</li>
+<li><code>select()</code> select only column needed (see below)</li>
+</ul>
+<pre class="r"><code>normal_tidy_data %&gt;% pivot_wider(names_from = &quot;samples&quot;,values_from = &quot;intensity&quot;)</code></pre>
+<pre><code>## # A tibble: 78 × 12
+##    protein   peptide Condition1_BR1 Condition1_BR2 Condition1_BR3 Condition1_BR4
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1              101.            109.           106.           115.
+##  2 protein_1 b_1              102.            109.           106.           115.
+##  3 protein_1 c_1               99.6           111.           106.           113.
+##  4 protein_1 d_1              102.            111.           104.           115.
+##  5 protein_1 e_1               97.8           110.           105.           114.
+##  6 protein_1 f_1              101.            109.           106.           114.
+##  7 protein_1 g_1               98.7           110.           105.           116.
+##  8 protein_1 h_1               99.2           111.           107.           113.
+##  9 protein_1 i_1               98.2           110.           104.           114.
+## 10 protein_1 j_1              100.0           111.           106.           114.
+## # ℹ 68 more rows
+## # ℹ 6 more variables: Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;,
+## #   Condition2_BR2 &lt;dbl&gt;, Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;,
+## #   Condition2_BR5 &lt;dbl&gt;</code></pre>
+<p>But first lets clean our tidy data by separate columns using
+<code>separate()</code> function</p>
+<pre class="r"><code>normal_tidy_data_cleaned &lt;- normal_tidy_data %&gt;% 
+                            separate(col = &quot;samples&quot;,
+                                     into = c(&quot;condition&quot;,&quot;replicate&quot;),
+                                     sep = &quot;_&quot;,
+                                     remove = F)
+normal_tidy_data_cleaned</code></pre>
+<pre><code>## # A tibble: 780 × 6
+##    protein   peptide samples        condition  replicate intensity
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1_BR1 Condition1 BR1            101.
+##  2 protein_1 a_1     Condition1_BR2 Condition1 BR2            109.
+##  3 protein_1 a_1     Condition1_BR3 Condition1 BR3            106.
+##  4 protein_1 a_1     Condition1_BR4 Condition1 BR4            115.
+##  5 protein_1 a_1     Condition1_BR5 Condition1 BR5            115.
+##  6 protein_1 a_1     Condition2_BR1 Condition2 BR1            400.
+##  7 protein_1 a_1     Condition2_BR2 Condition2 BR2            439.
+##  8 protein_1 a_1     Condition2_BR3 Condition2 BR3            420.
+##  9 protein_1 a_1     Condition2_BR4 Condition2 BR4            460.
+## 10 protein_1 a_1     Condition2_BR5 Condition2 BR5            460.
+## # ℹ 770 more rows</code></pre>
+<p>Lets reshape <code>normal_tidy_data_cleaned</code> to wide format
+using the same code used above</p>
+<pre class="r"><code>  normal_tidy_data_cleaned %&gt;% pivot_wider(names_from = &quot;samples&quot;,values_from = &quot;intensity&quot;)</code></pre>
+<pre><code>## # A tibble: 780 × 14
+##    protein   peptide condition  replicate Condition1_BR1 Condition1_BR2
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1 BR1                 101.            NA 
+##  2 protein_1 a_1     Condition1 BR2                  NA            109.
+##  3 protein_1 a_1     Condition1 BR3                  NA             NA 
+##  4 protein_1 a_1     Condition1 BR4                  NA             NA 
+##  5 protein_1 a_1     Condition1 BR5                  NA             NA 
+##  6 protein_1 a_1     Condition2 BR1                  NA             NA 
+##  7 protein_1 a_1     Condition2 BR2                  NA             NA 
+##  8 protein_1 a_1     Condition2 BR3                  NA             NA 
+##  9 protein_1 a_1     Condition2 BR4                  NA             NA 
+## 10 protein_1 a_1     Condition2 BR5                  NA             NA 
+## # ℹ 770 more rows
+## # ℹ 8 more variables: Condition1_BR3 &lt;dbl&gt;, Condition1_BR4 &lt;dbl&gt;,
+## #   Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;, Condition2_BR2 &lt;dbl&gt;,
+## #   Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;, Condition2_BR5 &lt;dbl&gt;</code></pre>
+<p>MHH, something is wrong. Because a important column, which also
+describes the column in the wide format exists in the tidy format. The
+<code>spread()</code> function tries to match the rows with the addition
+<em>replicate</em> column resulting in the diagonal wide format error.
+It is important to use the above mentioned select() function to generete
+the wide format (2 dimension: rows (protein, peptide) and column
+(samples) with a value).</p>
+<pre class="r"><code>normal_tidy_data_cleaned %&gt;% dplyr::select(protein,peptide,samples,intensity)</code></pre>
+<pre><code>## # A tibble: 780 × 4
+##    protein   peptide samples        intensity
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1_BR1      101.
+##  2 protein_1 a_1     Condition1_BR2      109.
+##  3 protein_1 a_1     Condition1_BR3      106.
+##  4 protein_1 a_1     Condition1_BR4      115.
+##  5 protein_1 a_1     Condition1_BR5      115.
+##  6 protein_1 a_1     Condition2_BR1      400.
+##  7 protein_1 a_1     Condition2_BR2      439.
+##  8 protein_1 a_1     Condition2_BR3      420.
+##  9 protein_1 a_1     Condition2_BR4      460.
+## 10 protein_1 a_1     Condition2_BR5      460.
+## # ℹ 770 more rows</code></pre>
+<pre class="r"><code>normal_tidy_data_cleaned %&gt;% 
+  dplyr::select(protein,peptide,samples,intensity) %&gt;%
+  pivot_wider(names_from = &quot;samples&quot;,values_from = &quot;intensity&quot;)</code></pre>
+<pre><code>## # A tibble: 78 × 12
+##    protein   peptide Condition1_BR1 Condition1_BR2 Condition1_BR3 Condition1_BR4
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1              101.            109.           106.           115.
+##  2 protein_1 b_1              102.            109.           106.           115.
+##  3 protein_1 c_1               99.6           111.           106.           113.
+##  4 protein_1 d_1              102.            111.           104.           115.
+##  5 protein_1 e_1               97.8           110.           105.           114.
+##  6 protein_1 f_1              101.            109.           106.           114.
+##  7 protein_1 g_1               98.7           110.           105.           116.
+##  8 protein_1 h_1               99.2           111.           107.           113.
+##  9 protein_1 i_1               98.2           110.           104.           114.
+## 10 protein_1 j_1              100.0           111.           106.           114.
+## # ℹ 68 more rows
+## # ℹ 6 more variables: Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;,
+## #   Condition2_BR2 &lt;dbl&gt;, Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;,
+## #   Condition2_BR5 &lt;dbl&gt;</code></pre>
+</div>
+<div id="none-standard-column-names-and-tidyverse"
+class="section level2">
+<h2>none standard column names and tidyverse</h2>
+<blockquote>
+<p><strong>Note:</strong> if you have none standard column names
+e.g. have a SPACE like “protein function” you can rename the column to
+e.g. “protein_function” or use backticks <code>`protein function`</code>
+to use them inside tidyverse function.</p>
+</blockquote>
+<pre class="r"><code>normal_column_mess &lt;- tibble(&quot;protein IDs&quot; = c(rep(&quot;protein_1&quot;,26),rep(&quot;protein_2&quot;,26),rep(&quot;protein_3&quot;,26)),
+                            &quot;stripped-peptides&quot; = c(paste(letters,&quot;_1&quot;,sep=&quot;&quot;),paste(letters,&quot;_2&quot;,sep=&quot;&quot;),paste(letters,&quot;_3&quot;,sep=&quot;&quot;)),
+                            Condition1_BR1 = rnorm(n = 78,mean = 100,sd =1),
+                            Condition1_BR2 = rnorm(n = 78,mean = 110,sd =1),
+                            Condition1_BR3 = rnorm(n = 78,mean = 105,sd =1),
+                            Condition1_BR4 = rnorm(n = 78,mean = 115,sd =1)
+)
+normal_column_mess</code></pre>
+<pre><code>## # A tibble: 78 × 6
+##    `protein IDs` `stripped-peptides` Condition1_BR1 Condition1_BR2
+##    &lt;chr&gt;         &lt;chr&gt;                        &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1     a_1                          101.            109.
+##  2 protein_1     b_1                           99.6           112.
+##  3 protein_1     c_1                          101.            110.
+##  4 protein_1     d_1                          101.            109.
+##  5 protein_1     e_1                          101.            111.
+##  6 protein_1     f_1                          101.            109.
+##  7 protein_1     g_1                          100.            108.
+##  8 protein_1     h_1                          100.            111.
+##  9 protein_1     i_1                           99.8           109.
+## 10 protein_1     j_1                           99.6           111.
+## # ℹ 68 more rows
+## # ℹ 2 more variables: Condition1_BR3 &lt;dbl&gt;, Condition1_BR4 &lt;dbl&gt;</code></pre>
+<pre class="r"><code>normal_column_mess %&gt;% dplyr::select(stripped-peptides)
+#will result in:
+# Error in `select()`:
+# ! object &#39;stripped&#39; not found
+# Backtrace:
+#   1. normal_column_mess %&gt;% select(stripped - peptides)
+#  24. base::.handleSimpleError(...)
+#  25. rlang (local) h(simpleError(msg, call))
+#  26. handlers[[1L]](cnd)</code></pre>
+<pre class="r"><code># using backticks is going to work
+normal_column_mess %&gt;% dplyr::select(`stripped-peptides`)</code></pre>
+<pre><code>## # A tibble: 78 × 1
+##    `stripped-peptides`
+##    &lt;chr&gt;              
+##  1 a_1                
+##  2 b_1                
+##  3 c_1                
+##  4 d_1                
+##  5 e_1                
+##  6 f_1                
+##  7 g_1                
+##  8 h_1                
+##  9 i_1                
+## 10 j_1                
+## # ℹ 68 more rows</code></pre>
+<pre class="r"><code># using quotes is going to work as well
+normal_column_mess %&gt;% dplyr::select(&quot;stripped-peptides&quot;)</code></pre>
+<pre><code>## # A tibble: 78 × 1
+##    `stripped-peptides`
+##    &lt;chr&gt;              
+##  1 a_1                
+##  2 b_1                
+##  3 c_1                
+##  4 d_1                
+##  5 e_1                
+##  6 f_1                
+##  7 g_1                
+##  8 h_1                
+##  9 i_1                
+## 10 j_1                
+## # ℹ 68 more rows</code></pre>
+</div>
+<div id="get-a-short-overview-of-your-data" class="section level2">
+<h2>get a short overview of your data</h2>
+<p><code>glimpse()</code> get a glimpse of your data. This is a brief
+overview of your data.</p>
+<pre class="r"><code>normal_tidy_data_cleaned %&gt;% glimpse()</code></pre>
+<pre><code>## Rows: 780
+## Columns: 6
+## $ protein   &lt;chr&gt; &quot;protein_1&quot;, &quot;protein_1&quot;, &quot;protein_1&quot;, &quot;protein_1&quot;, &quot;protein…
+## $ peptide   &lt;chr&gt; &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1…
+## $ samples   &lt;chr&gt; &quot;Condition1_BR1&quot;, &quot;Condition1_BR2&quot;, &quot;Condition1_BR3&quot;, &quot;Condi…
+## $ condition &lt;chr&gt; &quot;Condition1&quot;, &quot;Condition1&quot;, &quot;Condition1&quot;, &quot;Condition1&quot;, &quot;Con…
+## $ replicate &lt;chr&gt; &quot;BR1&quot;, &quot;BR2&quot;, &quot;BR3&quot;, &quot;BR4&quot;, &quot;BR5&quot;, &quot;BR1&quot;, &quot;BR2&quot;, &quot;BR3&quot;, &quot;BR4…
+## $ intensity &lt;dbl&gt; 100.8, 109.4, 105.9, 115.5, 114.6, 400.0, 439.0, 420.1, 459.…</code></pre>
+<p>same can be achieved with the <code>str()</code> function from base
+R. str…Compactly Display the Structure of an Arbitrary R Object</p>
+<pre class="r"><code>str(normal_tidy_data_cleaned)</code></pre>
+<pre><code>## tibble [780 × 6] (S3: tbl_df/tbl/data.frame)
+##  $ protein  : chr [1:780] &quot;protein_1&quot; &quot;protein_1&quot; &quot;protein_1&quot; &quot;protein_1&quot; ...
+##  $ peptide  : chr [1:780] &quot;a_1&quot; &quot;a_1&quot; &quot;a_1&quot; &quot;a_1&quot; ...
+##  $ samples  : chr [1:780] &quot;Condition1_BR1&quot; &quot;Condition1_BR2&quot; &quot;Condition1_BR3&quot; &quot;Condition1_BR4&quot; ...
+##  $ condition: chr [1:780] &quot;Condition1&quot; &quot;Condition1&quot; &quot;Condition1&quot; &quot;Condition1&quot; ...
+##  $ replicate: chr [1:780] &quot;BR1&quot; &quot;BR2&quot; &quot;BR3&quot; &quot;BR4&quot; ...
+##  $ intensity: num [1:780] 101 109 106 115 115 ...</code></pre>
+</div>
+<div id="dplyr" class="section level2">
+<h2>dplyr</h2>
+<p><img src="figures/hex-dplyr.png" /></p>
+<p><strong>dplyr</strong> (<a href="https://dplyr.tidyverse.org"
+class="uri">https://dplyr.tidyverse.org</a>) is a grammar of data
+manipulation, providing a consistent set of verbs that help you solve
+the most common data manipulation challenges:</p>
+<ul>
+<li><code>mutate()</code> adds new variables that are functions of
+existing variables</li>
+<li><code>select()</code> picks variables based on their names.</li>
+<li><code>filter()</code> picks cases based on their values.</li>
+<li><code>summarise()</code> reduces multiple values down to a single
+summary.</li>
+<li><code>arrange()</code> changes the ordering of the rows.</li>
+</ul>
+<p>These all combine naturally with <code>group_by()</code> (see section
+below) which allows you to perform any operation “by group”.</p>
+</div>
+<div id="using-group-wise-data-wrangling" class="section level2">
+<h2>using group wise data wrangling</h2>
+<p>group-wise data handling is really powerful since several for loops
+and apply function can be replaced in a very convenient manor.</p>
+<center>
+<img src="figures/dplyr_grouping.png" style="width:50.0%" />
+</center>
+<ul>
+<li>always use <code>ungroup()</code> function to ungroup data
+afterwards, otherwise grouping is kept</li>
+</ul>
+<blockquote>
+<p>keep in mind <code>group_by()</code> always sorts character
+vectors!</p>
+</blockquote>
+<pre class="r"><code>#Average, SD, CV over Replicates per peptide/protein
+normal_tidy_data_cleaned_summary &lt;- normal_tidy_data_cleaned %&gt;%
+  group_by(condition,protein,peptide) %&gt;% 
+  summarise(mean_peptide_intensity = mean(intensity),
+            sd_peptide_intensity = sd(intensity),
+            cv_peptide_intensity = sd(intensity)/mean(intensity)) %&gt;% 
+  ungroup()</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;condition&#39;, &#39;protein&#39;. You can override
+## using the `.groups` argument.</code></pre>
+<pre class="r"><code>normal_tidy_data_cleaned_summary</code></pre>
+<pre><code>## # A tibble: 156 × 6
+##    condition  protein   peptide mean_peptide_intensity sd_peptide_intensity
+##    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Condition1 protein_1 a_1                       109.                 6.13
+##  2 Condition1 protein_1 b_1                       109.                 5.42
+##  3 Condition1 protein_1 c_1                       109.                 6.14
+##  4 Condition1 protein_1 d_1                       110.                 6.37
+##  5 Condition1 protein_1 e_1                       108.                 7.42
+##  6 Condition1 protein_1 f_1                       109.                 5.77
+##  7 Condition1 protein_1 g_1                       108.                 6.88
+##  8 Condition1 protein_1 h_1                       109.                 6.02
+##  9 Condition1 protein_1 i_1                       108.                 6.76
+## 10 Condition1 protein_1 j_1                       109.                 6.44
+## # ℹ 146 more rows
+## # ℹ 1 more variable: cv_peptide_intensity &lt;dbl&gt;</code></pre>
+</div>
+<div id="other-examples-of-dplyr-function" class="section level2">
+<h2>other examples of dplyr function</h2>
+<div id="top_n" class="section level3">
+<h3>top_N</h3>
+<p>Now we would like to have just the highest 2 peptides per protein and
+condition</p>
+<pre class="r"><code>#top_2 peptides per protein and condition
+normal_tidy_data_cleaned_summary %&gt;% 
+  group_by(protein,condition) %&gt;% 
+  top_n( n = 2, wt = mean_peptide_intensity)</code></pre>
+<pre><code>## # A tibble: 12 × 6
+## # Groups:   protein, condition [6]
+##    condition  protein   peptide mean_peptide_intensity sd_peptide_intensity
+##    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Condition1 protein_1 d_1                       110.                 6.37
+##  2 Condition1 protein_1 m_1                       110.                 6.65
+##  3 Condition1 protein_2 s_2                       110.                 6.50
+##  4 Condition1 protein_2 t_2                       110.                 7.35
+##  5 Condition1 protein_3 o_3                       110.                 6.55
+##  6 Condition1 protein_3 q_3                       110.                 5.66
+##  7 Condition2 protein_1 f_1                       437.                26.1 
+##  8 Condition2 protein_1 z_1                       437.                25.9 
+##  9 Condition2 protein_2 g_2                       437.                25.9 
+## 10 Condition2 protein_2 o_2                       437.                25.5 
+## 11 Condition2 protein_3 l_3                       437.                26.1 
+## 12 Condition2 protein_3 o_3                       437.                25.6 
+## # ℹ 1 more variable: cv_peptide_intensity &lt;dbl&gt;</code></pre>
+</div>
+<div id="adding-ranks" class="section level3">
+<h3>adding ranks</h3>
+<p>Now we would like to add ranks for peptide-intensity per protein and
+condition</p>
+<pre class="r"><code>#rank peptides per protein and condition
+# higher rank number = higher intensity
+normal_tidy_data_cleaned_summary %&gt;% 
+  group_by(protein,condition) %&gt;% 
+  mutate(rank = dense_rank(mean_peptide_intensity))</code></pre>
+<pre><code>## # A tibble: 156 × 7
+## # Groups:   protein, condition [6]
+##    condition  protein   peptide mean_peptide_intensity sd_peptide_intensity
+##    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Condition1 protein_1 a_1                       109.                 6.13
+##  2 Condition1 protein_1 b_1                       109.                 5.42
+##  3 Condition1 protein_1 c_1                       109.                 6.14
+##  4 Condition1 protein_1 d_1                       110.                 6.37
+##  5 Condition1 protein_1 e_1                       108.                 7.42
+##  6 Condition1 protein_1 f_1                       109.                 5.77
+##  7 Condition1 protein_1 g_1                       108.                 6.88
+##  8 Condition1 protein_1 h_1                       109.                 6.02
+##  9 Condition1 protein_1 i_1                       108.                 6.76
+## 10 Condition1 protein_1 j_1                       109.                 6.44
+## # ℹ 146 more rows
+## # ℹ 2 more variables: cv_peptide_intensity &lt;dbl&gt;, rank &lt;int&gt;</code></pre>
+</div>
+</div>
+<div id="use-purrr-instead-of-lapply" class="section level2">
+<h2>use purrr instead of lapply</h2>
+<p><a
+href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply/47123420#47123420"
+class="uri">https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply/47123420#47123420</a></p>
+</div>
+<div id="join-data" class="section level2">
+<h2>join data</h2>
+<p>We use e.g. <code>left_join()</code> function from
+<strong>dplyr</strong> package to combine tables.</p>
+<p><strong>Arguments</strong></p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="90%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>x, y</strong></td>
+<td align="left">tbls to join</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>by</strong></td>
+<td align="left">a character vector of variables to join by. If
+<code>NULL</code>, the default, *_join() will do a natural join, using
+all variables with common names across the two tables. A message lists
+the variables so that you can check they’re right (to suppress the
+message, simply explicitly list the variables that you want to join). To
+join by different variables on x and y use a named vector. For example,
+<code>by = c("a" = "b")</code> will match x.a to y.b.</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>copy</strong></td>
+<td align="left">If x and y are not from the same data source, and copy
+is TRUE, then y will be copied into the same src as x. This allows you
+to join tables across srcs, but it is a potentially expensive operation
+so you must opt into it.</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>suffix</strong></td>
+<td align="left">If there are non-joined duplicate variables in x and y,
+these suffixes will be added to the output to disambiguate them. Should
+be a character vector of length 2.</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>…</strong></td>
+<td align="left">and others. please see help</td>
+</tr>
+</tbody>
+</table>
+<p><em>Mutating joins combine variables from the two
+data.frames:</em></p>
+<ul>
+<li><p><strong>inner_join()</strong></p></li>
+<li><p>return all rows from x where there are matching values in y, and
+all columns from x and y. If there are multiple matches between x and y,
+all combination of the matches are returned.</p></li>
+<li><p><strong>left_join()</strong></p>
+<ul>
+<li>return all rows from x, and all columns from x and y. Rows in x with
+no match in y will have NA values in the new columns. If there are
+multiple matches between x and y, all combinations of the matches are
+returned.</li>
+</ul></li>
+<li><p><strong>right_join()</strong></p>
+<ul>
+<li>return all rows from y, and all columns from x and y. Rows in y with
+no match in x will have NA values in the new columns. If there are
+multiple matches between x and y, all combinations of the matches are
+returned.</li>
+</ul></li>
+<li><p><strong>full_join()</strong></p>
+<ul>
+<li>return all rows and all columns from both x and y. Where there are
+not matching values, returns NA for the one missing.</li>
+</ul></li>
+</ul>
+<p><em>Filtering joins keep cases from the left-hand
+data.frame:</em></p>
+<ul>
+<li><p><strong>semi_join()</strong></p></li>
+<li><p>return all rows from x where there are matching values in y,
+keeping just columns from x.</p></li>
+<li><p>A semi join differs from an inner join because an inner join will
+return one row of x for each matching row of y, where a semi join will
+never duplicate rows of x.</p></li>
+<li><p><strong>anti_join()</strong></p>
+<ul>
+<li>return all rows from x where there are not matching values in y,
+keeping just columns from x.</li>
+</ul></li>
+</ul>
+<p float="center">
+<img src="figures/dplyr_join1.png" width="300" />
+<img src="figures/dplyr_join2.png" width="300" />
+</p>
+<div id="join-data-code-examples" class="section level3">
+<h3>join data code examples</h3>
+<pre class="r"><code>#having 2 tibble or data.frames etc.
+#1st band members
+band_members</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   name  band   
+##   &lt;chr&gt; &lt;chr&gt;  
+## 1 Mick  Stones 
+## 2 John  Beatles
+## 3 Paul  Beatles</code></pre>
+<pre class="r"><code>#2nd instruments
+band_instruments</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   name  plays 
+##   &lt;chr&gt; &lt;chr&gt; 
+## 1 John  guitar
+## 2 Paul  bass  
+## 3 Keith guitar</code></pre>
+<pre class="r"><code># &quot;Mutating&quot; joins combine variables from the LHS and RHS
+
+#return all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.
+#____________________________________________________________________
+band_members %&gt;% inner_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass</code></pre>
+<pre class="r"><code>#return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+#____________________________________________________________________
+band_members %&gt;% left_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass</code></pre>
+<pre class="r"><code>#return all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+#____________________________________________________________________
+band_members %&gt;% right_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass  
+## 3 Keith &lt;NA&gt;    guitar</code></pre>
+<pre class="r"><code>#return all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.
+#____________________________________________________________________
+band_members %&gt;% full_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass  
+## 4 Keith &lt;NA&gt;    guitar</code></pre>
+<pre class="r"><code># &quot;Filtering&quot; joins keep cases from the LHS
+band_members %&gt;% semi_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   name  band   
+##   &lt;chr&gt; &lt;chr&gt;  
+## 1 John  Beatles
+## 2 Paul  Beatles</code></pre>
+<pre class="r"><code>band_members %&gt;% anti_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   name  band  
+##   &lt;chr&gt; &lt;chr&gt; 
+## 1 Mick  Stones</code></pre>
+<pre class="r"><code># To suppress the message, supply by
+band_members %&gt;% inner_join(band_instruments, by = &quot;name&quot;)</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass</code></pre>
+<pre class="r"><code># This is good practice in production code
+
+# Use a named `by` if the join variables have different names
+band_members %&gt;% full_join(band_instruments2, by = c(&quot;name&quot; = &quot;artist&quot;))</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass  
+## 4 Keith &lt;NA&gt;    guitar</code></pre>
+<pre class="r"><code># Note that only the key from the LHS is kept</code></pre>
+</div>
+</div>
+<div id="filtering" class="section level2">
+<h2>filtering</h2>
+<p>the <code>filter()</code> function form the <strong>dplyr</strong>
+package can be used to filter the data</p>
+<p>Useful filter functions</p>
+<ul>
+<li><p><code>==</code>, <code>&gt;</code>, <code>&gt;=</code>
+etc.</p></li>
+<li><p><code>&amp;</code>, <code>|</code>, <code>!</code>,
+<code>xor()</code></p></li>
+<li><p><code>is.na()</code></p></li>
+<li><p><code>!is.na()</code></p></li>
+<li><p><code>between()</code></p></li>
+<li><p><code>near()</code></p></li>
+<li><p><code>%in%</code></p></li>
+<li><p><code>%nin%</code> function from helfRlein package <a
+href="https://github.com/STATWORX/helfRlein">helfRlein</a></p></li>
+</ul>
+<p>Because filtering expressions are computed within groups, they may
+yield different results on grouped tibbles. This will be the case as
+soon as an aggregating, lagging, or ranking function is involved.</p>
+<pre class="r"><code>#Compare this ungrouped filtering:
+starwars %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE))</code></pre>
+<pre><code>## # A tibble: 10 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  2 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  3 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  4 Jabba D…    175  1358 &lt;NA&gt;       green-tan… orange         600   herm… mascu…
+##  5 Jek Ton…    180   110 brown      fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  
+##  6 IG-88       200   140 none       metal      red             15   none  mascu…
+##  7 Bossk       190   113 none       green      red             53   male  mascu…
+##  8 Dexter …    198   102 none       brown      yellow          NA   male  mascu…
+##  9 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…
+## 10 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<pre class="r"><code>#With the grouped equivalent:
+starwars %&gt;% group_by(gender) %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE))</code></pre>
+<pre><code>## # A tibble: 15 × 14
+## # Groups:   gender [3]
+##    name    height   mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Darth …    202  136   none       white      yellow          41.9 male  mascu…
+##  2 Owen L…    178  120   brown, gr… light      blue            52   male  mascu…
+##  3 Beru W…    165   75   brown      light      blue            47   fema… femin…
+##  4 Chewba…    228  112   brown      unknown    blue           200   male  mascu…
+##  5 Jabba …    175 1358   &lt;NA&gt;       green-tan… orange         600   herm… mascu…
+##  6 Jek To…    180  110   brown      fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  
+##  7 IG-88      200  140   none       metal      red             15   none  mascu…
+##  8 Bossk      190  113   none       green      red             53   male  mascu…
+##  9 Ayla S…    178   55   none       blue       hazel           48   fema… femin…
+## 10 Gregar…    185   85   black      dark       brown           NA   &lt;NA&gt;  &lt;NA&gt;  
+## 11 Lumina…    170   56.2 black      yellow     blue            58   fema… femin…
+## 12 Zam We…    168   55   blonde     fair, gre… yellow          NA   fema… femin…
+## 13 Shaak …    178   57   none       red, blue… black           NA   fema… femin…
+## 14 Grievo…    216  159   none       brown, wh… green, y…       NA   male  mascu…
+## 15 Tarfful    234  136   brown      brown      blue            NA   male  mascu…
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

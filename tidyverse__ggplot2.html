@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>tidyverse__ggplot2.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="ggplot2---elegant-graphics-for-data-analysis-part-of-tidyverse"
+class="section level1">
+<h1>ggplot2 - elegant graphics for data analysis (part of
+tidyverse)</h1>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="26%" />
+<col width="65%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="figures/hex-ggplot2.png" /></td>
+<td align="center"><strong>ggplot2</strong> <em>(plotting)</em></td>
+<td align="left">ggplot2 is a system for declaratively creating
+graphics, based on The Grammar of Graphics. You provide the data, tell
+ggplot2 how to map variables to aesthetics, what graphical primitives to
+use, and it takes care of the details.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ggplot2 package:</strong> It’s one of the most commonly
+downloaded R packages (over a million downloads in the last year!) and
+has influenced the design of graphics packages for other languages.</p>
+<p>ggplot2 is an R package for producing statistical, or data, graphics,
+but it is unlike most other graphics packages because it has a deep
+underlying gram- mar. This grammar, based on the Grammar of Graphics (<a
+href="https://www.springer.com/de/book/9780387245447">Grammar of
+Graphics (Wilkinson, Leland; 2015)</a>).</p>
+<p>You can find a fast and brief overview of ggplot2 at <a
+href="http://www.cookbook-r.com/Graphs/" target="_blank">R graphics
+cookbook</a></p>
+<p>In addition to the powerful basis of ggplot2 several (100+) extension
+were developed <a href="https://exts.ggplot2.tidyverse.org/gallery/"
+target="_blank">https://exts.ggplot2.tidyverse.org/gallery/</a></p>
+<p><code>In brief, the grammar tells us that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars).</code></p>
+<ol style="list-style-type: decimal">
+<li><strong>Data</strong></li>
+<li><strong>Aesthetics or Mapping:</strong> What should be plotted on x
+and y-axis. group-wise: colour, fill, size, shape,line width, line
+type.</li>
+<li><strong>Geometrics:</strong> Should a point, line, histogram, bar or
+boxplot (…) be used. (<code>geom_...()</code>)</li>
+<li><strong>Facets:</strong> data groups plot by columns and rows 4a.
+<strong>Scales:</strong> scale translate back and forth between variable
+ranges and property ranges (numbers &gt;&gt; position; log-scaled or
+discrete)</li>
+<li><strong>Statistics:</strong> data binning, smoothing (e.g. loess
+fit), …</li>
+<li><strong>Coordinates:</strong> fixed, polar, set limits, do coord.
+cartesian</li>
+<li><strong>Themes:</strong> use Plot themes</li>
+</ol>
+<div class="float">
+<img src="figures/ggplot-grammar-of-graphics-stack.png"
+alt="grammar of graphics" />
+<div class="figcaption">grammar of graphics</div>
+</div>
+<div id="esquisse-package" class="section level2">
+<h2><code>esquisse</code> package</h2>
+<p>esquisse means draft. And that is what this package does in
+perfection for beginners.</p>
+<p>The purpose of this add-in is to let you explore your data quickly to
+extract the information they hold. You can create visualization with
+{ggplot2}, filter data with {dplyr} and retrieve generated code. This
+addin allows you to interactively explore your data by visualizing it
+with the ggplot2 package. It allows you to draw bar plots, curves,
+scatter plots, histograms, boxplot and sf objects, then export the graph
+or retrieve the code to reproduce the graph.</p>
+<p>get started with esquisse: <a
+href="https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html"
+class="uri">https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html</a>
+documentation: <a href="https://dreamrs.github.io/esquisse/index.html"
+class="uri">https://dreamrs.github.io/esquisse/index.html</a></p>
+<div class="float">
+<img src="html_files/esquisse.gif" alt="esquisse demo" />
+<div class="figcaption">esquisse demo</div>
+</div>
+</div>
+<div id="ggplot2---themes" class="section level2">
+<h2>ggplot2 - Themes</h2>
+<pre class="r"><code>library(datasets)
+library(ggplot2)
+p &lt;- ggplot(diamonds) + 
+     geom_point(aes(x = carat, y = price, colour = color),alpha=0.5) + 
+     facet_wrap(~cut) + 
+     labs(title=&quot;overview of diamonds dataset&quot;, 
+          subtitle=&quot;carat vs. price &amp; colored by diamond color&quot;,
+          caption = &quot;a caption text would be placed here&quot; )</code></pre>
+<p><strong>Pay attention to the structure of this function
+call:</strong> data and aesthetic mappings are supplied in
+<code>ggplot()</code>, then layers are added on with <code>+</code>.</p>
+<p>This is an important pattern, and as you learn more about ggplot2
+you’ll construct increasingly sophisticated plots by adding on more
+types of components.</p>
+<p><strong>1. theme_gray()</strong></p>
+<pre class="r"><code>p + theme_gray() # the default</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<strong>2. theme_bw()</strong></p>
+<pre class="r"><code>p + theme_bw()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<strong>3. theme_linedraw()</strong></p>
+<pre class="r"><code>p + theme_linedraw()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<strong>4. theme_light()</strong></p>
+<pre class="r"><code>p + theme_light()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<strong>5. theme_dark()</strong></p>
+<pre class="r"><code>p + theme_dark()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<strong>6. theme_minimal()</strong></p>
+<pre class="r"><code>p + theme_minimal()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<strong>7. theme_classic()</strong></p>
+<pre class="r"><code>p + theme_classic()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<strong>8. theme_void()</strong></p>
+<pre class="r"><code>p + theme_void()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div id="hrbrthemes-themes" class="section level3">
+<h3><code>hrbrthemes</code> Themes</h3>
+<p>There are also packages that add themes to ggplot like the
+<code>hrbrthemes</code> package.</p>
+<p><a href="https://github.com/hrbrmstr/hrbrthemes">more information
+about the hrbrthemes package can be found here</a></p>
+<p>But here are special fonts needed which are proivided in the
+package:</p>
+<pre class="r"><code>#library(hrbrthemes)
+#import_plex_sans()
+#import_public_sans()
+#import_roboto_condensed()
+#import_titillium_web()</code></pre>
+<p>** load <code>hrbrthemes</code> package**</p>
+<pre class="r"><code>library(hrbrthemes)</code></pre>
+<p><strong>1. theme_ipsum()</strong></p>
+<pre class="r"><code>p + theme_ipsum()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><strong>2. theme_ipsum_rc()</strong></p>
+<pre class="r"><code>p + theme_ipsum_rc()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><strong>3. theme_ft_rc()</strong></p>
+<pre class="r"><code>p + theme_ft_rc()</code></pre>
+<p><img src="tidyverse__ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-inspired---what-plots-can-be-generated"
+class="section level2">
+<h2>get inspired - what plots can be generated</h2>
+<ul>
+<li><a
+href="http://visualizationuniverse.com/charts/?sortBy=volume&amp;sortDir=desc">Visualization
+Universe</a></li>
+<li><a href="https://projects.susielu.com/viz-palette">Viz-palette
+(which colors can be used)</a></li>
+<li><a
+href="https://material.io/design/color/the-color-system.html#tools-for-picking-colors">Google
+Material Colors (which colors can be used)</a></li>
+<li><a href="https://datavizcatalogue.com">data viz catalogue</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+#1. rename old webpage in github >> "learn_R_the_tidy_way_OLD"
+#2. create a new repository on github with old name "learn_R_the_tidy_way"
+#3. git clone "git clone https://github.com/stemicha/learn_R_the_tidy_way"
+#4. copy all files newly into the directory
+#5. git add --all && git commit -m "initial commit"
+#6. git push -v --all
+#7. wait approx. 30 minutes ; website will be visible at https://stemicha.github.io/learn_R_the_tidy_way/

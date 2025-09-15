@@ -1,0 +1,2711 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>tidyverse.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="the-tidy-concept" class="section level1">
+<h1>the “tidy” concept</h1>
+<p>“A huge amount of effort is spent cleaning data to get it ready for
+analysis, but there has been little research on how to make data
+cleaning as easy and effective as possible.”” - Hadley Wickham</p>
+<p><strong>a tidy dataset is …</strong></p>
+<ol style="list-style-type: decimal">
+<li>easy to manipulate</li>
+<li>easy to model</li>
+<li>easy to visualize</li>
+<li>have a specific structure –&gt; each variable is a column, each
+observation is a row, and each type of observational unit is a
+table.</li>
+</ol>
+<div id="code-writing-must-be-tidy-too" class="section level2">
+<h2>code writing must be tidy too</h2>
+<p><a href="https://style.tidyverse.org/index.html">R style guide for
+tidyverse</a></p>
+<p>The tidyverse code style is a developent based on <a
+href="https://google.github.io/styleguide/Rguide.xml">Google’s R Style
+Guide</a></p>
+<p><strong>Examples:</strong></p>
+<p>File names should be meaningful and end in .R. Avoid using special
+characters in file names - stick with numbers, letters, -, and _.</p>
+<pre class="r"><code># Good
+fit_models.R
+utility_functions.R
+
+# Bad
+fit models.R
+foo.r
+stuff.r</code></pre>
+<p>Use commented lines of - and = to break up your file into easily
+readable chunks.</p>
+<pre class="r"><code># Load data ---------------------------
+
+# Plot data ---------------------------</code></pre>
+<p>Variable and function names should use only lowercase letters,
+numbers, and <em>. Use underscores (</em>) (so called snake case) to
+separate words within a name.</p>
+<pre class="r"><code># Good
+day_one
+day_1
+
+# Bad
+DayOne
+dayone</code></pre>
+<p>If the arguments to a function don’t all fit on one line, put each
+argument on its own line and indent:</p>
+<pre class="r"><code>iris %&gt;%
+  group_by(Species) %&gt;%
+  summarise(
+    Sepal.Length = mean(Sepal.Length),
+    Sepal.Width = mean(Sepal.Width),
+    Species = n_distinct(Species)
+  )</code></pre>
+</div>
+</div>
+<div id="what-means-tidy-tidy-data" class="section level1">
+<h1>What means “tidy / tidy data”?</h1>
+<div class="float">
+<img src="html_files/allisonhorst_artwork/tidydata_2%20Large.png"
+alt="tidydata_2 by Allison Horst" />
+<div class="figcaption">tidydata_2 by Allison Horst</div>
+</div>
+<div class="float">
+<img src="html_files/allisonhorst_artwork/tidydata_1%20Large.png"
+alt="tidydata_1 by Allison Horst" />
+<div class="figcaption">tidydata_1 by Allison Horst</div>
+</div>
+<p><strong>Tidy data</strong> is a way to organize tabular data. It
+provides a consistent data structure accross packages</p>
+<p><img src="figures/tidy_data.png" width="600" /></p>
+<div id="example-of-data-vs-tidy-data" class="section level2">
+<h2>Example of data vs tidy data</h2>
+<p><img src="figures/tidy_data_example.png" width="600" /></p>
+</div>
+</div>
+<div id="messy-data-to-tidy-data" class="section level1">
+<h1>“Messy data” to tidy data !!!</h1>
+<p><img src="figures/tidy_data_reshape.png" width="600" /></p>
+<ul>
+<li><p><strong>new functions since tidyr v1.0.0:</strong></p>
+<ul>
+<li><code>pivot_wider()</code></li>
+<li><code>pivot_longer()</code></li>
+</ul></li>
+</ul>
+<div class="float">
+<img src="figures/tidy_data_frame__pivot_functions.gif"
+alt="reshape data frame" />
+<div class="figcaption">reshape data frame</div>
+</div>
+<div id="pivot_longer" class="section level2">
+<h2>pivot_longer()</h2>
+<p><code>pivot_longer(data, cols, names_to = "name", values_to = "value", ...)</code></p>
+<p>some arguments:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>argument</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>data</td>
+<td>a data frame to pivot</td>
+</tr>
+<tr class="even">
+<td>cols</td>
+<td>Columns to pivot into longer format</td>
+</tr>
+<tr class="odd">
+<td>names_to</td>
+<td>A string specifying the name of the column to create from the data
+stored in the column names of data</td>
+</tr>
+<tr class="even">
+<td>values_to</td>
+<td>A string specifying the name of the column to create from the data
+stored in cell values.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="pivot_wider" class="section level2">
+<h2>pivot_wider()</h2>
+<p><code>pivot_wider(data, id_cols, names_from = name, values_from = value, ...)</code></p>
+<p>some arguments:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>argument</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>data</td>
+<td>a data frame to pivot</td>
+</tr>
+<tr class="even">
+<td>id_cols</td>
+<td>A set of columns that uniquely identifies each observation. Defaults
+to all columns in data except for the columns specified in names_from
+and values_from.</td>
+</tr>
+<tr class="odd">
+<td>names_from</td>
+<td>argument describing which column (or columns) to get the name of the
+output column (name_from)</td>
+</tr>
+<tr class="even">
+<td>values_from</td>
+<td>argument describing which column (or columns) to get the value of
+the output column (values_from)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="tidy" class="section level1">
+<h1>The Tidyverse (+ others)</h1>
+<p>This “meta-package” consists of several R packages, or as the
+Founding Father Hadley Wickham says, “The tidyverse is an opinionated
+collection of R packages designed for data science.”</p>
+<div class="float">
+<img src="figures/tidyverse_overview.png"
+alt="tidyverse and related packages (data science workflow “Hadley Wickhams view”)" />
+<div class="figcaption">tidyverse and related packages (data science
+workflow “Hadley Wickhams view”)</div>
+</div>
+<pre class="r"><code>#install.packages(&quot;tidyverse&quot;)
+#load the complete tidyverse at once
+library(tidyverse)</code></pre>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="20%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>package</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="hex_sticker/hex-ggplot2.png" /></td>
+<td><strong>ggplot2</strong> <em>(plotting)</em></td>
+<td>ggplot2 is a system for declaratively creating graphics, based on
+The Grammar of Graphics. You provide the data, tell ggplot2 how to map
+variables to aesthetics, what graphical primitives to use, and it takes
+care of the details.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-dplyr.png" /></td>
+<td><strong>dplyr</strong> <em>(for transforming and summarizing
+dataframe content)</em></td>
+<td>dplyr provides a grammar of data manipulation, providing a
+consistent set of verbs that solve the most common data manipulation
+challenges.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-tidyr.png" /></td>
+<td><strong>tidyr</strong> <em>(for transforming (“tidying”) data frame
+structure)</em></td>
+<td>tidyrprovides a set of functions that help you get to tidy data.
+Tidy data is data with a consistent form: in brief, every variable goes
+in a column, and every column is a variable.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-readr.png" /></td>
+<td><strong>readr</strong> <em>(reading/saving data)</em></td>
+<td>readr provides a fast and friendly way to read rectangular data
+(like csv, tsv, and fwf). It is designed to flexibly parse many types of
+data found in the wild, while still cleanly failing when data
+unexpectedly changes.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-purrr.png" /></td>
+<td><strong>purrr</strong> <em>(functional programming)</em></td>
+<td>purrr enhances R’s functional programming (FP) toolkit by providing
+a complete and consistent set of tools for working with functions and
+vectors. Once you master the basic concepts, purrr allows you to replace
+many for loops with code that is easier to write and more expressive. (
+an upgrade of base R functional programming tools. (Beyond scope of
+class.))</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-tibble.png" /></td>
+<td><strong>tibble</strong> <em>(an improved data frame)</em></td>
+<td>tibble is a modern re-imagining of the data frame, keeping what time
+has proven to be effective, and throwing out what it has not. Tibbles
+are data.frames that are lazy and surly: they do less and complain more
+forcing you to confront problems earlier, typically leading to cleaner,
+more expressive code.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-stringr.png" /></td>
+<td><strong>stringr</strong> <em>(dealing and manipulation of
+strings)</em></td>
+<td>stringr provides a cohesive set of functions designed to make
+working with strings as easy as possible. It is built on top of stringi,
+which uses the ICU C library to provide fast, correct implementations of
+common string manipulations.</td>
+</tr>
+<tr class="even">
+<td><img src="hex_sticker/hex-forcats.png" /></td>
+<td><strong>forcats</strong> <em>(dealing with factors)</em></td>
+<td>provides a suite of useful tools that solve common problems with
+factors. R uses factors to handle categorical variables, variables that
+have a fixed and known set of possible values.</td>
+</tr>
+<tr class="odd">
+<td><img src="hex_sticker/hex-magrittr.jpg" /></td>
+<td><strong>magrittr</strong> <em>(pipeline mode of functions)</em></td>
+<td>offers a set of operators which make your code more readable by:
+structuring sequences of data operations left-to-right (as opposed to
+from the inside and out),avoiding nested function calls, minimizing the
+need for local variables and function definitions, and making it easy to
+add steps anywhere in the sequence of operations.The operators pipe
+their left-hand side values forward into expressions that appear on the
+right-hand side, i.e. one can replace f(x) with x %&gt;% f(), where
+%&gt;% is the (main) pipe-operator. When coupling several function calls
+with the pipe-operator, the benefit will become more apparent.</td>
+</tr>
+</tbody>
+</table>
+<p><span
+style="color:#b71c1c;font-size: 12pt"><strong>Important:</strong>
+Commands/functions of each package can be strung together in order using
+the pipe <code>%&gt;%</code> (<kbd>Ctrl</kbd> + <kbd>↑</kbd> +
+<kbd>M</kbd>) operator. (example follows…)</span></p>
+<p><a href="https://www.tidyverse.org">read more abaout the tidyverse on
+the webpage</a></p>
+<p>You will learn functionalities of each package during the course via
+useful example scripts.</p>
+<div id="where-do-the-package-names-come-from" class="section level2">
+<h2>where do the package names come from ?</h2>
+<p>Well the name (choosen by the programmer) of a package often conveys
+a story and is focused mainly on the usage of the package.</p>
+<p><u><strong>examples:</strong></u></p>
+<ul>
+<li><strong>dplyr</strong> - So the <code>d</code> stands for data
+frames (others <code>db</code> for databases, <code>dt</code> for data
+tables…) ; <code>plyr</code> R apply-functions – „split-apply-combine“
+strategy</li>
+<li><strong>ggplot2</strong> - Grammer of Graphics plotting (<a
+href="https://vita.had.co.nz/papers/layered-grammar.html"
+class="uri">https://vita.had.co.nz/papers/layered-grammar.html</a>)</li>
+<li><strong>purrr</strong> - Hadley Wickham - “your pure R functions
+purrr”</li>
+<li><strong>vroom</strong> - reads data so fast, you almost can hear it
+making vroom vroom like a sports car</li>
+</ul>
+</div>
+<div id="first-things-first-what-is-a-tibble" class="section level2">
+<h2>First things first, “What is a tibble?”</h2>
+<p>A <strong>tibble</strong> is a modern reimagining of the data.frame,
+keeping what time has proven to be effective, and throwing out what is
+not. Tibbles are data.frames that are lazy and surly: they do less
+(i.e. they don’t change variable names or types, and don’t do partial
+matching) and complain more (e.g. when a variable does not exist). This
+forces you to confront problems earlier, typically leading to cleaner,
+more expressive code. Tibbles also have an enhanced print() method which
+makes them easier to use with large datasets containing complex
+objects.</p>
+<ul>
+<li>tibble is a modern re-imagining of the data frame –&gt;
+<strong>tibble is a list in data.frame style</strong></li>
+</ul>
+<div class="float">
+<img src="figures/tibble_example.png" alt="tibble example:" />
+<div class="figcaption">tibble example:</div>
+</div>
+<p>Tibbles enhance data frames in three ways:</p>
+<ol style="list-style-type: decimal">
+<li>Subsetting - [ always returns a new tibble, [[ and $ always return a
+new vector</li>
+<li>No partial matching - You must use full column names when
+subsetting</li>
+<li>Display - When you print a tibble, R provides a concise view of the
+data that fits on one screen</li>
+</ol>
+<div id="convert-a-data-frame-to-tibble" class="section level3">
+<h3>convert a data frame to tibble</h3>
+<p>Use the <code>as_tibble()</code> function to convert a data.frame to
+a tibble</p>
+<pre class="r"><code>#data frame version of diamonds dataset
+df_diamonds &lt;- as.data.frame(diamonds)
+class(df_diamonds)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>tibble_diamonds &lt;- as_tibble(diamonds)
+class(tibble_diamonds)</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>#DETAILS:This is an S3 generic. tibble includes methods for data frames (adds tbl_df classes), tibbles (returns unchanged input), lists, matrices, and tables. Other types are first coerced via as.data.frame() with stringsAsFactors = FALSE.</code></pre>
+<pre class="r"><code>#classic short view of the data
+head(df_diamonds)</code></pre>
+<pre><code>##   carat       cut color clarity depth table price    x    y    z
+## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
+## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
+## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+## 6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48</code></pre>
+<pre class="r"><code>#tibble view is enhanced with dimension and class of each column etc.
+tibble_diamonds</code></pre>
+<pre><code>## # A tibble: 53,940 × 10
+##    carat cut       color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+##  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+##  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+##  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+##  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+##  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+##  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+##  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+## 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+## # ℹ 53,930 more rows</code></pre>
+</div>
+<div id="create-a-tibble-from-scratch" class="section level3">
+<h3>create a tibble from scratch</h3>
+<p>Use the <code>tibble()</code> function or <code>tribble()</code>
+function</p>
+<p><code>tibble()</code> –&gt; <em>INPUT:</em> A set of name-value
+pairs. Arguments are evaluated sequentially, so you can refer to
+previously created variables. These arguments are processed with
+rlang::quos() and support unquote via !! and unquote-splice via !!!.</p>
+<p><code>tribble()</code> –&gt; INPUT: Arguments specifying the
+structure of a tibble. Variable names should be formulas, and may only
+appear before the data.</p>
+<pre class="r"><code>a &lt;- 1:5
+tibble(a, b = a * 2)</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##       a     b
+##   &lt;int&gt; &lt;dbl&gt;
+## 1     1     2
+## 2     2     4
+## 3     3     6
+## 4     4     8
+## 5     5    10</code></pre>
+<pre class="r"><code>tibble(a, b = a * 2, c = 1)</code></pre>
+<pre><code>## # A tibble: 5 × 3
+##       a     b     c
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     2     1
+## 2     2     4     1
+## 3     3     6     1
+## 4     4     8     1
+## 5     5    10     1</code></pre>
+<pre class="r"><code>#tribble() example:
+tribble(
+  ~colA, ~colB,
+  &quot;a&quot;,   1,
+  &quot;b&quot;,   2,
+  &quot;c&quot;,   3
+)</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   colA   colB
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 a         1
+## 2 b         2
+## 3 c         3</code></pre>
+<pre class="r"><code># tribble will create a list column if the value in any cell is
+# not a scalar
+tribble(
+  ~x,  ~y,
+  &quot;a&quot;, 1:3,
+  &quot;b&quot;, 4:6
+)</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   x     y        
+##   &lt;chr&gt; &lt;list&gt;   
+## 1 a     &lt;int [3]&gt;
+## 2 b     &lt;int [3]&gt;</code></pre>
+<p><strong>many tidyverse functions you may find explained and coupled
+with a pratical examples in the Examples section</strong></p>
+</div>
+</div>
+</div>
+<div id="data-wrangling-with-the-tidyverse" class="section level1">
+<h1>data wrangling with the tidyverse</h1>
+<div id="magrittr-packge-operator" class="section level2">
+<h2>magrittr packge <code>%&gt;%</code> operator</h2>
+<p>“Pipes are a powerful tool for clearly expressing a sequence of
+multiple operations. … The pipe, <code>%&gt;%</code>, comes from the
+magrittr package by Stefan Milton Bache. Packages in the tidyverse load
+<code>%&gt;%</code> for you automatically, so you don’t usually load
+magrittr explicitly.” <span class="citation">@Wickham2017</span></p>
+<p><strong>pipes (moves) what is written on the left-hand side (LHS) of
+the pipe into the first argument of the function on the right-hand side
+(RHS) of the pipe</strong></p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="26%" />
+<col width="65%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="figures/hex-magrittr.jpg" /></td>
+<td align="center"><strong>magrittr</strong> <br> <em>(pipeline mode of
+functions)</em></td>
+<td align="left"><em>The magrittr package offers a set of operators
+which make your code more readable by:</em><br> - structuring sequences
+of data operations left-to-right (as opposed to from the inside and
+out),<br> - avoiding nested function calls,<br>- minimizing the need for
+local variables and function definitions, and<br>- making it easy to add
+steps anywhere in the sequence of operations.</td>
+</tr>
+</tbody>
+</table>
+<div id="basic-piping" class="section level3">
+<h3>Basic piping (<code>%&gt;%</code>)</h3>
+<p>Many functions accept a data argument, e.g. lm and aggregate, which
+is very useful in a pipeline where data is first processed and then
+passed into such a function. There are also functions that do not have a
+data argument, for which it is useful to expose the variables in the
+data. This is done with the %$% operator:</p>
+<ul>
+<li><code>x %&gt;% f</code> is equivalent to <code>f(x)</code></li>
+<li><code>x %&gt;% f(y)</code> is equivalent to
+<code>f(x, y)</code></li>
+<li><code>x %&gt;% f %&gt;% g %&gt;% h</code> is equivalent to
+<code>h(g(f(x)))</code></li>
+</ul>
+<div id="when-not-to-use-the-pipe" class="section level4">
+<h4>When not to use the pipe</h4>
+<p>The pipe is a powerful tool, but it’s not the only tool at your
+disposal, and it doesn’t solve every problem! Pipes are most useful for
+rewriting a fairly short linear sequence of operations. I think you
+should reach for another tool when:</p>
+<ul>
+<li><p>Your pipes are longer than (say) ten steps. In that case, create
+intermediate objects with meaningful names. That will make debugging
+easier, because you can more easily check the intermediate results, and
+it makes it easier to understand your code, because the variable names
+can help communicate intent.</p></li>
+<li><p>You have multiple inputs or outputs. If there isn’t one primary
+object being transformed, but two or more objects being combined
+together, don’t use the pipe.</p></li>
+<li><p>You are starting to think about a directed graph with a complex
+dependency structure. Pipes are fundamentally linear and expressing
+complex relationships with them will typically yield confusing
+code.</p></li>
+</ul>
+</div>
+<div id="pipe-with-exposition-of-variables" class="section level4">
+<h4>Pipe with exposition of variables (<code>%$%</code>)</h4>
+<p>Many functions accept a data argument, e.g. lm and aggregate, which
+is very useful in a pipeline where data is first processed and then
+passed into such a function. There are also functions that do not have a
+data argument, for which it is useful to expose the variables in the
+data. This is done with the <code>%$%</code> operator:</p>
+<pre class="r"><code>#mtcars correlation of disp and mpg variable
+library(magrittr)
+iris %&gt;%
+  subset(Sepal.Length &gt; mean(Sepal.Length)) %$%
+  cor(Sepal.Length, Sepal.Width)</code></pre>
+<pre><code>## [1] 0.336</code></pre>
+<pre class="r"><code>mtcars %$% cor(disp,mpg)</code></pre>
+<pre><code>## [1] -0.848</code></pre>
+</div>
+</div>
+<div id="native-pipe-r" class="section level3">
+<h3>native pipe <strong>|&gt;</strong> R</h3>
+<p>Since R version 4.1 the <code>|&gt;</code>native pipe operator was
+introduced.</p>
+<p>Differences to <code>%&gt;%</code> magrittr pipe:</p>
+<ul>
+<li>First, unlike {margrittr}, the native R pipe requires round brackets
+in function calls in any case.</li>
+<li>Second, the native variant no longer allows the dot to be used as a
+placeholder for passing values, potentially requiring the definition of
+an additional function.</li>
+</ul>
+<p>The native pipe can be used as default.</p>
+<div class="float">
+<img src="figures/%20RStudio_native_R_pipe.png"
+alt="RStudio native R pipe shortcut usage" />
+<div class="figcaption">RStudio native R pipe shortcut usage</div>
+</div>
+</div>
+<div id="explanation-of-pipes-vs-from-r4ds---hadley-wickham"
+class="section level3">
+<h3>Explanation of pipes: <code>|&gt; vs %&gt;%</code> from R4DS -
+Hadley Wickham</h3>
+<p>“While <code>|&gt;</code> and <code>%&gt;%</code> behave identically
+for simple cases, there are a few important differences. These are most
+likely to affect you if you’re a long-term user of <code>%&gt;%</code>
+who has taken advantage of some of the more advanced features. But
+they’re still good to know about even if you’ve never used %&gt;%
+because you’re likely to encounter some of them when reading wild-caught
+code.”</p>
+<ul>
+<li><p>“By default, the pipe passes the object on its left hand side to
+the first argument of the function on the right-hand side.
+<code>%&gt;%</code> allows you change the placement with a
+<code>.</code> placeholder. For example, <code>x %&gt;% f(1)</code> is
+equivalent to <code>f(x, 1)</code> but <code>x %&gt;% f(1, .)</code> is
+equivalent to <code>f(1, x)</code>. R 4.2.0 added a <code>_</code>
+placeholder to the base pipe, with one additional restriction: the
+argument has to be named. For example, <code>x |&gt; f(1, y = _)</code>
+is equivalent to <code>f(1, y = x)</code>.”</p></li>
+<li><p>“The <code>|&gt;</code> placeholder is deliberately simple and
+can’t replicate many features of the <code>%&gt;%</code> placeholder:
+you can’t pass it to multiple arguments, and it doesn’t have any special
+behavior when the placeholder is used inside another function. For
+example, <code>df %&gt;% split(.$var)</code> is equivalent to
+<code>split(df, df$var)</code> and
+<code>df %&gt;% {split(.$x, .$y)}</code> is equivalent to
+<code>split(df$x, df$y)</code>.”</p></li>
+<li><p>“With <code>%&gt;%</code> you can use <code>.</code> on the
+left-hand side of operators like <code>$</code>, <code>[[</code>,
+<code>[</code>, so you can extract a single column from a data frame
+with (e.g.) <code>mtcars %&gt;% .$cyl</code>. A future version of R may
+add similar support for <code>|&gt;</code> and <code>_</code>. For the
+special case of extracting a column out of a data frame, you can also
+use <code>dplyr::pull()</code>:
+<code>mtcars |&gt; pull(cyl)</code>”</p></li>
+<li><p>“<code>%&gt;%</code> allows you to drop the parentheses when
+calling a function with no other arguments; <code>|&gt;</code> always
+requires the parentheses.”</p></li>
+<li><p>“<code>%&gt;%</code> allows you to start a pipe with
+<code>.</code> to create a function rather than immediately executing
+the pipe; this is not supported by the base pipe.”</p></li>
+</ul>
+<blockquote>
+<p>“Luckily there’s no need to commit entirely to one pipe or the other
+— you can use the base pipe for the majority of cases where it’s
+sufficient, and use the magrittr pipe when you really need its special
+features.”</p>
+</blockquote>
+</div>
+</div>
+<div id="reshaping-data---story-from-long-and-wide-tibbletables"
+class="section level2">
+<h2>reshaping data - story from long and wide tibble/tables</h2>
+<div class="float">
+<img src="figures/tidy_data_reshape.png"
+alt="data reshaping with tidyr" />
+<div class="figcaption">data reshaping with tidyr</div>
+</div>
+<p>Data reshaping with <strong>tidyr</strong> is very easy when
+understanding one principle.</p>
+<p>A “messy” data frame like this (2 dimensional data):</p>
+<pre class="r"><code>library(tidyverse)
+set.seed(666)
+normal_messy_data &lt;- tibble(protein = c(rep(&quot;protein_1&quot;,26),rep(&quot;protein_2&quot;,26),rep(&quot;protein_3&quot;,26)),
+                            peptide = c(paste(letters,&quot;_1&quot;,sep=&quot;&quot;),paste(letters,&quot;_2&quot;,sep=&quot;&quot;),paste(letters,&quot;_3&quot;,sep=&quot;&quot;)),
+                            Condition1_BR1 = rnorm(n = 78,mean = 100,sd =1),
+                            Condition1_BR2 = rnorm(n = 78,mean = 110,sd =1),
+                            Condition1_BR3 = rnorm(n = 78,mean = 105,sd =1),
+                            Condition1_BR4 = rnorm(n = 78,mean = 115,sd =1),
+                            Condition1_BR5 = rnorm(n = 78,mean = 115,sd =1),
+                            Condition2_BR1 = rnorm(n = 78,mean = 100*4,sd =1),
+                            Condition2_BR2 = rnorm(n = 78,mean = 110*4,sd =1),
+                            Condition2_BR3 = rnorm(n = 78,mean = 105*4,sd =1),
+                            Condition2_BR4 = rnorm(n = 78,mean = 115*4,sd =1),
+                            Condition2_BR5 = rnorm(n = 78,mean = 115*4,sd =1)
+)
+normal_messy_data</code></pre>
+<pre><code>## # A tibble: 78 × 12
+##    protein   peptide Condition1_BR1 Condition1_BR2 Condition1_BR3 Condition1_BR4
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1              101.            109.           106.           115.
+##  2 protein_1 b_1              102.            109.           106.           115.
+##  3 protein_1 c_1               99.6           111.           106.           113.
+##  4 protein_1 d_1              102.            111.           104.           115.
+##  5 protein_1 e_1               97.8           110.           105.           114.
+##  6 protein_1 f_1              101.            109.           106.           114.
+##  7 protein_1 g_1               98.7           110.           105.           116.
+##  8 protein_1 h_1               99.2           111.           107.           113.
+##  9 protein_1 i_1               98.2           110.           104.           114.
+## 10 protein_1 j_1              100.0           111.           106.           114.
+## # ℹ 68 more rows
+## # ℹ 6 more variables: Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;,
+## #   Condition2_BR2 &lt;dbl&gt;, Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;,
+## #   Condition2_BR5 &lt;dbl&gt;</code></pre>
+<p>can be easily transformed to a tidy tibble using the reshape function
+of tidyr:</p>
+<ul>
+<li><code>pivot_longer()</code> to make things tidy (long data format)
+(old: <code>gather()</code>)</li>
+</ul>
+<pre class="r"><code>normal_tidy_data &lt;- normal_messy_data %&gt;% 
+                  pivot_longer(colnames(normal_messy_data)[-c(1:2)],
+                               names_to = &quot;samples&quot;,
+                               values_to = &quot;intensity&quot;)
+normal_tidy_data</code></pre>
+<pre><code>## # A tibble: 780 × 4
+##    protein   peptide samples        intensity
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1_BR1      101.
+##  2 protein_1 a_1     Condition1_BR2      109.
+##  3 protein_1 a_1     Condition1_BR3      106.
+##  4 protein_1 a_1     Condition1_BR4      115.
+##  5 protein_1 a_1     Condition1_BR5      115.
+##  6 protein_1 a_1     Condition2_BR1      400.
+##  7 protein_1 a_1     Condition2_BR2      439.
+##  8 protein_1 a_1     Condition2_BR3      420.
+##  9 protein_1 a_1     Condition2_BR4      460.
+## 10 protein_1 a_1     Condition2_BR5      460.
+## # ℹ 770 more rows</code></pre>
+<p>Now we have some tidy data, which can be multidimensional. A back
+transformation is quiet easy but I would always recommend to include a
+column <code>select()</code> (less error prone)</p>
+<ul>
+<li><code>pivot_wider()</code> to make data wide again (old:
+<code>spread()</code>)</li>
+<li><code>select()</code> select only column needed (see below)</li>
+</ul>
+<pre class="r"><code>normal_tidy_data %&gt;% pivot_wider(names_from = &quot;samples&quot;,values_from = &quot;intensity&quot;)</code></pre>
+<pre><code>## # A tibble: 78 × 12
+##    protein   peptide Condition1_BR1 Condition1_BR2 Condition1_BR3 Condition1_BR4
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1              101.            109.           106.           115.
+##  2 protein_1 b_1              102.            109.           106.           115.
+##  3 protein_1 c_1               99.6           111.           106.           113.
+##  4 protein_1 d_1              102.            111.           104.           115.
+##  5 protein_1 e_1               97.8           110.           105.           114.
+##  6 protein_1 f_1              101.            109.           106.           114.
+##  7 protein_1 g_1               98.7           110.           105.           116.
+##  8 protein_1 h_1               99.2           111.           107.           113.
+##  9 protein_1 i_1               98.2           110.           104.           114.
+## 10 protein_1 j_1              100.0           111.           106.           114.
+## # ℹ 68 more rows
+## # ℹ 6 more variables: Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;,
+## #   Condition2_BR2 &lt;dbl&gt;, Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;,
+## #   Condition2_BR5 &lt;dbl&gt;</code></pre>
+<p>But first lets clean our tidy data by separate columns using
+<code>separate()</code> function</p>
+<pre class="r"><code>normal_tidy_data_cleaned &lt;- normal_tidy_data %&gt;% 
+                            separate(col = &quot;samples&quot;,
+                                     into = c(&quot;condition&quot;,&quot;replicate&quot;),
+                                     sep = &quot;_&quot;,
+                                     remove = F)
+normal_tidy_data_cleaned</code></pre>
+<pre><code>## # A tibble: 780 × 6
+##    protein   peptide samples        condition  replicate intensity
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1_BR1 Condition1 BR1            101.
+##  2 protein_1 a_1     Condition1_BR2 Condition1 BR2            109.
+##  3 protein_1 a_1     Condition1_BR3 Condition1 BR3            106.
+##  4 protein_1 a_1     Condition1_BR4 Condition1 BR4            115.
+##  5 protein_1 a_1     Condition1_BR5 Condition1 BR5            115.
+##  6 protein_1 a_1     Condition2_BR1 Condition2 BR1            400.
+##  7 protein_1 a_1     Condition2_BR2 Condition2 BR2            439.
+##  8 protein_1 a_1     Condition2_BR3 Condition2 BR3            420.
+##  9 protein_1 a_1     Condition2_BR4 Condition2 BR4            460.
+## 10 protein_1 a_1     Condition2_BR5 Condition2 BR5            460.
+## # ℹ 770 more rows</code></pre>
+<p>Lets reshape <code>normal_tidy_data_cleaned</code> to wide format
+using the same code used above</p>
+<pre class="r"><code>  normal_tidy_data_cleaned %&gt;% pivot_wider(names_from = &quot;samples&quot;,values_from = &quot;intensity&quot;)</code></pre>
+<pre><code>## # A tibble: 780 × 14
+##    protein   peptide condition  replicate Condition1_BR1 Condition1_BR2
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1 BR1                 101.            NA 
+##  2 protein_1 a_1     Condition1 BR2                  NA            109.
+##  3 protein_1 a_1     Condition1 BR3                  NA             NA 
+##  4 protein_1 a_1     Condition1 BR4                  NA             NA 
+##  5 protein_1 a_1     Condition1 BR5                  NA             NA 
+##  6 protein_1 a_1     Condition2 BR1                  NA             NA 
+##  7 protein_1 a_1     Condition2 BR2                  NA             NA 
+##  8 protein_1 a_1     Condition2 BR3                  NA             NA 
+##  9 protein_1 a_1     Condition2 BR4                  NA             NA 
+## 10 protein_1 a_1     Condition2 BR5                  NA             NA 
+## # ℹ 770 more rows
+## # ℹ 8 more variables: Condition1_BR3 &lt;dbl&gt;, Condition1_BR4 &lt;dbl&gt;,
+## #   Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;, Condition2_BR2 &lt;dbl&gt;,
+## #   Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;, Condition2_BR5 &lt;dbl&gt;</code></pre>
+<p>MHH, something is wrong. Because a important column, which also
+describes the column in the wide format exists in the tidy format. The
+<code>spread()</code> function tries to match the rows with the addition
+<em>replicate</em> column resulting in the diagonal wide format error.
+It is important to use the above mentioned select() function to generete
+the wide format (2 dimension: rows (protein, peptide) and column
+(samples) with a value).</p>
+<pre class="r"><code>normal_tidy_data_cleaned %&gt;% dplyr::select(protein,peptide,samples,intensity)</code></pre>
+<pre><code>## # A tibble: 780 × 4
+##    protein   peptide samples        intensity
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;
+##  1 protein_1 a_1     Condition1_BR1      101.
+##  2 protein_1 a_1     Condition1_BR2      109.
+##  3 protein_1 a_1     Condition1_BR3      106.
+##  4 protein_1 a_1     Condition1_BR4      115.
+##  5 protein_1 a_1     Condition1_BR5      115.
+##  6 protein_1 a_1     Condition2_BR1      400.
+##  7 protein_1 a_1     Condition2_BR2      439.
+##  8 protein_1 a_1     Condition2_BR3      420.
+##  9 protein_1 a_1     Condition2_BR4      460.
+## 10 protein_1 a_1     Condition2_BR5      460.
+## # ℹ 770 more rows</code></pre>
+<pre class="r"><code>normal_tidy_data_cleaned %&gt;% 
+  dplyr::select(protein,peptide,samples,intensity) %&gt;%
+  pivot_wider(names_from = &quot;samples&quot;,values_from = &quot;intensity&quot;)</code></pre>
+<pre><code>## # A tibble: 78 × 12
+##    protein   peptide Condition1_BR1 Condition1_BR2 Condition1_BR3 Condition1_BR4
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1 a_1              101.            109.           106.           115.
+##  2 protein_1 b_1              102.            109.           106.           115.
+##  3 protein_1 c_1               99.6           111.           106.           113.
+##  4 protein_1 d_1              102.            111.           104.           115.
+##  5 protein_1 e_1               97.8           110.           105.           114.
+##  6 protein_1 f_1              101.            109.           106.           114.
+##  7 protein_1 g_1               98.7           110.           105.           116.
+##  8 protein_1 h_1               99.2           111.           107.           113.
+##  9 protein_1 i_1               98.2           110.           104.           114.
+## 10 protein_1 j_1              100.0           111.           106.           114.
+## # ℹ 68 more rows
+## # ℹ 6 more variables: Condition1_BR5 &lt;dbl&gt;, Condition2_BR1 &lt;dbl&gt;,
+## #   Condition2_BR2 &lt;dbl&gt;, Condition2_BR3 &lt;dbl&gt;, Condition2_BR4 &lt;dbl&gt;,
+## #   Condition2_BR5 &lt;dbl&gt;</code></pre>
+</div>
+<div id="none-standard-column-names-and-tidyverse"
+class="section level2">
+<h2>none standard column names and tidyverse</h2>
+<blockquote>
+<p><strong>Note:</strong> if you have none standard column names
+e.g. have a SPACE like “protein function” you can rename the column to
+e.g. “protein_function” or use backticks <code>`protein function`</code>
+to use them inside tidyverse function.</p>
+</blockquote>
+<pre class="r"><code>normal_column_mess &lt;- tibble(&quot;protein IDs&quot; = c(rep(&quot;protein_1&quot;,26),rep(&quot;protein_2&quot;,26),rep(&quot;protein_3&quot;,26)),
+                            &quot;stripped-peptides&quot; = c(paste(letters,&quot;_1&quot;,sep=&quot;&quot;),paste(letters,&quot;_2&quot;,sep=&quot;&quot;),paste(letters,&quot;_3&quot;,sep=&quot;&quot;)),
+                            Condition1_BR1 = rnorm(n = 78,mean = 100,sd =1),
+                            Condition1_BR2 = rnorm(n = 78,mean = 110,sd =1),
+                            Condition1_BR3 = rnorm(n = 78,mean = 105,sd =1),
+                            Condition1_BR4 = rnorm(n = 78,mean = 115,sd =1)
+)
+normal_column_mess</code></pre>
+<pre><code>## # A tibble: 78 × 6
+##    `protein IDs` `stripped-peptides` Condition1_BR1 Condition1_BR2
+##    &lt;chr&gt;         &lt;chr&gt;                        &lt;dbl&gt;          &lt;dbl&gt;
+##  1 protein_1     a_1                          101.            109.
+##  2 protein_1     b_1                           99.6           112.
+##  3 protein_1     c_1                          101.            110.
+##  4 protein_1     d_1                          101.            109.
+##  5 protein_1     e_1                          101.            111.
+##  6 protein_1     f_1                          101.            109.
+##  7 protein_1     g_1                          100.            108.
+##  8 protein_1     h_1                          100.            111.
+##  9 protein_1     i_1                           99.8           109.
+## 10 protein_1     j_1                           99.6           111.
+## # ℹ 68 more rows
+## # ℹ 2 more variables: Condition1_BR3 &lt;dbl&gt;, Condition1_BR4 &lt;dbl&gt;</code></pre>
+<pre class="r"><code>normal_column_mess %&gt;% dplyr::select(stripped-peptides)
+#will result in:
+# Error in `select()`:
+# ! object &#39;stripped&#39; not found
+# Backtrace:
+#   1. normal_column_mess %&gt;% select(stripped - peptides)
+#  24. base::.handleSimpleError(...)
+#  25. rlang (local) h(simpleError(msg, call))
+#  26. handlers[[1L]](cnd)</code></pre>
+<pre class="r"><code># using backticks is going to work
+normal_column_mess %&gt;% dplyr::select(`stripped-peptides`)</code></pre>
+<pre><code>## # A tibble: 78 × 1
+##    `stripped-peptides`
+##    &lt;chr&gt;              
+##  1 a_1                
+##  2 b_1                
+##  3 c_1                
+##  4 d_1                
+##  5 e_1                
+##  6 f_1                
+##  7 g_1                
+##  8 h_1                
+##  9 i_1                
+## 10 j_1                
+## # ℹ 68 more rows</code></pre>
+<pre class="r"><code># using quotes is going to work as well
+normal_column_mess %&gt;% dplyr::select(&quot;stripped-peptides&quot;)</code></pre>
+<pre><code>## # A tibble: 78 × 1
+##    `stripped-peptides`
+##    &lt;chr&gt;              
+##  1 a_1                
+##  2 b_1                
+##  3 c_1                
+##  4 d_1                
+##  5 e_1                
+##  6 f_1                
+##  7 g_1                
+##  8 h_1                
+##  9 i_1                
+## 10 j_1                
+## # ℹ 68 more rows</code></pre>
+</div>
+<div id="get-a-short-overview-of-your-data" class="section level2">
+<h2>get a short overview of your data</h2>
+<p><code>glimpse()</code> get a glimpse of your data. This is a brief
+overview of your data.</p>
+<pre class="r"><code>normal_tidy_data_cleaned %&gt;% glimpse()</code></pre>
+<pre><code>## Rows: 780
+## Columns: 6
+## $ protein   &lt;chr&gt; &quot;protein_1&quot;, &quot;protein_1&quot;, &quot;protein_1&quot;, &quot;protein_1&quot;, &quot;protein…
+## $ peptide   &lt;chr&gt; &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1&quot;, &quot;a_1…
+## $ samples   &lt;chr&gt; &quot;Condition1_BR1&quot;, &quot;Condition1_BR2&quot;, &quot;Condition1_BR3&quot;, &quot;Condi…
+## $ condition &lt;chr&gt; &quot;Condition1&quot;, &quot;Condition1&quot;, &quot;Condition1&quot;, &quot;Condition1&quot;, &quot;Con…
+## $ replicate &lt;chr&gt; &quot;BR1&quot;, &quot;BR2&quot;, &quot;BR3&quot;, &quot;BR4&quot;, &quot;BR5&quot;, &quot;BR1&quot;, &quot;BR2&quot;, &quot;BR3&quot;, &quot;BR4…
+## $ intensity &lt;dbl&gt; 100.8, 109.4, 105.9, 115.5, 114.6, 400.0, 439.0, 420.1, 459.…</code></pre>
+<p>same can be achieved with the <code>str()</code> function from base
+R. str…Compactly Display the Structure of an Arbitrary R Object</p>
+<pre class="r"><code>str(normal_tidy_data_cleaned)</code></pre>
+<pre><code>## tibble [780 × 6] (S3: tbl_df/tbl/data.frame)
+##  $ protein  : chr [1:780] &quot;protein_1&quot; &quot;protein_1&quot; &quot;protein_1&quot; &quot;protein_1&quot; ...
+##  $ peptide  : chr [1:780] &quot;a_1&quot; &quot;a_1&quot; &quot;a_1&quot; &quot;a_1&quot; ...
+##  $ samples  : chr [1:780] &quot;Condition1_BR1&quot; &quot;Condition1_BR2&quot; &quot;Condition1_BR3&quot; &quot;Condition1_BR4&quot; ...
+##  $ condition: chr [1:780] &quot;Condition1&quot; &quot;Condition1&quot; &quot;Condition1&quot; &quot;Condition1&quot; ...
+##  $ replicate: chr [1:780] &quot;BR1&quot; &quot;BR2&quot; &quot;BR3&quot; &quot;BR4&quot; ...
+##  $ intensity: num [1:780] 101 109 106 115 115 ...</code></pre>
+</div>
+<div id="dplyr" class="section level2">
+<h2>dplyr</h2>
+<p><img src="figures/hex-dplyr.png" /></p>
+<p><strong>dplyr</strong> (<a href="https://dplyr.tidyverse.org"
+class="uri">https://dplyr.tidyverse.org</a>) is a grammar of data
+manipulation, providing a consistent set of verbs that help you solve
+the most common data manipulation challenges:</p>
+<ul>
+<li><code>mutate()</code> adds new variables that are functions of
+existing variables</li>
+<li><code>select()</code> picks variables based on their names.</li>
+<li><code>filter()</code> picks cases based on their values.</li>
+<li><code>summarise()</code> reduces multiple values down to a single
+summary.</li>
+<li><code>arrange()</code> changes the ordering of the rows.</li>
+</ul>
+<p>These all combine naturally with <code>group_by()</code> (see section
+below) which allows you to perform any operation “by group”.</p>
+</div>
+<div id="using-group-wise-data-wrangling" class="section level2">
+<h2>using group wise data wrangling</h2>
+<p>group-wise data handling is really powerful since several for loops
+and apply function can be replaced in a very convenient manor.</p>
+<center>
+<img src="figures/dplyr_grouping.png" style="width:50.0%" />
+</center>
+<ul>
+<li>always use <code>ungroup()</code> function to ungroup data
+afterwards, otherwise grouping is kept</li>
+</ul>
+<blockquote>
+<p>keep in mind <code>group_by()</code> always sorts character
+vectors!</p>
+</blockquote>
+<pre class="r"><code>#Average, SD, CV over Replicates per peptide/protein
+normal_tidy_data_cleaned_summary &lt;- normal_tidy_data_cleaned %&gt;%
+  group_by(condition,protein,peptide) %&gt;% 
+  summarise(mean_peptide_intensity = mean(intensity),
+            sd_peptide_intensity = sd(intensity),
+            cv_peptide_intensity = sd(intensity)/mean(intensity)) %&gt;% 
+  ungroup()</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;condition&#39;, &#39;protein&#39;. You can override
+## using the `.groups` argument.</code></pre>
+<pre class="r"><code>normal_tidy_data_cleaned_summary</code></pre>
+<pre><code>## # A tibble: 156 × 6
+##    condition  protein   peptide mean_peptide_intensity sd_peptide_intensity
+##    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Condition1 protein_1 a_1                       109.                 6.13
+##  2 Condition1 protein_1 b_1                       109.                 5.42
+##  3 Condition1 protein_1 c_1                       109.                 6.14
+##  4 Condition1 protein_1 d_1                       110.                 6.37
+##  5 Condition1 protein_1 e_1                       108.                 7.42
+##  6 Condition1 protein_1 f_1                       109.                 5.77
+##  7 Condition1 protein_1 g_1                       108.                 6.88
+##  8 Condition1 protein_1 h_1                       109.                 6.02
+##  9 Condition1 protein_1 i_1                       108.                 6.76
+## 10 Condition1 protein_1 j_1                       109.                 6.44
+## # ℹ 146 more rows
+## # ℹ 1 more variable: cv_peptide_intensity &lt;dbl&gt;</code></pre>
+</div>
+<div id="other-examples-of-dplyr-function" class="section level2">
+<h2>other examples of dplyr function</h2>
+<div id="top_n" class="section level3">
+<h3>top_N</h3>
+<p>Now we would like to have just the highest 2 peptides per protein and
+condition</p>
+<pre class="r"><code>#top_2 peptides per protein and condition
+normal_tidy_data_cleaned_summary %&gt;% 
+  group_by(protein,condition) %&gt;% 
+  top_n( n = 2, wt = mean_peptide_intensity)</code></pre>
+<pre><code>## # A tibble: 12 × 6
+## # Groups:   protein, condition [6]
+##    condition  protein   peptide mean_peptide_intensity sd_peptide_intensity
+##    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Condition1 protein_1 d_1                       110.                 6.37
+##  2 Condition1 protein_1 m_1                       110.                 6.65
+##  3 Condition1 protein_2 s_2                       110.                 6.50
+##  4 Condition1 protein_2 t_2                       110.                 7.35
+##  5 Condition1 protein_3 o_3                       110.                 6.55
+##  6 Condition1 protein_3 q_3                       110.                 5.66
+##  7 Condition2 protein_1 f_1                       437.                26.1 
+##  8 Condition2 protein_1 z_1                       437.                25.9 
+##  9 Condition2 protein_2 g_2                       437.                25.9 
+## 10 Condition2 protein_2 o_2                       437.                25.5 
+## 11 Condition2 protein_3 l_3                       437.                26.1 
+## 12 Condition2 protein_3 o_3                       437.                25.6 
+## # ℹ 1 more variable: cv_peptide_intensity &lt;dbl&gt;</code></pre>
+</div>
+<div id="adding-ranks" class="section level3">
+<h3>adding ranks</h3>
+<p>Now we would like to add ranks for peptide-intensity per protein and
+condition</p>
+<pre class="r"><code>#rank peptides per protein and condition
+# higher rank number = higher intensity
+normal_tidy_data_cleaned_summary %&gt;% 
+  group_by(protein,condition) %&gt;% 
+  mutate(rank = dense_rank(mean_peptide_intensity))</code></pre>
+<pre><code>## # A tibble: 156 × 7
+## # Groups:   protein, condition [6]
+##    condition  protein   peptide mean_peptide_intensity sd_peptide_intensity
+##    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Condition1 protein_1 a_1                       109.                 6.13
+##  2 Condition1 protein_1 b_1                       109.                 5.42
+##  3 Condition1 protein_1 c_1                       109.                 6.14
+##  4 Condition1 protein_1 d_1                       110.                 6.37
+##  5 Condition1 protein_1 e_1                       108.                 7.42
+##  6 Condition1 protein_1 f_1                       109.                 5.77
+##  7 Condition1 protein_1 g_1                       108.                 6.88
+##  8 Condition1 protein_1 h_1                       109.                 6.02
+##  9 Condition1 protein_1 i_1                       108.                 6.76
+## 10 Condition1 protein_1 j_1                       109.                 6.44
+## # ℹ 146 more rows
+## # ℹ 2 more variables: cv_peptide_intensity &lt;dbl&gt;, rank &lt;int&gt;</code></pre>
+</div>
+</div>
+<div id="use-purrr-instead-of-lapply" class="section level2">
+<h2>use purrr instead of lapply</h2>
+<p><a
+href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply/47123420#47123420"
+class="uri">https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply/47123420#47123420</a></p>
+</div>
+<div id="join-data" class="section level2">
+<h2>join data</h2>
+<p>We use e.g. <code>left_join()</code> function from
+<strong>dplyr</strong> package to combine tables.</p>
+<p><strong>Arguments</strong></p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="90%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>x, y</strong></td>
+<td align="left">tbls to join</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>by</strong></td>
+<td align="left">a character vector of variables to join by. If
+<code>NULL</code>, the default, *_join() will do a natural join, using
+all variables with common names across the two tables. A message lists
+the variables so that you can check they’re right (to suppress the
+message, simply explicitly list the variables that you want to join). To
+join by different variables on x and y use a named vector. For example,
+<code>by = c("a" = "b")</code> will match x.a to y.b.</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>copy</strong></td>
+<td align="left">If x and y are not from the same data source, and copy
+is TRUE, then y will be copied into the same src as x. This allows you
+to join tables across srcs, but it is a potentially expensive operation
+so you must opt into it.</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>suffix</strong></td>
+<td align="left">If there are non-joined duplicate variables in x and y,
+these suffixes will be added to the output to disambiguate them. Should
+be a character vector of length 2.</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>…</strong></td>
+<td align="left">and others. please see help</td>
+</tr>
+</tbody>
+</table>
+<p><em>Mutating joins combine variables from the two
+data.frames:</em></p>
+<ul>
+<li><p><strong>inner_join()</strong></p></li>
+<li><p>return all rows from x where there are matching values in y, and
+all columns from x and y. If there are multiple matches between x and y,
+all combination of the matches are returned.</p></li>
+<li><p><strong>left_join()</strong></p>
+<ul>
+<li>return all rows from x, and all columns from x and y. Rows in x with
+no match in y will have NA values in the new columns. If there are
+multiple matches between x and y, all combinations of the matches are
+returned.</li>
+</ul></li>
+<li><p><strong>right_join()</strong></p>
+<ul>
+<li>return all rows from y, and all columns from x and y. Rows in y with
+no match in x will have NA values in the new columns. If there are
+multiple matches between x and y, all combinations of the matches are
+returned.</li>
+</ul></li>
+<li><p><strong>full_join()</strong></p>
+<ul>
+<li>return all rows and all columns from both x and y. Where there are
+not matching values, returns NA for the one missing.</li>
+</ul></li>
+</ul>
+<p><em>Filtering joins keep cases from the left-hand
+data.frame:</em></p>
+<ul>
+<li><p><strong>semi_join()</strong></p></li>
+<li><p>return all rows from x where there are matching values in y,
+keeping just columns from x.</p></li>
+<li><p>A semi join differs from an inner join because an inner join will
+return one row of x for each matching row of y, where a semi join will
+never duplicate rows of x.</p></li>
+<li><p><strong>anti_join()</strong></p>
+<ul>
+<li>return all rows from x where there are not matching values in y,
+keeping just columns from x.</li>
+</ul></li>
+</ul>
+<p float="center">
+<img src="figures/dplyr_join1.png" width="300" />
+<img src="figures/dplyr_join2.png" width="300" />
+</p>
+<div id="join-data-code-examples" class="section level3">
+<h3>join data code examples</h3>
+<pre class="r"><code>#having 2 tibble or data.frames etc.
+#1st band members
+band_members</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   name  band   
+##   &lt;chr&gt; &lt;chr&gt;  
+## 1 Mick  Stones 
+## 2 John  Beatles
+## 3 Paul  Beatles</code></pre>
+<pre class="r"><code>#2nd instruments
+band_instruments</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   name  plays 
+##   &lt;chr&gt; &lt;chr&gt; 
+## 1 John  guitar
+## 2 Paul  bass  
+## 3 Keith guitar</code></pre>
+<pre class="r"><code># &quot;Mutating&quot; joins combine variables from the LHS and RHS
+
+#return all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.
+#____________________________________________________________________
+band_members %&gt;% inner_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass</code></pre>
+<pre class="r"><code>#return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+#____________________________________________________________________
+band_members %&gt;% left_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass</code></pre>
+<pre class="r"><code>#return all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+#____________________________________________________________________
+band_members %&gt;% right_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass  
+## 3 Keith &lt;NA&gt;    guitar</code></pre>
+<pre class="r"><code>#return all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.
+#____________________________________________________________________
+band_members %&gt;% full_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass  
+## 4 Keith &lt;NA&gt;    guitar</code></pre>
+<pre class="r"><code># &quot;Filtering&quot; joins keep cases from the LHS
+band_members %&gt;% semi_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   name  band   
+##   &lt;chr&gt; &lt;chr&gt;  
+## 1 John  Beatles
+## 2 Paul  Beatles</code></pre>
+<pre class="r"><code>band_members %&gt;% anti_join(band_instruments)</code></pre>
+<pre><code>## Joining with `by = join_by(name)`</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   name  band  
+##   &lt;chr&gt; &lt;chr&gt; 
+## 1 Mick  Stones</code></pre>
+<pre class="r"><code># To suppress the message, supply by
+band_members %&gt;% inner_join(band_instruments, by = &quot;name&quot;)</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 John  Beatles guitar
+## 2 Paul  Beatles bass</code></pre>
+<pre class="r"><code># This is good practice in production code
+
+# Use a named `by` if the join variables have different names
+band_members %&gt;% full_join(band_instruments2, by = c(&quot;name&quot; = &quot;artist&quot;))</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   name  band    plays 
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 Mick  Stones  &lt;NA&gt;  
+## 2 John  Beatles guitar
+## 3 Paul  Beatles bass  
+## 4 Keith &lt;NA&gt;    guitar</code></pre>
+<pre class="r"><code># Note that only the key from the LHS is kept</code></pre>
+</div>
+</div>
+<div id="filtering" class="section level2">
+<h2>filtering</h2>
+<p>the <code>filter()</code> function form the <strong>dplyr</strong>
+package can be used to filter the data</p>
+<p>Useful filter functions</p>
+<ul>
+<li><p><code>==</code>, <code>&gt;</code>, <code>&gt;=</code>
+etc.</p></li>
+<li><p><code>&amp;</code>, <code>|</code>, <code>!</code>,
+<code>xor()</code></p></li>
+<li><p><code>is.na()</code></p></li>
+<li><p><code>!is.na()</code></p></li>
+<li><p><code>between()</code></p></li>
+<li><p><code>near()</code></p></li>
+<li><p><code>%in%</code></p></li>
+<li><p><code>%nin%</code> function from helfRlein package <a
+href="https://github.com/STATWORX/helfRlein">helfRlein</a></p></li>
+</ul>
+<p>Because filtering expressions are computed within groups, they may
+yield different results on grouped tibbles. This will be the case as
+soon as an aggregating, lagging, or ranking function is involved.</p>
+<pre class="r"><code>#Compare this ungrouped filtering:
+starwars %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE))</code></pre>
+<pre><code>## # A tibble: 10 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  2 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  3 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  4 Jabba D…    175  1358 &lt;NA&gt;       green-tan… orange         600   herm… mascu…
+##  5 Jek Ton…    180   110 brown      fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  
+##  6 IG-88       200   140 none       metal      red             15   none  mascu…
+##  7 Bossk       190   113 none       green      red             53   male  mascu…
+##  8 Dexter …    198   102 none       brown      yellow          NA   male  mascu…
+##  9 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…
+## 10 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<pre class="r"><code>#With the grouped equivalent:
+starwars %&gt;% group_by(gender) %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE))</code></pre>
+<pre><code>## # A tibble: 15 × 14
+## # Groups:   gender [3]
+##    name    height   mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Darth …    202  136   none       white      yellow          41.9 male  mascu…
+##  2 Owen L…    178  120   brown, gr… light      blue            52   male  mascu…
+##  3 Beru W…    165   75   brown      light      blue            47   fema… femin…
+##  4 Chewba…    228  112   brown      unknown    blue           200   male  mascu…
+##  5 Jabba …    175 1358   &lt;NA&gt;       green-tan… orange         600   herm… mascu…
+##  6 Jek To…    180  110   brown      fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  
+##  7 IG-88      200  140   none       metal      red             15   none  mascu…
+##  8 Bossk      190  113   none       green      red             53   male  mascu…
+##  9 Ayla S…    178   55   none       blue       hazel           48   fema… femin…
+## 10 Gregar…    185   85   black      dark       brown           NA   &lt;NA&gt;  &lt;NA&gt;  
+## 11 Lumina…    170   56.2 black      yellow     blue            58   fema… femin…
+## 12 Zam We…    168   55   blonde     fair, gre… yellow          NA   fema… femin…
+## 13 Shaak …    178   57   none       red, blue… black           NA   fema… femin…
+## 14 Grievo…    216  159   none       brown, wh… green, y…       NA   male  mascu…
+## 15 Tarfful    234  136   brown      brown      blue            NA   male  mascu…
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+<div id="ggplot2---elegant-graphics-for-data-analysis-part-of-tidyverse"
+class="section level1">
+<h1>ggplot2 - elegant graphics for data analysis (part of
+tidyverse)</h1>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="26%" />
+<col width="65%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="figures/hex-ggplot2.png" /></td>
+<td align="center"><strong>ggplot2</strong> <em>(plotting)</em></td>
+<td align="left">ggplot2 is a system for declaratively creating
+graphics, based on The Grammar of Graphics. You provide the data, tell
+ggplot2 how to map variables to aesthetics, what graphical primitives to
+use, and it takes care of the details.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ggplot2 package:</strong> It’s one of the most commonly
+downloaded R packages (over a million downloads in the last year!) and
+has influenced the design of graphics packages for other languages.</p>
+<p>ggplot2 is an R package for producing statistical, or data, graphics,
+but it is unlike most other graphics packages because it has a deep
+underlying gram- mar. This grammar, based on the Grammar of Graphics (<a
+href="https://www.springer.com/de/book/9780387245447">Grammar of
+Graphics (Wilkinson, Leland; 2015)</a>).</p>
+<p>You can find a fast and brief overview of ggplot2 at <a
+href="http://www.cookbook-r.com/Graphs/" target="_blank">R graphics
+cookbook</a></p>
+<p>In addition to the powerful basis of ggplot2 several (100+) extension
+were developed <a href="https://exts.ggplot2.tidyverse.org/gallery/"
+target="_blank">https://exts.ggplot2.tidyverse.org/gallery/</a></p>
+<p><code>In brief, the grammar tells us that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars).</code></p>
+<ol style="list-style-type: decimal">
+<li><strong>Data</strong></li>
+<li><strong>Aesthetics or Mapping:</strong> What should be plotted on x
+and y-axis. group-wise: colour, fill, size, shape,line width, line
+type.</li>
+<li><strong>Geometrics:</strong> Should a point, line, histogram, bar or
+boxplot (…) be used. (<code>geom_...()</code>)</li>
+<li><strong>Facets:</strong> data groups plot by columns and rows 4a.
+<strong>Scales:</strong> scale translate back and forth between variable
+ranges and property ranges (numbers &gt;&gt; position; log-scaled or
+discrete)</li>
+<li><strong>Statistics:</strong> data binning, smoothing (e.g. loess
+fit), …</li>
+<li><strong>Coordinates:</strong> fixed, polar, set limits, do coord.
+cartesian</li>
+<li><strong>Themes:</strong> use Plot themes</li>
+</ol>
+<div class="float">
+<img src="figures/ggplot-grammar-of-graphics-stack.png"
+alt="grammar of graphics" />
+<div class="figcaption">grammar of graphics</div>
+</div>
+<div id="esquisse-package" class="section level2">
+<h2><code>esquisse</code> package</h2>
+<p>esquisse means draft. And that is what this package does in
+perfection for beginners.</p>
+<p>The purpose of this add-in is to let you explore your data quickly to
+extract the information they hold. You can create visualization with
+{ggplot2}, filter data with {dplyr} and retrieve generated code. This
+addin allows you to interactively explore your data by visualizing it
+with the ggplot2 package. It allows you to draw bar plots, curves,
+scatter plots, histograms, boxplot and sf objects, then export the graph
+or retrieve the code to reproduce the graph.</p>
+<p>get started with esquisse: <a
+href="https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html"
+class="uri">https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html</a>
+documentation: <a href="https://dreamrs.github.io/esquisse/index.html"
+class="uri">https://dreamrs.github.io/esquisse/index.html</a></p>
+<div class="float">
+<img src="html_files/esquisse.gif" alt="esquisse demo" />
+<div class="figcaption">esquisse demo</div>
+</div>
+</div>
+<div id="ggplot2---themes" class="section level2">
+<h2>ggplot2 - Themes</h2>
+<pre class="r"><code>library(datasets)
+library(ggplot2)
+p &lt;- ggplot(diamonds) + 
+     geom_point(aes(x = carat, y = price, colour = color),alpha=0.5) + 
+     facet_wrap(~cut) + 
+     labs(title=&quot;overview of diamonds dataset&quot;, 
+          subtitle=&quot;carat vs. price &amp; colored by diamond color&quot;,
+          caption = &quot;a caption text would be placed here&quot; )</code></pre>
+<p><strong>Pay attention to the structure of this function
+call:</strong> data and aesthetic mappings are supplied in
+<code>ggplot()</code>, then layers are added on with <code>+</code>.</p>
+<p>This is an important pattern, and as you learn more about ggplot2
+you’ll construct increasingly sophisticated plots by adding on more
+types of components.</p>
+<p><strong>1. theme_gray()</strong></p>
+<pre class="r"><code>p + theme_gray() # the default</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+<strong>2. theme_bw()</strong></p>
+<pre class="r"><code>p + theme_bw()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-59-1.png" width="672" />
+<strong>3. theme_linedraw()</strong></p>
+<pre class="r"><code>p + theme_linedraw()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-60-1.png" width="672" />
+<strong>4. theme_light()</strong></p>
+<pre class="r"><code>p + theme_light()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-61-1.png" width="672" />
+<strong>5. theme_dark()</strong></p>
+<pre class="r"><code>p + theme_dark()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-62-1.png" width="672" />
+<strong>6. theme_minimal()</strong></p>
+<pre class="r"><code>p + theme_minimal()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<strong>7. theme_classic()</strong></p>
+<pre class="r"><code>p + theme_classic()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-64-1.png" width="672" />
+<strong>8. theme_void()</strong></p>
+<pre class="r"><code>p + theme_void()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<div id="hrbrthemes-themes" class="section level3">
+<h3><code>hrbrthemes</code> Themes</h3>
+<p>There are also packages that add themes to ggplot like the
+<code>hrbrthemes</code> package.</p>
+<p><a href="https://github.com/hrbrmstr/hrbrthemes">more information
+about the hrbrthemes package can be found here</a></p>
+<p>But here are special fonts needed which are proivided in the
+package:</p>
+<pre class="r"><code>#library(hrbrthemes)
+#import_plex_sans()
+#import_public_sans()
+#import_roboto_condensed()
+#import_titillium_web()</code></pre>
+<p>** load <code>hrbrthemes</code> package**</p>
+<pre class="r"><code>library(hrbrthemes)</code></pre>
+<p><strong>1. theme_ipsum()</strong></p>
+<pre class="r"><code>p + theme_ipsum()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><strong>2. theme_ipsum_rc()</strong></p>
+<pre class="r"><code>p + theme_ipsum_rc()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><strong>3. theme_ft_rc()</strong></p>
+<pre class="r"><code>p + theme_ft_rc()</code></pre>
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-inspired---what-plots-can-be-generated"
+class="section level2">
+<h2>get inspired - what plots can be generated</h2>
+<ul>
+<li><a
+href="http://visualizationuniverse.com/charts/?sortBy=volume&amp;sortDir=desc">Visualization
+Universe</a></li>
+<li><a href="https://projects.susielu.com/viz-palette">Viz-palette
+(which colors can be used)</a></li>
+<li><a
+href="https://material.io/design/color/the-color-system.html#tools-for-picking-colors">Google
+Material Colors (which colors can be used)</a></li>
+<li><a href="https://datavizcatalogue.com">data viz catalogue</a></li>
+</ul>
+</div>
+</div>
+<div id="broom---summarizes-key-information-about-models-in-tidy-tibble"
+class="section level1">
+<h1>broom - summarizes key information about models in tidy tibble</h1>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="26%" />
+<col width="65%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="hex_sticker/broom.png" /></td>
+<td align="center"><strong>broom</strong> <em>(model summary)</em></td>
+<td align="left">broom summarizes key information about models in tidy
+tibble()s. broom provides three verbs to make it convenient to interact
+with model objects.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>tidy()</code> summarizes information about fit components</li>
+<li><code>glance()</code> report goodness of fit measures</li>
+<li><code>augment()</code> adds informations about observations to a
+dataset</li>
+</ul>
+<p>broom can handle 100+ models from popular modelling packages.</p>
+<p>The following methods are currently available in <code>broom</code>:
+(code from <a
+href="https://github.com/tidymodels/broom/blob/master/vignettes/available-methods.Rmd"
+class="uri">https://github.com/tidymodels/broom/blob/master/vignettes/available-methods.Rmd</a>)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">class</th>
+<th align="left">tidy</th>
+<th align="left">glance</th>
+<th align="left">augment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">aareg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">acf</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">anova</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">aov</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">aovlist</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Arima</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">betamfx</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">betareg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">biglm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">binDesign</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">binWidth</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">boot</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">btergm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">cch</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">character</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">cld</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">clm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">clmm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">coeftest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">confint.glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">confusionMatrix</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">coxph</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">crr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">cv.glmnet</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">data.frame</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">default</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">density</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">dist</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">drc</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">durbinWatsonTest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">emmGrid</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">epi.2by2</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">ergm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factanal</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">felm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">fitdistr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">fixest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">ftable</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">gam</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">Gam</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">garch</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">geeglm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">glm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">glmnet</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">glmrob</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">glmRob</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">gmm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">htest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">ivreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">kappa</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">kde</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Kendall</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">kmeans</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">lavaan</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">leveneTest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Line</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Lines</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">list</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">lm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">lm.beta</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">lmodel2</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">lmrob</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">lmRob</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">logical</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">logitmfx</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">lsmobj</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">manova</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">map</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">margins</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">Mclust</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">mediate</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">mfx</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">mjoint</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">mle2</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">mlm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">mlogit</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">muhaz</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">multinom</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">negbin</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">negbinmfx</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">nlrq</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">nls</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">NULL</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">orcutt</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">pairwise.htest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">pam</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">plm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">poissonmfx</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">poLCA</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">polr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">Polygon</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Polygons</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">power.htest</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">prcomp</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">probitmfx</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">pyears</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rcorr</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ref.grid</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">regsubsets</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ridgelm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">rma</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">roc</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">rq</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">rqs</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">sarlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">Sarlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">SpatialLinesDataFrame</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">SpatialPolygons</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">SpatialPolygonsDataFrame</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">spec</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">speedglm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">speedlm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="even">
+<td align="left">summary_emm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">summary.glht</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">summary.lm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">summary.plm</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">summaryDefault</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">survdiff</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">survexp</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">survfit</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">survreg</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">svyglm</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">svyolr</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">systemfit</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">table</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">tobit</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">ts</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">TukeyHSD</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">varest</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">zoo</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div id="broom-usage" class="section level3">
+<h3>broom usage</h3>
+<p>(codes from tidyverse.org + talk Alex Hayes Rconf2019)</p>
+<div id="tidy---summarizes-information-about-fit-components"
+class="section level4">
+<h4><code>tidy()</code> - summarizes information about fit
+components</h4>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+
+fit &lt;- lm(Sepal.Width ~ Petal.Length + Petal.Width, iris)
+tidy(fit)</code></pre>
+<pre><code>## # A tibble: 3 × 5
+##   term         estimate std.error statistic  p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     3.59     0.0937     38.3  2.51e-78
+## 2 Petal.Length   -0.257    0.0669     -3.84 1.80e- 4
+## 3 Petal.Width     0.364    0.155       2.35 2.01e- 2</code></pre>
+<p>you can also use that in RMarkdown and create a nice table right away
+with knitr package</p>
+<pre class="r"><code>kable2 &lt;- function(data){
+  knitr::kable(mutate_if(data,is.numeric,round,2))
+}
+
+tidy(fit) %&gt;% 
+  kable2()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">3.59</td>
+<td align="right">0.09</td>
+<td align="right">38.27</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Length</td>
+<td align="right">-0.26</td>
+<td align="right">0.07</td>
+<td align="right">-3.84</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Width</td>
+<td align="right">0.36</td>
+<td align="right">0.15</td>
+<td align="right">2.35</td>
+<td align="right">0.02</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="glance---report-goodness-of-fit-measures"
+class="section level4">
+<h4><code>glance()</code> - report goodness of fit measures</h4>
+<pre class="r"><code>glance(fit)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.213         0.202 0.389      19.9 0.0000000224     2  -69.8  148.  160.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>if you would like to compare models:</p>
+<pre class="r"><code>fits &lt;- list(
+  fit1 = lm(hp ~ cyl, mtcars),
+  fit2 = lm(hp ~ cyl + mpg, mtcars),
+  fit3 = lm(hp ~ ., mtcars)
+)
+
+gof &lt;- map_df(fits, glance, .id = &quot;model&quot;) %&gt;% 
+  arrange(AIC)
+
+gof</code></pre>
+<pre><code>## # A tibble: 3 × 13
+##   model r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##   &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 fit3      0.903         0.857  26.0      19.5 1.90e-8    10  -143.  310.  327.
+## 2 fit1      0.693         0.683  38.6      67.7 3.48e-9     1  -161.  329.  333.
+## 3 fit2      0.709         0.689  38.2      35.4 1.66e-8     2  -160.  329.  335.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+</div>
+<div id="augment---adds-informations-about-observations-to-a-dataset"
+class="section level4">
+<h4><code>augment()</code> - adds informations about observations to a
+dataset</h4>
+<pre class="r"><code>augment(fit)</code></pre>
+<pre><code>## # A tibble: 150 × 9
+##    Sepal.Width Petal.Length Petal.Width .fitted  .resid   .hat .sigma  .cooksd
+##          &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+##  1         3.5          1.4         0.2    3.30  0.200  0.0187  0.390 0.00171 
+##  2         3            1.4         0.2    3.30 -0.300  0.0187  0.390 0.00384 
+##  3         3.2          1.3         0.2    3.33 -0.126  0.0198  0.390 0.000713
+##  4         3.1          1.5         0.2    3.27 -0.174  0.0182  0.390 0.00126 
+##  5         3.6          1.4         0.2    3.30  0.300  0.0187  0.390 0.00385 
+##  6         3.9          1.7         0.4    3.30  0.604  0.0163  0.387 0.0135  
+##  7         3.4          1.4         0.3    3.34  0.0637 0.0197  0.391 0.000183
+##  8         3.4          1.5         0.2    3.27  0.126  0.0182  0.390 0.000659
+##  9         2.9          1.4         0.2    3.30 -0.400  0.0187  0.389 0.00683 
+## 10         3.1          1.5         0.1    3.24 -0.138  0.0217  0.390 0.000948
+## # ℹ 140 more rows
+## # ℹ 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

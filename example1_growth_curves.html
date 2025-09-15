@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Examples</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #232629;
+    color: #7a7c7d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+div.sourceCode
+  { color: #cfcfc2; background-color: #232629; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; text-decoration: underline; } /* Error */
+code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Examples</h1>
+
+</div>
+
+
+<style>
+a:link {
+    color: #BC0203;
+}
+a:visited {
+    color: #007127;
+}
+ a:hover {
+    color: #E70203;
+}
+</style>
+<div id="example-1-growth-curves" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Example 1: growth
+curves</h1>
+<p>you may set a proper working directory using the <code>setwd()</code>
+function - e.g.: setwd(“path”) - <code>getwd()</code> –&gt; print out
+current working directory</p>
+<p><strong>but use a PROJECT in RStudio!</strong></p>
+<div id="loading-and-looking-at-data" class="section level2"
+number="1.1">
+<h2><span class="header-section-number">1.1</span> loading and looking
+at data</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#set a proper working directory using the setwd() function</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="co"># e.g.: &quot;setwd(c:\....)&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="co"># getwd()    --&gt;   print out current working directory</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#load packages</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># loading tidyverse meta package</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#load data using readr</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="co">#you have to download the growth curve tables from the materials section and copy them in the working directory folder</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>hg_rpmi<span class="ot">&lt;-</span><span class="fu">read_delim</span>(<span class="st">&quot;HG_RPMI.txt&quot;</span>,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">col_names =</span> T)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#load rest of data</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>st_rpmi<span class="ot">&lt;-</span><span class="fu">read_delim</span>(<span class="st">&quot;ST_RPMI.txt&quot;</span>,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">col_names =</span> T)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>hg_tsb<span class="ot">&lt;-</span><span class="fu">read_delim</span>(<span class="st">&quot;TSB_HG.txt&quot;</span>,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">col_names =</span> T)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>st_tsb<span class="ot">&lt;-</span><span class="fu">read_delim</span>(<span class="st">&quot;TSB_ST.txt&quot;</span>,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">col_names =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">#look at data:</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>hg_rpmi</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Zeit (h)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["BR1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BR2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["BR3"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0","2":"0.055","3":"0.058","4":"0.058"},{"1":"1.0","2":"0.156","3":"0.153","4":"0.153"},{"1":"2.0","2":"0.380","3":"0.380","4":"0.380"},{"1":"2.3","2":"0.480","3":"0.460","4":"0.460"},{"1":"3.0","2":"0.660","3":"0.650","4":"0.650"},{"1":"4.0","2":"0.730","3":"0.680","4":"0.680"},{"1":"5.0","2":"0.800","3":"0.770","4":"0.770"},{"1":"6.0","2":"0.840","3":"0.810","4":"0.810"},{"1":"7.0","2":"0.910","3":"0.920","4":"0.920"},{"1":"8.0","2":"0.980","3":"0.970","4":"0.970"},{"1":"8.5","2":"1.000","3":"1.030","4":"1.030"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>hg_tsb</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Zeit (h)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["BR1HG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["BR2HG"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["BR3HG"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0","2":"0.052","3":"0.053","4":"0.052"},{"1":"1.0","2":"0.210","3":"0.237","4":"0.202"},{"1":"1.3","2":"0.420","3":"0.460","4":"0.500"},{"1":"2.0","2":"1.170","3":"1.190","4":"1.000"},{"1":"3.0","2":"3.320","3":"3.520","4":"2.650"},{"1":"4.0","2":"7.490","3":"6.980","4":"5.660"},{"1":"5.0","2":"8.850","3":"8.500","4":"8.380"},{"1":"6.0","2":"9.450","3":"9.950","4":"9.100"},{"1":"7.0","2":"10.600","3":"10.860","4":"9.570"},{"1":"8.0","2":"11.100","3":"12.280","4":"10.750"},{"1":"9.0","2":"12.250","3":"12.350","4":"11.600"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#or using View(hg_rpmi) in RStudio or click on the data inthe &quot;Environment&quot; tab Panel</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#colnames are not equal</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">colnames</span>(hg_rpmi)</span></code></pre></div>
+<pre><code>## [1] &quot;Zeit (h)&quot; &quot;BR1&quot;      &quot;BR2&quot;      &quot;BR3&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">colnames</span>(hg_tsb)</span></code></pre></div>
+<pre><code>## [1] &quot;Zeit (h)&quot; &quot;BR1HG&quot;    &quot;BR2HG&quot;    &quot;BR3HG&quot;</code></pre>
+</div>
+<div id="generate-tidy-data-tibble" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> generate tidy data
+–&gt; tibble</h2>
+<p><img src="figures/tidy_data_reshape.png" width="600" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#generate tidy data</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a> <span class="co"># pivot_longer moves column names into &quot;names_to&quot; column, gathering the column values into a single &quot;values_to&quot; column</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>hg_rpmi_tidy <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> hg_rpmi,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                             <span class="at">cols =</span> <span class="fu">colnames</span>(hg_rpmi)[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                             <span class="at">names_to =</span> <span class="st">&quot;replicates&quot;</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>                             <span class="at">values_to =</span> <span class="st">&quot;OD&quot;</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>st_rpmi_tidy <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> st_rpmi,</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>                             <span class="at">cols =</span> <span class="fu">colnames</span>(st_rpmi)[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                             <span class="at">names_to =</span> <span class="st">&quot;replicates&quot;</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>                             <span class="at">values_to =</span> <span class="st">&quot;OD&quot;</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>hg_tsb_tidy <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> hg_tsb,</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>                            <span class="at">cols =</span> <span class="fu">colnames</span>(hg_tsb)[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>                            <span class="at">names_to =</span> <span class="st">&quot;replicates&quot;</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>                            <span class="at">values_to =</span> <span class="st">&quot;OD&quot;</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>st_tsb_tidy <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> st_tsb,</span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>                            <span class="at">cols =</span> <span class="fu">colnames</span>(st_tsb)[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>                            <span class="at">names_to =</span> <span class="st">&quot;replicates&quot;</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>                            <span class="at">values_to =</span> <span class="st">&quot;OD&quot;</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co"># another way of writing that code would be &quot;hg_rpmi %&gt;% pivot_longer(colnames(hg_rpmi)[-1],names_to = &quot;replicates&quot;,values_to = &quot;OD&quot;)&quot;</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#look at tidy data</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>hg_rpmi_tidy</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Zeit (h)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["replicates"],"name":[2],"type":["chr"],"align":["left"]},{"label":["OD"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0","2":"BR1","3":"0.055"},{"1":"0.0","2":"BR2","3":"0.058"},{"1":"0.0","2":"BR3","3":"0.058"},{"1":"1.0","2":"BR1","3":"0.156"},{"1":"1.0","2":"BR2","3":"0.153"},{"1":"1.0","2":"BR3","3":"0.153"},{"1":"2.0","2":"BR1","3":"0.380"},{"1":"2.0","2":"BR2","3":"0.380"},{"1":"2.0","2":"BR3","3":"0.380"},{"1":"2.3","2":"BR1","3":"0.480"},{"1":"2.3","2":"BR2","3":"0.460"},{"1":"2.3","2":"BR3","3":"0.460"},{"1":"3.0","2":"BR1","3":"0.660"},{"1":"3.0","2":"BR2","3":"0.650"},{"1":"3.0","2":"BR3","3":"0.650"},{"1":"4.0","2":"BR1","3":"0.730"},{"1":"4.0","2":"BR2","3":"0.680"},{"1":"4.0","2":"BR3","3":"0.680"},{"1":"5.0","2":"BR1","3":"0.800"},{"1":"5.0","2":"BR2","3":"0.770"},{"1":"5.0","2":"BR3","3":"0.770"},{"1":"6.0","2":"BR1","3":"0.840"},{"1":"6.0","2":"BR2","3":"0.810"},{"1":"6.0","2":"BR3","3":"0.810"},{"1":"7.0","2":"BR1","3":"0.910"},{"1":"7.0","2":"BR2","3":"0.920"},{"1":"7.0","2":"BR3","3":"0.920"},{"1":"8.0","2":"BR1","3":"0.980"},{"1":"8.0","2":"BR2","3":"0.970"},{"1":"8.0","2":"BR3","3":"0.970"},{"1":"8.5","2":"BR1","3":"1.000"},{"1":"8.5","2":"BR2","3":"1.030"},{"1":"8.5","2":"BR3","3":"1.030"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="add-missing-data-description" class="section level2"
+number="1.3">
+<h2><span class="header-section-number">1.3</span> add missing data
+description</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">#still missing is the strain and growth media information which is hidden in the file name</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#add growth media and strain to tibble</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="co">#&quot;$&quot; will not only select a column, if the column is abscent in the tibble it will create a new column filled with the assigned value</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>hg_rpmi_tidy<span class="sc">$</span>media <span class="ot">&lt;-</span> <span class="st">&quot;RPMI&quot;</span>;hg_rpmi_tidy<span class="sc">$</span>strain <span class="ot">&lt;-</span> <span class="st">&quot;HG001&quot;</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>st_rpmi_tidy<span class="sc">$</span>media <span class="ot">&lt;-</span> <span class="st">&quot;RPMI&quot;</span>;st_rpmi_tidy<span class="sc">$</span>strain <span class="ot">&lt;-</span> <span class="st">&quot;rho_mutant&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>hg_tsb_tidy<span class="sc">$</span>media <span class="ot">&lt;-</span> <span class="st">&quot;TSB&quot;</span>;hg_tsb_tidy<span class="sc">$</span>strain <span class="ot">&lt;-</span> <span class="st">&quot;HG001&quot;</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>st_tsb_tidy<span class="sc">$</span>media <span class="ot">&lt;-</span> <span class="st">&quot;TSB&quot;</span>;st_tsb_tidy<span class="sc">$</span>strain <span class="ot">&lt;-</span> <span class="st">&quot;rho_mutant&quot;</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#look at the modified tibble</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>st_tsb_tidy</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Zeit (h)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["replicates"],"name":[2],"type":["chr"],"align":["left"]},{"label":["OD"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["media"],"name":[4],"type":["chr"],"align":["left"]},{"label":["strain"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"0.0","2":"BR1ST","3":"0.057","4":"TSB","5":"rho_mutant"},{"1":"0.0","2":"BR2ST","3":"0.058","4":"TSB","5":"rho_mutant"},{"1":"0.0","2":"BR3ST","3":"0.048","4":"TSB","5":"rho_mutant"},{"1":"1.0","2":"BR1ST","3":"0.256","4":"TSB","5":"rho_mutant"},{"1":"1.0","2":"BR2ST","3":"0.260","4":"TSB","5":"rho_mutant"},{"1":"1.0","2":"BR3ST","3":"0.241","4":"TSB","5":"rho_mutant"},{"1":"1.3","2":"BR1ST","3":"0.480","4":"TSB","5":"rho_mutant"},{"1":"1.3","2":"BR2ST","3":"0.480","4":"TSB","5":"rho_mutant"},{"1":"1.3","2":"BR3ST","3":"0.520","4":"TSB","5":"rho_mutant"},{"1":"2.0","2":"BR1ST","3":"1.260","4":"TSB","5":"rho_mutant"},{"1":"2.0","2":"BR2ST","3":"1.300","4":"TSB","5":"rho_mutant"},{"1":"2.0","2":"BR3ST","3":"1.080","4":"TSB","5":"rho_mutant"},{"1":"3.0","2":"BR1ST","3":"3.400","4":"TSB","5":"rho_mutant"},{"1":"3.0","2":"BR2ST","3":"3.340","4":"TSB","5":"rho_mutant"},{"1":"3.0","2":"BR3ST","3":"3.150","4":"TSB","5":"rho_mutant"},{"1":"4.0","2":"BR1ST","3":"6.520","4":"TSB","5":"rho_mutant"},{"1":"4.0","2":"BR2ST","3":"6.580","4":"TSB","5":"rho_mutant"},{"1":"4.0","2":"BR3ST","3":"6.440","4":"TSB","5":"rho_mutant"},{"1":"5.0","2":"BR1ST","3":"7.750","4":"TSB","5":"rho_mutant"},{"1":"5.0","2":"BR2ST","3":"7.650","4":"TSB","5":"rho_mutant"},{"1":"5.0","2":"BR3ST","3":"7.450","4":"TSB","5":"rho_mutant"},{"1":"6.0","2":"BR1ST","3":"8.400","4":"TSB","5":"rho_mutant"},{"1":"6.0","2":"BR2ST","3":"8.360","4":"TSB","5":"rho_mutant"},{"1":"6.0","2":"BR3ST","3":"7.950","4":"TSB","5":"rho_mutant"},{"1":"7.0","2":"BR1ST","3":"9.850","4":"TSB","5":"rho_mutant"},{"1":"7.0","2":"BR2ST","3":"9.150","4":"TSB","5":"rho_mutant"},{"1":"7.0","2":"BR3ST","3":"8.600","4":"TSB","5":"rho_mutant"},{"1":"8.0","2":"BR1ST","3":"10.200","4":"TSB","5":"rho_mutant"},{"1":"8.0","2":"BR2ST","3":"9.300","4":"TSB","5":"rho_mutant"},{"1":"8.0","2":"BR3ST","3":"9.050","4":"TSB","5":"rho_mutant"},{"1":"9.0","2":"BR1ST","3":"11.000","4":"TSB","5":"rho_mutant"},{"1":"9.0","2":"BR2ST","3":"9.850","4":"TSB","5":"rho_mutant"},{"1":"9.0","2":"BR3ST","3":"9.450","4":"TSB","5":"rho_mutant"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="modify-a-column-using-stringr" class="section level2"
+number="1.4">
+<h2><span class="header-section-number">1.4</span> modify a column using
+stringr</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">#since we have TIDY !!! data now we can easily combine the data by </span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="co">#&quot;bind_rows&quot; combines tibbles by rows (similar to rbind())</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="co">#&quot;bind_cols&quot; combines tibbles by columns (similar to cbind())</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>growth_tibble <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(hg_rpmi_tidy,st_rpmi_tidy,hg_tsb_tidy,st_tsb_tidy)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#we still have the problem of inconsitent naming of replicates</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">unique</span>(growth_tibble<span class="sc">$</span>replicates) <span class="co">#unique() gives us the unique entries of the vector</span></span></code></pre></div>
+<pre><code>## [1] &quot;BR1&quot;   &quot;BR2&quot;   &quot;BR3&quot;   &quot;BR1HG&quot; &quot;BR2HG&quot; &quot;BR3HG&quot; &quot;BR1ST&quot; &quot;BR2ST&quot; &quot;BR3ST&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># so we have to replace &quot;BR1HG&quot; --&gt; &quot;BR1&quot; &amp;  &quot;BR1ST&quot; --&gt; &quot;BR1&quot;</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>growth_tibble<span class="sc">$</span>replicates <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace_all</span>(<span class="at">string =</span> growth_tibble<span class="sc">$</span>replicates,<span class="at">pattern =</span> <span class="st">&quot;HG&quot;</span>,<span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>growth_tibble<span class="sc">$</span>replicates <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace_all</span>(<span class="at">string =</span> growth_tibble<span class="sc">$</span>replicates,<span class="at">pattern =</span> <span class="st">&quot;ST&quot;</span>,<span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#check if cleaning was successful</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="fu">unique</span>(growth_tibble<span class="sc">$</span>replicates) </span></code></pre></div>
+<pre><code>## [1] &quot;BR1&quot; &quot;BR2&quot; &quot;BR3&quot;</code></pre>
+</div>
+<div id="plot-growth-curve-using-ggplot2" class="section level2"
+number="1.5">
+<h2><span class="header-section-number">1.5</span> plot growth curve
+using ggplot2</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co">#now the growth_tibble is ready for plotting with ggplot</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD))<span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> <span class="co">#add point layer</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span> <span class="co">#do log10 scaling of y axis</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> <span class="co"># add a theme with the base size 12</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,<span class="co">#add labeling of title etc.</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div id="adding-color" class="section level3" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> adding color</h3>
+<p>R can handle several different color inputs like RGB
+(e.g. <code>rgb(red, green, blue,max=255)</code>), hex color codes
+(e.g. <code>#63cbd3</code>) or color names
+(e.g. <code>steelblue1</code>).</p>
+<p><strong>a small list of possible color names and color palettes with
+base R (grDevices) and R color brewer (package):</strong></p>
+<p><img src="figures/RcolorNames.png" alt="R color names" /> <a
+href="figures/RcolorNames.png" target="_blank">view larger or download:
+R color names</a></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co">#to color for strain we must define color aesthetics</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>strain))<span class="sc">+</span> <span class="co">#add strain to color</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="adding-color-advanced" class="section level4" number="1.5.1.1">
+<h4><span class="header-section-number">1.5.1.1</span> adding color
+(advanced)</h4>
+<p>We need <strong>tidyr</strong> and <code>unite()</code> function.</p>
+<p><img src="figures/tidyr_unite.png" width="400" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co">#if we want to color for strain and Media the save way is to generate a new column with the combination</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>growth_tibble <span class="ot">&lt;-</span> growth_tibble <span class="sc">%&gt;%</span> <span class="fu">unite</span>(media,strain,<span class="at">col=</span><span class="st">&quot;media_strain&quot;</span>,<span class="at">sep =</span> <span class="st">&quot;_&quot;</span>,<span class="at">remove =</span> F)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>growth_tibble</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Zeit (h)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["replicates"],"name":[2],"type":["chr"],"align":["left"]},{"label":["OD"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["media_strain"],"name":[4],"type":["chr"],"align":["left"]},{"label":["media"],"name":[5],"type":["chr"],"align":["left"]},{"label":["strain"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"0.0","2":"BR1","3":"0.055","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"0.0","2":"BR2","3":"0.058","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"0.0","2":"BR3","3":"0.058","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"1.0","2":"BR1","3":"0.156","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"1.0","2":"BR2","3":"0.153","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"1.0","2":"BR3","3":"0.153","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.0","2":"BR1","3":"0.380","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.0","2":"BR2","3":"0.380","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.0","2":"BR3","3":"0.380","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.3","2":"BR1","3":"0.480","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.3","2":"BR2","3":"0.460","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.3","2":"BR3","3":"0.460","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"3.0","2":"BR1","3":"0.660","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"3.0","2":"BR2","3":"0.650","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"3.0","2":"BR3","3":"0.650","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"4.0","2":"BR1","3":"0.730","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"4.0","2":"BR2","3":"0.680","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"4.0","2":"BR3","3":"0.680","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"5.0","2":"BR1","3":"0.800","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"5.0","2":"BR2","3":"0.770","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"5.0","2":"BR3","3":"0.770","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"6.0","2":"BR1","3":"0.840","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"6.0","2":"BR2","3":"0.810","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"6.0","2":"BR3","3":"0.810","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"7.0","2":"BR1","3":"0.910","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"7.0","2":"BR2","3":"0.920","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"7.0","2":"BR3","3":"0.920","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.0","2":"BR1","3":"0.980","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.0","2":"BR2","3":"0.970","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.0","2":"BR3","3":"0.970","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.5","2":"BR1","3":"1.000","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.5","2":"BR2","3":"1.030","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.5","2":"BR3","3":"1.030","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"0.0","2":"BR1","3":"0.051","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"0.0","2":"BR2","3":"0.054","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"0.0","2":"BR3","3":"0.054","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"1.0","2":"BR1","3":"0.130","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"1.0","2":"BR2","3":"0.143","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"1.0","2":"BR3","3":"0.143","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.0","2":"BR1","3":"0.320","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.0","2":"BR2","3":"0.350","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.0","2":"BR3","3":"0.350","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.3","2":"BR1","3":"0.450","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.3","2":"BR2","3":"0.430","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.3","2":"BR3","3":"0.430","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"3.0","2":"BR1","3":"0.560","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"3.0","2":"BR2","3":"0.590","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"3.0","2":"BR3","3":"0.590","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"4.0","2":"BR1","3":"0.730","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"4.0","2":"BR2","3":"0.710","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"4.0","2":"BR3","3":"0.710","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"5.0","2":"BR1","3":"0.780","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"5.0","2":"BR2","3":"0.800","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"5.0","2":"BR3","3":"0.800","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"6.0","2":"BR1","3":"0.870","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"6.0","2":"BR2","3":"0.850","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"6.0","2":"BR3","3":"0.850","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"7.0","2":"BR1","3":"0.910","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"7.0","2":"BR2","3":"0.950","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"7.0","2":"BR3","3":"0.950","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.0","2":"BR1","3":"0.970","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.0","2":"BR2","3":"1.000","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.0","2":"BR3","3":"1.000","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.5","2":"BR1","3":"0.980","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.5","2":"BR2","3":"1.040","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.5","2":"BR3","3":"1.040","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"0.0","2":"BR1","3":"0.052","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"0.0","2":"BR2","3":"0.053","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"0.0","2":"BR3","3":"0.052","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.0","2":"BR1","3":"0.210","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.0","2":"BR2","3":"0.237","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.0","2":"BR3","3":"0.202","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.3","2":"BR1","3":"0.420","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.3","2":"BR2","3":"0.460","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.3","2":"BR3","3":"0.500","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"2.0","2":"BR1","3":"1.170","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"2.0","2":"BR2","3":"1.190","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"2.0","2":"BR3","3":"1.000","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"3.0","2":"BR1","3":"3.320","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"3.0","2":"BR2","3":"3.520","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"3.0","2":"BR3","3":"2.650","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"4.0","2":"BR1","3":"7.490","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"4.0","2":"BR2","3":"6.980","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"4.0","2":"BR3","3":"5.660","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"5.0","2":"BR1","3":"8.850","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"5.0","2":"BR2","3":"8.500","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"5.0","2":"BR3","3":"8.380","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"6.0","2":"BR1","3":"9.450","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"6.0","2":"BR2","3":"9.950","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"6.0","2":"BR3","3":"9.100","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"7.0","2":"BR1","3":"10.600","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"7.0","2":"BR2","3":"10.860","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"7.0","2":"BR3","3":"9.570","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"8.0","2":"BR1","3":"11.100","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"8.0","2":"BR2","3":"12.280","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"8.0","2":"BR3","3":"10.750","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"9.0","2":"BR1","3":"12.250","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"9.0","2":"BR2","3":"12.350","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"9.0","2":"BR3","3":"11.600","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"0.0","2":"BR1","3":"0.057","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"0.0","2":"BR2","3":"0.058","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"0.0","2":"BR3","3":"0.048","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.0","2":"BR1","3":"0.256","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.0","2":"BR2","3":"0.260","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.0","2":"BR3","3":"0.241","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.3","2":"BR1","3":"0.480","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.3","2":"BR2","3":"0.480","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.3","2":"BR3","3":"0.520","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"2.0","2":"BR1","3":"1.260","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"2.0","2":"BR2","3":"1.300","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"2.0","2":"BR3","3":"1.080","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"3.0","2":"BR1","3":"3.400","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"3.0","2":"BR2","3":"3.340","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"3.0","2":"BR3","3":"3.150","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"4.0","2":"BR1","3":"6.520","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"4.0","2":"BR2","3":"6.580","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"4.0","2":"BR3","3":"6.440","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"5.0","2":"BR1","3":"7.750","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"5.0","2":"BR2","3":"7.650","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"5.0","2":"BR3","3":"7.450","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"6.0","2":"BR1","3":"8.400","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"6.0","2":"BR2","3":"8.360","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"6.0","2":"BR3","3":"7.950","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"7.0","2":"BR1","3":"9.850","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"7.0","2":"BR2","3":"9.150","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"7.0","2":"BR3","3":"8.600","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"8.0","2":"BR1","3":"10.200","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"8.0","2":"BR2","3":"9.300","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"8.0","2":"BR3","3":"9.050","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"9.0","2":"BR1","3":"11.000","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"9.0","2":"BR2","3":"9.850","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"9.0","2":"BR3","3":"9.450","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co">#do color for media_strain column</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain))<span class="sc">+</span> <span class="co">#add media_strain to color</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+<div id="adding-shapes" class="section level3" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> adding shapes</h3>
+<p><img src="figures/ggplot_shapes.png" width="600" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co">#add a different shape for replicates</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> <span class="co">#add shape for replicates</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">BR1=</span><span class="dv">6</span>,<span class="at">BR2=</span><span class="dv">18</span>,<span class="at">BR3=</span><span class="dv">24</span>))<span class="sc">+</span> <span class="co">#adding manual shapes</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="adding-lines" class="section level3" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> adding lines</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co">#add lines</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> </span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span> <span class="co">#add line layer</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="setup-manual-colors" class="section level3" number="1.5.4">
+<h3><span class="header-section-number">1.5.4</span> setup manual
+colors</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co">#and finally we want to have different colors</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>  <span class="co">#generate color vector with names = entries of media_strain</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>  my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">TSB_HG001=</span><span class="st">&quot;steelblue1&quot;</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>                 <span class="at">RPMI_HG001=</span><span class="st">&quot;steelblue3&quot;</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>                 <span class="at">RPMI_rho_mutant=</span><span class="st">&quot;orangered3&quot;</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>                 <span class="at">TSB_rho_mutant=</span><span class="st">&quot;orangered1&quot;</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> </span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span> </span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> <span class="co">#add our manual colors</span></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="faceting-plots" class="section level3" number="1.5.5">
+<h3><span class="header-section-number">1.5.5</span> faceting plots</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co">#since TSB and RPMI differs a lot from final OD we would like to have them split up</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> </span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>      <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>      <span class="fu">geom_line</span>()<span class="sc">+</span> </span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>      <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> </span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>media)<span class="sc">+</span> <span class="co">#add a facet wrap and split them by &quot;media&quot;</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>           <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="faceting-plots-use-free-scales" class="section level4"
+number="1.5.5.1">
+<h4><span class="header-section-number">1.5.5.1</span> faceting plots:
+use free scales</h4>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># by default ggplot2 uses same scales for every plot; </span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="co"># now: do not use the same scale when using facet wrap</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> </span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>      <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>      <span class="fu">geom_line</span>()<span class="sc">+</span> </span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>      <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> </span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>media, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span> <span class="co">#scaling is performed individually and NOT globally</span></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a>           <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="faceting-plots-using-two-variables" class="section level4"
+number="1.5.5.2">
+<h4><span class="header-section-number">1.5.5.2</span> faceting plots:
+using two variables</h4>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>   <span class="co">#  facet wrap by strain and media</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> </span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>      <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>      <span class="fu">geom_line</span>()<span class="sc">+</span> </span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>      <span class="fu">scale_y_log10</span>()<span class="sc">+</span> </span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> </span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>strain<span class="sc">+</span>media, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span> <span class="co">#add strain to facet wrap</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>           <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
+<div id="adding-manual-breaks-to-axis" class="section level3"
+number="1.5.6">
+<h3><span class="header-section-number">1.5.6</span> adding manual
+breaks to axis</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>   <span class="co">#  adding costum breaks</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> </span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>      <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>      <span class="fu">geom_line</span>()<span class="sc">+</span> </span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>      <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">5</span>)))<span class="sc">+</span> <span class="co">#add costum breaks</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> </span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>strain<span class="sc">+</span>media, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a>           <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb24-13"><a href="#cb24-13" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="adding-transparancy-and-size-to-points-and-lines"
+class="section level3" number="1.5.7">
+<h3><span class="header-section-number">1.5.7</span> adding transparancy
+and size to points and lines</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>   <span class="co">#  adding transparent lines and increase size of points and lines</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD,<span class="at">color=</span>media_strain,<span class="at">shape=</span>replicates))<span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>,<span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span> <span class="co">#adding transprancy and size</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">size=</span><span class="fl">1.5</span>)<span class="sc">+</span> <span class="co">#adding transprancy and size</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>      <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">5</span>)))<span class="sc">+</span> </span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> </span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>strain<span class="sc">+</span>media, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a>           <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="aggregate-data-and-plot-aggregated-data-with-error-bars"
+class="section level3" number="1.5.8">
+<h3><span class="header-section-number">1.5.8</span> aggregate data and
+plot aggregated data with error bars</h3>
+<p>To summarize the data we will need <code>group_by()</code> and
+<code>summarise</code> function from <strong>dplyr</strong> package and
+<code>mean()</code> and <code>sd()</code> function from R base.</p>
+<p float="center">
+<img src="figures/dplyr_grouping.png" width="300" />
+<img src="figures/dplyr_summarize.png" width="300" />
+</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>   <span class="co">#if you want just a bioreplicate aggregates plot with mean and SD we first have to summarize our tibble by using the mean and SD over bioreplicates</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>growth_tibble_summary <span class="ot">&lt;-</span> growth_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,media,strain) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_OD=</span><span class="fu">mean</span>(OD,<span class="at">na.rm=</span>T),<span class="at">SD_OD=</span><span class="fu">sd</span>(OD,<span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>  <span class="fu">unite</span>(media,strain,<span class="at">col=</span><span class="st">&quot;media_strain&quot;</span>,<span class="at">sep =</span> <span class="st">&quot;_&quot;</span>,<span class="at">remove =</span> F)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;Zeit (h)&#39;, &#39;media&#39;. You can override using
+## the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>growth_tibble_summary</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Zeit (h)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["media_strain"],"name":[2],"type":["chr"],"align":["left"]},{"label":["media"],"name":[3],"type":["chr"],"align":["left"]},{"label":["strain"],"name":[4],"type":["chr"],"align":["left"]},{"label":["mean_OD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["SD_OD"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.0570","6":"0.001732"},{"1":"0.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.0530","6":"0.001732"},{"1":"0.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"0.0523","6":"0.000577"},{"1":"0.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"0.0543","6":"0.005508"},{"1":"1.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.1540","6":"0.001732"},{"1":"1.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.1387","6":"0.007506"},{"1":"1.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"0.2163","6":"0.018339"},{"1":"1.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"0.2523","6":"0.010017"},{"1":"1.3","2":"TSB_HG001","3":"TSB","4":"HG001","5":"0.4600","6":"0.040000"},{"1":"1.3","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"0.4933","6":"0.023094"},{"1":"2.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.3800","6":"0.000000"},{"1":"2.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.3400","6":"0.017321"},{"1":"2.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"1.1200","6":"0.104403"},{"1":"2.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"1.2133","6":"0.117189"},{"1":"2.3","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.4667","6":"0.011547"},{"1":"2.3","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.4367","6":"0.011547"},{"1":"3.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.6533","6":"0.005774"},{"1":"3.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.5800","6":"0.017321"},{"1":"3.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"3.1633","6":"0.455668"},{"1":"3.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"3.2967","6":"0.130512"},{"1":"4.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.6967","6":"0.028868"},{"1":"4.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.7167","6":"0.011547"},{"1":"4.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"6.7100","6":"0.944405"},{"1":"4.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"6.5133","6":"0.070238"},{"1":"5.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.7800","6":"0.017321"},{"1":"5.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.7933","6":"0.011547"},{"1":"5.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"8.5767","6":"0.244199"},{"1":"5.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"7.6167","6":"0.152753"},{"1":"6.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.8200","6":"0.017321"},{"1":"6.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.8567","6":"0.011547"},{"1":"6.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"9.5000","6":"0.427200"},{"1":"6.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"8.2367","6":"0.249065"},{"1":"7.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.9167","6":"0.005774"},{"1":"7.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.9367","6":"0.023094"},{"1":"7.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"10.3433","6":"0.682227"},{"1":"7.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"9.2000","6":"0.626498"},{"1":"8.0","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"0.9733","6":"0.005774"},{"1":"8.0","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"0.9900","6":"0.017321"},{"1":"8.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"11.3767","6":"0.801644"},{"1":"8.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"9.5167","6":"0.604842"},{"1":"8.5","2":"RPMI_HG001","3":"RPMI","4":"HG001","5":"1.0200","6":"0.017321"},{"1":"8.5","2":"RPMI_rho_mutant","3":"RPMI","4":"rho_mutant","5":"1.0200","6":"0.034641"},{"1":"9.0","2":"TSB_HG001","3":"TSB","4":"HG001","5":"12.0667","6":"0.407226"},{"1":"9.0","2":"TSB_rho_mutant","3":"TSB","4":"rho_mutant","5":"10.1000","6":"0.804674"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble_summary,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> mean_OD,<span class="at">color=</span>media_strain))<span class="sc">+</span> </span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>      <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span> </span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>      <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_OD<span class="sc">-</span>SD_OD, <span class="at">ymax =</span> mean_OD<span class="sc">+</span>SD_OD))<span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>      <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">5</span>)))<span class="sc">+</span> <span class="co">#add costum breaks</span></span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> </span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>media, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" tabindex="-1"></a>           <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb30-12"><a href="#cb30-12" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb30-13"><a href="#cb30-13" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="generate-and-save-a-plot" class="section level3"
+number="1.5.9">
+<h3><span class="header-section-number">1.5.9</span> generate and save a
+plot</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co">#for saving a plot assing the plot to a variable and save it using ggsave()</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>final_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> growth_tibble_summary,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> mean_OD,<span class="at">color=</span>media_strain))<span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>      <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span> </span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>      <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_OD<span class="sc">-</span>SD_OD, <span class="at">ymax =</span> mean_OD<span class="sc">+</span>SD_OD))<span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>      <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="dv">5</span>)))<span class="sc">+</span> <span class="co">#add costum breaks</span></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors)<span class="sc">+</span> </span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>media, <span class="at">scales=</span><span class="st">&quot;free&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)<span class="sc">+</span> </span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;growth curves&quot;</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">&quot;comparison of HG001 vs. rho-mutant&quot;</span>,</span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>           <span class="at">caption =</span> <span class="st">&quot;photmeter: SpecMANIAC&quot;</span>,</span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">expression</span>(OD[<span class="st">&quot;540nm&quot;</span>]<span class="sc">~</span><span class="st">&quot;measurement&quot;</span>),</span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">&quot;time (h)&quot;</span>) </span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="co">#ggsave(filename = &quot;my_plot.pdf&quot;,plot = final_plot,device = &quot;pdf&quot;,width = 12,height = 5)</span></span></code></pre></div>
+</div>
+<div id="generate-interactive-plot" class="section level3"
+number="1.5.10">
+<h3><span class="header-section-number">1.5.10</span> generate
+interactive plot</h3>
+<p>You can just simply use the <code>ggplotly()</code> function from the
+<strong>plolty</strong> package to make a ggplot graph interactive.
+There are some limitations in the plotly plot so it might be that not
+all option that you set from ggplot were not plotted in plolty plot. You
+can also manipulate the hover box of the plot and add additional
+content, which might be benificial for gen or protein wise plots over
+experiments.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co">#make plot interactive very easily with plotly</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(plotly))</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="fu">ggplotly</span>(final_plot)</span></code></pre></div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-4e4c81bd36aa3d2a04d4" style="width:672px;height:336px;"></div>
+<script type="application/json" data-for="htmlwidget-4e4c81bd36aa3d2a04d4">{"x":{"data":[{"x":[0,1,2,2.2999999999999998,3,4,5,6,7,8,8.5],"y":[-1.2441251443275085,-0.8124792791635369,-0.42021640338318983,-0.33099321904142442,-0.18486518336318639,-0.15697496860860843,-0.10790539730951958,-0.086186147616283279,-0.037788560889399754,-0.011738403271244173,0.0086001717619175692],"text":["Zeit (h): 0.0<br />mean_OD:  0.0570<br />media_strain: RPMI_HG001","Zeit (h): 1.0<br />mean_OD:  0.1540<br />media_strain: RPMI_HG001","Zeit (h): 2.0<br />mean_OD:  0.3800<br />media_strain: RPMI_HG001","Zeit (h): 2.3<br />mean_OD:  0.4667<br />media_strain: RPMI_HG001","Zeit (h): 3.0<br />mean_OD:  0.6533<br />media_strain: RPMI_HG001","Zeit (h): 4.0<br />mean_OD:  0.6967<br />media_strain: RPMI_HG001","Zeit (h): 5.0<br />mean_OD:  0.7800<br />media_strain: RPMI_HG001","Zeit (h): 6.0<br />mean_OD:  0.8200<br />media_strain: RPMI_HG001","Zeit (h): 7.0<br />mean_OD:  0.9167<br />media_strain: RPMI_HG001","Zeit (h): 8.0<br />mean_OD:  0.9733<br />media_strain: RPMI_HG001","Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_HG001"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(79,148,205,1)","dash":"solid"},"hoveron":"points","name":"RPMI_HG001","legendgroup":"RPMI_HG001","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(79,148,205,1)","opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(79,148,205,1)"}},"frame":null},{"x":[0,1,2,2.2999999999999998,3,4,5,6,7,8,8.5],"y":[-1.2757241303992111,-0.85802792409291972,-0.46852108295774492,-0.35984995906389822,-0.23657200643706275,-0.1446827948040571,-0.10054429766315048,-0.067188131388367892,-0.028414934814582554,-0.0043648054024500883,0.0086001717619175692],"text":["Zeit (h): 0.0<br />mean_OD:  0.0530<br />media_strain: RPMI_rho_mutant","Zeit (h): 1.0<br />mean_OD:  0.1387<br />media_strain: RPMI_rho_mutant","Zeit (h): 2.0<br />mean_OD:  0.3400<br />media_strain: RPMI_rho_mutant","Zeit (h): 2.3<br />mean_OD:  0.4367<br />media_strain: RPMI_rho_mutant","Zeit (h): 3.0<br />mean_OD:  0.5800<br />media_strain: RPMI_rho_mutant","Zeit (h): 4.0<br />mean_OD:  0.7167<br />media_strain: RPMI_rho_mutant","Zeit (h): 5.0<br />mean_OD:  0.7933<br />media_strain: RPMI_rho_mutant","Zeit (h): 6.0<br />mean_OD:  0.8567<br />media_strain: RPMI_rho_mutant","Zeit (h): 7.0<br />mean_OD:  0.9367<br />media_strain: RPMI_rho_mutant","Zeit (h): 8.0<br />mean_OD:  0.9900<br />media_strain: RPMI_rho_mutant","Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_rho_mutant"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(205,55,0,1)","dash":"solid"},"hoveron":"points","name":"RPMI_rho_mutant","legendgroup":"RPMI_rho_mutant","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(205,55,0,1)","opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(205,55,0,1)"}},"frame":null},{"x":[0,1,1.3,2,3,4,5,6,7,8,9],"y":[-1.2812216023104288,-0.66487655791929323,-0.33724216831842591,0.04921802267018157,0.50014495770763023,0.82672252016899206,0.93331853149068411,0.97772360528884772,1.0146605208645032,1.0560150335589764,1.0815873158135032],"text":["Zeit (h): 0.0<br />mean_OD:  0.0523<br />media_strain: TSB_HG001","Zeit (h): 1.0<br />mean_OD:  0.2163<br />media_strain: TSB_HG001","Zeit (h): 1.3<br />mean_OD:  0.4600<br />media_strain: TSB_HG001","Zeit (h): 2.0<br />mean_OD:  1.1200<br />media_strain: TSB_HG001","Zeit (h): 3.0<br />mean_OD:  3.1633<br />media_strain: TSB_HG001","Zeit (h): 4.0<br />mean_OD:  6.7100<br />media_strain: TSB_HG001","Zeit (h): 5.0<br />mean_OD:  8.5767<br />media_strain: TSB_HG001","Zeit (h): 6.0<br />mean_OD:  9.5000<br />media_strain: TSB_HG001","Zeit (h): 7.0<br />mean_OD: 10.3433<br />media_strain: TSB_HG001","Zeit (h): 8.0<br />mean_OD: 11.3767<br />media_strain: TSB_HG001","Zeit (h): 9.0<br />mean_OD: 12.0667<br />media_strain: TSB_HG001"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(99,184,255,1)","dash":"solid"},"hoveron":"points","name":"TSB_HG001","legendgroup":"TSB_HG001","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(99,184,255,1)","opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(99,184,255,1)"}},"frame":null},{"x":[0,1,1.3,2,3,4,5,6,7,8,9],"y":[-1.2649336503157047,-0.59802537521958965,-0.30685953932470506,0.083980128929393563,0.51807503687751688,0.81380330466309181,0.88176494968620667,0.9157514906824169,0.96378782734555524,0.9784848578622044,1.0043213737826426],"text":["Zeit (h): 0.0<br />mean_OD:  0.0543<br />media_strain: TSB_rho_mutant","Zeit (h): 1.0<br />mean_OD:  0.2523<br />media_strain: TSB_rho_mutant","Zeit (h): 1.3<br />mean_OD:  0.4933<br />media_strain: TSB_rho_mutant","Zeit (h): 2.0<br />mean_OD:  1.2133<br />media_strain: TSB_rho_mutant","Zeit (h): 3.0<br />mean_OD:  3.2967<br />media_strain: TSB_rho_mutant","Zeit (h): 4.0<br />mean_OD:  6.5133<br />media_strain: TSB_rho_mutant","Zeit (h): 5.0<br />mean_OD:  7.6167<br />media_strain: TSB_rho_mutant","Zeit (h): 6.0<br />mean_OD:  8.2367<br />media_strain: TSB_rho_mutant","Zeit (h): 7.0<br />mean_OD:  9.2000<br />media_strain: TSB_rho_mutant","Zeit (h): 8.0<br />mean_OD:  9.5167<br />media_strain: TSB_rho_mutant","Zeit (h): 9.0<br />mean_OD: 10.1000<br />media_strain: TSB_rho_mutant"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(255,69,0,1)","dash":"solid"},"hoveron":"points","name":"TSB_rho_mutant","legendgroup":"TSB_rho_mutant","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(255,69,0,1)","opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,69,0,1)"}},"frame":null},{"x":[0,3,1,7,4,2,2.2999999999999998,6,8,8.5,5],"y":[-1.2441251443275085,-0.18486518336318639,-0.8124792791635369,-0.037788560889399754,-0.15697496860860843,-0.42021640338318983,-0.33099321904142442,-0.086186147616283279,-0.011738403271244173,0.0086001717619175692,-0.10790539730951958],"text":["Zeit (h): 0.0<br />mean_OD:  0.0570<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -1.25753<br />mean_OD + SD_OD: -1.23112","Zeit (h): 3.0<br />mean_OD:  0.6533<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.18872<br />mean_OD + SD_OD: -0.18104","Zeit (h): 1.0<br />mean_OD:  0.1540<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.81739<br />mean_OD + SD_OD: -0.80762","Zeit (h): 7.0<br />mean_OD:  0.9167<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.04053<br />mean_OD + SD_OD: -0.03506","Zeit (h): 4.0<br />mean_OD:  0.6967<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.17535<br />mean_OD + SD_OD: -0.13934","Zeit (h): 2.0<br />mean_OD:  0.3800<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.42022<br />mean_OD + SD_OD: -0.42022","Zeit (h): 2.3<br />mean_OD:  0.4667<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.34187<br />mean_OD + SD_OD: -0.32038","Zeit (h): 6.0<br />mean_OD:  0.8200<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.09546<br />mean_OD + SD_OD: -0.07711","Zeit (h): 8.0<br />mean_OD:  0.9733<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.01432<br />mean_OD + SD_OD: -0.00917","Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD:  0.00116<br />mean_OD + SD_OD:  0.01591","Zeit (h): 5.0<br />mean_OD:  0.7800<br />media_strain: RPMI_HG001<br />mean_OD - SD_OD: -0.11766<br />mean_OD + SD_OD: -0.09837"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.013000310143400862,0.0038209993769585393,0.0048572819461888406,0.0027267677420825115,0.017632845603607866,0,0.010615207406690697,0.0090778759140708876,0.0025684860496015954,0.0073127923247698397,0.0095383321410699301],"arrayminus":[0.013401505998170693,0.0038549158263818661,0.004912222318005588,0.0027439962946604821,0.018379167373368838,0,0.01088118341698624,0.0092716852807249867,0.002583766899281633,0.0074380394725458415,0.009752534109359598],"type":"data","width":4.7019798901212795,"symmetric":false,"color":"rgba(79,148,205,1)"},"name":"RPMI_HG001","legendgroup":"RPMI_HG001","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,2.2999999999999998,1,4,3,2,5,8,6,7,8.5],"y":[-1.2757241303992111,-0.35984995906389822,-0.85802792409291972,-0.1446827948040571,-0.23657200643706275,-0.46852108295774492,-0.10054429766315048,-0.0043648054024500883,-0.067188131388367892,-0.028414934814582554,0.0086001717619175692],"text":["Zeit (h): 0.0<br />mean_OD:  0.0530<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -1.29015<br />mean_OD + SD_OD: -1.26176","Zeit (h): 2.3<br />mean_OD:  0.4367<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.37149<br />mean_OD + SD_OD: -0.34851","Zeit (h): 1.0<br />mean_OD:  0.1387<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.88219<br />mean_OD + SD_OD: -0.83514","Zeit (h): 4.0<br />mean_OD:  0.7167<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.15174<br />mean_OD + SD_OD: -0.13774","Zeit (h): 3.0<br />mean_OD:  0.5800<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.24974<br />mean_OD + SD_OD: -0.22379","Zeit (h): 2.0<br />mean_OD:  0.3400<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.49123<br />mean_OD + SD_OD: -0.44694","Zeit (h): 5.0<br />mean_OD:  0.7933<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.10691<br />mean_OD + SD_OD: -0.09427","Zeit (h): 8.0<br />mean_OD:  0.9900<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.01203<br />mean_OD + SD_OD:  0.00317","Zeit (h): 6.0<br />mean_OD:  0.8567<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.07308<br />mean_OD + SD_OD: -0.06137","Zeit (h): 7.0<br />mean_OD:  0.9367<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.03926<br />mean_OD + SD_OD: -0.01784","Zeit (h): 8.5<br />mean_OD:  1.0200<br />media_strain: RPMI_rho_mutant<br />mean_OD - SD_OD: -0.00641<br />mean_OD + SD_OD:  0.02310"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.013965851841990284,0.011335058932529618,0.022892767474557929,0.0069416232612664885,0.012779432269365121,0.021579025800290641,0.0062756164189592678,0.0075324812608284185,0.0058147519250492732,0.010577887200776227,0.014504485752987612],"arrayminus":[0.014429924351227141,0.011638849896991377,0.024166982027459594,0.0070543806513466423,0.013166906925762223,0.022707552590101876,0.0063676312111894673,0.0076654353356164044,0.0058936631464834438,0.010841972937169767,0.015005691211851318],"type":"data","width":4.7019798901212795,"symmetric":false,"color":"rgba(205,55,0,1)"},"name":"RPMI_rho_mutant","legendgroup":"RPMI_rho_mutant","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3,4,1.3,5,1,2,6,7,8,0,9],"y":[0.50014495770763023,0.82672252016899206,-0.33724216831842591,0.93331853149068411,-0.66487655791929323,0.04921802267018157,0.97772360528884772,1.0146605208645032,1.0560150335589764,-1.2812216023104288,1.0815873158135032],"text":["Zeit (h): 3.0<br />mean_OD:  3.1633<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  0.43259<br />mean_OD + SD_OD:  0.55859","Zeit (h): 4.0<br />mean_OD:  6.7100<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  0.76084<br />mean_OD + SD_OD:  0.88391","Zeit (h): 1.3<br />mean_OD:  0.4600<br />media_strain: TSB_HG001<br />mean_OD - SD_OD: -0.37675<br />mean_OD + SD_OD: -0.30103","Zeit (h): 5.0<br />mean_OD:  8.5767<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  0.92077<br />mean_OD + SD_OD:  0.94551","Zeit (h): 1.0<br />mean_OD:  0.2163<br />media_strain: TSB_HG001<br />mean_OD - SD_OD: -0.70335<br />mean_OD + SD_OD: -0.62954","Zeit (h): 2.0<br />mean_OD:  1.1200<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  0.00672<br />mean_OD + SD_OD:  0.08792","Zeit (h): 6.0<br />mean_OD:  9.5000<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  0.95774<br />mean_OD + SD_OD:  0.99683","Zeit (h): 7.0<br />mean_OD: 10.3433<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  0.98503<br />mean_OD + SD_OD:  1.04240","Zeit (h): 8.0<br />mean_OD: 11.3767<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  1.02428<br />mean_OD + SD_OD:  1.08559","Zeit (h): 0.0<br />mean_OD:  0.0523<br />media_strain: TSB_HG001<br />mean_OD - SD_OD: -1.28604<br />mean_OD + SD_OD: -1.27646","Zeit (h): 9.0<br />mean_OD: 12.0667<br />media_strain: TSB_HG001<br />mean_OD - SD_OD:  1.06668<br />mean_OD + SD_OD:  1.09600"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.058443786342026183,0.057188893004564534,0.036212172654444708,0.012192695068866999,0.035339176626743463,0.038706385440364428,0.019103174457930194,0.027740139253174423,0.029572020209464256,0.0047649749346356796,0.014414700575687833],"arrayminus":[0.067549974303394489,0.065878355679059974,0.039508541283673593,0.012544913786556533,0.038471543198607461,0.042496641174772865,0.019982276819157985,0.029633647334223689,0.031733732544119597,0.0048178356080230689,0.014909613668452559],"type":"data","width":4.4483671668137621,"symmetric":false,"color":"rgba(99,184,255,1)"},"name":"TSB_HG001","legendgroup":"TSB_HG001","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1.3,2,6,3,0,7,4,1,8,5,9],"y":[-0.30685953932470506,0.083980128929393563,0.9157514906824169,0.51807503687751688,-1.2649336503157047,0.96378782734555524,0.81380330466309181,-0.59802537521958965,0.9784848578622044,0.88176494968620667,1.0043213737826426],"text":["Zeit (h): 1.3<br />mean_OD:  0.4933<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD: -0.32768<br />mean_OD + SD_OD: -0.28699","Zeit (h): 2.0<br />mean_OD:  1.2133<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.03987<br />mean_OD + SD_OD:  0.12402","Zeit (h): 6.0<br />mean_OD:  8.2367<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.90242<br />mean_OD + SD_OD:  0.92869","Zeit (h): 3.0<br />mean_OD:  3.2967<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.50053<br />mean_OD + SD_OD:  0.53494","Zeit (h): 0.0<br />mean_OD:  0.0543<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD: -1.31135<br />mean_OD + SD_OD: -1.22300","Zeit (h): 7.0<br />mean_OD:  9.2000<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.93316<br />mean_OD + SD_OD:  0.99240","Zeit (h): 4.0<br />mean_OD:  6.5133<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.80909<br />mean_OD + SD_OD:  0.81846","Zeit (h): 1.0<br />mean_OD:  0.2523<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD: -0.61562<br />mean_OD + SD_OD: -0.58112","Zeit (h): 8.0<br />mean_OD:  9.5167<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.94997<br />mean_OD + SD_OD:  1.00525","Zeit (h): 5.0<br />mean_OD:  7.6167<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.87297<br />mean_OD + SD_OD:  0.89039","Zeit (h): 9.0<br />mean_OD: 10.1000<br />media_strain: TSB_rho_mutant<br />mean_OD - SD_OD:  0.96826<br />mean_OD + SD_OD:  1.03761"],"type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.019868768809372939,0.040042139552027081,0.012937799630456048,0.016861685211321475,0.041931795121986415,0.028610951779159732,0.0046582205276743949,0.016906420800504529,0.026760375305533768,0.0086236042396576895,0.033291306808025611],"arrayminus":[0.020821517597849115,0.044112506929234706,0.013335087291575842,0.017542884896036948,0.046417312856333881,0.030629584194715065,0.0047087265789639288,0.017591313763599237,0.028518203749062221,0.0087983145557479769,0.036056740946866728],"type":"data","width":4.448367166813771,"symmetric":false,"color":"rgba(255,69,0,1)"},"name":"TSB_rho_mutant","legendgroup":"TSB_rho_mutant","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":63.820672478206738,"r":7.9701120797011216,"b":48.617683686176846,"l":53.399750933997524},"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"title":{"text":"growth curves","font":{"color":"rgba(0,0,0,1)","family":"","size":19.128268991282692},"x":0,"xref":"paper"},"xaxis":{"domain":[0,0.45018679950186796],"automargin":true,"type":"linear","autorange":false,"range":[-0.5734999999999999,9.0734999999999992],"tickmode":"array","ticktext":["0.0","2.5","5.0","7.5"],"tickvals":[0,2.5,5,7.4999999999999991],"categoryorder":"array","categoryarray":["0.0","2.5","5.0","7.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919289,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"annotations":[{"text":"time (h)","x":0.5,"y":0,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis","yshift":-23.910336239103373},{"text":{},"x":0,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis","xshift":-36.662515566625167},{"text":"RPMI","x":0.22509339975093398,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":12.7521793275218},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"TSB","x":0.77490660024906599,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":12.7521793275218},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.3558169903637054,0.088767593128172367],"tickmode":"array","ticktext":["0.05","0.10","0.25","0.50","1.00"],"tickvals":[-1.3010299956639813,-1,-0.6020599913279624,-0.30102999566398125,0],"categoryorder":"array","categoryarray":["0.05","0.10","0.25","0.50","1.00"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919289,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.45018679950186796,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.45018679950186796,"y0":0,"y1":25.5043586550436,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.54981320049813198,"x1":1,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.54981320049813198,"x1":1,"y0":0,"y1":25.5043586550436,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[-0.59849999999999992,9.5984999999999996],"tickmode":"array","ticktext":["0.0","2.5","5.0","7.5"],"tickvals":[0,2.5,5,7.5],"categoryorder":"array","categoryarray":["0.0","2.5","5.0","7.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.54981320049813198,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919289,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-1.4317186121501,1.2163696653672524],"tickmode":"array","ticktext":["0.05","0.10","0.25","0.50","1.00","2.00","7.00"],"tickvals":[-1.3010299956639813,-1,-0.6020599913279624,-0.30102999566398125,0,0.30102999566398125,0.84509804001425692],"categoryorder":"array","categoryarray":["0.05","0.10","0.25","0.50","1.00","2.00","7.00"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919289,"zeroline":false,"anchor":"x2","title":"","hoverformat":".2f"},"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":12.7521793275218},"title":{"text":"media_strain","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"11a1d6d5ebfdd":{"x":{},"y":{},"colour":{},"type":"scatter"},"11a1d67867e43":{"x":{},"y":{},"colour":{}},"11a1d2ecb95ce":{"x":{},"y":{},"colour":{},"ymin":{},"ymax":{}}},"cur_data":"11a1d6d5ebfdd","visdat":{"11a1d6d5ebfdd":["function (y) ","x"],"11a1d67867e43":["function (y) ","x"],"11a1d2ecb95ce":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="add-text-annotation-to-plot" class="section level3"
+number="1.5.11">
+<h3><span class="header-section-number">1.5.11</span> add text
+annotation to plot</h3>
+<p>Our growth curve plot is already nice and ready for publication, but
+one important thing is missing, which is mostly added by hand. The
+sampling time points. This manuall addition is not very convenient and
+the information for the real final plot in the manuscript is scatter
+around in R and e.g. Powerpoint.</p>
+<p>In ggplot2 we can easily add annotations to the plot using
+<code>geom_text()</code> or <code>geom_label()</code> function.
+(<code>geom_text</code> adds text directly to the plot.
+<code>geom_label</code> draws a rectangle behind the text, making it
+easier to read)</p>
+<p>But first we need to define the position of the text label.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co">#we need to define the position of the text label</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="co">#therefore we will compute the max (label above data points) OD per time point and per media since comparing the growth of strains by eye shows no differences in growth.</span></span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>final_plot_label_data <span class="ot">&lt;-</span> growth_tibble_summary <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(media,<span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">OD_label=</span><span class="fu">max</span>(mean_OD)<span class="sc">+</span><span class="fu">max</span>(SD_OD))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;media&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co">#we have different time of the sampling per media lets generate a tibble with the data time points</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>sampling_times<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span><span class="ot">=</span><span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>),</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>                                    <span class="fu">c</span>(<span class="fl">1.3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>                                   ),</span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>                        <span class="at">sampling_time_point=</span><span class="fu">c</span>(<span class="fu">c</span>(<span class="st">&quot;exp.&quot;</span>,<span class="st">&quot;trans.&quot;</span>,<span class="st">&quot;early stat.&quot;</span>,<span class="st">&quot;late stat.&quot;</span>),</span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>                                              <span class="fu">c</span>(<span class="st">&quot;exp.&quot;</span>,<span class="st">&quot;trans.&quot;</span>,<span class="st">&quot;early stat.&quot;</span>,<span class="st">&quot;late stat.&quot;</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>                                             ),</span>
+<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a>                        <span class="at">media=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;RPMI&quot;</span>,<span class="dv">4</span>),</span>
+<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;TSB&quot;</span>,<span class="dv">4</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a>                               )</span>
+<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a>                      )</span>
+<span id="cb35-12"><a href="#cb35-12" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" tabindex="-1"></a>sampling_times</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Zeit (h)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sampling_time_point"],"name":[2],"type":["chr"],"align":["left"]},{"label":["media"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"2.0","2":"exp.","3":"RPMI"},{"1":"3.0","2":"trans.","3":"RPMI"},{"1":"4.0","2":"early stat.","3":"RPMI"},{"1":"8.0","2":"late stat.","3":"RPMI"},{"1":"1.3","2":"exp.","3":"TSB"},{"1":"3.0","2":"trans.","3":"TSB"},{"1":"4.0","2":"early stat.","3":"TSB"},{"1":"8.0","2":"late stat.","3":"TSB"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>We use left_join() function from <strong>dplyr</strong> package to
+combine tables.</p>
+<p><em>Mutating joins combine variables from the two
+data.frames:</em></p>
+<ul>
+<li><strong>inner_join()</strong>
+<ul>
+<li>return all rows from x where there are matching values in y, and all
+columns from x and y. If there are multiple matches between x and y, all
+combination of the matches are returned.</li>
+</ul></li>
+<li><strong>left_join()</strong>
+<ul>
+<li>return all rows from x, and all columns from x and y. Rows in x with
+no match in y will have NA values in the new columns. If there are
+multiple matches between x and y, all combinations of the matches are
+returned.</li>
+</ul></li>
+<li><strong>right_join()</strong>
+<ul>
+<li>return all rows from y, and all columns from x and y. Rows in y with
+no match in x will have NA values in the new columns. If there are
+multiple matches between x and y, all combinations of the matches are
+returned.</li>
+</ul></li>
+<li><strong>full_join()</strong>
+<ul>
+<li>return all rows and all columns from both x and y. Where there are
+not matching values, returns NA for the one missing.</li>
+</ul></li>
+</ul>
+<p><em>Filtering joins keep cases from the left-hand
+data.frame:</em></p>
+<ul>
+<li><strong>semi_join()</strong>
+<ul>
+<li>return all rows from x where there are matching values in y, keeping
+just columns from x.</li>
+<li>A semi join differs from an inner join because an inner join will
+return one row of x for each matching row of y, where a semi join will
+never duplicate rows of x.</li>
+</ul></li>
+<li><strong>anti_join()</strong>
+<ul>
+<li>return all rows from x where there are not matching values in y,
+keeping just columns from x.</li>
+</ul></li>
+</ul>
+<p float="center">
+<img src="figures/dplyr_join1.png" width="300" />
+<img src="figures/dplyr_join2.png" width="300" />
+</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co">#now we will combine final_plot_label_data and sampling_times by media and `Zeit (h)` using dplyr::left_join()</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>final_plot_label_data<span class="ot">&lt;-</span><span class="fu">left_join</span>(<span class="at">x =</span> final_plot_label_data,<span class="at">y =</span> sampling_times,<span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Zeit (h)&quot;</span>,<span class="st">&quot;media&quot;</span>))</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>final_plot_label_data</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["media"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Zeit (h)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["OD_label"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sampling_time_point"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"RPMI","2":"0.0","3":"0.0587","4":"NA"},{"1":"RPMI","2":"1.0","3":"0.1615","4":"NA"},{"1":"RPMI","2":"2.0","3":"0.3973","4":"exp."},{"1":"RPMI","2":"2.3","3":"0.4782","4":"NA"},{"1":"RPMI","2":"3.0","3":"0.6707","4":"trans."},{"1":"RPMI","2":"4.0","3":"0.7455","4":"early stat."},{"1":"RPMI","2":"5.0","3":"0.8107","4":"NA"},{"1":"RPMI","2":"6.0","3":"0.8740","4":"NA"},{"1":"RPMI","2":"7.0","3":"0.9598","4":"NA"},{"1":"RPMI","2":"8.0","3":"1.0073","4":"late stat."},{"1":"RPMI","2":"8.5","3":"1.0546","4":"NA"},{"1":"TSB","2":"0.0","3":"0.0598","4":"NA"},{"1":"TSB","2":"1.0","3":"0.2707","4":"NA"},{"1":"TSB","2":"1.3","3":"0.5333","4":"exp."},{"1":"TSB","2":"2.0","3":"1.3305","4":"NA"},{"1":"TSB","2":"3.0","3":"3.7523","4":"trans."},{"1":"TSB","2":"4.0","3":"7.6544","4":"early stat."},{"1":"TSB","2":"5.0","3":"8.8209","4":"NA"},{"1":"TSB","2":"6.0","3":"9.9272","4":"NA"},{"1":"TSB","2":"7.0","3":"11.0256","4":"NA"},{"1":"TSB","2":"8.0","3":"12.1783","4":"late stat."},{"1":"TSB","2":"9.0","3":"12.8713","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co">#now we can add out labels to the plot</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>  <span class="co"># the plot is already ready (assigned to final_plot) and you can review the plot using &quot;final_plot&quot;</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>final_plot</span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a> <span class="co">#small hint: since ggplot2 version 3.0 its possible to assign tags to plots</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>final_plot<span class="sc">+</span><span class="fu">labs</span>(<span class="at">tag =</span> <span class="st">&quot;a)&quot;</span>)</span></code></pre></div>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>final_plot<span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> final_plot_label_data,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD_label,<span class="at">label=</span>sampling_time_point),<span class="at">nudge_y=</span><span class="fl">0.05</span>,<span class="at">inherit.aes =</span> F) <span class="co">#adding text label</span></span></code></pre></div>
+<pre><code>## Warning: Removed 14 rows containing missing values or values outside the scale
+## range (`geom_text()`).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-24-1.png" width="960" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co">#nudge_y .... vertical adjustment to nudge labels</span></span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a>  <span class="co">#inherit.aes .... If FALSE, overrides the default aesthetics, rather than combining with them. This is most useful for helper functions that define both </span></span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>                    <span class="co">#data and aesthetics and shouldn&#39;t inherit behaviour from the default plot specification, e.g. borders().</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>final_plot<span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> final_plot_label_data,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD_label,<span class="at">label=</span>sampling_time_point),<span class="at">nudge_y=</span><span class="fl">0.05</span>,<span class="at">inherit.aes =</span> F,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="co">#adding label</span></span></code></pre></div>
+<pre><code>## Warning: Removed 14 rows containing missing values or values outside the scale
+## range (`geom_label()`).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-25-1.png" width="960" /></p>
+</div>
+</div>
+<div id="test-growth-data---statistical-significant-differences"
+class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Test growth data -
+statistical significant differences</h2>
+<div id="statistical-testing" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> statistical
+testing</h3>
+<p>To test for statistical significant differences we use the
+<strong>ggpubr</strong> (publication ready plots) package (<a
+href="http://www.sthda.com/english/rpkgs/ggpubr/">ggpubr package</a>)
+which is extremly powerful and easy to use. (<a
+href="http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/">online
+examples - ggpubr</a>)</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(ggpubr)) <span class="co">#load ggpubr package</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="co">#use compare_means() function from ggpubr package</span></span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a><span class="co">#since ggpubr has problems with &quot; &quot; etc. in column name we rename the time column to &quot;time_in_h&quot;</span></span>
+<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a>growth_tibble_col_formatted <span class="ot">&lt;-</span> growth_tibble <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">time_in_h =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>) <span class="co">#rename() function --&gt; rename column header</span></span>
+<span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a><span class="co">#check result</span></span>
+<span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a>  growth_tibble_col_formatted</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["time_in_h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["replicates"],"name":[2],"type":["chr"],"align":["left"]},{"label":["OD"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["media_strain"],"name":[4],"type":["chr"],"align":["left"]},{"label":["media"],"name":[5],"type":["chr"],"align":["left"]},{"label":["strain"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"0.0","2":"BR1","3":"0.055","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"0.0","2":"BR2","3":"0.058","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"0.0","2":"BR3","3":"0.058","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"1.0","2":"BR1","3":"0.156","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"1.0","2":"BR2","3":"0.153","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"1.0","2":"BR3","3":"0.153","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.0","2":"BR1","3":"0.380","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.0","2":"BR2","3":"0.380","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.0","2":"BR3","3":"0.380","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.3","2":"BR1","3":"0.480","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.3","2":"BR2","3":"0.460","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"2.3","2":"BR3","3":"0.460","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"3.0","2":"BR1","3":"0.660","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"3.0","2":"BR2","3":"0.650","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"3.0","2":"BR3","3":"0.650","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"4.0","2":"BR1","3":"0.730","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"4.0","2":"BR2","3":"0.680","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"4.0","2":"BR3","3":"0.680","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"5.0","2":"BR1","3":"0.800","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"5.0","2":"BR2","3":"0.770","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"5.0","2":"BR3","3":"0.770","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"6.0","2":"BR1","3":"0.840","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"6.0","2":"BR2","3":"0.810","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"6.0","2":"BR3","3":"0.810","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"7.0","2":"BR1","3":"0.910","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"7.0","2":"BR2","3":"0.920","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"7.0","2":"BR3","3":"0.920","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.0","2":"BR1","3":"0.980","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.0","2":"BR2","3":"0.970","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.0","2":"BR3","3":"0.970","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.5","2":"BR1","3":"1.000","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.5","2":"BR2","3":"1.030","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"8.5","2":"BR3","3":"1.030","4":"RPMI_HG001","5":"RPMI","6":"HG001"},{"1":"0.0","2":"BR1","3":"0.051","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"0.0","2":"BR2","3":"0.054","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"0.0","2":"BR3","3":"0.054","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"1.0","2":"BR1","3":"0.130","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"1.0","2":"BR2","3":"0.143","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"1.0","2":"BR3","3":"0.143","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.0","2":"BR1","3":"0.320","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.0","2":"BR2","3":"0.350","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.0","2":"BR3","3":"0.350","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.3","2":"BR1","3":"0.450","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.3","2":"BR2","3":"0.430","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"2.3","2":"BR3","3":"0.430","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"3.0","2":"BR1","3":"0.560","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"3.0","2":"BR2","3":"0.590","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"3.0","2":"BR3","3":"0.590","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"4.0","2":"BR1","3":"0.730","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"4.0","2":"BR2","3":"0.710","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"4.0","2":"BR3","3":"0.710","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"5.0","2":"BR1","3":"0.780","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"5.0","2":"BR2","3":"0.800","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"5.0","2":"BR3","3":"0.800","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"6.0","2":"BR1","3":"0.870","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"6.0","2":"BR2","3":"0.850","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"6.0","2":"BR3","3":"0.850","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"7.0","2":"BR1","3":"0.910","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"7.0","2":"BR2","3":"0.950","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"7.0","2":"BR3","3":"0.950","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.0","2":"BR1","3":"0.970","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.0","2":"BR2","3":"1.000","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.0","2":"BR3","3":"1.000","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.5","2":"BR1","3":"0.980","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.5","2":"BR2","3":"1.040","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"8.5","2":"BR3","3":"1.040","4":"RPMI_rho_mutant","5":"RPMI","6":"rho_mutant"},{"1":"0.0","2":"BR1","3":"0.052","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"0.0","2":"BR2","3":"0.053","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"0.0","2":"BR3","3":"0.052","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.0","2":"BR1","3":"0.210","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.0","2":"BR2","3":"0.237","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.0","2":"BR3","3":"0.202","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.3","2":"BR1","3":"0.420","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.3","2":"BR2","3":"0.460","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"1.3","2":"BR3","3":"0.500","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"2.0","2":"BR1","3":"1.170","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"2.0","2":"BR2","3":"1.190","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"2.0","2":"BR3","3":"1.000","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"3.0","2":"BR1","3":"3.320","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"3.0","2":"BR2","3":"3.520","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"3.0","2":"BR3","3":"2.650","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"4.0","2":"BR1","3":"7.490","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"4.0","2":"BR2","3":"6.980","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"4.0","2":"BR3","3":"5.660","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"5.0","2":"BR1","3":"8.850","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"5.0","2":"BR2","3":"8.500","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"5.0","2":"BR3","3":"8.380","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"6.0","2":"BR1","3":"9.450","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"6.0","2":"BR2","3":"9.950","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"6.0","2":"BR3","3":"9.100","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"7.0","2":"BR1","3":"10.600","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"7.0","2":"BR2","3":"10.860","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"7.0","2":"BR3","3":"9.570","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"8.0","2":"BR1","3":"11.100","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"8.0","2":"BR2","3":"12.280","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"8.0","2":"BR3","3":"10.750","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"9.0","2":"BR1","3":"12.250","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"9.0","2":"BR2","3":"12.350","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"9.0","2":"BR3","3":"11.600","4":"TSB_HG001","5":"TSB","6":"HG001"},{"1":"0.0","2":"BR1","3":"0.057","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"0.0","2":"BR2","3":"0.058","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"0.0","2":"BR3","3":"0.048","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.0","2":"BR1","3":"0.256","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.0","2":"BR2","3":"0.260","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.0","2":"BR3","3":"0.241","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.3","2":"BR1","3":"0.480","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.3","2":"BR2","3":"0.480","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"1.3","2":"BR3","3":"0.520","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"2.0","2":"BR1","3":"1.260","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"2.0","2":"BR2","3":"1.300","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"2.0","2":"BR3","3":"1.080","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"3.0","2":"BR1","3":"3.400","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"3.0","2":"BR2","3":"3.340","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"3.0","2":"BR3","3":"3.150","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"4.0","2":"BR1","3":"6.520","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"4.0","2":"BR2","3":"6.580","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"4.0","2":"BR3","3":"6.440","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"5.0","2":"BR1","3":"7.750","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"5.0","2":"BR2","3":"7.650","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"5.0","2":"BR3","3":"7.450","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"6.0","2":"BR1","3":"8.400","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"6.0","2":"BR2","3":"8.360","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"6.0","2":"BR3","3":"7.950","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"7.0","2":"BR1","3":"9.850","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"7.0","2":"BR2","3":"9.150","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"7.0","2":"BR3","3":"8.600","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"8.0","2":"BR1","3":"10.200","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"8.0","2":"BR2","3":"9.300","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"8.0","2":"BR3","3":"9.050","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"9.0","2":"BR1","3":"11.000","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"9.0","2":"BR2","3":"9.850","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"},{"1":"9.0","2":"BR3","3":"9.450","4":"TSB_rho_mutant","5":"TSB","6":"rho_mutant"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co">#now compare means with a t-test</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>growth_tibble_stats <span class="ot">&lt;-</span> <span class="fu">compare_means</span>(<span class="at">data =</span> growth_tibble_col_formatted,<span class="at">formula =</span> OD <span class="sc">~</span> media_strain,<span class="at">method =</span> <span class="st">&quot;t.test&quot;</span>,<span class="at">p.adjust.method =</span> <span class="st">&quot;BH&quot;</span>,<span class="at">group.by =</span> <span class="st">&quot;time_in_h&quot;</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>        <span class="co">#formula ....   formula of the form x ~ group where x is a numeric variable giving the data values and group is a factor with one or multiple levels                         giving the corresponding groups. For example, formula = TP53 ~ cancer_group.</span></span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a><span class="co">#look at stats</span></span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>growth_tibble_stats</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["time_in_h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[2],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[3],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[4],"type":["chr"],"align":["left"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p.adj"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["p.format"],"name":[7],"type":["chr"],"align":["left"]},{"label":["p.signif"],"name":[8],"type":["chr"],"align":["left"]},{"label":["method"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"0.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"4.74e-02","6":"0.06700","7":"0.04742","8":"*","9":"T-test"},{"1":"0.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"3.26e-02","6":"0.05100","7":"0.03257","8":"*","9":"T-test"},{"1":"0.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"4.95e-01","6":"0.55000","7":"0.49545","8":"ns","9":"T-test"},{"1":"0.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"5.81e-01","6":"0.64000","7":"0.58131","8":"ns","9":"T-test"},{"1":"0.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"7.22e-01","6":"0.75000","7":"0.72212","8":"ns","9":"T-test"},{"1":"0.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"5.94e-01","6":"0.64000","7":"0.59428","8":"ns","9":"T-test"},{"1":"1.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"6.47e-02","6":"0.08500","7":"0.06473","8":"ns","9":"T-test"},{"1":"1.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"2.68e-02","6":"0.04400","7":"0.02677","8":"*","9":"T-test"},{"1":"1.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"2.74e-03","6":"0.00720","7":"0.00274","8":"**","9":"T-test"},{"1":"1.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"9.56e-03","6":"0.01800","7":"0.00956","8":"**","9":"T-test"},{"1":"1.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"1.57e-04","6":"0.00180","7":"0.00016","8":"***","9":"T-test"},{"1":"1.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"5.61e-02","6":"0.07700","7":"0.05614","8":"ns","9":"T-test"},{"1":"2.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"5.72e-02","6":"0.07700","7":"0.05719","8":"ns","9":"T-test"},{"1":"2.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"6.57e-03","6":"0.01500","7":"0.00657","8":"**","9":"T-test"},{"1":"2.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"6.53e-03","6":"0.01500","7":"0.00653","8":"**","9":"T-test"},{"1":"2.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"4.94e-03","6":"0.01200","7":"0.00494","8":"**","9":"T-test"},{"1":"2.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"5.15e-03","6":"0.01200","7":"0.00515","8":"**","9":"T-test"},{"1":"2.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"3.62e-01","6":"0.41000","7":"0.36193","8":"ns","9":"T-test"},{"1":"2.3","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"3.35e-02","6":"0.05100","7":"0.03347","8":"*","9":"T-test"},{"1":"3.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"1.15e-02","6":"0.02000","7":"0.01154","8":"*","9":"T-test"},{"1":"3.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"1.08e-02","6":"0.02000","7":"0.01080","8":"*","9":"T-test"},{"1":"3.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"7.95e-04","6":"0.00360","7":"0.00079","8":"***","9":"T-test"},{"1":"3.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"1.01e-02","6":"0.01900","7":"0.01013","8":"*","9":"T-test"},{"1":"3.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"6.37e-04","6":"0.00360","7":"0.00064","8":"***","9":"T-test"},{"1":"3.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"6.68e-01","6":"0.70000","7":"0.66821","8":"ns","9":"T-test"},{"1":"4.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"3.57e-01","6":"0.41000","7":"0.35676","8":"ns","9":"T-test"},{"1":"4.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"8.08e-03","6":"0.01600","7":"0.00808","8":"**","9":"T-test"},{"1":"4.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"3.74e-06","6":"0.00022","7":"3.7e-06","8":"****","9":"T-test"},{"1":"4.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"8.17e-03","6":"0.01600","7":"0.00817","8":"**","9":"T-test"},{"1":"4.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"3.17e-05","6":"0.00092","7":"3.2e-05","8":"****","9":"T-test"},{"1":"4.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"7.53e-01","6":"0.77000","7":"0.75317","8":"ns","9":"T-test"},{"1":"5.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"3.38e-01","6":"0.40000","7":"0.33789","8":"ns","9":"T-test"},{"1":"5.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"3.07e-04","6":"0.00240","7":"0.00031","8":"***","9":"T-test"},{"1":"5.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"1.39e-04","6":"0.00180","7":"0.00014","8":"***","9":"T-test"},{"1":"5.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"3.19e-04","6":"0.00240","7":"0.00032","8":"***","9":"T-test"},{"1":"5.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"1.54e-04","6":"0.00180","7":"0.00015","8":"***","9":"T-test"},{"1":"5.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"7.53e-03","6":"0.01600","7":"0.00753","8":"**","9":"T-test"},{"1":"6.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"4.55e-02","6":"0.06600","7":"0.04554","8":"*","9":"T-test"},{"1":"6.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"7.92e-04","6":"0.00360","7":"0.00079","8":"***","9":"T-test"},{"1":"6.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"3.54e-04","6":"0.00240","7":"0.00035","8":"***","9":"T-test"},{"1":"6.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"8.07e-04","6":"0.00360","7":"0.00081","8":"***","9":"T-test"},{"1":"6.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"3.70e-04","6":"0.00240","7":"0.00037","8":"***","9":"T-test"},{"1":"6.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"1.85e-02","6":"0.03200","7":"0.01847","8":"*","9":"T-test"},{"1":"7.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"2.70e-01","6":"0.33000","7":"0.26965","8":"ns","9":"T-test"},{"1":"7.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"1.74e-03","6":"0.00540","7":"0.00174","8":"**","9":"T-test"},{"1":"7.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"1.90e-03","6":"0.00540","7":"0.00190","8":"**","9":"T-test"},{"1":"7.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"1.73e-03","6":"0.00540","7":"0.00173","8":"**","9":"T-test"},{"1":"7.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"1.89e-03","6":"0.00540","7":"0.00189","8":"**","9":"T-test"},{"1":"7.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"9.98e-02","6":"0.13000","7":"0.09981","8":"ns","9":"T-test"},{"1":"8.0","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"2.32e-01","6":"0.29000","7":"0.23215","8":"ns","9":"T-test"},{"1":"8.0","2":"OD","3":"RPMI_HG001","4":"TSB_HG001","5":"1.97e-03","6":"0.00540","7":"0.00197","8":"**","9":"T-test"},{"1":"8.0","2":"OD","3":"RPMI_HG001","4":"TSB_rho_mutant","5":"1.67e-03","6":"0.00540","7":"0.00167","8":"**","9":"T-test"},{"1":"8.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_HG001","5":"1.97e-03","6":"0.00540","7":"0.00197","8":"**","9":"T-test"},{"1":"8.0","2":"OD","3":"RPMI_rho_mutant","4":"TSB_rho_mutant","5":"1.66e-03","6":"0.00540","7":"0.00166","8":"**","9":"T-test"},{"1":"8.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"3.62e-02","6":"0.05400","7":"0.03620","8":"*","9":"T-test"},{"1":"8.5","2":"OD","3":"RPMI_HG001","4":"RPMI_rho_mutant","5":"1.00e+00","6":"1.00000","7":"1.00000","8":"ns","9":"T-test"},{"1":"1.3","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"2.95e-01","6":"0.36000","7":"0.29491","8":"ns","9":"T-test"},{"1":"9.0","2":"OD","3":"TSB_HG001","4":"TSB_rho_mutant","5":"3.32e-02","6":"0.05100","7":"0.03325","8":"*","9":"T-test"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The test was performed using <code>media_strain</code> as group
+variable for the test and the test was grouped by the
+<code>time_in_h</code> variable. This results also in comparisons, which
+are not necessary meaningful. Since the growth in different media is
+obviously different and testing for that is not very meaningful.
+Therefore we will split our data into <em>RPMI</em> and <em>TSB</em>
+data and test them seperately. We can now use the <code>filter()</code>
+function from the <strong>dplyr</strong> package to filter the
+compare_means result for only significant changed ones.</p>
+<p><img
+src="figures/dplyr_filter.png" />{width=“400px”,align=“center”}</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="co">#test growth in RPMI</span></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>growth_tibble_stats_RPMI <span class="ot">&lt;-</span> growth_tibble_col_formatted <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a>                            <span class="fu">filter</span>(media<span class="sc">==</span><span class="st">&quot;RPMI&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>                            <span class="fu">compare_means</span>(<span class="at">formula =</span> OD <span class="sc">~</span> strain,<span class="at">method =</span> <span class="st">&quot;t.test&quot;</span>,<span class="at">p.adjust.method =</span> <span class="st">&quot;BH&quot;</span>,<span class="at">group.by =</span> <span class="st">&quot;time_in_h&quot;</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>growth_tibble_stats_RPMI</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["time_in_h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[2],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[3],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[4],"type":["chr"],"align":["left"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p.adj"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["p.format"],"name":[7],"type":["chr"],"align":["left"]},{"label":["p.signif"],"name":[8],"type":["chr"],"align":["left"]},{"label":["method"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"0.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.0474","6":"0.12","7":"0.047","8":"*","9":"T-test"},{"1":"1.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.0647","6":"0.12","7":"0.065","8":"ns","9":"T-test"},{"1":"2.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.0572","6":"0.12","7":"0.057","8":"ns","9":"T-test"},{"1":"2.3","2":"OD","3":"HG001","4":"rho_mutant","5":"0.0335","6":"0.12","7":"0.033","8":"*","9":"T-test"},{"1":"3.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.0115","6":"0.12","7":"0.012","8":"*","9":"T-test"},{"1":"4.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.3568","6":"0.39","7":"0.357","8":"ns","9":"T-test"},{"1":"5.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.3379","6":"0.39","7":"0.338","8":"ns","9":"T-test"},{"1":"6.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.0455","6":"0.12","7":"0.046","8":"*","9":"T-test"},{"1":"7.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.2696","6":"0.37","7":"0.270","8":"ns","9":"T-test"},{"1":"8.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.2322","6":"0.36","7":"0.232","8":"ns","9":"T-test"},{"1":"8.5","2":"OD","3":"HG001","4":"rho_mutant","5":"1.0000","6":"1.00","7":"1.000","8":"ns","9":"T-test"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co">#test growth in TSB</span></span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>growth_tibble_stats_TSB <span class="ot">&lt;-</span> growth_tibble_col_formatted <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>                            <span class="fu">filter</span>(media<span class="sc">==</span><span class="st">&quot;TSB&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>                            <span class="fu">compare_means</span>(<span class="at">formula =</span> OD <span class="sc">~</span> strain,<span class="at">method =</span> <span class="st">&quot;t.test&quot;</span>,<span class="at">p.adjust.method =</span> <span class="st">&quot;BH&quot;</span>,<span class="at">group.by =</span> <span class="st">&quot;time_in_h&quot;</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a>growth_tibble_stats_TSB</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["time_in_h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[2],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[3],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[4],"type":["chr"],"align":["left"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p.adj"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["p.format"],"name":[7],"type":["chr"],"align":["left"]},{"label":["p.signif"],"name":[8],"type":["chr"],"align":["left"]},{"label":["method"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"0.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.59428","6":"0.730","7":"0.5943","8":"ns","9":"T-test"},{"1":"1.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.05614","6":"0.120","7":"0.0561","8":"ns","9":"T-test"},{"1":"1.3","2":"OD","3":"HG001","4":"rho_mutant","5":"0.29491","6":"0.460","7":"0.2949","8":"ns","9":"T-test"},{"1":"2.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.36193","6":"0.500","7":"0.3619","8":"ns","9":"T-test"},{"1":"3.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.66821","6":"0.740","7":"0.6682","8":"ns","9":"T-test"},{"1":"4.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.75317","6":"0.750","7":"0.7532","8":"ns","9":"T-test"},{"1":"5.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.00753","6":"0.083","7":"0.0075","8":"**","9":"T-test"},{"1":"6.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.01847","6":"0.100","7":"0.0185","8":"*","9":"T-test"},{"1":"7.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.09981","6":"0.180","7":"0.0998","8":"ns","9":"T-test"},{"1":"8.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.03620","6":"0.100","7":"0.0362","8":"*","9":"T-test"},{"1":"9.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.03325","6":"0.100","7":"0.0332","8":"*","9":"T-test"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="add-significance-indication-to-plot" class="section level3"
+number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Add significance
+indication to plot</h3>
+<p>And finally lets highlight significant results in our plot with
+“*“.</p>
+<p>Although the differences are very small due to only very low
+variations over biological replicates these minor differences are
+significant. But the fold-change is very very small.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(gtools)) <span class="co">#load gtools packge for stars.pval() function</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(ggrepel)) <span class="co">#load ggrepel package for non-overlapping text and labels</span></span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a><span class="co">#add media column</span></span>
+<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>growth_tibble_stats_TSB<span class="sc">$</span>media <span class="ot">&lt;-</span> <span class="st">&quot;TSB&quot;</span></span>
+<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>growth_tibble_stats_RPMI<span class="sc">$</span>media <span class="ot">&lt;-</span> <span class="st">&quot;RPMI&quot;</span></span>
+<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a><span class="co">#binding both tibbles together via rows</span></span>
+<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a>growth_tibble_stats_final <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(growth_tibble_stats_TSB,growth_tibble_stats_RPMI)</span>
+<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a><span class="co">#add OD max values per time</span></span>
+<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>growth_tibble_stats_final <span class="ot">&lt;-</span> <span class="fu">left_join</span>(growth_tibble_stats_final,final_plot_label_data <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">time_in_h =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>),<span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;media&quot;</span>,<span class="st">&quot;time_in_h&quot;</span>))</span>
+<span id="cb48-13"><a href="#cb48-13" tabindex="-1"></a><span class="co">#create new column and assign &quot;stars&quot; to adjusted p-value </span></span>
+<span id="cb48-14"><a href="#cb48-14" tabindex="-1"></a>growth_tibble_stats_final<span class="sc">$</span>p.adj.signif<span class="ot">&lt;-</span><span class="fu">stars.pval</span>(growth_tibble_stats_final<span class="sc">$</span>p.adj)</span>
+<span id="cb48-15"><a href="#cb48-15" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="#cb48-16" tabindex="-1"></a>growth_tibble_stats_final</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["time_in_h"],"name":[1],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[2],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[3],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[4],"type":["chr"],"align":["left"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p.adj"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["p.format"],"name":[7],"type":["chr"],"align":["left"]},{"label":["p.signif"],"name":[8],"type":["chr"],"align":["left"]},{"label":["method"],"name":[9],"type":["chr"],"align":["left"]},{"label":["media"],"name":[10],"type":["chr"],"align":["left"]},{"label":["OD_label"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["sampling_time_point"],"name":[12],"type":["chr"],"align":["left"]},{"label":["p.adj.signif"],"name":[13],"type":["chr"],"align":["left"]}],"data":[{"1":"0.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.59428","6":"0.730","7":"0.5943","8":"ns","9":"T-test","10":"TSB","11":"0.0598","12":"NA","13":""},{"1":"1.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.05614","6":"0.120","7":"0.0561","8":"ns","9":"T-test","10":"TSB","11":"0.2707","12":"NA","13":""},{"1":"1.3","2":"OD","3":"HG001","4":"rho_mutant","5":"0.29491","6":"0.460","7":"0.2949","8":"ns","9":"T-test","10":"TSB","11":"0.5333","12":"exp.","13":""},{"1":"2.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.36193","6":"0.500","7":"0.3619","8":"ns","9":"T-test","10":"TSB","11":"1.3305","12":"NA","13":""},{"1":"3.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.66821","6":"0.740","7":"0.6682","8":"ns","9":"T-test","10":"TSB","11":"3.7523","12":"trans.","13":""},{"1":"4.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.75317","6":"0.750","7":"0.7532","8":"ns","9":"T-test","10":"TSB","11":"7.6544","12":"early stat.","13":""},{"1":"5.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.00753","6":"0.083","7":"0.0075","8":"**","9":"T-test","10":"TSB","11":"8.8209","12":"NA","13":"."},{"1":"6.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.01847","6":"0.100","7":"0.0185","8":"*","9":"T-test","10":"TSB","11":"9.9272","12":"NA","13":"."},{"1":"7.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.09981","6":"0.180","7":"0.0998","8":"ns","9":"T-test","10":"TSB","11":"11.0256","12":"NA","13":""},{"1":"8.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.03620","6":"0.100","7":"0.0362","8":"*","9":"T-test","10":"TSB","11":"12.1783","12":"late stat.","13":"."},{"1":"9.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.03325","6":"0.100","7":"0.0332","8":"*","9":"T-test","10":"TSB","11":"12.8713","12":"NA","13":"."},{"1":"0.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.04742","6":"0.120","7":"0.047","8":"*","9":"T-test","10":"RPMI","11":"0.0587","12":"NA","13":""},{"1":"1.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.06473","6":"0.120","7":"0.065","8":"ns","9":"T-test","10":"RPMI","11":"0.1615","12":"NA","13":""},{"1":"2.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.05719","6":"0.120","7":"0.057","8":"ns","9":"T-test","10":"RPMI","11":"0.3973","12":"exp.","13":""},{"1":"2.3","2":"OD","3":"HG001","4":"rho_mutant","5":"0.03347","6":"0.120","7":"0.033","8":"*","9":"T-test","10":"RPMI","11":"0.4782","12":"NA","13":""},{"1":"3.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.01154","6":"0.120","7":"0.012","8":"*","9":"T-test","10":"RPMI","11":"0.6707","12":"trans.","13":""},{"1":"4.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.35676","6":"0.390","7":"0.357","8":"ns","9":"T-test","10":"RPMI","11":"0.7455","12":"early stat.","13":""},{"1":"5.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.33789","6":"0.390","7":"0.338","8":"ns","9":"T-test","10":"RPMI","11":"0.8107","12":"NA","13":""},{"1":"6.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.04554","6":"0.120","7":"0.046","8":"*","9":"T-test","10":"RPMI","11":"0.8740","12":"NA","13":""},{"1":"7.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.26965","6":"0.370","7":"0.270","8":"ns","9":"T-test","10":"RPMI","11":"0.9598","12":"NA","13":""},{"1":"8.0","2":"OD","3":"HG001","4":"rho_mutant","5":"0.23215","6":"0.360","7":"0.232","8":"ns","9":"T-test","10":"RPMI","11":"1.0073","12":"late stat.","13":""},{"1":"8.5","2":"OD","3":"HG001","4":"rho_mutant","5":"1.00000","6":"1.000","7":"1.000","8":"ns","9":"T-test","10":"RPMI","11":"1.0546","12":"NA","13":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="co">#you can use write_delim() function to write statistics on hard drive as extra file</span></span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a>    <span class="co"># write_delim(x = growth_tibble_stats_final,path = &quot;growth_curve_statistics.txt&quot;,delim = &quot;\t&quot;,col_names = T)</span></span>
+<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a><span class="co">#signs with adjusted p-value</span></span>
+<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a>final_plot<span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> final_plot_label_data,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD_label,<span class="at">label=</span>sampling_time_point),<span class="at">nudge_y=</span><span class="fl">0.05</span>,<span class="at">inherit.aes =</span> F,<span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb49-7"><a href="#cb49-7" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> growth_tibble_stats_final,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> time_in_h,<span class="at">y =</span> OD_label,<span class="at">label=</span>p.adj.signif),<span class="at">nudge_y=</span><span class="sc">-</span><span class="fl">0.08</span>,<span class="at">inherit.aes =</span> F,<span class="at">size=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb49-8"><a href="#cb49-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption=</span><span class="st">&quot;adjusted p-value&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 14 rows containing missing values or values outside the scale
+## range (`geom_label()`).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-28-1.png" width="960" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="co">#signs with un-adjusted p-value</span></span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>final_plot<span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> final_plot_label_data,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Zeit (h)</span><span class="st">`</span>,<span class="at">y =</span> OD_label,<span class="at">label=</span>sampling_time_point),<span class="at">nudge_y=</span><span class="fl">0.05</span>,<span class="at">inherit.aes =</span> F,<span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> growth_tibble_stats_final,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> time_in_h,<span class="at">y =</span> OD_label,<span class="at">label=</span>p.signif),<span class="at">nudge_y=</span><span class="sc">-</span><span class="fl">0.1</span>,<span class="at">inherit.aes =</span> F,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span> <span class="co">#geom_text_repel from ggrepel package</span></span>
+<span id="cb51-5"><a href="#cb51-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption=</span><span class="st">&quot;un-adjusted p-value&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 14 rows containing missing values or values outside the scale
+## range (`geom_label()`).</code></pre>
+<p><img src="example1_growth_curves_files/figure-html/unnamed-chunk-28-2.png" width="960" /></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

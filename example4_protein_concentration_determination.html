@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Examples</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #232629;
+    color: #7a7c7d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+div.sourceCode
+  { color: #cfcfc2; background-color: #232629; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; text-decoration: underline; } /* Error */
+code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Examples</h1>
+
+</div>
+
+
+<style>
+a:link {
+    color: #BC0203;
+}
+a:visited {
+    color: #007127;
+}
+ a:hover {
+    color: #E70203;
+}
+</style>
+<div id="example-4-protein-concentration-determination-bca-assay"
+class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Example 4: protein
+concentration determination (BCA assay)</h1>
+<p>load data from e.g. Nanodrop of your assay and standard curve</p>
+<div id="load-packages-and-raw-data" class="section level2"
+number="1.1">
+<h2><span class="header-section-number">1.1</span> load packages and raw
+data</h2>
+<p>Loading packages:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># load packages -----------------------------------------------------------</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(stringi)</span></code></pre></div>
+<p>Load raw data:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># load raw data ------------------------------------------------------------</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>BCA_assay_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;materials/protein_concentration_determination_BCA/2019_09_12__BCA_standard_curve_and samples_Lysate.txt&quot;</span>,<span class="at">col_names =</span> T,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 86 Columns: 14
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;\t&quot;
+## chr  (6): Plate ID, Well , Sample ID, User ID, Date , units 
+## dbl  (7): conc. , nm , Abs. , Cursor Pos., Cursor abs., Norm nm, Norm Abs
+## time (1): Time 
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>BCA_assay_data</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Plate ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Well "],"name":[2],"type":["chr"],"align":["left"]},{"label":["Sample ID"],"name":[3],"type":["chr"],"align":["left"]},{"label":["User ID"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Date "],"name":[5],"type":["chr"],"align":["left"]},{"label":["Time "],"name":[6],"type":["time"],"align":["right"]},{"label":["conc. "],"name":[7],"type":["dbl"],"align":["right"]},{"label":["units "],"name":[8],"type":["chr"],"align":["left"]},{"label":["nm "],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Abs. "],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Cursor Pos."],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Cursor abs."],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Norm nm"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Norm Abs"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A1","3":"SMM_control_A","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"NA","8":"mg/ml","9":"562","10":"0.549","11":"562","12":"0.549","13":"750","14":"0.043"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B1","3":"SMM_control_B","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"NA","8":"mg/ml","9":"562","10":"0.540","11":"562","12":"0.540","13":"750","14":"0.033"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C1","3":"SMM_control_C","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"NA","8":"mg/ml","9":"562","10":"0.510","11":"562","12":"0.510","13":"750","14":"0.034"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D1","3":"SMM_EtOH_t10_A","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"NA","8":"mg/ml","9":"562","10":"0.477","11":"562","12":"0.477","13":"750","14":"0.029"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E1","3":"SMM_EtOH_t10_B","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"0.1656","8":"mg/ml","9":"562","10":"0.457","11":"562","12":"0.457","13":"750","14":"0.026"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F1","3":"SMM_EtOH_t10_C","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"0.1619","8":"mg/ml","9":"562","10":"0.447","11":"562","12":"0.447","13":"750","14":"0.025"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G1","3":"SMM_EtOH_t30_A","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"0.1538","8":"mg/ml","9":"562","10":"0.427","11":"562","12":"0.427","13":"750","14":"-0.011"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H1","3":"SMM_EtOH_t30_B","4":"A. Reder","5":"9/12/2019","6":"16:06:00","7":"0.1430","8":"mg/ml","9":"562","10":"0.399","11":"562","12":"0.399","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A2","3":"SMM_control_A","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"NA","8":"mg/ml","9":"562","10":"0.486","11":"562","12":"0.486","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B2","3":"SMM_control_B","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"NA","8":"mg/ml","9":"562","10":"0.515","11":"562","12":"0.515","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C2","3":"SMM_control_C","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"0.1668","8":"mg/ml","9":"562","10":"0.460","11":"562","12":"0.460","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D2","3":"SMM_EtOH_t10_A","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"0.1526","8":"mg/ml","9":"562","10":"0.424","11":"562","12":"0.424","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E2","3":"SMM_EtOH_t10_B","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"0.1365","8":"mg/ml","9":"562","10":"0.383","11":"562","12":"0.383","13":"750","14":"0.022"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F2","3":"SMM_EtOH_t10_C","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"0.1353","8":"mg/ml","9":"562","10":"0.380","11":"562","12":"0.380","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G2","3":"SMM_EtOH_t30_A","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"0.1279","8":"mg/ml","9":"562","10":"0.361","11":"562","12":"0.361","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H2","3":"SMM_EtOH_t30_B","4":"A. Reder","5":"9/12/2019","6":"16:08:00","7":"0.1224","8":"mg/ml","9":"562","10":"0.347","11":"562","12":"0.347","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A3","3":"SMM_EtOH_t30_C","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.1488","8":"mg/ml","9":"562","10":"0.414","11":"562","12":"0.414","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B3","3":"SMM_Heat_t10_A","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.1531","8":"mg/ml","9":"562","10":"0.425","11":"562","12":"0.425","13":"750","14":"0.016"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C3","3":"SMM_Heat_t10_B","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.1611","8":"mg/ml","9":"562","10":"0.445","11":"562","12":"0.445","13":"750","14":"0.023"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D3","3":"SMM_Heat_t10_C","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.1467","8":"mg/ml","9":"562","10":"0.409","11":"562","12":"0.409","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E3","3":"SMM_Heat_t30_A","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.1444","8":"mg/ml","9":"562","10":"0.403","11":"562","12":"0.403","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F3","3":"SMM_Heat_t30_B","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.1494","8":"mg/ml","9":"562","10":"0.415","11":"562","12":"0.415","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G3","3":"SMM_Heat_t30_C","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.1444","8":"mg/ml","9":"562","10":"0.403","11":"562","12":"0.403","13":"750","14":"0.024"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H3","3":"SMM_Salt_t10_A","4":"A. Reder","5":"9/12/2019","6":"16:09:00","7":"0.0924","8":"mg/ml","9":"562","10":"0.270","11":"562","12":"0.270","13":"750","14":"0.016"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A4","3":"SMM_EtOH_t30_C","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.1489","8":"mg/ml","9":"562","10":"0.414","11":"562","12":"0.414","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B4","3":"SMM_Heat_t10_A","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.1440","8":"mg/ml","9":"562","10":"0.402","11":"562","12":"0.402","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C4","3":"SMM_Heat_t10_B","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.1548","8":"mg/ml","9":"562","10":"0.429","11":"562","12":"0.429","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D4","3":"SMM_Heat_t10_C","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.1392","8":"mg/ml","9":"562","10":"0.390","11":"562","12":"0.390","13":"750","14":"0.023"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E4","3":"SMM_Heat_t30_A","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.1439","8":"mg/ml","9":"562","10":"0.402","11":"562","12":"0.402","13":"750","14":"0.026"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F4","3":"SMM_Heat_t30_B","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.1446","8":"mg/ml","9":"562","10":"0.403","11":"562","12":"0.403","13":"750","14":"0.024"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G4","3":"SMM_Heat_t30_C","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.1355","8":"mg/ml","9":"562","10":"0.380","11":"562","12":"0.380","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H4","3":"SMM_Salt_t10_A","4":"A. Reder","5":"9/12/2019","6":"16:10:00","7":"0.0873","8":"mg/ml","9":"562","10":"0.257","11":"562","12":"0.257","13":"750","14":"0.017"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A5","3":"SMM_Salt_t10_B","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"0.0964","8":"mg/ml","9":"562","10":"0.280","11":"562","12":"0.280","13":"750","14":"0.017"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B5","3":"SMM_Salt_t10_C","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"0.1123","8":"mg/ml","9":"562","10":"0.321","11":"562","12":"0.321","13":"750","14":"0.016"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C5","3":"SMM_Salt_t30_A","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"0.1039","8":"mg/ml","9":"562","10":"0.300","11":"562","12":"0.300","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D5","3":"SMM_Salt_t30_B","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"0.0975","8":"mg/ml","9":"562","10":"0.283","11":"562","12":"0.283","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E5","3":"SMM_Salt_t30_C","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"0.0970","8":"mg/ml","9":"562","10":"0.282","11":"562","12":"0.282","13":"750","14":"0.014"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F5","3":"DSM_control_A","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"NA","8":"mg/ml","9":"562","10":"0.479","11":"562","12":"0.479","13":"750","14":"0.015"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G5","3":"DSM_control_B","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"0.1517","8":"mg/ml","9":"562","10":"0.421","11":"562","12":"0.421","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H5","3":"DSM_control_C","4":"A. Reder","5":"9/12/2019","6":"16:11:00","7":"0.1613","8":"mg/ml","9":"562","10":"0.446","11":"562","12":"0.446","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A6","3":"SMM_Salt_t10_B","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"0.0941","8":"mg/ml","9":"562","10":"0.275","11":"562","12":"0.275","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B6","3":"SMM_Salt_t10_C","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"0.1051","8":"mg/ml","9":"562","10":"0.303","11":"562","12":"0.303","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C6","3":"SMM_Salt_t30_A","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"0.1011","8":"mg/ml","9":"562","10":"0.292","11":"562","12":"0.292","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D6","3":"SMM_Salt_t30_B","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"0.0827","8":"mg/ml","9":"562","10":"0.246","11":"562","12":"0.246","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E6","3":"SMM_Salt_t30_C","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"0.0929","8":"mg/ml","9":"562","10":"0.272","11":"562","12":"0.272","13":"750","14":"0.016"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F6","3":"DSM_control_A","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"NA","8":"mg/ml","9":"562","10":"0.495","11":"562","12":"0.495","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G6","3":"DSM_control_B","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"0.1576","8":"mg/ml","9":"562","10":"0.436","11":"562","12":"0.436","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H6","3":"DSM_control_C","4":"A. Reder","5":"9/12/2019","6":"16:13:00","7":"0.1589","8":"mg/ml","9":"562","10":"0.440","11":"562","12":"0.440","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A7","3":"DSM_stat_t60_A","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1662","8":"mg/ml","9":"562","10":"0.458","11":"562","12":"0.458","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B7","3":"DSM_stat_t60_B","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1632","8":"mg/ml","9":"562","10":"0.451","11":"562","12":"0.451","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C7","3":"DSM_stat_t60_C","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1514","8":"mg/ml","9":"562","10":"0.421","11":"562","12":"0.421","13":"750","14":"0.017"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D7","3":"DSM_stat_t180_A","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1440","8":"mg/ml","9":"562","10":"0.402","11":"562","12":"0.402","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E7","3":"DSM_stat_t180_B","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1412","8":"mg/ml","9":"562","10":"0.395","11":"562","12":"0.395","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F7","3":"DSM_stat_t180_C","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1335","8":"mg/ml","9":"562","10":"0.375","11":"562","12":"0.375","13":"750","14":"0.015"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G7","3":"Comp_control_A","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1462","8":"mg/ml","9":"562","10":"0.407","11":"562","12":"0.407","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H7","3":"Comp_control_B","4":"A. Reder","5":"9/12/2019","6":"16:14:00","7":"0.1349","8":"mg/ml","9":"562","10":"0.379","11":"562","12":"0.379","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A8","3":"DSM_stat_t60_A","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"NA","8":"mg/ml","9":"562","10":"0.476","11":"562","12":"0.476","13":"750","14":"0.017"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B8","3":"DSM_stat_t60_B","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"0.0324","8":"mg/ml","9":"562","10":"0.454","11":"562","12":"0.454","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C8","3":"DSM_stat_t60_C","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"0.1495","8":"mg/ml","9":"562","10":"0.416","11":"562","12":"0.416","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D8","3":"DSM_stat_t180_A","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"0.1426","8":"mg/ml","9":"562","10":"0.398","11":"562","12":"0.398","13":"750","14":"0.022"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E8","3":"DSM_stat_t180_B","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"0.1467","8":"mg/ml","9":"562","10":"0.409","11":"562","12":"0.409","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F8","3":"DSM_stat_t180_C","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"0.1373","8":"mg/ml","9":"562","10":"0.385","11":"562","12":"0.385","13":"750","14":"0.016"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G8","3":"Comp_control_A","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"0.1505","8":"mg/ml","9":"562","10":"0.418","11":"562","12":"0.418","13":"750","14":"0.022"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H8","3":"Comp_control_B","4":"A. Reder","5":"9/12/2019","6":"16:15:00","7":"0.1446","8":"mg/ml","9":"562","10":"0.403","11":"562","12":"0.403","13":"750","14":"0.073"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A8","3":"DSM_stat_t60_A","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"NA","8":"mg/ml","9":"562","10":"0.477","11":"562","12":"0.477","13":"750","14":"0.023"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B8","3":"DSM_stat_t60_B","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"0.1643","8":"mg/ml","9":"562","10":"0.453","11":"562","12":"0.453","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C8","3":"DSM_stat_t60_C","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"0.1531","8":"mg/ml","9":"562","10":"0.425","11":"562","12":"0.425","13":"750","14":"0.015"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D8","3":"DSM_stat_t180_A","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"0.1408","8":"mg/ml","9":"562","10":"0.394","11":"562","12":"0.394","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E8","3":"DSM_stat_t180_B","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"0.1543","8":"mg/ml","9":"562","10":"0.428","11":"562","12":"0.428","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F8","3":"DSM_stat_t180_C","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"0.1445","8":"mg/ml","9":"562","10":"0.403","11":"562","12":"0.403","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G8","3":"Comp_control_A","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"0.1586","8":"mg/ml","9":"562","10":"0.439","11":"562","12":"0.439","13":"750","14":"0.018"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"H8","3":"Comp_control_B","4":"A. Reder","5":"9/12/2019","6":"16:17:00","7":"0.1470","8":"mg/ml","9":"562","10":"0.409","11":"562","12":"0.409","13":"750","14":"0.022"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A9","3":"Comp_control_C","4":"A. Reder","5":"9/12/2019","6":"16:18:00","7":"0.1280","8":"mg/ml","9":"562","10":"0.361","11":"562","12":"0.361","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B9","3":"Comp_OD1.8_A","4":"A. Reder","5":"9/12/2019","6":"16:18:00","7":"0.1633","8":"mg/ml","9":"562","10":"0.451","11":"562","12":"0.451","13":"750","14":"0.017"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C9","3":"Comp_OD1.8_B","4":"A. Reder","5":"9/12/2019","6":"16:18:00","7":"NA","8":"mg/ml","9":"562","10":"0.500","11":"562","12":"0.500","13":"750","14":"0.022"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D9","3":"Comp_OD1.8_C","4":"A. Reder","5":"9/12/2019","6":"16:18:00","7":"0.1498","8":"mg/ml","9":"562","10":"0.416","11":"562","12":"0.416","13":"750","14":"0.021"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E9","3":"Comp_stat_t60_A","4":"A. Reder","5":"9/12/2019","6":"16:18:00","7":"0.1256","8":"mg/ml","9":"562","10":"0.355","11":"562","12":"0.355","13":"750","14":"0.016"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F9","3":"Comp_stat_t60_B","4":"A. Reder","5":"9/12/2019","6":"16:18:00","7":"0.1221","8":"mg/ml","9":"562","10":"0.346","11":"562","12":"0.346","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G9","3":"Comp_stat_t60_C","4":"A. Reder","5":"9/12/2019","6":"16:18:00","7":"0.1220","8":"mg/ml","9":"562","10":"0.346","11":"562","12":"0.346","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"A10","3":"Comp_control_C","4":"A. Reder","5":"9/12/2019","6":"16:19:00","7":"0.1314","8":"mg/ml","9":"562","10":"0.370","11":"562","12":"0.370","13":"750","14":"0.023"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"B10","3":"Comp_OD1.8_A","4":"A. Reder","5":"9/12/2019","6":"16:19:00","7":"NA","8":"mg/ml","9":"562","10":"0.475","11":"562","12":"0.475","13":"750","14":"0.019"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"C10","3":"Comp_OD1.8_B","4":"A. Reder","5":"9/12/2019","6":"16:19:00","7":"NA","8":"mg/ml","9":"562","10":"0.503","11":"562","12":"0.503","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"D10","3":"Comp_OD1.8_C","4":"A. Reder","5":"9/12/2019","6":"16:19:00","7":"0.1642","8":"mg/ml","9":"562","10":"0.453","11":"562","12":"0.453","13":"750","14":"0.024"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"E10","3":"Comp_stat_t60_A","4":"A. Reder","5":"9/12/2019","6":"16:19:00","7":"0.1321","8":"mg/ml","9":"562","10":"0.371","11":"562","12":"0.371","13":"750","14":"0.020"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"F10","3":"Comp_stat_t60_B","4":"A. Reder","5":"9/12/2019","6":"16:19:00","7":"0.1246","8":"mg/ml","9":"562","10":"0.352","11":"562","12":"0.352","13":"750","14":"0.016"},{"1":"microBCA_microtiter_plate_layout__Bacillus_subtilis_stress_conditions","2":"G10","3":"Comp_stat_t60_C","4":"A. Reder","5":"9/12/2019","6":"16:19:00","7":"0.1305","8":"mg/ml","9":"562","10":"0.367","11":"562","12":"0.367","13":"750","14":"0.023"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>load standard curve data:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># load standard data --------------------------------------------------------</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>BCA_std_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;materials/protein_concentration_determination_BCA/2019_09_12__BCA_standard_curve_Lysate.txt&quot;</span>,<span class="at">col_names =</span> T,<span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 8 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;\t&quot;
+## dbl (5): conc_mg_per_ml, abs1, abs2, abs3, abs4
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>BCA_std_data</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["conc_mg_per_ml"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["abs1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["abs2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["abs3"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["abs4"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.00","2":"0.008","3":"0.009","4":"0.014","5":"0.005"},{"1":"0.01","2":"0.053","3":"0.057","4":"0.049","5":"0.049"},{"1":"0.02","2":"0.089","3":"0.093","4":"0.082","5":"0.086"},{"1":"0.04","2":"0.153","3":"0.152","4":"0.147","5":"0.155"},{"1":"0.06","2":"0.209","3":"0.214","4":"0.196","5":"0.204"},{"1":"0.08","2":"0.250","3":"0.252","4":"0.239","5":"0.251"},{"1":"0.12","2":"0.347","3":"0.349","4":"0.332","5":"0.345"},{"1":"0.16","2":"0.420","3":"0.423","4":"0.429","5":"0.420"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#tidy standard curve data</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>BCA_std_data_tidy <span class="ot">&lt;-</span> BCA_std_data <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="fu">colnames</span>(BCA_std_data)[<span class="sc">-</span><span class="dv">1</span>],<span class="at">key =</span> <span class="st">&quot;measurements&quot;</span>,<span class="at">value =</span> <span class="st">&quot;Abs&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>BCA_std_data_tidy</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["conc_mg_per_ml"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["measurements"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Abs"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.00","2":"abs1","3":"0.008"},{"1":"0.01","2":"abs1","3":"0.053"},{"1":"0.02","2":"abs1","3":"0.089"},{"1":"0.04","2":"abs1","3":"0.153"},{"1":"0.06","2":"abs1","3":"0.209"},{"1":"0.08","2":"abs1","3":"0.250"},{"1":"0.12","2":"abs1","3":"0.347"},{"1":"0.16","2":"abs1","3":"0.420"},{"1":"0.00","2":"abs2","3":"0.009"},{"1":"0.01","2":"abs2","3":"0.057"},{"1":"0.02","2":"abs2","3":"0.093"},{"1":"0.04","2":"abs2","3":"0.152"},{"1":"0.06","2":"abs2","3":"0.214"},{"1":"0.08","2":"abs2","3":"0.252"},{"1":"0.12","2":"abs2","3":"0.349"},{"1":"0.16","2":"abs2","3":"0.423"},{"1":"0.00","2":"abs3","3":"0.014"},{"1":"0.01","2":"abs3","3":"0.049"},{"1":"0.02","2":"abs3","3":"0.082"},{"1":"0.04","2":"abs3","3":"0.147"},{"1":"0.06","2":"abs3","3":"0.196"},{"1":"0.08","2":"abs3","3":"0.239"},{"1":"0.12","2":"abs3","3":"0.332"},{"1":"0.16","2":"abs3","3":"0.429"},{"1":"0.00","2":"abs4","3":"0.005"},{"1":"0.01","2":"abs4","3":"0.049"},{"1":"0.02","2":"abs4","3":"0.086"},{"1":"0.04","2":"abs4","3":"0.155"},{"1":"0.06","2":"abs4","3":"0.204"},{"1":"0.08","2":"abs4","3":"0.251"},{"1":"0.12","2":"abs4","3":"0.345"},{"1":"0.16","2":"abs4","3":"0.420"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="summarise-assay-data" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> summarise assay
+data</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">#summarize raw data</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>BCA_assay_data_summary<span class="ot">&lt;-</span> BCA_assay_data <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                          <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                          <span class="fu">summarise</span>(<span class="at">meanAbs =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Abs. </span><span class="st">`</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                                    <span class="at">SD_Abs =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Abs. </span><span class="st">`</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>                                    <span class="at">CV_Abs =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Abs. </span><span class="st">`</span>)<span class="sc">/</span><span class="fu">mean</span>(<span class="st">`</span><span class="at">Abs. </span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>BCA_assay_data_summary</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Sample ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["meanAbs"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SD_Abs"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CV_Abs"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Comp_OD1.8_A","2":"0.463","3":"0.016971","4":"0.03665"},{"1":"Comp_OD1.8_B","2":"0.502","3":"0.002121","4":"0.00423"},{"1":"Comp_OD1.8_C","2":"0.434","3":"0.026163","4":"0.06021"},{"1":"Comp_control_A","2":"0.421","3":"0.016258","4":"0.03859"},{"1":"Comp_control_B","2":"0.397","3":"0.015875","4":"0.03999"},{"1":"Comp_control_C","2":"0.365","3":"0.006364","4":"0.01741"},{"1":"Comp_stat_t60_A","2":"0.363","3":"0.011314","4":"0.03117"},{"1":"Comp_stat_t60_B","2":"0.349","3":"0.004243","4":"0.01216"},{"1":"Comp_stat_t60_C","2":"0.356","3":"0.014849","4":"0.04165"},{"1":"DSM_control_A","2":"0.487","3":"0.011314","4":"0.02323"},{"1":"DSM_control_B","2":"0.428","3":"0.010607","4":"0.02475"},{"1":"DSM_control_C","2":"0.443","3":"0.004243","4":"0.00958"},{"1":"DSM_stat_t180_A","2":"0.398","3":"0.004000","4":"0.01005"},{"1":"DSM_stat_t180_B","2":"0.411","3":"0.016563","4":"0.04033"},{"1":"DSM_stat_t180_C","2":"0.388","3":"0.014189","4":"0.03660"},{"1":"DSM_stat_t60_A","2":"0.470","3":"0.010693","4":"0.02273"},{"1":"DSM_stat_t60_B","2":"0.453","3":"0.001528","4":"0.00337"},{"1":"DSM_stat_t60_C","2":"0.421","3":"0.004509","4":"0.01072"},{"1":"SMM_EtOH_t10_A","2":"0.451","3":"0.037477","4":"0.08319"},{"1":"SMM_EtOH_t10_B","2":"0.420","3":"0.052326","4":"0.12459"},{"1":"SMM_EtOH_t10_C","2":"0.413","3":"0.047376","4":"0.11457"},{"1":"SMM_EtOH_t30_A","2":"0.394","3":"0.046669","4":"0.11845"},{"1":"SMM_EtOH_t30_B","2":"0.373","3":"0.036770","4":"0.09858"},{"1":"SMM_EtOH_t30_C","2":"0.414","3":"0.000000","4":"0.00000"},{"1":"SMM_Heat_t10_A","2":"0.413","3":"0.016263","4":"0.03933"},{"1":"SMM_Heat_t10_B","2":"0.437","3":"0.011314","4":"0.02589"},{"1":"SMM_Heat_t10_C","2":"0.399","3":"0.013435","4":"0.03363"},{"1":"SMM_Heat_t30_A","2":"0.403","3":"0.000707","4":"0.00176"},{"1":"SMM_Heat_t30_B","2":"0.409","3":"0.008485","4":"0.02075"},{"1":"SMM_Heat_t30_C","2":"0.392","3":"0.016263","4":"0.04154"},{"1":"SMM_Salt_t10_A","2":"0.264","3":"0.009192","4":"0.03489"},{"1":"SMM_Salt_t10_B","2":"0.278","3":"0.003536","4":"0.01274"},{"1":"SMM_Salt_t10_C","2":"0.312","3":"0.012728","4":"0.04079"},{"1":"SMM_Salt_t30_A","2":"0.296","3":"0.005657","4":"0.01911"},{"1":"SMM_Salt_t30_B","2":"0.264","3":"0.026163","4":"0.09891"},{"1":"SMM_Salt_t30_C","2":"0.277","3":"0.007071","4":"0.02553"},{"1":"SMM_control_A","2":"0.518","3":"0.044548","4":"0.08608"},{"1":"SMM_control_B","2":"0.528","3":"0.017678","4":"0.03351"},{"1":"SMM_control_C","2":"0.485","3":"0.035355","4":"0.07290"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="cv-plot-of-summarized-data" class="section level3"
+number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> CV plot of
+summarized data</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">#CV plot</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>data_cv_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(BCA_assay_data_summary,<span class="fu">aes</span>(<span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>,CV_Abs))<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,<span class="at">hjust =</span> <span class="dv">1</span>,<span class="at">vjust =</span> <span class="fl">0.5</span>,<span class="at">size=</span><span class="dv">8</span>))<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;CV plot&quot;</span>, <span class="at">caption =</span> <span class="st">&quot; solid line: CV = 0.1 / dotted line: CV = 0.2&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.2</span>,<span class="at">linetype=</span><span class="st">&quot;dotted&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>data_cv_plot</span></code></pre></div>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Check with CV plot if there are outliers in your measurement and if
+so evaluate in your experimental data why. For example in Nanodrop
+measurements: Air bubble during measurement?</p>
+</div>
+</div>
+<div id="linear-and-loess-fitregression-modeling-in-r"
+class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> linear and loess
+fit/regression modeling in R</h2>
+<p><strong>regression model:</strong> relationship between a variable of
+interest <strong>Y</strong> and one or more explanatory or predictor
+variables <strong>x</strong> With a single predictor, the model is a
+straight line.</p>
+<p><strong>non-linear Regression Model:</strong> “nonlinear regression
+is a form of regression analysis in which observational data are modeled
+by a function which is a nonlinear combination of the model parameters
+and depends on one or more independent variables. The data are fitted by
+a method of successive approximations.” - wikipedia</p>
+<div id="linear-fit" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> linear fit</h3>
+<p>A linear fit in R is performed with the <code>lm()</code> function.
+It can be used to carry out regression, single stratum analysis of
+variance and analysis of covariance (although aov may provide a more
+convenient interface for these).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">lm</span>(formula, data, subset, weights, na.action,</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>   <span class="at">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="at">model =</span> <span class="cn">TRUE</span>, <span class="at">x =</span> <span class="cn">FALSE</span>, <span class="at">y =</span> <span class="cn">FALSE</span>, <span class="at">qr =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>   <span class="at">singular.ok =</span> <span class="cn">TRUE</span>, <span class="at">contrasts =</span> <span class="cn">NULL</span>, offset, ...)</span></code></pre></div>
+<div id="some-arguments-of-lm" class="section level4" number="1.3.1.1">
+<h4><span class="header-section-number">1.3.1.1</span> some Arguments of
+<code>lm()</code></h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>formula</td>
+<td>an object of class “formula” (or one that can be coerced to that
+class): a symbolic description of the model to be fitted. The details of
+model specification are given under ‘Details’.</td>
+</tr>
+<tr class="even">
+<td>data*</td>
+<td>an optional data frame, list or environment (or object coercible by
+as.data.frame to a data frame) containing the variables in the model. If
+not found in data, the variables are taken from environment(formula),
+typically the environment from which lm is called.</td>
+</tr>
+<tr class="odd">
+<td>subset</td>
+<td>an optional vector specifying a subset of observations to be used in
+the fitting process.</td>
+</tr>
+<tr class="even">
+<td>weights</td>
+<td>an optional vector of weights to be used in the fitting process.
+Should be NULL or a numeric vector. If non-NULL, weighted least squares
+is used with weights weights (that is, minimizing sum(w*e^2)); otherwise
+ordinary least squares is used. See also ‘Details’</td>
+</tr>
+<tr class="odd">
+<td>na.action</td>
+<td>a function which indicates what should happen when the data contain
+NAs. The default is set by the na.action setting of options, and is
+na.fail if that is unset. The ‘factory-fresh’ default is na.omit.
+Another possible value is NULL, no action. Value na.exclude can be
+useful.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="lm-returns" class="section level4" number="1.3.1.2">
+<h4><span class="header-section-number">1.3.1.2</span> <code>lm()</code>
+returns</h4>
+<p>An object of class “lm” is a list containing at least the following
+components:</p>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>coefficients</td>
+<td>a named vector of coefficients</td>
+</tr>
+<tr class="even">
+<td>residuals</td>
+<td>the residuals, that is response minus fitted values.</td>
+</tr>
+<tr class="odd">
+<td>fitted.values</td>
+<td>the fitted mean values.</td>
+</tr>
+<tr class="even">
+<td>rank</td>
+<td>the numeric rank of the fitted linear model.</td>
+</tr>
+<tr class="odd">
+<td>weights</td>
+<td>(only for weighted fits) the specified weights.</td>
+</tr>
+<tr class="even">
+<td>df.residual</td>
+<td>the residual degrees of freedom.</td>
+</tr>
+<tr class="odd">
+<td>call</td>
+<td>the matched call.</td>
+</tr>
+<tr class="even">
+<td>terms</td>
+<td>the terms object used.</td>
+</tr>
+<tr class="odd">
+<td>contrasts</td>
+<td>(only where relevant) the contrasts used.</td>
+</tr>
+<tr class="even">
+<td>xlevels</td>
+<td>(only where relevant) a record of the levels of the factors used in
+fitting.</td>
+</tr>
+<tr class="odd">
+<td>offset</td>
+<td>the offset used (missing if none were used).</td>
+</tr>
+<tr class="even">
+<td>y</td>
+<td>if requested, the response used.</td>
+</tr>
+<tr class="odd">
+<td>x</td>
+<td>if requested, the model matrix used.</td>
+</tr>
+<tr class="even">
+<td>model</td>
+<td>if requested (the default), the model frame used.</td>
+</tr>
+<tr class="odd">
+<td>na.action</td>
+<td>(where relevant) information returned by model.frame on the special
+handling of NAs.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-of-lm" class="section level4" number="1.3.1.3">
+<h4><span class="header-section-number">1.3.1.3</span> Example of
+<code>lm()</code></h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>lm_norm <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed,<span class="at">data =</span> cars)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>lm_zero <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed <span class="sc">-</span> <span class="dv">1</span>,<span class="at">data =</span> cars) <span class="co"># omitting intercept</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#look at output</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>lm_norm</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Coefficients:
+## (Intercept)        speed  
+##      -17.58         3.93</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">summary</span>(lm_norm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -29.07  -9.53  -2.27   9.21  43.20 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -17.579      6.758   -2.60    0.012 *  
+## speed          3.932      0.416    9.46  1.5e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.4 on 48 degrees of freedom
+## Multiple R-squared:  0.651,  Adjusted R-squared:  0.644 
+## F-statistic: 89.6 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co">#plot data with ggplot</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">ggplot</span>(cars,<span class="fu">aes</span>(<span class="at">x =</span> speed,<span class="at">y =</span> dist))<span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;linear fit&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;red line = model through 0 / blue line  = model with intercept&quot;</span>)<span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> x,<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fullrange =</span> T,<span class="at">xseq =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>, <span class="at">length=</span><span class="dv">80</span>))<span class="sc">+</span> <span class="co">#add linear model</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>,<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">fullrange =</span> T,<span class="at">xseq =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>, <span class="at">length=</span><span class="dv">80</span>))<span class="co">#+ # add linear model through 0</span></span></code></pre></div>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  <span class="co">#add xseq to extrapolate data from fit over the data regions</span></span></code></pre></div>
+</div>
+</div>
+<div id="loess-fit-local-polynomial-regression-fitting"
+class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> loess fit (Local
+Polynomial Regression Fitting)</h3>
+<p><code>loess()</code> is a function which fits a polynomial surface
+determined by one or more numerical predictors, using local fitting.
+(Local Polynomial Regression Fitting)</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">loess</span>(formula, data, weights, subset, na.action, <span class="at">model =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>      <span class="at">span =</span> <span class="fl">0.75</span>, enp.target, <span class="at">degree =</span> <span class="dv">2</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>      <span class="at">parametric =</span> <span class="cn">FALSE</span>, <span class="at">drop.square =</span> <span class="cn">FALSE</span>, <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>      <span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;gaussian&quot;</span>, <span class="st">&quot;symmetric&quot;</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>      <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;loess&quot;</span>, <span class="st">&quot;model.frame&quot;</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>      <span class="at">control =</span> <span class="fu">loess.control</span>(...), ...)</span></code></pre></div>
+<div id="some-arguments-of-loess" class="section level4"
+number="1.3.2.1">
+<h4><span class="header-section-number">1.3.2.1</span> some Arguments of
+<code>loess()</code></h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>descritpion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>formula</td>
+<td>a formula specifying the numeric response and one to four numeric
+predictors (best specified via an interaction, but can also be specified
+additively). Will be coerced to a formula if necessary.</td>
+</tr>
+<tr class="even">
+<td>data</td>
+<td>an optional data frame, list or environment (or object coercible by
+as.data.frame to a data frame) containing the variables in the model. If
+not found in data, the variables are taken from environment(formula),
+typically the environment from which loess is called.</td>
+</tr>
+<tr class="odd">
+<td>weights</td>
+<td>optional weights for each case.</td>
+</tr>
+<tr class="even">
+<td>subset</td>
+<td>an optional specification of a subset of the data to be used.</td>
+</tr>
+<tr class="odd">
+<td>na.action</td>
+<td>the action to be taken with missing values in the response or
+predictors. The default is given by getOption(“na.action”).</td>
+</tr>
+<tr class="even">
+<td>model</td>
+<td>should the model frame be returned?</td>
+</tr>
+<tr class="odd">
+<td><strong>span</strong></td>
+<td>the parameter α which controls the degree of smoothing.</td>
+</tr>
+<tr class="even">
+<td>family</td>
+<td>if “gaussian” fitting is by least-squares, and if “symmetric” a
+re-descending M estimator is used with Tukey’s biweight function. Can be
+abbreviated.</td>
+</tr>
+<tr class="odd">
+<td>control</td>
+<td>control parameters: see loess.control.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="loess-returns" class="section level4" number="1.3.2.2">
+<h4><span class="header-section-number">1.3.2.2</span>
+<code>loess()</code> returns</h4>
+<p>An object of class “lm” is a list containing at least the following
+components:</p>
+<table>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>n</td>
+<td>number of values for fit</td>
+</tr>
+<tr class="even">
+<td>fitted</td>
+<td>fitted values</td>
+</tr>
+<tr class="odd">
+<td>residuals</td>
+<td>vector of residuals</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-of-loess" class="section level4" number="1.3.2.3">
+<h4><span class="header-section-number">1.3.2.3</span> Example of
+<code>loess()</code></h4>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>loess_norm_0_2 <span class="ot">&lt;-</span> <span class="fu">loess</span>(dist <span class="sc">~</span> speed,<span class="at">data =</span> cars,<span class="at">span =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : pseudoinverse used at 12</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : neighborhood radius 1</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : reciprocal condition number 0</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : There are other near singularities as well. 1</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>loess_norm_0_75default <span class="ot">&lt;-</span> <span class="fu">loess</span>(dist <span class="sc">~</span> speed,<span class="at">data =</span> cars,<span class="at">span =</span> <span class="fl">0.75</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>loess_norm_2 <span class="ot">&lt;-</span> <span class="fu">loess</span>(dist <span class="sc">~</span> speed,<span class="at">data =</span> cars,<span class="at">span =</span> <span class="dv">2</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co">#look at output</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>loess_norm_0_75default</span></code></pre></div>
+<pre><code>## Call:
+## loess(formula = dist ~ speed, data = cars, span = 0.75)
+## 
+## Number of Observations: 50 
+## Equivalent Number of Parameters: 4.78 
+## Residual Standard Error: 15.3</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">summary</span>(loess_norm_0_75default)</span></code></pre></div>
+<pre><code>## Call:
+## loess(formula = dist ~ speed, data = cars, span = 0.75)
+## 
+## Number of Observations: 50 
+## Equivalent Number of Parameters: 4.78 
+## Residual Standard Error: 15.3 
+## Trace of smoother matrix: 5.24  (exact)
+## 
+## Control settings:
+##   span     :  0.75 
+##   degree   :  2 
+##   family   :  gaussian
+##   surface  :  interpolate      cell = 0.2
+##   normalize:  TRUE
+##  parametric:  FALSE
+## drop.square:  FALSE</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co">#plot data with ggplot</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">ggplot</span>(cars,<span class="fu">aes</span>(<span class="at">x =</span> speed,<span class="at">y =</span> dist))<span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;loess fit&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;effect of the span argument on loess fit&quot;</span>)<span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;span = 0.75</span><span class="sc">\n</span><span class="st">default&quot;</span>),<span class="at">formula =</span> y <span class="sc">~</span> x,<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>,<span class="at">span =</span> <span class="fl">0.75</span>,<span class="at">se=</span>F,<span class="at">fullrange =</span> T,<span class="at">xseq =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>, <span class="at">length=</span><span class="dv">80</span>))<span class="sc">+</span> <span class="co">#add linear model</span></span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;span = 0.2&quot;</span>),<span class="at">formula =</span> y <span class="sc">~</span> x,<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>,<span class="at">span =</span> <span class="fl">0.2</span>,<span class="at">se=</span>F,<span class="at">fullrange =</span> T,<span class="at">xseq =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>, <span class="at">length=</span><span class="dv">80</span>))<span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;span = 2.0&quot;</span>),<span class="at">formula =</span> y <span class="sc">~</span> x,<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>,<span class="at">span =</span> <span class="dv">2</span>,<span class="at">se=</span>F,<span class="at">fullrange =</span> T,<span class="at">xseq =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>, <span class="at">length=</span><span class="dv">80</span>))<span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;span = 0.75</span><span class="sc">\n</span><span class="st">default&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>,<span class="st">&quot;span = 0.2&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>,<span class="st">&quot;span = 2.0&quot;</span> <span class="ot">=</span> <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : pseudoinverse used at 12</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : neighborhood radius 1</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : reciprocal condition number 0</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
+## : There are other near singularities as well. 1</code></pre>
+<pre><code>## Warning: Removed 13 rows containing missing values or values outside the scale range (`geom_smooth()`).
+## Removed 13 rows containing missing values or values outside the scale range (`geom_smooth()`).
+## Removed 13 rows containing missing values or values outside the scale range (`geom_smooth()`).</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><strong>WARNING:</strong> The displayed warnings show you that the
+<code>span</code> argument should be used wisely since and overfitting
+might be the result. The <strong>default of 0.75</strong> is a very good
+starting point. Going below that value will result in a more fuzzy fit
+see above.</p>
+</div>
+</div>
+</div>
+<div id="perform-linear-and-non-linear-fit-based-on-standard-curve"
+class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Perform linear and
+non-linear fit based on standard curve</h2>
+<p>lets perform the linear and loess fit for the standard curve</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co">#perform loess fitt/ exhange axis for predict</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>fit_loess <span class="ot">&lt;-</span> <span class="fu">loess</span>(<span class="at">formula =</span> conc_mg_per_ml<span class="sc">~</span>Abs,<span class="at">data =</span> BCA_std_data_tidy,<span class="at">control=</span><span class="fu">loess.control</span>(<span class="at">surface=</span><span class="st">&quot;direct&quot;</span>))</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="co">#perform linear fit / exhange axis for predict</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>fit_linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> conc_mg_per_ml<span class="sc">~</span>Abs,<span class="at">data =</span> BCA_std_data_tidy)</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a><span class="co">#summary of fits</span></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>summary_loess <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_loess)</span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>summary_linear <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit_linear)</span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>summary_loess</span></code></pre></div>
+<pre><code>## Call:
+## loess(formula = conc_mg_per_ml ~ Abs, data = BCA_std_data_tidy, 
+##     control = loess.control(surface = &quot;direct&quot;))
+## 
+## Number of Observations: 32 
+## Equivalent Number of Parameters: 4.67 
+## Residual Standard Error: 0.00224 
+## Trace of smoother matrix: 5.12  (exact)
+## 
+## Control settings:
+##   span     :  0.75 
+##   degree   :  2 
+##   family   :  gaussian
+##   surface  :  direct
+##   normalize:  TRUE
+##  parametric:  FALSE
+## drop.square:  FALSE</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>summary_linear</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = conc_mg_per_ml ~ Abs, data = BCA_std_data_tidy)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.01053 -0.00466 -0.00111  0.00438  0.01040 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.01234    0.00191   -6.45    4e-07 ***
+## Abs          0.38724    0.00821   47.16   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.00626 on 30 degrees of freedom
+## Multiple R-squared:  0.987,  Adjusted R-squared:  0.986 
+## F-statistic: 2.22e+03 on 1 and 30 DF,  p-value: &lt;2e-16</code></pre>
+<p>Now lets get the residuals and the annotation text for the plots</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co">#get std. residual error for bith fits and r-squared for linear fit; fort loess since it is a non-linear approach R-squared not meaningfull</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="co"># because the sum of squares doesn´t sum up to a constant value</span></span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>residual_std_err__linear <span class="ot">&lt;-</span> summary_linear<span class="sc">$</span>sigma</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>linear_r_sqared <span class="ot">&lt;-</span> summary_linear<span class="sc">$</span>r.squared</span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>residual_std_err__loess <span class="ot">&lt;-</span> summary_loess<span class="sc">$</span>s</span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a><span class="co">#get residuals</span></span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>residuals_tidy<span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">tibble</span>(<span class="at">concentration =</span> BCA_std_data_tidy<span class="sc">$</span>conc_mg_per_ml, <span class="at">residuals =</span> summary_linear<span class="sc">$</span>residuals, <span class="at">fit_type =</span> <span class="st">&quot;linear&quot;</span>),</span>
+<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a>          <span class="fu">tibble</span>(<span class="at">concentration =</span> BCA_std_data_tidy<span class="sc">$</span>conc_mg_per_ml, <span class="at">residuals =</span> summary_loess<span class="sc">$</span>residuals, <span class="at">fit_type =</span> <span class="st">&quot;loess&quot;</span>))</span>
+<span id="cb38-9"><a href="#cb38-9" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" tabindex="-1"></a><span class="co">#annotation text for </span></span>
+<span id="cb38-12"><a href="#cb38-12" tabindex="-1"></a>annot_text <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;loess fit residual std. err. = &quot;</span>,<span class="fu">formatC</span>(residual_std_err__loess, <span class="at">format =</span> <span class="st">&quot;e&quot;</span>, <span class="at">digits =</span> <span class="dv">2</span>),<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb38-13"><a href="#cb38-13" tabindex="-1"></a>                    <span class="st">&quot;linear fit residual std. err. = &quot;</span>,<span class="fu">formatC</span>(residual_std_err__linear, <span class="at">format =</span> <span class="st">&quot;e&quot;</span>, <span class="at">digits =</span> <span class="dv">2</span>),<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p>Based on the residuals lets decide automatically which fits suits
+better the data.</p>
+<p><strong>Background from BCA protocol:</strong> Note: If using
+curve-fitting software, use a best-fit polynomial equation rather than a
+linear equation for the standard curve. If plotting results by hand, a
+point-to-point fit is preferable to a linear fit to the standard
+points.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co">#decission based on fit residual std. err.</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="cf">if</span>(residual_std_err__linear<span class="sc">&gt;</span>residual_std_err__loess){</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>  subtitle_text <span class="ot">&lt;-</span> <span class="st">&quot;loess fit performes best and is used for calculations&quot;</span></span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a>  subtitle_text <span class="ot">&lt;-</span> <span class="st">&quot;linear fit performes best and is used for calculations&quot;</span></span>
+<span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a>}</span></code></pre></div>
+<div id="generate-standards-curve-plots" class="section level3"
+number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> generate standards
+curve plots</h3>
+<div id="standard-curve-plot" class="section level4" number="1.4.1.1">
+<h4><span class="header-section-number">1.4.1.1</span> standard curve
+plot</h4>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co">#standard plot</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>standard_plot<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(BCA_std_data_tidy,<span class="fu">aes</span>(Abs,conc_mg_per_ml))<span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">5</span>,<span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">col=</span><span class="st">&quot;loess&quot;</span>),<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>)<span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">col=</span><span class="st">&quot;linear&quot;</span>),<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)<span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;loess&quot;</span> <span class="ot">=</span> <span class="st">&quot;dodgerblue3&quot;</span>,<span class="st">&quot;linear&quot;</span> <span class="ot">=</span> <span class="st">&quot;orangered3&quot;</span>))<span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.16</span>,<span class="at">length.out =</span> <span class="dv">9</span>))<span class="sc">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="at">length.out =</span> <span class="dv">11</span>))<span class="sc">+</span></span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;standard curve (loess / linear fit)&quot;</span>,</span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a>       <span class="at">subtitle =</span> subtitle_text, <span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">&quot;R^2 linear fit = &quot;</span>, <span class="fu">round</span>(linear_r_sqared,<span class="dv">4</span>),<span class="at">sep =</span> <span class="st">&quot;&quot;</span>))<span class="sc">+</span></span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a>standard_plot</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="residuals-plot" class="section level4" number="1.4.1.2">
+<h4><span class="header-section-number">1.4.1.2</span> residuals
+plot</h4>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co">#residuals plot</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="co">#*-1 coord flip</span></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>standard_res_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(residuals_tidy,<span class="fu">aes</span>(concentration,residuals<span class="sc">*-</span><span class="dv">1</span>,<span class="at">color=</span>fit_type))<span class="sc">+</span> </span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">5</span>,<span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">loess=</span><span class="st">&quot;dodgerblue3&quot;</span>,<span class="at">linear =</span> <span class="st">&quot;orangered3&quot;</span>))<span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.16</span>,<span class="at">length.out =</span> <span class="dv">9</span>))<span class="sc">+</span></span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;residual plot&quot;</span>,<span class="at">caption =</span> annot_text)</span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a>standard_res_plot</span></code></pre></div>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="calculate-protein-concetration-from-standard-curve-fit"
+class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> calculate protein
+concetration from standard curve fit</h2>
+<p>use <code>predict()</code> function to predict values based on
+standard curve</p>
+<div id="predict-function" class="section level3" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> predict
+function</h3>
+<p>predict is a generic function for predictions from the results of
+various model fitting functions. The function invokes particular methods
+which depend on the class of the first argument.</p>
+<p>for most models <em>predict()</em> is a wrapper for there own
+functions: like: - predict.loess - predict.lm - predict.glm -
+predict.nls - …</p>
+<p>Most of the functions allow the variable <strong>newdata</strong>,
+which allow the calculation of new values based on the model.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="do">## S3 method for class &#39;lm&#39;</span></span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">predict</span>(object, newdata, <span class="at">se.fit =</span> <span class="cn">FALSE</span>, <span class="at">scale =</span> <span class="cn">NULL</span>, <span class="at">df =</span> <span class="cn">Inf</span>,</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;confidence&quot;</span>, <span class="st">&quot;prediction&quot;</span>),</span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a>        <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;response&quot;</span>, <span class="st">&quot;terms&quot;</span>),</span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>        <span class="at">terms =</span> <span class="cn">NULL</span>, <span class="at">na.action =</span> na.pass,</span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>        <span class="at">pred.var =</span> res.var<span class="sc">/</span>weights, <span class="at">weights =</span> <span class="dv">1</span>, ...)</span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a><span class="do">## S3 method for class &#39;loess&#39;</span></span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a><span class="fu">predict</span>(object, <span class="at">newdata =</span> <span class="cn">NULL</span>, <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb43-10"><a href="#cb43-10" tabindex="-1"></a>        <span class="at">na.action =</span> na.pass, ...)</span></code></pre></div>
+<p>Now we perform the prediction based on the best suited model. We also
+provide the dilution factor used in our BCA assay for sample dilution.
+Here we used a 15fold dilution.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>dilution_factor <span class="ot">=</span> <span class="dv">15</span> <span class="co">#</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="co">#decission based on fit residual std. err.</span></span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a><span class="cf">if</span>(residual_std_err__linear<span class="sc">&gt;</span>residual_std_err__loess){</span>
+<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a>  BCA_assay_data_summary<span class="sc">$</span>conc_µg_per_µl <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> fit_loess,<span class="at">newdata =</span> <span class="fu">unlist</span>(BCA_assay_data_summary<span class="sc">$</span>meanAbs))<span class="sc">*</span>dilution_factor</span>
+<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
+<span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>  BCA_assay_data_summary<span class="sc">$</span>conc_µg_per_µl <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> fit_linear,<span class="at">newdata =</span> new <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Abs =</span> <span class="fu">unlist</span>(BCA_assay_data_summary<span class="sc">$</span>meanAbs)))<span class="sc">*</span>dilution_factor</span>
+<span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a>  }</span>
+<span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" tabindex="-1"></a>BCA_assay_data_summary</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Sample ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["meanAbs"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SD_Abs"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CV_Abs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conc_µg_per_µl"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Comp_OD1.8_A","2":"0.463","3":"0.016971","4":"0.03665","5":"2.71"},{"1":"Comp_OD1.8_B","2":"0.502","3":"0.002121","4":"0.00423","5":"3.02"},{"1":"Comp_OD1.8_C","2":"0.434","3":"0.026163","4":"0.06021","5":"2.48"},{"1":"Comp_control_A","2":"0.421","3":"0.016258","4":"0.03859","5":"2.38"},{"1":"Comp_control_B","2":"0.397","3":"0.015875","4":"0.03999","5":"2.20"},{"1":"Comp_control_C","2":"0.365","3":"0.006364","4":"0.01741","5":"1.97"},{"1":"Comp_stat_t60_A","2":"0.363","3":"0.011314","4":"0.03117","5":"1.95"},{"1":"Comp_stat_t60_B","2":"0.349","3":"0.004243","4":"0.01216","5":"1.85"},{"1":"Comp_stat_t60_C","2":"0.356","3":"0.014849","4":"0.04165","5":"1.90"},{"1":"DSM_control_A","2":"0.487","3":"0.011314","4":"0.02323","5":"2.90"},{"1":"DSM_control_B","2":"0.428","3":"0.010607","4":"0.02475","5":"2.44"},{"1":"DSM_control_C","2":"0.443","3":"0.004243","4":"0.00958","5":"2.55"},{"1":"DSM_stat_t180_A","2":"0.398","3":"0.004000","4":"0.01005","5":"2.21"},{"1":"DSM_stat_t180_B","2":"0.411","3":"0.016563","4":"0.04033","5":"2.30"},{"1":"DSM_stat_t180_C","2":"0.388","3":"0.014189","4":"0.03660","5":"2.13"},{"1":"DSM_stat_t60_A","2":"0.470","3":"0.010693","4":"0.02273","5":"2.76"},{"1":"DSM_stat_t60_B","2":"0.453","3":"0.001528","4":"0.00337","5":"2.62"},{"1":"DSM_stat_t60_C","2":"0.421","3":"0.004509","4":"0.01072","5":"2.38"},{"1":"SMM_EtOH_t10_A","2":"0.451","3":"0.037477","4":"0.08319","5":"2.61"},{"1":"SMM_EtOH_t10_B","2":"0.420","3":"0.052326","4":"0.12459","5":"2.37"},{"1":"SMM_EtOH_t10_C","2":"0.413","3":"0.047376","4":"0.11457","5":"2.32"},{"1":"SMM_EtOH_t30_A","2":"0.394","3":"0.046669","4":"0.11845","5":"2.18"},{"1":"SMM_EtOH_t30_B","2":"0.373","3":"0.036770","4":"0.09858","5":"2.02"},{"1":"SMM_EtOH_t30_C","2":"0.414","3":"0.000000","4":"0.00000","5":"2.33"},{"1":"SMM_Heat_t10_A","2":"0.413","3":"0.016263","4":"0.03933","5":"2.32"},{"1":"SMM_Heat_t10_B","2":"0.437","3":"0.011314","4":"0.02589","5":"2.50"},{"1":"SMM_Heat_t10_C","2":"0.399","3":"0.013435","4":"0.03363","5":"2.22"},{"1":"SMM_Heat_t30_A","2":"0.403","3":"0.000707","4":"0.00176","5":"2.24"},{"1":"SMM_Heat_t30_B","2":"0.409","3":"0.008485","4":"0.02075","5":"2.29"},{"1":"SMM_Heat_t30_C","2":"0.392","3":"0.016263","4":"0.04154","5":"2.16"},{"1":"SMM_Salt_t10_A","2":"0.264","3":"0.009192","4":"0.03489","5":"1.28"},{"1":"SMM_Salt_t10_B","2":"0.278","3":"0.003536","4":"0.01274","5":"1.37"},{"1":"SMM_Salt_t10_C","2":"0.312","3":"0.012728","4":"0.04079","5":"1.60"},{"1":"SMM_Salt_t30_A","2":"0.296","3":"0.005657","4":"0.01911","5":"1.49"},{"1":"SMM_Salt_t30_B","2":"0.264","3":"0.026163","4":"0.09891","5":"1.29"},{"1":"SMM_Salt_t30_C","2":"0.277","3":"0.007071","4":"0.02553","5":"1.37"},{"1":"SMM_control_A","2":"0.518","3":"0.044548","4":"0.08608","5":"3.15"},{"1":"SMM_control_B","2":"0.528","3":"0.017678","4":"0.03351","5":"3.24"},{"1":"SMM_control_C","2":"0.485","3":"0.035355","4":"0.07290","5":"2.88"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Generate a more detailed overview:</p>
+<ul>
+<li>adding loess and linear fit estimates</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co">#generate standard detailed</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>BCA_assay_data_summary_detailed <span class="ot">&lt;-</span> BCA_assay_data_summary</span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>BCA_assay_data_summary_detailed<span class="sc">$</span>conc_µg_per_µl_LOESS <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> fit_loess,<span class="at">newdata =</span> <span class="fu">unlist</span>(BCA_assay_data_summary<span class="sc">$</span>meanAbs))<span class="sc">*</span>dilution_factor</span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>BCA_assay_data_summary_detailed<span class="sc">$</span>conc_µg_per_µl_LINEAR <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> fit_linear,<span class="at">newdata =</span> new <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Abs =</span> <span class="fu">unlist</span>(BCA_assay_data_summary<span class="sc">$</span>meanAbs)))<span class="sc">*</span>dilution_factor</span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>BCA_assay_data_summary_detailed</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Sample ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["meanAbs"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SD_Abs"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CV_Abs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conc_µg_per_µl"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["conc_µg_per_µl_LOESS"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conc_µg_per_µl_LINEAR"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Comp_OD1.8_A","2":"0.463","3":"0.016971","4":"0.03665","5":"2.71","6":"2.71","7":"2.50"},{"1":"Comp_OD1.8_B","2":"0.502","3":"0.002121","4":"0.00423","5":"3.02","6":"3.02","7":"2.73"},{"1":"Comp_OD1.8_C","2":"0.434","3":"0.026163","4":"0.06021","5":"2.48","6":"2.48","7":"2.34"},{"1":"Comp_control_A","2":"0.421","3":"0.016258","4":"0.03859","5":"2.38","6":"2.38","7":"2.26"},{"1":"Comp_control_B","2":"0.397","3":"0.015875","4":"0.03999","5":"2.20","6":"2.20","7":"2.12"},{"1":"Comp_control_C","2":"0.365","3":"0.006364","4":"0.01741","5":"1.97","6":"1.97","7":"1.94"},{"1":"Comp_stat_t60_A","2":"0.363","3":"0.011314","4":"0.03117","5":"1.95","6":"1.95","7":"1.92"},{"1":"Comp_stat_t60_B","2":"0.349","3":"0.004243","4":"0.01216","5":"1.85","6":"1.85","7":"1.84"},{"1":"Comp_stat_t60_C","2":"0.356","3":"0.014849","4":"0.04165","5":"1.90","6":"1.90","7":"1.89"},{"1":"DSM_control_A","2":"0.487","3":"0.011314","4":"0.02323","5":"2.90","6":"2.90","7":"2.64"},{"1":"DSM_control_B","2":"0.428","3":"0.010607","4":"0.02475","5":"2.44","6":"2.44","7":"2.30"},{"1":"DSM_control_C","2":"0.443","3":"0.004243","4":"0.00958","5":"2.55","6":"2.55","7":"2.39"},{"1":"DSM_stat_t180_A","2":"0.398","3":"0.004000","4":"0.01005","5":"2.21","6":"2.21","7":"2.13"},{"1":"DSM_stat_t180_B","2":"0.411","3":"0.016563","4":"0.04033","5":"2.30","6":"2.30","7":"2.20"},{"1":"DSM_stat_t180_C","2":"0.388","3":"0.014189","4":"0.03660","5":"2.13","6":"2.13","7":"2.07"},{"1":"DSM_stat_t60_A","2":"0.470","3":"0.010693","4":"0.02273","5":"2.76","6":"2.76","7":"2.55"},{"1":"DSM_stat_t60_B","2":"0.453","3":"0.001528","4":"0.00337","5":"2.62","6":"2.62","7":"2.44"},{"1":"DSM_stat_t60_C","2":"0.421","3":"0.004509","4":"0.01072","5":"2.38","6":"2.38","7":"2.26"},{"1":"SMM_EtOH_t10_A","2":"0.451","3":"0.037477","4":"0.08319","5":"2.61","6":"2.61","7":"2.43"},{"1":"SMM_EtOH_t10_B","2":"0.420","3":"0.052326","4":"0.12459","5":"2.37","6":"2.37","7":"2.25"},{"1":"SMM_EtOH_t10_C","2":"0.413","3":"0.047376","4":"0.11457","5":"2.32","6":"2.32","7":"2.22"},{"1":"SMM_EtOH_t30_A","2":"0.394","3":"0.046669","4":"0.11845","5":"2.18","6":"2.18","7":"2.10"},{"1":"SMM_EtOH_t30_B","2":"0.373","3":"0.036770","4":"0.09858","5":"2.02","6":"2.02","7":"1.98"},{"1":"SMM_EtOH_t30_C","2":"0.414","3":"0.000000","4":"0.00000","5":"2.33","6":"2.33","7":"2.22"},{"1":"SMM_Heat_t10_A","2":"0.413","3":"0.016263","4":"0.03933","5":"2.32","6":"2.32","7":"2.22"},{"1":"SMM_Heat_t10_B","2":"0.437","3":"0.011314","4":"0.02589","5":"2.50","6":"2.50","7":"2.35"},{"1":"SMM_Heat_t10_C","2":"0.399","3":"0.013435","4":"0.03363","5":"2.22","6":"2.22","7":"2.14"},{"1":"SMM_Heat_t30_A","2":"0.403","3":"0.000707","4":"0.00176","5":"2.24","6":"2.24","7":"2.15"},{"1":"SMM_Heat_t30_B","2":"0.409","3":"0.008485","4":"0.02075","5":"2.29","6":"2.29","7":"2.19"},{"1":"SMM_Heat_t30_C","2":"0.392","3":"0.016263","4":"0.04154","5":"2.16","6":"2.16","7":"2.09"},{"1":"SMM_Salt_t10_A","2":"0.264","3":"0.009192","4":"0.03489","5":"1.28","6":"1.28","7":"1.35"},{"1":"SMM_Salt_t10_B","2":"0.278","3":"0.003536","4":"0.01274","5":"1.37","6":"1.37","7":"1.43"},{"1":"SMM_Salt_t10_C","2":"0.312","3":"0.012728","4":"0.04079","5":"1.60","6":"1.60","7":"1.63"},{"1":"SMM_Salt_t30_A","2":"0.296","3":"0.005657","4":"0.01911","5":"1.49","6":"1.49","7":"1.53"},{"1":"SMM_Salt_t30_B","2":"0.264","3":"0.026163","4":"0.09891","5":"1.29","6":"1.29","7":"1.35"},{"1":"SMM_Salt_t30_C","2":"0.277","3":"0.007071","4":"0.02553","5":"1.37","6":"1.37","7":"1.42"},{"1":"SMM_control_A","2":"0.518","3":"0.044548","4":"0.08608","5":"3.15","6":"3.15","7":"2.82"},{"1":"SMM_control_B","2":"0.528","3":"0.017678","4":"0.03351","5":"3.24","6":"3.24","7":"2.88"},{"1":"SMM_control_C","2":"0.485","3":"0.035355","4":"0.07290","5":"2.88","6":"2.88","7":"2.63"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="add-out-of-standard-curve-range-logic" class="section level3"
+number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> add out of standard
+curve range logic</h3>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="co">#add outside standard curve logic</span></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>BCA_assay_data_summary_detailed <span class="ot">&lt;-</span> BCA_assay_data_summary_detailed <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">outside_standard_curve =</span> <span class="fu">if_else</span>(<span class="at">condition =</span> meanAbs<span class="sc">&gt;</span><span class="fu">max</span>(BCA_std_data_tidy<span class="sc">$</span>Abs),</span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a>                                                                                 <span class="at">true =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>                                                                                 <span class="at">false =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>                                                <span class="at">outside_standard_curve_percentage =</span> <span class="fu">if_else</span>(<span class="at">condition =</span> meanAbs<span class="sc">&gt;</span><span class="fu">max</span>(BCA_std_data_tidy<span class="sc">$</span>Abs),</span>
+<span id="cb46-6"><a href="#cb46-6" tabindex="-1"></a>                                                                                            <span class="at">true =</span> (meanAbs<span class="sc">/</span><span class="fu">max</span>(BCA_std_data_tidy<span class="sc">$</span>Abs)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">-</span><span class="dv">100</span>,</span>
+<span id="cb46-7"><a href="#cb46-7" tabindex="-1"></a>                                                                                            <span class="at">false =</span> <span class="dv">0</span>))</span></code></pre></div>
+</div>
+<div id="generate-assay-plots" class="section level3" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> generate assay
+plots</h3>
+<p>Since a assay measurement can be above the standard curve value a
+higher prediction of values must be performed to span the samples
+measured in the assay.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co">#loess long fit</span></span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>loess_fit_predict <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Abs =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(BCA_assay_data_summary_detailed<span class="sc">$</span>meanAbs),<span class="at">length.out =</span> <span class="dv">100</span>))</span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>loess_fit_predict<span class="sc">$</span>conc_mg_per_ml <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> fit_loess,<span class="at">newdata =</span> loess_fit_predict<span class="sc">$</span>Abs)</span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>loess_fit_predict</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Abs"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["conc_mg_per_ml"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.00000","2":"-0.001843"},{"1":"0.00533","2":"-0.000730"},{"1":"0.01066","2":"0.000409"},{"1":"0.01598","2":"0.001575"},{"1":"0.02131","2":"0.002767"},{"1":"0.02664","2":"0.003986"},{"1":"0.03197","2":"0.005230"},{"1":"0.03730","2":"0.006502"},{"1":"0.04263","2":"0.007800"},{"1":"0.04795","2":"0.009124"},{"1":"0.05328","2":"0.010475"},{"1":"0.05861","2":"0.011852"},{"1":"0.06394","2":"0.013256"},{"1":"0.06927","2":"0.014686"},{"1":"0.07460","2":"0.016144"},{"1":"0.07992","2":"0.017629"},{"1":"0.08525","2":"0.019140"},{"1":"0.09058","2":"0.020680"},{"1":"0.09591","2":"0.022247"},{"1":"0.10124","2":"0.023841"},{"1":"0.10657","2":"0.025462"},{"1":"0.11189","2":"0.027111"},{"1":"0.11722","2":"0.028785"},{"1":"0.12255","2":"0.030480"},{"1":"0.12788","2":"0.032193"},{"1":"0.13321","2":"0.033879"},{"1":"0.13854","2":"0.035570"},{"1":"0.14386","2":"0.037323"},{"1":"0.14919","2":"0.039135"},{"1":"0.15452","2":"0.040993"},{"1":"0.15985","2":"0.042892"},{"1":"0.16518","2":"0.044829"},{"1":"0.17051","2":"0.046795"},{"1":"0.17583","2":"0.048809"},{"1":"0.18116","2":"0.050850"},{"1":"0.18649","2":"0.052908"},{"1":"0.19182","2":"0.054994"},{"1":"0.19715","2":"0.057120"},{"1":"0.20247","2":"0.059377"},{"1":"0.20780","2":"0.061736"},{"1":"0.21313","2":"0.064012"},{"1":"0.21846","2":"0.066237"},{"1":"0.22379","2":"0.068447"},{"1":"0.22912","2":"0.070655"},{"1":"0.23444","2":"0.072869"},{"1":"0.23977","2":"0.075168"},{"1":"0.24510","2":"0.077463"},{"1":"0.25043","2":"0.079869"},{"1":"0.25576","2":"0.082236"},{"1":"0.26109","2":"0.084430"},{"1":"0.26641","2":"0.086601"},{"1":"0.27174","2":"0.088811"},{"1":"0.27707","2":"0.091064"},{"1":"0.28240","2":"0.093350"},{"1":"0.28773","2":"0.095663"},{"1":"0.29306","2":"0.097997"},{"1":"0.29838","2":"0.100350"},{"1":"0.30371","2":"0.102721"},{"1":"0.30904","2":"0.105107"},{"1":"0.31437","2":"0.107509"},{"1":"0.31970","2":"0.109925"},{"1":"0.32503","2":"0.112355"},{"1":"0.33035","2":"0.114800"},{"1":"0.33568","2":"0.117258"},{"1":"0.34101","2":"0.119730"},{"1":"0.34634","2":"0.122215"},{"1":"0.35167","2":"0.124713"},{"1":"0.35699","2":"0.127225"},{"1":"0.36232","2":"0.129751"},{"1":"0.36765","2":"0.132290"},{"1":"0.37298","2":"0.134844"},{"1":"0.37831","2":"0.137413"},{"1":"0.38364","2":"0.139996"},{"1":"0.38896","2":"0.142594"},{"1":"0.39429","2":"0.145208"},{"1":"0.39962","2":"0.147837"},{"1":"0.40495","2":"0.150481"},{"1":"0.41028","2":"0.153142"},{"1":"0.41561","2":"0.155819"},{"1":"0.42093","2":"0.158511"},{"1":"0.42626","2":"0.161221"},{"1":"0.43159","2":"0.163946"},{"1":"0.43692","2":"0.166688"},{"1":"0.44225","2":"0.169446"},{"1":"0.44758","2":"0.172221"},{"1":"0.45290","2":"0.175013"},{"1":"0.45823","2":"0.177821"},{"1":"0.46356","2":"0.180645"},{"1":"0.46889","2":"0.183487"},{"1":"0.47422","2":"0.186345"},{"1":"0.47955","2":"0.189220"},{"1":"0.48487","2":"0.192112"},{"1":"0.49020","2":"0.195020"},{"1":"0.49553","2":"0.197945"},{"1":"0.50086","2":"0.200888"},{"1":"0.50619","2":"0.203847"},{"1":"0.51152","2":"0.206823"},{"1":"0.51684","2":"0.209816"},{"1":"0.52217","2":"0.212826"},{"1":"0.52750","2":"0.215853"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="measurement-plot" class="section level4" number="1.5.3.1">
+<h4><span class="header-section-number">1.5.3.1</span> measurement
+plot</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="co">#measurements plot</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>measurements_plot<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(BCA_std_data_tidy,<span class="fu">aes</span>(Abs,conc_mg_per_ml))<span class="sc">+</span></span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">5</span>,<span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;loess fit&quot;</span>),<span class="at">data =</span> loess_fit_predict)<span class="sc">+</span></span>
+<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;linear fit&quot;</span>),<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,<span class="at">fullrange=</span><span class="cn">TRUE</span>)<span class="sc">+</span></span>
+<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;loess fit&quot;</span> <span class="ot">=</span> <span class="st">&quot;dodgerblue3&quot;</span>,<span class="st">&quot;linear fit&quot;</span> <span class="ot">=</span> <span class="st">&quot;orangered3&quot;</span>))<span class="sc">+</span></span>
+<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;standard curve (loess / linear fit)&quot;</span>,</span>
+<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a>       <span class="at">subtitle =</span> subtitle_text, <span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">&quot;R^2 linear fit = &quot;</span>, <span class="fu">round</span>(linear_r_sqared,<span class="dv">4</span>),<span class="at">sep =</span> <span class="st">&quot;&quot;</span>))<span class="sc">+</span></span>
+<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> BCA_assay_data_summary_detailed<span class="sc">$</span>meanAbs,<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">linetype=</span><span class="st">&quot;dotted&quot;</span>)<span class="sc">+</span> <span class="co"># add horizontal line indicating samples</span></span>
+<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">min</span>(BCA_std_data_tidy<span class="sc">$</span>conc_mg_per_ml))<span class="sc">+</span></span>
+<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">max</span>(BCA_std_data_tidy<span class="sc">$</span>conc_mg_per_ml))<span class="sc">+</span></span>
+<span id="cb48-13"><a href="#cb48-13" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb48-14"><a href="#cb48-14" tabindex="-1"></a>measurements_plot</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Here dotted lines displaying the measured values from BCA assay from
+samples</p>
+</div>
+<div id="scatter-plot" class="section level4" number="1.5.3.2">
+<h4><span class="header-section-number">1.5.3.2</span> scatter plot</h4>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="co">#scatter plot</span></span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a><span class="co"># get maximum values</span></span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>max_scatter <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">c</span>(BCA_assay_data_summary_detailed<span class="sc">$</span>conc_µg_per_µl_LOESS,BCA_assay_data_summary_detailed<span class="sc">$</span>conc_µg_per_µl_LINEAR))</span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" tabindex="-1"></a>scatter_conc<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(BCA_assay_data_summary_detailed)<span class="sc">+</span></span>
+<span id="cb50-6"><a href="#cb50-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>conc_µg_per_µl_LOESS,</span>
+<span id="cb50-7"><a href="#cb50-7" tabindex="-1"></a>                 <span class="at">y=</span>conc_µg_per_µl_LINEAR,</span>
+<span id="cb50-8"><a href="#cb50-8" tabindex="-1"></a>                 <span class="at">shape=</span>outside_standard_curve,</span>
+<span id="cb50-9"><a href="#cb50-9" tabindex="-1"></a>                 <span class="at">color=</span>outside_standard_curve_percentage),<span class="at">size=</span><span class="dv">5</span>,<span class="at">alpha=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb50-10"><a href="#cb50-10" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>conc_µg_per_µl_LOESS,</span>
+<span id="cb50-11"><a href="#cb50-11" tabindex="-1"></a>                  <span class="at">y=</span>conc_µg_per_µl_LINEAR),<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>,<span class="at">color =</span> <span class="st">&quot;dodgerblue3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb50-12"><a href="#cb50-12" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>conc_µg_per_µl_LOESS,</span>
+<span id="cb50-13"><a href="#cb50-13" tabindex="-1"></a>                  <span class="at">y=</span>conc_µg_per_µl_LINEAR),<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,<span class="at">color =</span> <span class="st">&quot;orangered3&quot;</span>)<span class="sc">+</span></span>
+<span id="cb50-14"><a href="#cb50-14" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(max_scatter)),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(max_scatter)))<span class="sc">+</span></span>
+<span id="cb50-15"><a href="#cb50-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)<span class="sc">+</span></span>
+<span id="cb50-16"><a href="#cb50-16" tabindex="-1"></a>  <span class="fu">scale_color_distiller</span>(<span class="at">palette =</span> <span class="st">&quot;Spectral&quot;</span>)<span class="sc">+</span></span>
+<span id="cb50-17"><a href="#cb50-17" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>,<span class="at">intercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb50-18"><a href="#cb50-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;% outside standard curve&quot;</span>,<span class="at">title =</span> <span class="st">&quot;scatter linear and loess calc. conc.&quot;</span>)</span>
+<span id="cb50-19"><a href="#cb50-19" tabindex="-1"></a>  </span>
+<span id="cb50-20"><a href="#cb50-20" tabindex="-1"></a><span class="co">#label topN out of standard curve range values</span></span>
+<span id="cb50-21"><a href="#cb50-21" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">sum</span>(BCA_assay_data_summary_detailed<span class="sc">$</span>outside_standard_curve)<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb50-22"><a href="#cb50-22" tabindex="-1"></a>  scatter_conc <span class="ot">&lt;-</span> scatter_conc<span class="sc">+</span><span class="fu">geom_text_repel</span>(<span class="at">data =</span> BCA_assay_data_summary_detailed <span class="sc">%&gt;%</span> </span>
+<span id="cb50-23"><a href="#cb50-23" tabindex="-1"></a>                                 <span class="fu">top_n</span>(outside_standard_curve_percentage,<span class="at">n =</span> <span class="dv">10</span>),</span>
+<span id="cb50-24"><a href="#cb50-24" tabindex="-1"></a>                               <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>conc_µg_per_µl_LOESS,</span>
+<span id="cb50-25"><a href="#cb50-25" tabindex="-1"></a>                                             <span class="at">y=</span>conc_µg_per_µl_LINEAR,</span>
+<span id="cb50-26"><a href="#cb50-26" tabindex="-1"></a>                                             <span class="at">label =</span> <span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>),<span class="at">min.segment.length =</span> <span class="fl">0.001</span>)</span>
+<span id="cb50-27"><a href="#cb50-27" tabindex="-1"></a>}</span>
+<span id="cb50-28"><a href="#cb50-28" tabindex="-1"></a></span>
+<span id="cb50-29"><a href="#cb50-29" tabindex="-1"></a>scatter_conc</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<p><img src="example4_protein_concentration_determination_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="filter-for-points-outside-standard-curve"
+class="section level4" number="1.5.3.3">
+<h4><span class="header-section-number">1.5.3.3</span> filter for points
+outside standard curve</h4>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>BCA_assay_data_summary_detailed <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>  <span class="fu">filter</span>(outside_standard_curve<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(outside_standard_curve))</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Sample ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["meanAbs"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SD_Abs"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CV_Abs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conc_µg_per_µl"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["conc_µg_per_µl_LOESS"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conc_µg_per_µl_LINEAR"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["outside_standard_curve"],"name":[8],"type":["lgl"],"align":["right"]},{"label":["outside_standard_curve_percentage"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"Comp_OD1.8_A","2":"0.463","3":"0.01697","4":"0.03665","5":"2.71","6":"2.71","7":"2.50","8":"TRUE","9":"7.93"},{"1":"Comp_OD1.8_B","2":"0.502","3":"0.00212","4":"0.00423","5":"3.02","6":"3.02","7":"2.73","8":"TRUE","9":"16.90"},{"1":"Comp_OD1.8_C","2":"0.434","3":"0.02616","4":"0.06021","5":"2.48","6":"2.48","7":"2.34","8":"TRUE","9":"1.28"},{"1":"DSM_control_A","2":"0.487","3":"0.01131","4":"0.02323","5":"2.90","6":"2.90","7":"2.64","8":"TRUE","9":"13.52"},{"1":"DSM_control_C","2":"0.443","3":"0.00424","4":"0.00958","5":"2.55","6":"2.55","7":"2.39","8":"TRUE","9":"3.26"},{"1":"DSM_stat_t60_A","2":"0.470","3":"0.01069","4":"0.02273","5":"2.76","6":"2.76","7":"2.55","8":"TRUE","9":"9.63"},{"1":"DSM_stat_t60_B","2":"0.453","3":"0.00153","4":"0.00337","5":"2.62","6":"2.62","7":"2.44","8":"TRUE","9":"5.52"},{"1":"SMM_EtOH_t10_A","2":"0.451","3":"0.03748","4":"0.08319","5":"2.61","6":"2.61","7":"2.43","8":"TRUE","9":"5.01"},{"1":"SMM_Heat_t10_B","2":"0.437","3":"0.01131","4":"0.02589","5":"2.50","6":"2.50","7":"2.35","8":"TRUE","9":"1.86"},{"1":"SMM_control_A","2":"0.518","3":"0.04455","4":"0.08608","5":"3.15","6":"3.15","7":"2.82","8":"TRUE","9":"20.63"},{"1":"SMM_control_B","2":"0.528","3":"0.01768","4":"0.03351","5":"3.24","6":"3.24","7":"2.88","8":"TRUE","9":"22.96"},{"1":"SMM_control_C","2":"0.485","3":"0.03536","4":"0.07290","5":"2.88","6":"2.88","7":"2.63","8":"TRUE","9":"13.05"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</div>
+<div id="code-for-saving-calculations-in-excel-using-openxlsx-package"
+class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Code for saving
+calculations in Excel using openxlsx package</h2>
+<p>Saving in Excel might be useful when sending Data back to cooperation
+partners. But I highly recommend use more .csv of .txt files.</p>
+<p>The resulting Excel file:</p>
+<p><a
+href="materials/protein_concentration_determination_BCA/2019_09_12__BCA_protein_concentration_determination.xlsx">2019_09_12__BCA_protein_concentration_determination.xlsx</a></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="co">#split dataname BR / condition</span></span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>split_names_df<span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind.data.frame,<span class="fu">lapply</span>(<span class="fu">stri_split_regex</span>(<span class="fu">stri_reverse</span>(<span class="fu">as.character</span>(BCA_assay_data_summary_detailed<span class="sc">$</span><span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>)),</span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>                                                 <span class="at">pattern =</span> <span class="st">&#39;_&#39;</span>, <span class="at">n =</span> <span class="dv">2</span>),</span>
+<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a>                                stri_reverse)</span>
+<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a>)</span>
+<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a><span class="fu">colnames</span>(split_names_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BR&quot;</span>,<span class="st">&quot;condition&quot;</span>)</span>
+<span id="cb54-7"><a href="#cb54-7" tabindex="-1"></a>BCA_assay_data_summary_detailed <span class="ot">&lt;-</span> <span class="fu">cbind</span>(BCA_assay_data_summary_detailed,<span class="fu">as_tibble</span>(split_names_df))</span>
+<span id="cb54-8"><a href="#cb54-8" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="#cb54-9" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="#cb54-10" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" tabindex="-1"></a><span class="co">#write raw data to excel</span></span>
+<span id="cb54-12"><a href="#cb54-12" tabindex="-1"></a>excel_output <span class="ot">&lt;-</span> <span class="fu">createWorkbook</span>()</span>
+<span id="cb54-13"><a href="#cb54-13" tabindex="-1"></a><span class="fu">addWorksheet</span>(<span class="at">wb =</span> excel_output, <span class="at">sheetName =</span> <span class="st">&quot;BCA_assay_data_summary_detailed&quot;</span>)</span>
+<span id="cb54-14"><a href="#cb54-14" tabindex="-1"></a><span class="co">#write data into workbook</span></span>
+<span id="cb54-15"><a href="#cb54-15" tabindex="-1"></a><span class="fu">writeDataTable</span>(<span class="at">wb =</span> excel_output,<span class="at">sheet =</span>  <span class="st">&quot;BCA_assay_data_summary_detailed&quot;</span>, <span class="at">x =</span> BCA_assay_data_summary_detailed, <span class="at">startRow =</span> <span class="dv">1</span>, <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">tableStyle =</span> <span class="st">&quot;TableStyleMedium1&quot;</span>)</span>
+<span id="cb54-16"><a href="#cb54-16" tabindex="-1"></a></span>
+<span id="cb54-17"><a href="#cb54-17" tabindex="-1"></a></span>
+<span id="cb54-18"><a href="#cb54-18" tabindex="-1"></a><span class="co">#decission based on fit residual std. err.</span></span>
+<span id="cb54-19"><a href="#cb54-19" tabindex="-1"></a><span class="cf">if</span>(residual_std_err__linear<span class="sc">&gt;</span>residual_std_err__loess){</span>
+<span id="cb54-20"><a href="#cb54-20" tabindex="-1"></a><span class="co">#loess</span></span>
+<span id="cb54-21"><a href="#cb54-21" tabindex="-1"></a>  <span class="fu">addWorksheet</span>(<span class="at">wb =</span> excel_output, <span class="at">sheetName =</span> <span class="st">&quot;protein_conc_LOESS_lysate&quot;</span>)</span>
+<span id="cb54-22"><a href="#cb54-22" tabindex="-1"></a>  protein_conc_excel_lysate<span class="ot">&lt;-</span> BCA_assay_data_summary_detailed<span class="sc">%&gt;%</span> </span>
+<span id="cb54-23"><a href="#cb54-23" tabindex="-1"></a>    <span class="fu">select</span>(conc_µg_per_µl_LOESS,BR,condition) <span class="sc">%&gt;%</span></span>
+<span id="cb54-24"><a href="#cb54-24" tabindex="-1"></a>    <span class="fu">spread</span>(<span class="at">key =</span> BR,<span class="at">value =</span> conc_µg_per_µl_LOESS) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-25"><a href="#cb54-25" tabindex="-1"></a>    <span class="fu">arrange</span>(condition)</span>
+<span id="cb54-26"><a href="#cb54-26" tabindex="-1"></a>  <span class="co">#write data into workbook</span></span>
+<span id="cb54-27"><a href="#cb54-27" tabindex="-1"></a>  <span class="fu">writeDataTable</span>(<span class="at">wb =</span> excel_output,<span class="at">sheet =</span>  <span class="st">&quot;protein_conc_LOESS_lysate&quot;</span>, <span class="at">x =</span> protein_conc_excel_lysate, <span class="at">startRow =</span> <span class="dv">1</span>, <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">tableStyle =</span> <span class="st">&quot;TableStyleMedium1&quot;</span>)</span>
+<span id="cb54-28"><a href="#cb54-28" tabindex="-1"></a>  </span>
+<span id="cb54-29"><a href="#cb54-29" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
+<span id="cb54-30"><a href="#cb54-30" tabindex="-1"></a>    <span class="fu">addWorksheet</span>(<span class="at">wb =</span> excel_output, <span class="at">sheetName =</span> <span class="st">&quot;protein_conc_LINEAR_lysate&quot;</span>)</span>
+<span id="cb54-31"><a href="#cb54-31" tabindex="-1"></a>    protein_conc_excel_lysate<span class="ot">&lt;-</span> BCA_assay_data_summary_detailed<span class="sc">%&gt;%</span> </span>
+<span id="cb54-32"><a href="#cb54-32" tabindex="-1"></a>      <span class="fu">select</span>(conc_µg_per_µl_LINEAR,BR,condition) <span class="sc">%&gt;%</span></span>
+<span id="cb54-33"><a href="#cb54-33" tabindex="-1"></a>      <span class="fu">spread</span>(<span class="at">key =</span> BR,<span class="at">value =</span> conc_µg_per_µl_LINEAR) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-34"><a href="#cb54-34" tabindex="-1"></a>      <span class="fu">arrange</span>(condition)</span>
+<span id="cb54-35"><a href="#cb54-35" tabindex="-1"></a>    <span class="co">#write data into workbook</span></span>
+<span id="cb54-36"><a href="#cb54-36" tabindex="-1"></a>    <span class="fu">writeDataTable</span>(<span class="at">wb =</span> excel_output,<span class="at">sheet =</span>  <span class="st">&quot;protein_conc_LINEAR_lysate&quot;</span>, <span class="at">x =</span> protein_conc_excel_lysate, <span class="at">startRow =</span> <span class="dv">1</span>, <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">tableStyle =</span> <span class="st">&quot;TableStyleMedium1&quot;</span>)</span>
+<span id="cb54-37"><a href="#cb54-37" tabindex="-1"></a>    </span>
+<span id="cb54-38"><a href="#cb54-38" tabindex="-1"></a>    </span>
+<span id="cb54-39"><a href="#cb54-39" tabindex="-1"></a>    </span>
+<span id="cb54-40"><a href="#cb54-40" tabindex="-1"></a>    }</span>
+<span id="cb54-41"><a href="#cb54-41" tabindex="-1"></a></span>
+<span id="cb54-42"><a href="#cb54-42" tabindex="-1"></a></span>
+<span id="cb54-43"><a href="#cb54-43" tabindex="-1"></a><span class="fu">saveWorkbook</span>(<span class="at">wb =</span> excel_output,<span class="at">file =</span> <span class="st">&quot;2019_09_12__BCA_protein_concentration_determination.xlsx&quot;</span>,<span class="at">overwrite =</span> T)</span></code></pre></div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>useful_packages___compareGroups.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R course - learn R the tidy way</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">R general</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="example1_growth_curves.html">Example 1: growth curves</a>
+    </li>
+    <li>
+      <a href="example2_DIA_MS_data_analysis.html">Example 2: DIA-MS data analysis (part 1)</a>
+    </li>
+    <li>
+      <a href="example3_DIA_MS_data_analysis_with_PECA.html">Example 3: DIA-MS data analysis (part 2) - ROPECA analysis of data</a>
+    </li>
+    <li>
+      <a href="example4_protein_concentration_determination.html">Example 4: protein concentration determination (BCA assay)</a>
+    </li>
+    <li>
+      <a href="example5_Germany_temperature_over_years.html">Example 5: plot temperature data to map</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="useful_packages.html">useful packages</a>
+</li>
+<li>
+  <a href="code_suggestions.html">coding hints/examples</a>
+</li>
+<li>
+  <a href="code_snippets.html">code snippets</a>
+</li>
+<li>
+  <a href="materials.html">Materials</a>
+</li>
+<li>
+  <a href="books.html">Books</a>
+</li>
+<li>
+  <a href="R_cheat_sheets.html">cheat sheets</a>
+</li>
+<li>
+  <a href="mailto:stephan.michalik@uni-greifswald.de">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="comparegroups-package" class="section level2">
+<h2><code>compareGroups</code> package</h2>
+<p>Text here is from cran page of <a
+href="https://cran.r-project.org/web/packages/compareGroups/vignettes/compareGroups_vignette.html">compareGroups</a>.</p>
+<p>The <strong>compareGroups</strong> package (Subirana, Sanz, and Vila
+2014) allows users to create tables displaying results of univariate
+analyses, stratified or not by categorical variable groupings.</p>
+<p>Tables can easily be exported to CSV, LaTeX, HTML, PDF, Word or
+Excel, or inserted in R-markdown files to generate reports
+automatically.</p>
+<p>This package can be used from the R prompt or from a user-friendly
+graphical user interface for non-R familiarized users.</p>
+<div id="example" class="section level3">
+<h3>example</h3>
+<div id="data" class="section level4">
+<h4>data</h4>
+<pre class="r"><code>library(compareGroups)
+library(survival)
+# load REGICOR data
+data(regicor)</code></pre>
+<p>A variable of class Surv must be created to deal with time-to-event
+variables (i.e., time to Cardiovascular event/censored in our
+example):</p>
+<pre class="r"><code># compute a time-to-cardiovascular event variable
+regicor$tcv &lt;- with(regicor, Surv(tocv, as.integer(cv==&#39;Yes&#39;)))
+attr(regicor$tcv,&quot;label&quot;)&lt;-&quot;Cardiovascular&quot;
+head(regicor)</code></pre>
+<pre><code>##            id year age    sex                 smoker sbp dbp histhtn txhtn chol
+## 6101 2.26e+03 2005  70 Female           Never smoker 138  75      No    No  294
+## 5762 1.88e+03 2005  56 Female           Never smoker 139  89      No    No  220
+## 2992 3.00e+09 2000  37   Male Current or former &lt; 1y 132  82      No    No  245
+## 2611 3.00e+09 2000  69 Female           Never smoker 168  97      No    No  168
+## 2762 3.00e+09 2000  70 Female                   &lt;NA&gt;  NA  NA      No    No   NA
+## 1516 3.00e+09 2000  40 Female Current or former &lt; 1y 108  70      No    No   NA
+##       hdl triglyc   ldl histchol txchol height weight  bmi phyact  pcs  mcs
+## 6101 57.0      93 218.4       No     No    160   64.0 25.0    304 54.5 58.9
+## 5762 50.0     160 138.0       No     No    163   67.0 25.2    160 58.2 48.0
+## 2992 59.8      89 167.4       No     No    170   70.0 24.2    553 43.4 62.6
+## 2611 53.2     116  91.6       No     No    147   68.0 31.5    522 54.3 57.9
+## 2762   NA      NA    NA     &lt;NA&gt;   &lt;NA&gt;     NA     NA   NA     NA   NA   NA
+## 1516 68.9      94    NA       No     No    158   43.5 17.4    387 57.3 47.9
+##        cv tocv death todeath   tcv
+## 6101   No 1025   Yes  1299.2 1025+
+## 5762   No 2757    No    39.3 2757+
+## 2992   No 1906    No   858.4 1906+
+## 2611   No 1055    No  1833.1 1055+
+## 2762 &lt;NA&gt;   NA  &lt;NA&gt;      NA   NA?
+## 1516   No 3239    No   877.6 3239+</code></pre>
+<p>Note that variables tmain and tcv are created as time-to-death and
+time-to-cardiovascular event, respectively, both taking into account
+censoring (i.e. they are of class Surv).</p>
+</div>
+<div id="computing-descriptives" class="section level4">
+<h4>Computing descriptives</h4>
+<p>compareGroups is the main function which does all the calculus. It is
+needed to store results in an object. Later, applying the function
+createTable (Section 4.2) to this object will create tables of the
+analysis results.</p>
+<p>For example, to perform a univariate analysis with the predimed data
+between group (“response” variable) and all other variables
+(“explanatory” variables), this formula is required:</p>
+<pre class="r"><code># compute a time-to-overall death variable
+regicor$tdeath &lt;- with(regicor, Surv(todeath, as.integer(death==&#39;Yes&#39;)))
+attr(regicor$tdeath,&quot;label&quot;) &lt;- &quot;Mortality&quot;
+head(regicor)</code></pre>
+<pre><code>##            id year age    sex                 smoker sbp dbp histhtn txhtn chol
+## 6101 2.26e+03 2005  70 Female           Never smoker 138  75      No    No  294
+## 5762 1.88e+03 2005  56 Female           Never smoker 139  89      No    No  220
+## 2992 3.00e+09 2000  37   Male Current or former &lt; 1y 132  82      No    No  245
+## 2611 3.00e+09 2000  69 Female           Never smoker 168  97      No    No  168
+## 2762 3.00e+09 2000  70 Female                   &lt;NA&gt;  NA  NA      No    No   NA
+## 1516 3.00e+09 2000  40 Female Current or former &lt; 1y 108  70      No    No   NA
+##       hdl triglyc   ldl histchol txchol height weight  bmi phyact  pcs  mcs
+## 6101 57.0      93 218.4       No     No    160   64.0 25.0    304 54.5 58.9
+## 5762 50.0     160 138.0       No     No    163   67.0 25.2    160 58.2 48.0
+## 2992 59.8      89 167.4       No     No    170   70.0 24.2    553 43.4 62.6
+## 2611 53.2     116  91.6       No     No    147   68.0 31.5    522 54.3 57.9
+## 2762   NA      NA    NA     &lt;NA&gt;   &lt;NA&gt;     NA     NA   NA     NA   NA   NA
+## 1516 68.9      94    NA       No     No    158   43.5 17.4    387 57.3 47.9
+##        cv tocv death todeath   tcv  tdeath
+## 6101   No 1025   Yes  1299.2 1025+  1299.2
+## 5762   No 2757    No    39.3 2757+   39.3+
+## 2992   No 1906    No   858.4 1906+  858.4+
+## 2611   No 1055    No  1833.1 1055+ 1833.1+
+## 2762 &lt;NA&gt;   NA  &lt;NA&gt;      NA   NA?     NA?
+## 1516   No 3239    No   877.6 3239+  877.6+</code></pre>
+</div>
+<div id="selecting-response-variables" class="section level4">
+<h4>Selecting response variables</h4>
+<p>If only a dot occurs on the right side of the ~ all variables in the
+data frame will be used.</p>
+<pre class="r"><code># descriptives by sex
+res &lt;- compareGroups(sex ~ .-id-tocv-cv-todeath-death, data = regicor)
+res</code></pre>
+<pre><code>## 
+## 
+## -------- Summary of results by groups of &#39;Sex&#39;---------
+## 
+## 
+##    var                           N    p.value  method            selection
+## 1  Recruitment year              2294 0.506    categorical       ALL      
+## 2  Age                           2294 0.840    continuous normal ALL      
+## 3  Smoking status                2233 &lt;0.001** categorical       ALL      
+## 4  Systolic blood pressure       2280 &lt;0.001** continuous normal ALL      
+## 5  Diastolic blood pressure      2280 &lt;0.001** continuous normal ALL      
+## 6  History of hypertension       2286 0.644    categorical       ALL      
+## 7  Hypertension treatment        2251 0.096*   categorical       ALL      
+## 8  Total cholesterol             2193 0.140    continuous normal ALL      
+## 9  HDL cholesterol               2225 &lt;0.001** continuous normal ALL      
+## 10 Triglycerides                 2231 &lt;0.001** continuous normal ALL      
+## 11 LDL cholesterol               2126 0.092*   continuous normal ALL      
+## 12 History of hyperchol.         2273 0.308    categorical       ALL      
+## 13 Cholesterol treatment         2239 0.583    categorical       ALL      
+## 14 Height (cm)                   2259 &lt;0.001** continuous normal ALL      
+## 15 Weight (Kg)                   2259 &lt;0.001** continuous normal ALL      
+## 16 Body mass index               2259 0.083*   continuous normal ALL      
+## 17 Physical activity (Kcal/week) 2206 0.368    continuous normal ALL      
+## 18 Physical component            2054 &lt;0.001** continuous normal ALL      
+## 19 Mental component              2054 &lt;0.001** continuous normal ALL      
+## 20 Cardiovascular                2163 0.696    Surv [Tmax=1718]  ALL      
+## 21 Mortality                     2148 0.349    Surv [Tmax=1668]  ALL      
+## -----
+## Signif. codes:  0 &#39;**&#39; 0.05 &#39;*&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>### summary of each variable
+summary(res)</code></pre>
+<pre><code>## 
+##  --- Descriptives of each row-variable by groups of &#39;Sex&#39; ---
+## 
+## ------------------- 
+## row-variable: Recruitment year 
+## 
+##        1995 2000 2005 1995% 2000% 2005% p.overall
+## [ALL]  431  786  1077 18.8  34.3  46.9           
+## Male   206  390  505  18.7  35.4  45.9  0.506    
+## Female 225  396  572  18.9  33.2  47.9           
+## 
+##      OR   OR.lower OR.upper
+## 1995 1                     
+## 2000 0.93 0.735    1.18    
+## 2005 1.04 0.829    1.3     
+## 
+## ------------------- 
+## row-variable: Age 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2294 54.7 11   54.3  55.2           
+## Male   1101 54.8 11.1 54.1  55.4  0.84     
+## Female 1193 54.7 11   54.1  55.3           
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.999 0.992    1.01    
+## 
+## ------------------- 
+## row-variable: Smoking status 
+## 
+##        Never smoker Current or former &lt; 1y Former &gt;= 1y Never smoker%
+## [ALL]  1201         593                    439          53.8         
+## Male   301          410                    360          28.1         
+## Female 900          183                    79           77.5         
+##        Current or former &lt; 1y% Former &gt;= 1y% p.overall
+## [ALL]  26.6                    19.7                   
+## Male   38.3                    33.6          0        
+## Female 15.7                    6.8                    
+## 
+##                        OR     OR.lower OR.upper
+## Never smoker           1                       
+## Current or former &lt; 1y 0.15   0.12     0.186   
+## Former &gt;= 1y           0.0736 0.0555   0.0966  
+## 
+## ------------------- 
+## row-variable: Systolic blood pressure 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2280 131  20.3 130   132            
+## Male   1098 134  18.9 133   135   0        
+## Female 1182 129  21.2 127   130            
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.986 0.982    0.991   
+## 
+## ------------------- 
+## row-variable: Diastolic blood pressure 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2280 79.7 10.5 79.2  80.1           
+## Male   1098 81.7 10.2 81.1  82.3  0        
+## Female 1182 77.8 10.5 77.2  78.4           
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.965 0.957    0.973   
+## 
+## ------------------- 
+## row-variable: History of hypertension 
+## 
+##        Yes No   Yes% No%  p.overall
+## [ALL]  723 1563 31.6 68.4          
+## Male   341 755  31.1 68.9 0.644    
+## Female 382 808  32.1 67.9          
+## 
+##     OR    OR.lower OR.upper
+## Yes 1                      
+## No  0.955 0.801    1.14    
+## 
+## ------------------- 
+## row-variable: Hypertension treatment 
+## 
+##        No   Yes No%  Yes% p.overall
+## [ALL]  1823 428 81   19            
+## Male   889  189 82.5 17.5 0.0963   
+## Female 934  239 79.6 20.4          
+## 
+##     OR  OR.lower OR.upper
+## No  1                    
+## Yes 1.2 0.974    1.49    
+## 
+## ------------------- 
+## row-variable: Total cholesterol 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2193 219  45.2 217   221            
+## Male   1054 217  42.7 215   220   0.14     
+## Female 1139 220  47.4 217   223            
+## 
+##      OR OR.lower OR.upper
+## [1,] 1  1        1       
+## 
+## ------------------- 
+## row-variable: HDL cholesterol 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2225 52.7 14.7 52.1  53.3           
+## Male   1075 47.5 12.6 46.8  48.3  0        
+## Female 1150 57.5 15   56.6  58.4           
+## 
+##      OR   OR.lower OR.upper
+## [1,] 1.05 1.05     1.06    
+## 
+## ------------------- 
+## row-variable: Triglycerides 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2231 116  73.9 113   119            
+## Male   1075 131  87.4 126   136   0        
+## Female 1156 101  55.2 98.3  105            
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.993 0.992    0.995   
+## 
+## ------------------- 
+## row-variable: LDL cholesterol 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2126 143  39.7 142   145            
+## Male   1010 145  38.5 142   147   0.0918   
+## Female 1116 142  40.7 139   144            
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.998 0.996    1       
+## 
+## ------------------- 
+## row-variable: History of hyperchol. 
+## 
+##        Yes No   Yes% No%  p.overall
+## [ALL]  709 1564 31.2 68.8          
+## Male   353 741  32.3 67.7 0.308    
+## Female 356 823  30.2 69.8          
+## 
+##     OR  OR.lower OR.upper
+## Yes 1                    
+## No  1.1 0.922    1.32    
+## 
+## ------------------- 
+## row-variable: Cholesterol treatment 
+## 
+##        No   Yes No%  Yes% p.overall
+## [ALL]  2011 228 89.8 10.2          
+## Male   962  114 89.4 10.6 0.583    
+## Female 1049 114 90.2 9.8           
+## 
+##     OR    OR.lower OR.upper
+## No  1                      
+## Yes 0.917 0.697    1.21    
+## 
+## ------------------- 
+## row-variable: Height (cm) 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2259 163  9.22 163   163            
+## Male   1090 169  7.34 169   170   0        
+## Female 1169 157  6.41 157   157            
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.769 0.753    0.786   
+## 
+## ------------------- 
+## row-variable: Weight (Kg) 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2259 73.4 13.7 72.9  74             
+## Male   1090 79.7 11.9 79    80.4  0        
+## Female 1169 67.6 12.6 66.9  68.3           
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.922 0.915    0.93    
+## 
+## ------------------- 
+## row-variable: Body mass index 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2259 27.6 4.56 27.5  27.8           
+## Male   1090 27.8 3.73 27.6  28    0.0829   
+## Female 1169 27.5 5.21 27.2  27.8           
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.984 0.967    1       
+## 
+## ------------------- 
+## row-variable: Physical activity (Kcal/week) 
+## 
+##        N    mean sd  lower upper p.overall
+## [ALL]  2206 399  388 383   415            
+## Male   1060 407  425 381   432   0.368    
+## Female 1146 392  351 371   412            
+## 
+##      OR OR.lower OR.upper
+## [1,] 1  1        1       
+## 
+## ------------------- 
+## row-variable: Physical component 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2054 49.6 9.01 49.2  50             
+## Male   1002 51   8.01 50.6  51.5  0        
+## Female 1052 48.3 9.68 47.7  48.8           
+## 
+##      OR    OR.lower OR.upper
+## [1,] 0.965 0.955    0.975   
+## 
+## ------------------- 
+## row-variable: Mental component 
+## 
+##        N    mean sd   lower upper p.overall
+## [ALL]  2054 48   11   47.5  48.5           
+## Male   1002 50.4 9.91 49.7  51    0        
+## Female 1052 45.7 11.5 45    46.4           
+## 
+##      OR   OR.lower OR.upper
+## [1,] 0.96 0.952    0.968   
+## 
+## ------------------- 
+## row-variable: Cardiovascular 
+## 
+##        N    inc  lower upper p.overall
+## [ALL]  2163 4.49 3.51  5.46           
+## Male   1042 4.46 3.05  5.85  0.696    
+## Female 1121 4.52 3.15  5.88           
+## 
+##      OR OR.lower OR.upper
+## [1,] .  .        .       
+## 
+## ------------------- 
+## row-variable: Mortality 
+## 
+##        N    inc  lower upper p.overall
+## [ALL]  2148 7.6  6.27  8.91           
+## Male   1030 8.38 6.33  10.4  0.349    
+## Female 1118 6.9  5.16  8.61           
+## 
+##      OR OR.lower OR.upper
+## [1,] .  .        .</code></pre>
+<pre class="r"><code># univariate plots of all row-variables
+# plot(res)</code></pre>
+<p>Much more of this very useful package can be read at <a
+href="https://cran.r-project.org/web/packages/compareGroups/vignettes/compareGroups_vignette.html"
+class="uri">https://cran.r-project.org/web/packages/compareGroups/vignettes/compareGroups_vignette.html</a>.</p>
+</div>
+<div id="output" class="section level4">
+<h4>output</h4>
+<p>with createTable() useful outputs can be generated (pdf,word,xls)</p>
+<p>e.g. <strong>export2pdf</strong></p>
+<pre class="r"><code># library(compareGroups)
+# data(regicor)
+
+##  example on an ordinary table
+# res &lt;- createTable(compareGroups(year ~ . -id, regicor), hide = c(sex=1), hide.no = &#39;no&#39;)
+# export2pdf(res, file=&quot;your_file.pdf&quot;, size=&quot;small&quot;)</code></pre>
+<div class="float">
+<img src="figures/compareGroups.png" alt="ordinary table" />
+<div class="figcaption">ordinary table</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
